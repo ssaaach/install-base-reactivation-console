@@ -1548,7 +1548,13 @@ function render(){
     b.setAttribute("role","tab"); b.id="tab-"+pg.id;
     b.setAttribute("aria-selected",i===0?"true":"false");
     b.setAttribute("aria-controls","sec-"+pg.id);
-    b.addEventListener("click",function(){select(pg.id);});
+    /* Click by way of the hash, so the URL always names the surface on
+       screen and back steps through the tabs. Assigning the hash the value
+       it already holds fires no hashchange, so that case selects direct. */
+    b.addEventListener("click",function(){
+      if((location.hash||"").replace(/^#/,"")===pg.id) select(pg.id);
+      else location.hash=pg.id;
+    });
     tabs.appendChild(b);
 
     var s=document.createElement("section");
