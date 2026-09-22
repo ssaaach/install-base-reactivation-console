@@ -31,3 +31,7 @@ Prompt_1.md
 # the repo. The CLI adds these itself; kept here so the protection is recorded.
 .vercel
 .env*
+
+# Private working notes - operational status, local paths, auth state.
+# Eyes only: never published, same treatment as the original brief.
+context.md
