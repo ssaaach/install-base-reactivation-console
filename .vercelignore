@@ -1,0 +1,12 @@
+# The console is one self-contained file. Everything below is the pipeline that
+# produced it, and none of it is needed to serve the page - keeping it out of the
+# upload also stops Vercel detecting requirements.txt and trying a Python build.
+data/
+pipeline/
+reports/
+tests/
+docs/
+app/index.html
+app/data/
+requirements.txt
+*.md

@@ -6,7 +6,9 @@ hardware has no support attached, what is expiring, and which accounts are worth
 a conversation — with the evidence rows that triggered every recommendation.
 
 **Console:** the built page is `app/dist/index.html` — a single self-contained
-file, no server, no fetch.
+file, no server, no build step, no runtime fetch. 0.56 MB over the wire.
+Deploys as a static site anywhere; `vercel.json` and `netlify.toml` are in the
+repo and need no configuration. See [Deploying the console](#deploying-the-console).
 
 ---
 
@@ -78,7 +80,7 @@ The same statement appears on every page of the console.
 | Ranking uses | **survival_model** |
 | Backblaze drive-days behind the hazard curve | 27,761,188 |
 
-_Generated 2026-09-21 21:39 UTC by `pipeline/make_docs.py`. As-of date 2026-09-21._
+_Generated 2026-09-22 09:06 UTC by `pipeline/make_docs.py`. As-of date 2026-09-21._
 <!-- END HEADLINE_FIGURES -->
 
 ---
@@ -727,6 +729,87 @@ The raw cache is written to `data/raw/` with a manifest recording each file's
 request body, row and column counts, SHA-256 and retrieval time. Re-running is
 free; `--force-fetch` re-downloads.
 
+## Deploying the console
+
+The console is **one self-contained HTML file** — `app/dist/index.html`. No
+server, no build step, no runtime fetch: the data bundle is inlined into a
+`<script type="application/json">` block at build time by `pipeline/build_app.py`.
+It is 4.59 MB raw and **0.56 MB over the wire** (88% smaller; any host gzips it),
+so it deploys as an ordinary static site anywhere.
+
+The repo ships config for the two easiest options. Both point at `app/dist` and
+run no build command.
+
+### Vercel
+
+`vercel.json` is already set up, so this is zero-config:
+
+```bash
+# one-off, from the repo root
+npx vercel            # preview deployment
+npx vercel --prod     # production
+```
+
+Or connect the repo at [vercel.com/new](https://vercel.com/new) — import
+`install-base-reactivation-console` and deploy. Vercel reads `vercel.json` and
+serves `app/dist` directly. Leave the framework preset as **Other**; there is
+nothing to build.
+
+`.vercelignore` keeps the pipeline, data and reports out of the upload. That
+also stops Vercel spotting `requirements.txt` and trying to run a Python build.
+
+### Netlify
+
+`netlify.toml` sets `publish = "app/dist"` with an empty build command:
+
+```bash
+npx netlify-cli deploy           # draft URL
+npx netlify-cli deploy --prod
+```
+
+### Cloudflare Pages
+
+No config file needed — set **build command** to empty and **build output
+directory** to `app/dist` in the dashboard.
+
+### GitHub Pages — one caveat
+
+Pages can serve this too, but **the repo is private, and Pages on a private repo
+requires a paid GitHub plan**. If you make the repo public it works free:
+
+```bash
+git subtree push --prefix app/dist origin gh-pages
+```
+
+### Redeploying after a pipeline run
+
+The deployed file is a build artifact, and it is committed, so any host watching
+the repo redeploys on push:
+
+```bash
+python pipeline/run_all.py        # regenerates app/dist/index.html
+git add app/dist/index.html
+git commit -m "Rebuild console"
+git push
+```
+
+### One thing to decide before you deploy
+
+**A static deploy is public.** Anyone with the URL can open the console, whether
+or not the repo stays private — Vercel's password protection and Netlify's
+site-wide password are paid features.
+
+For this project that is fine, and worth stating plainly rather than assuming:
+everything in the console is US Government public-domain procurement data,
+Backblaze's published drive statistics, figures from a public SEC filing, or a
+clearly-labelled synthetic layer. Recipient names, award PIIDs and obligated
+amounts are all public record, and every award row links back to its own
+USAspending page. There is nothing in it that is not already public.
+
+What still matters is the framing: the page states on every screen that this is
+federal procurement data used as a proxy, and **not any vendor's install base**.
+Keep that statement wherever this is published.
+
 ## Repository layout
 
 ```
@@ -750,8 +833,12 @@ pipeline/
 tests/
   test_invariants.py      24 checks on the claims this README makes
 app/
-  index.html              the console
-  data/app_data.json      its only input
+  index.html              the console template (__APP_DATA__ placeholder)
+  data/app_data.json      the bundle that gets inlined (gitignored; regenerable)
+  dist/index.html         the built, self-contained page - this is what deploys
+vercel.json               static deploy config: serves app/dist, no build
+netlify.toml              the same for Netlify
+.vercelignore             keeps the pipeline out of the upload
 data/   raw/ interim/ processed/
 reports/                  match report, channel rule, survival, sensitivity, plots
 ```
