@@ -1,0 +1,443 @@
+{
+  "tags": {
+    "REAL": "sourced from a named public dataset, unmodified",
+    "DERIVED": "computed from REAL fields only",
+    "SYNTHETIC": "generated, because no public equivalent exists",
+    "ASSUMPTION": "a stated commercial input, not a measurement"
+  },
+  "counts": {
+    "REAL": 24,
+    "DERIVED": 31,
+    "SYNTHETIC": 3,
+    "ASSUMPTION": 3
+  },
+  "fields": [
+    {
+      "table": "contracts",
+      "field": "contract_award_unique_key",
+      "tag": "REAL",
+      "source": "USAspending.gov /api/v2/download/awards/",
+      "note": "USAspending primary key"
+    },
+    {
+      "table": "contracts",
+      "field": "award_id_piid",
+      "tag": "REAL",
+      "source": "USAspending.gov /api/v2/download/awards/",
+      "note": "contract PIID as awarded"
+    },
+    {
+      "table": "contracts",
+      "field": "parent_award_id_piid",
+      "tag": "REAL",
+      "source": "USAspending.gov /api/v2/download/awards/",
+      "note": "parent IDV, where one exists"
+    },
+    {
+      "table": "contracts",
+      "field": "award_amount",
+      "tag": "REAL",
+      "source": "USAspending.gov /api/v2/download/awards/",
+      "note": "total_obligated_amount, unmodified"
+    },
+    {
+      "table": "contracts",
+      "field": "current_total_value_of_award",
+      "tag": "REAL",
+      "source": "USAspending.gov /api/v2/download/awards/",
+      "note": ""
+    },
+    {
+      "table": "contracts",
+      "field": "potential_total_value_of_award",
+      "tag": "REAL",
+      "source": "USAspending.gov /api/v2/download/awards/",
+      "note": "ceiling value"
+    },
+    {
+      "table": "contracts",
+      "field": "base_obligation_date",
+      "tag": "REAL",
+      "source": "USAspending.gov /api/v2/download/awards/",
+      "note": "award_base_action_date"
+    },
+    {
+      "table": "contracts",
+      "field": "start_date",
+      "tag": "REAL",
+      "source": "USAspending.gov /api/v2/download/awards/",
+      "note": "period_of_performance_start_date"
+    },
+    {
+      "table": "contracts",
+      "field": "end_date",
+      "tag": "REAL",
+      "source": "USAspending.gov /api/v2/download/awards/",
+      "note": "period_of_performance_current_end_date"
+    },
+    {
+      "table": "contracts",
+      "field": "psc_code / psc_description",
+      "tag": "REAL",
+      "source": "USAspending.gov /api/v2/download/awards/",
+      "note": "product or service code"
+    },
+    {
+      "table": "contracts",
+      "field": "naics_code / naics_description",
+      "tag": "REAL",
+      "source": "USAspending.gov /api/v2/download/awards/",
+      "note": ""
+    },
+    {
+      "table": "contracts",
+      "field": "recipient_uei",
+      "tag": "REAL",
+      "source": "USAspending.gov /api/v2/download/awards/",
+      "note": "populated on 100% of rows in this extract - the bulk endpoint back-fills it where the paged search endpoint does not; see match report"
+    },
+    {
+      "table": "contracts",
+      "field": "recipient_parent_name / _uei",
+      "tag": "REAL",
+      "source": "USAspending.gov /api/v2/download/awards/",
+      "note": "held back from matching, used only to grade it"
+    },
+    {
+      "table": "contracts",
+      "field": "awarding_office_code / _name",
+      "tag": "REAL",
+      "source": "USAspending.gov /api/v2/download/awards/",
+      "note": "defines the account grain"
+    },
+    {
+      "table": "contracts",
+      "field": "awarding_sub_agency_code / _name",
+      "tag": "REAL",
+      "source": "USAspending.gov /api/v2/download/awards/",
+      "note": ""
+    },
+    {
+      "table": "contracts",
+      "field": "extent_competed",
+      "tag": "REAL",
+      "source": "USAspending.gov /api/v2/download/awards/",
+      "note": ""
+    },
+    {
+      "table": "contracts",
+      "field": "number_of_offers_received",
+      "tag": "REAL",
+      "source": "USAspending.gov /api/v2/download/awards/",
+      "note": ""
+    },
+    {
+      "table": "contracts",
+      "field": "manufacturer_of_goods",
+      "tag": "REAL",
+      "source": "USAspending.gov /api/v2/download/awards/",
+      "note": "recipient's own SAM registration flag; the channel rule is scored against it"
+    },
+    {
+      "table": "contracts",
+      "field": "usaspending_permalink",
+      "tag": "REAL",
+      "source": "USAspending.gov /api/v2/download/awards/",
+      "note": "per-award evidence link"
+    },
+    {
+      "table": "contracts",
+      "field": "psc_role",
+      "tag": "DERIVED",
+      "source": "config.PSC_ROLE",
+      "note": "hardware / maintenance / storage-as-a-service classification of the PSC"
+    },
+    {
+      "table": "contracts",
+      "field": "channel",
+      "tag": "REAL / DERIVED",
+      "source": "USAspending.gov /api/v2/download/awards/; else rule",
+      "note": "REAL where manufacturer_of_goods is populated, otherwise the NAICS+name rule; channel_source records which applied per award"
+    },
+    {
+      "table": "contracts",
+      "field": "channel_rule",
+      "tag": "DERIVED",
+      "source": "install_base.naics_name_rule",
+      "note": "the stated rule, kept separately so its error rate stays measurable"
+    },
+    {
+      "table": "contracts",
+      "field": "segment",
+      "tag": "DERIVED",
+      "source": "awarding agency code/name",
+      "note": "Defense vs Civilian"
+    },
+    {
+      "table": "contracts",
+      "field": "region",
+      "tag": "DERIVED",
+      "source": "place of performance state",
+      "note": "US Census region"
+    },
+    {
+      "table": "contracts",
+      "field": "days_to_expiry",
+      "tag": "DERIVED",
+      "source": "end_date vs as-of date",
+      "note": ""
+    },
+    {
+      "table": "entities",
+      "field": "recipient_entity_id",
+      "tag": "DERIVED",
+      "source": "entity_resolution.py",
+      "note": "one per UEI; the UEI-less fallback fires on zero rows here because UEI is complete - the match report says so rather than implying otherwise"
+    },
+    {
+      "table": "entities",
+      "field": "recipient_canonical",
+      "tag": "DERIVED",
+      "source": "entity_resolution.py",
+      "note": "most-awarded spelling within the entity"
+    },
+    {
+      "table": "entities",
+      "field": "recipient_normalised",
+      "tag": "DERIVED",
+      "source": "entity_resolution.normalise",
+      "note": ""
+    },
+    {
+      "table": "entities",
+      "field": "org_entity_id",
+      "tag": "DERIVED",
+      "source": "awarding_office_code + sub_agency_code",
+      "note": "authoritative codes, not name similarity"
+    },
+    {
+      "table": "entities",
+      "field": "same_parent_candidates",
+      "tag": "DERIVED",
+      "source": "entity_resolution.py",
+      "note": "reported, never merged; precision/recall scored against recipient_parent_uei"
+    },
+    {
+      "table": "accounts",
+      "field": "account_id / account_name",
+      "tag": "DERIVED",
+      "source": "awarding office",
+      "note": ""
+    },
+    {
+      "table": "accounts",
+      "field": "first_award_date / last_award_date",
+      "tag": "REAL",
+      "source": "USAspending.gov /api/v2/download/awards/",
+      "note": "min/max of real award dates"
+    },
+    {
+      "table": "accounts",
+      "field": "total_obligated / award_count",
+      "tag": "REAL",
+      "source": "USAspending.gov /api/v2/download/awards/",
+      "note": "sums and counts of real awards"
+    },
+    {
+      "table": "accounts",
+      "field": "cohort_fy",
+      "tag": "DERIVED",
+      "source": "first award date",
+      "note": "fiscal year of first in-scope award"
+    },
+    {
+      "table": "accounts",
+      "field": "months_since_last_award",
+      "tag": "DERIVED",
+      "source": "last award date vs as-of",
+      "note": ""
+    },
+    {
+      "table": "accounts",
+      "field": "dormant",
+      "tag": "DERIVED",
+      "source": "absence of awards for 24+ months",
+      "note": "the ABSENCE is real and unsimulated; the threshold is assumption A-06. Sensitive to PSC scope because of the FY2021 recoding - reported under four scopes, not one"
+    },
+    {
+      "table": "accounts",
+      "field": "size_band / peer_group",
+      "tag": "DERIVED",
+      "source": "obligation quintiles",
+      "note": ""
+    },
+    {
+      "table": "accounts",
+      "field": "direct_share",
+      "tag": "DERIVED",
+      "source": "channel-weighted obligations",
+      "note": ""
+    },
+    {
+      "table": "accounts",
+      "field": "coverage_rate",
+      "tag": "DERIVED",
+      "source": "hardware vs maintenance awards",
+      "note": "window is assumption A-05"
+    },
+    {
+      "table": "accounts",
+      "field": "uncovered_assets",
+      "tag": "DERIVED",
+      "source": "coverage join",
+      "note": ""
+    },
+    {
+      "table": "accounts",
+      "field": "expansion_vs_cohort",
+      "tag": "DERIVED",
+      "source": "awards/year vs cohort median",
+      "note": ""
+    },
+    {
+      "table": "accounts",
+      "field": "channel_shift",
+      "tag": "DERIVED",
+      "source": "direct share, last 24m vs before",
+      "note": ""
+    },
+    {
+      "table": "accounts",
+      "field": "whitespace_count",
+      "tag": "DERIVED",
+      "source": "peer-group PSC adoption",
+      "note": "peer floor is assumption A-08"
+    },
+    {
+      "table": "coverage",
+      "field": "covered / uncovered",
+      "tag": "DERIVED",
+      "source": "hardware-to-maintenance match",
+      "note": "separately identifiable maintenance inside the scoped PSC set only"
+    },
+    {
+      "table": "coverage",
+      "field": "asset_age_years",
+      "tag": "DERIVED",
+      "source": "base action date vs as-of",
+      "note": ""
+    },
+    {
+      "table": "renewals",
+      "field": "coterm_cluster_id / _size",
+      "tag": "DERIVED",
+      "source": "expiries within 90 days",
+      "note": ""
+    },
+    {
+      "table": "cohorts",
+      "field": "retention_by_fy / expansion year_n",
+      "tag": "DERIVED",
+      "source": "real award dates",
+      "note": "explicitly right-censored; each cell carries its denominator"
+    },
+    {
+      "table": "whitespace",
+      "field": "peer_adoption_rate",
+      "tag": "DERIVED",
+      "source": "peer-group purchase history",
+      "note": ""
+    },
+    {
+      "table": "hazard",
+      "field": "afr / hazard_daily by drive age",
+      "tag": "REAL",
+      "source": "Backblaze Drive Stats (quarterly CSV)",
+      "note": "~27.8M drive-days; replaces a hand-picked refresh age"
+    },
+    {
+      "table": "benchmarks",
+      "field": "gross margin, subscription ARR growth, net dollar retention",
+      "tag": "REAL",
+      "source": "SEC EDGAR - Everpure, Inc. CIK 0001474432",
+      "note": "BENCHMARK ONLY; never joined to account data"
+    },
+    {
+      "table": "telemetry_synthetic",
+      "field": "capacity_utilisation",
+      "tag": "SYNTHETIC",
+      "source": "generated by pipeline/synthetic_layer.py (seed-fixed)",
+      "note": "conditioned on real obligations and recency; not evidence"
+    },
+    {
+      "table": "support_cases_synthetic",
+      "field": "severity / category / time_to_resolve",
+      "tag": "SYNTHETIC",
+      "source": "generated by pipeline/synthetic_layer.py (seed-fixed)",
+      "note": "Poisson rate driven by REAL asset count and REAL Backblaze hazard; not evidence"
+    },
+    {
+      "table": "health_synthetic",
+      "field": "health_score / health_band",
+      "tag": "SYNTHETIC",
+      "source": "generated by pipeline/synthetic_layer.py (seed-fixed)",
+      "note": "composite of synthetic telemetry and cases with REAL coverage and dormancy"
+    },
+    {
+      "table": "model",
+      "field": "p_purchase_365d",
+      "tag": "DERIVED",
+      "source": "survival.py (Cox PH or rules baseline)",
+      "note": "fitted only on REAL/DERIVED features; synthetic fields excluded entirely"
+    },
+    {
+      "table": "model",
+      "field": "baseline hazard, covariate effects",
+      "tag": "DERIVED",
+      "source": "lifelines CoxPHFitter",
+      "note": ""
+    },
+    {
+      "table": "ranking",
+      "field": "expected_award_value",
+      "tag": "DERIVED",
+      "source": "median of recent real awards",
+      "note": "A-04"
+    },
+    {
+      "table": "ranking",
+      "field": "gross margin",
+      "tag": "ASSUMPTION",
+      "source": "pipeline/assumptions.py (assumption register)",
+      "note": "A-01, anchored to a public filing"
+    },
+    {
+      "table": "ranking",
+      "field": "engagement cost",
+      "tag": "ASSUMPTION",
+      "source": "pipeline/assumptions.py (assumption register)",
+      "note": "A-02, no public source"
+    },
+    {
+      "table": "ranking",
+      "field": "horizon",
+      "tag": "ASSUMPTION",
+      "source": "pipeline/assumptions.py (assumption register)",
+      "note": "A-03"
+    },
+    {
+      "table": "ranking",
+      "field": "expected_value",
+      "tag": "DERIVED + ASSUMPTION",
+      "source": "pipeline/assumptions.py (assumption register)",
+      "note": "two of its four terms are assumptions; see the sensitivity analysis"
+    },
+    {
+      "table": "plays",
+      "field": "reason_code / evidence_ids",
+      "tag": "DERIVED",
+      "source": "plays.py",
+      "note": "each code declares its own provenance; a SYNTHETIC code is never a recommended action"
+    }
+  ]
+}

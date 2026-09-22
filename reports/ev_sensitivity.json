@@ -1,0 +1,236 @@
+{
+  "generated_at": "2026-09-21T21:38:26.469879+00:00",
+  "formula": "EV = P(purchase within horizon) x expected award value x margin - engagement cost",
+  "terms": {
+    "p_purchase": {
+      "provenance": "DERIVED",
+      "source": "survival.py, using survival_model"
+    },
+    "expected_award_value": {
+      "provenance": "DERIVED",
+      "source": "median of each account's last 5 real awards"
+    },
+    "gross_margin": {
+      "provenance": "ASSUMPTION",
+      "id": "A-01",
+      "value": 0.7038
+    },
+    "engagement_cost": {
+      "provenance": "ASSUMPTION",
+      "id": "A-02",
+      "value": 12000.0
+    },
+    "horizon_days": {
+      "provenance": "ASSUMPTION",
+      "id": "A-03",
+      "value": 365
+    }
+  },
+  "accounts_ranked": 3096,
+  "positive_ev_accounts": 550,
+  "total_expected_value_positive_only": 119733725.61322089,
+  "margin_sensitivity": [
+    {
+      "margin": 0.3,
+      "positive_ev_accounts": 348,
+      "positive_ev_share": 0.1124,
+      "total_expected_value": 48067171.465114824,
+      "median_expected_value": -11946.299485245,
+      "spearman_vs_base": 1.0,
+      "top50_overlap_with_base": 1.0
+    },
+    {
+      "margin": 0.4,
+      "positive_ev_accounts": 412,
+      "positive_ev_share": 0.1331,
+      "total_expected_value": 65595014.876736075,
+      "median_expected_value": -11928.39931366,
+      "spearman_vs_base": 1.0,
+      "top50_overlap_with_base": 1.0
+    },
+    {
+      "margin": 0.5,
+      "positive_ev_accounts": 464,
+      "positive_ev_share": 0.1499,
+      "total_expected_value": 83312516.55233446,
+      "median_expected_value": -11910.499142075001,
+      "spearman_vs_base": 1.0,
+      "top50_overlap_with_base": 1.0
+    },
+    {
+      "margin": 0.6,
+      "positive_ev_accounts": 512,
+      "positive_ev_share": 0.1654,
+      "total_expected_value": 101140303.47726953,
+      "median_expected_value": -11892.59897049,
+      "spearman_vs_base": 1.0,
+      "top50_overlap_with_base": 1.0
+    },
+    {
+      "margin": 0.7,
+      "positive_ev_accounts": 550,
+      "positive_ev_share": 0.1776,
+      "total_expected_value": 119051616.83611056,
+      "median_expected_value": -11874.698798905,
+      "spearman_vs_base": 1.0,
+      "top50_overlap_with_base": 1.0
+    },
+    {
+      "margin": 0.8,
+      "positive_ev_accounts": 570,
+      "positive_ev_share": 0.1841,
+      "total_expected_value": 137018239.70342273,
+      "median_expected_value": -11856.79862732,
+      "spearman_vs_base": 1.0,
+      "top50_overlap_with_base": 1.0
+    }
+  ],
+  "engagement_cost_sensitivity": [
+    {
+      "engagement_cost": 4000,
+      "positive_ev_accounts": 802,
+      "positive_ev_share": 0.259
+    },
+    {
+      "engagement_cost": 8000,
+      "positive_ev_accounts": 635,
+      "positive_ev_share": 0.2051
+    },
+    {
+      "engagement_cost": 12000,
+      "positive_ev_accounts": 550,
+      "positive_ev_share": 0.1776
+    },
+    {
+      "engagement_cost": 20000,
+      "positive_ev_accounts": 424,
+      "positive_ev_share": 0.137
+    },
+    {
+      "engagement_cost": 40000,
+      "positive_ev_accounts": 271,
+      "positive_ev_share": 0.0875
+    }
+  ],
+  "structural_sensitivity": [
+    {
+      "variant": "probability from the rules baseline instead of the survival model",
+      "can_reorder": true,
+      "top50_overlap_with_base": 0.7,
+      "positive_ev_accounts": 1024,
+      "rank_correlation": 0.8564
+    },
+    {
+      "variant": "expected award value as the MEAN of recent awards instead of the median",
+      "can_reorder": true,
+      "top50_overlap_with_base": 0.62,
+      "positive_ev_accounts": 686,
+      "note": "Federal award amounts are heavy-tailed; the mean lets one large instrument set an account's whole expected value. The gap between these two rankings is the cost of that choice."
+    }
+  ],
+  "why_margin_cannot_reorder": "Expected value is P x V x margin - cost. Margin is a positive scalar and cost is a constant, so neither changes the ORDER of accounts - only how many clear zero. The 100% top-N overlap across the margin grid is arithmetic, not evidence of a robust ranking. The choices that do move the order are listed under structural_sensitivity.",
+  "top_n_for_overlap": 50,
+  "reading": "Two of the four terms are assumptions. The left panel shows how many accounts clear the cost floor as the margin assumption moves; the right panel shows whether the ordering itself is stable. If the ordering holds while the count moves, the ranking is usable for prioritisation even where the absolute values are not trusted.",
+  "warning": "Expected values are planning figures built on stated assumptions. They are not forecasts of revenue and must not be presented as such.",
+  "assumption_register": [
+    {
+      "id": "A-01",
+      "name": "Gross margin on an incremental award",
+      "value": 0.7038,
+      "unit": "fraction of award value",
+      "kind": "ASSUMPTION",
+      "basis": "Anchored to a public enterprise-storage filer's reported gross margin.",
+      "source": "Everpure, Inc. (CIK 0001474432, SIC 3572 Computer Storage Devices) reported a 70.4% GAAP gross margin for the fiscal year ending 2026-02-01, SEC accession 0001474432-26-000027, retrieved 2026-09-20.",
+      "why_it_is_an_assumption": "A vendor's blended corporate gross margin is not the margin any particular federal award would carry. Federal pricing, channel discounts and contract vehicle fees all move it. The benchmark establishes an order of magnitude, nothing more.",
+      "sensitivity": "Ranking is recomputed across 0.30-0.80; see reports/ev_sensitivity.json."
+    },
+    {
+      "id": "A-02",
+      "name": "Engagement cost per account per cycle",
+      "value": 12000.0,
+      "unit": "USD",
+      "kind": "ASSUMPTION",
+      "basis": "Fully loaded cost of one seller-led engagement cycle.",
+      "source": "No public source. This is a planning figure, not a measurement.",
+      "why_it_is_an_assumption": "Nothing in public procurement data reveals the cost of pursuing an account. Any reader should substitute their own number; the ranking reads it from this register.",
+      "sensitivity": "Changes the EV floor, so it decides which accounts fall below zero."
+    },
+    {
+      "id": "A-03",
+      "name": "Opportunity horizon",
+      "value": 365,
+      "unit": "days",
+      "kind": "ASSUMPTION",
+      "basis": "One year, matching the federal budget cycle.",
+      "source": "Chosen to align with the fiscal year; not derived from the data.",
+      "why_it_is_an_assumption": "The horizon sets what 'will they buy' means. A shorter horizon raises precision and shrinks the addressable set.",
+      "sensitivity": "The survival model is refitted per horizon; 365d is the reported case."
+    },
+    {
+      "id": "A-04",
+      "name": "Expected award value",
+      "value": null,
+      "unit": "USD per account",
+      "kind": "DERIVED",
+      "basis": "Median of the account's most recent awards (REAL), which is robust to the very large outlier awards in federal data.",
+      "source": "Computed from USAspending award amounts. Not assumed.",
+      "why_it_is_an_assumption": "It is not - this one is derived from real records.",
+      "sensitivity": "Median vs mean changes the ranking; median is used deliberately."
+    },
+    {
+      "id": "A-05",
+      "name": "Coverage window",
+      "value": 365,
+      "unit": "days",
+      "kind": "ASSUMPTION",
+      "basis": "A maintenance award within this distance counts as covering the hardware.",
+      "source": "Chosen. No public rule defines service attachment windows.",
+      "why_it_is_an_assumption": "Widening the window raises the coverage rate mechanically. The reported rate is only meaningful alongside the window.",
+      "sensitivity": "Coverage is also reported same-vendor-only as a stricter read."
+    },
+    {
+      "id": "A-06",
+      "name": "Dormancy threshold",
+      "value": 24,
+      "unit": "months",
+      "kind": "ASSUMPTION",
+      "basis": "No new award in 24 months marks an account dormant.",
+      "source": "Threshold chosen; the underlying absence of awards is REAL and not simulated.",
+      "why_it_is_an_assumption": "The cut point is a choice. The observation that no award exists is not.",
+      "sensitivity": "Dormancy counts are reported at 12/18/24/36 months in the console."
+    },
+    {
+      "id": "A-07",
+      "name": "Refresh-risk asset age",
+      "value": null,
+      "unit": "years",
+      "kind": "DERIVED",
+      "basis": "The youngest drive-age bucket whose annualised failure rate is twice the observed floor, taken from Backblaze Drive Stats.",
+      "source": "Backblaze Drive Stats quarterly data, ~27.8M drive-days. Replaces the hand-picked age threshold v1 used.",
+      "why_it_is_an_assumption": "It is derived, but applying consumer/datacentre drive hazards to federal storage assets is itself an assumption about similarity.",
+      "sensitivity": "Falls back to a flat 5-year threshold if the curve is unavailable."
+    },
+    {
+      "id": "A-08",
+      "name": "Peer adoption floor for whitespace",
+      "value": 0.4,
+      "unit": "fraction of peer accounts",
+      "kind": "ASSUMPTION",
+      "basis": "A category counts as whitespace once 40% of peers already buy it.",
+      "source": "Chosen. Lower floors generate more, weaker, gaps.",
+      "why_it_is_an_assumption": "The floor decides how many gaps exist.",
+      "sensitivity": "Whitespace volume scales roughly inversely with the floor."
+    },
+    {
+      "id": "A-09",
+      "name": "Expansion plausibility bounds for the synthetic layer",
+      "value": null,
+      "unit": "ratio",
+      "kind": "ASSUMPTION",
+      "basis": "Synthetic utilisation and health are kept inside commercially sane bounds.",
+      "source": "Anchored to public filings for order of magnitude. Subscription net dollar retention reported at 117% (FY2025), 113% (FY2026) bounds plausible expansion.",
+      "why_it_is_an_assumption": "The synthetic layer is generated. These bounds only stop it drifting somewhere implausible; they do not make it evidence.",
+      "sensitivity": "Synthetic fields are excluded from the model and the ranking entirely."
+    }
+  ]
+}

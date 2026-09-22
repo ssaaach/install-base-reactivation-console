@@ -1,0 +1,74 @@
+{
+  "provenance": "REAL",
+  "use": "BENCHMARK ONLY - calibration bounds for assumptions. Never joined to account data.",
+  "company": "Everpure, Inc.",
+  "cik": "0001474432",
+  "sic": "3572 Computer Storage Devices",
+  "source": "SEC EDGAR",
+  "retrieved_at": "2026-09-20T23:58:32.884932+00:00",
+  "xbrl_api": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001474432.json",
+  "annual_gross_margin": [
+    {
+      "fiscal_year_end": "2026-02-01",
+      "revenue_usd": 3662843000,
+      "gross_profit_usd": 2577953000,
+      "gross_margin": 0.7038,
+      "accession": "0001474432-26-000027"
+    },
+    {
+      "fiscal_year_end": "2025-02-02",
+      "revenue_usd": 3168164000,
+      "gross_profit_usd": 2212709000,
+      "gross_margin": 0.6984,
+      "accession": "0001474432-26-000027"
+    },
+    {
+      "fiscal_year_end": "2024-02-04",
+      "revenue_usd": 2830621000,
+      "gross_profit_usd": 2021191000,
+      "gross_margin": 0.714,
+      "accession": "0001474432-26-000027"
+    },
+    {
+      "fiscal_year_end": "2023-02-05",
+      "revenue_usd": 2753434000,
+      "gross_profit_usd": 1897646000,
+      "gross_margin": 0.6892,
+      "accession": "0001628280-25-015044"
+    },
+    {
+      "fiscal_year_end": "2022-02-06",
+      "revenue_usd": 2180848000,
+      "gross_profit_usd": 1472519000,
+      "gross_margin": 0.6752,
+      "accession": "0001628280-24-013860"
+    },
+    {
+      "fiscal_year_end": "2021-01-31",
+      "revenue_usd": 1684179000,
+      "gross_profit_usd": 1148924000,
+      "gross_margin": 0.6822,
+      "accession": "0001628280-23-010275"
+    }
+  ],
+  "narrative": {
+    "accession": "0001474432-26-000027",
+    "filed": "2026-03-25",
+    "document_url": "https://www.sec.gov/Archives/edgar/data/1474432/000147443226000027/pstg-20260201.htm",
+    "subscription_ndr": {
+      "2025": 1.17,
+      "2026": 1.13
+    },
+    "subscription_ndr_quote": "Subscription NDR, which approximates the year-over-year percentage growth in ARR from the same cohort of existing customers across comparable fiscal periods, was 117% and 113% for the fiscal years ended 2025 and 2026",
+    "subscription_arr_growth": {
+      "2026": 0.16,
+      "2025": 0.21
+    },
+    "subscription_arr_growth_quote": "growth in our Subscription ARR at the end of fiscal 2026 was 16% compared to growth of 21% in fiscal 2025",
+    "subscription_arr_usd_thousands": [
+      1657806,
+      1924338
+    ]
+  },
+  "caveat": "These are one public company's reported results. They bound what a commercially plausible margin or expansion rate looks like in enterprise storage. They say nothing about the federal accounts in this dataset and are never merged into them."
+}

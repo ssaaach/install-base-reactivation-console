@@ -1,0 +1,66 @@
+[
+  {
+    "kind": "psc",
+    "fy_lo": 2016,
+    "fy_hi": 2018,
+    "start": "2015-10-01",
+    "end": "2018-09-30",
+    "name": "psc_FY2016-FY2018.zip"
+  },
+  {
+    "kind": "psc",
+    "fy_lo": 2019,
+    "fy_hi": 2021,
+    "start": "2018-10-01",
+    "end": "2021-09-30",
+    "name": "psc_FY2019-FY2021.zip"
+  },
+  {
+    "kind": "psc",
+    "fy_lo": 2022,
+    "fy_hi": 2024,
+    "start": "2021-10-01",
+    "end": "2024-09-30",
+    "name": "psc_FY2022-FY2024.zip"
+  },
+  {
+    "kind": "psc",
+    "fy_lo": 2025,
+    "fy_hi": 2026,
+    "start": "2024-10-01",
+    "end": "2026-09-21",
+    "name": "psc_FY2025-FY2026.zip"
+  },
+  {
+    "kind": "naics",
+    "fy_lo": 2016,
+    "fy_hi": 2018,
+    "start": "2015-10-01",
+    "end": "2018-09-30",
+    "name": "naics_FY2016-FY2018.zip"
+  },
+  {
+    "kind": "naics",
+    "fy_lo": 2019,
+    "fy_hi": 2021,
+    "start": "2018-10-01",
+    "end": "2021-09-30",
+    "name": "naics_FY2019-FY2021.zip"
+  },
+  {
+    "kind": "naics",
+    "fy_lo": 2022,
+    "fy_hi": 2024,
+    "start": "2021-10-01",
+    "end": "2024-09-30",
+    "name": "naics_FY2022-FY2024.zip"
+  },
+  {
+    "kind": "naics",
+    "fy_lo": 2025,
+    "fy_hi": 2026,
+    "start": "2024-10-01",
+    "end": "2026-09-21",
+    "name": "naics_FY2025-FY2026.zip"
+  }
+]

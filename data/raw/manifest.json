@@ -1,0 +1,551 @@
+{
+  "downloads": {
+    "naics_FY2016-FY2018.zip": {
+      "kind": "naics",
+      "fiscal_years": [
+        2016,
+        2018
+      ],
+      "window": [
+        "2015-10-01",
+        "2018-09-30"
+      ],
+      "request": {
+        "filters": {
+          "award_type_codes": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "time_period": [
+            {
+              "start_date": "2015-10-01",
+              "end_date": "2018-09-30",
+              "date_type": "date_signed"
+            }
+          ],
+          "naics_codes": [
+            "334112"
+          ]
+        },
+        "columns": [],
+        "file_format": "csv"
+      },
+      "server_file_name": "PrimeAwardSummariesAndSubawards_2026-09-21_H00M13S56417922.zip",
+      "server_reported": {
+        "total_rows": 4855,
+        "total_columns": 404,
+        "total_size": 895.79,
+        "seconds_elapsed": "32.939298"
+      },
+      "sha256": "840d2225bf9e1c262ff301ade48112985833ab06343eb570ef57a42748523afd",
+      "bytes": 895790,
+      "members": {
+        "Contracts_PrimeAwardSummaries_2026-09-21_H00M13S59_1.csv": {
+          "rows": 4850,
+          "columns": 286
+        },
+        "Contracts_Subawards_2026-09-21_H00M14S26_1.csv": {
+          "rows": 5,
+          "columns": 118
+        }
+      },
+      "retrieved_at": "2026-09-21T00:30:02.678503+00:00"
+    },
+    "naics_FY2019-FY2021.zip": {
+      "kind": "naics",
+      "fiscal_years": [
+        2019,
+        2021
+      ],
+      "window": [
+        "2018-10-01",
+        "2021-09-30"
+      ],
+      "request": {
+        "filters": {
+          "award_type_codes": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "time_period": [
+            {
+              "start_date": "2018-10-01",
+              "end_date": "2021-09-30",
+              "date_type": "date_signed"
+            }
+          ],
+          "naics_codes": [
+            "334112"
+          ]
+        },
+        "columns": [],
+        "file_format": "csv"
+      },
+      "server_file_name": "PrimeAwardSummariesAndSubawards_2026-09-21_H00M13S59743651.zip",
+      "server_reported": {
+        "total_rows": 3509,
+        "total_columns": 404,
+        "total_size": 613.665,
+        "seconds_elapsed": "35.626216"
+      },
+      "sha256": "b5ac94dcaad6cd0b6e78ca7dabd1301e237f7600c7ecd70a72a53064b07b0409",
+      "bytes": 613665,
+      "members": {
+        "Contracts_PrimeAwardSummaries_2026-09-21_H00M14S02_1.csv": {
+          "rows": 3506,
+          "columns": 286
+        },
+        "Contracts_Subawards_2026-09-21_H00M14S31_1.csv": {
+          "rows": 3,
+          "columns": 118
+        }
+      },
+      "retrieved_at": "2026-09-21T00:30:03.719784+00:00"
+    },
+    "naics_FY2022-FY2024.zip": {
+      "kind": "naics",
+      "fiscal_years": [
+        2022,
+        2024
+      ],
+      "window": [
+        "2021-10-01",
+        "2024-09-30"
+      ],
+      "request": {
+        "filters": {
+          "award_type_codes": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "time_period": [
+            {
+              "start_date": "2021-10-01",
+              "end_date": "2024-09-30",
+              "date_type": "date_signed"
+            }
+          ],
+          "naics_codes": [
+            "334112"
+          ]
+        },
+        "columns": [],
+        "file_format": "csv"
+      },
+      "server_file_name": "PrimeAwardSummariesAndSubawards_2026-09-21_H00M14S01525649.zip",
+      "server_reported": {
+        "total_rows": 4797,
+        "total_columns": 404,
+        "total_size": 677.681,
+        "seconds_elapsed": "42.807868"
+      },
+      "sha256": "96509386eef0265c760b0c66890f181e7dd490b11e0f2e3c2436d7b701be1499",
+      "bytes": 677681,
+      "members": {
+        "Contracts_PrimeAwardSummaries_2026-09-21_H00M14S05_1.csv": {
+          "rows": 4772,
+          "columns": 286
+        },
+        "Contracts_Subawards_2026-09-21_H00M14S39_1.csv": {
+          "rows": 30,
+          "columns": 118
+        }
+      },
+      "retrieved_at": "2026-09-21T00:30:04.688372+00:00"
+    },
+    "naics_FY2025-FY2026.zip": {
+      "kind": "naics",
+      "fiscal_years": [
+        2025,
+        2026
+      ],
+      "window": [
+        "2024-10-01",
+        "2026-09-21"
+      ],
+      "request": {
+        "filters": {
+          "award_type_codes": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "time_period": [
+            {
+              "start_date": "2024-10-01",
+              "end_date": "2026-09-21",
+              "date_type": "date_signed"
+            }
+          ],
+          "naics_codes": [
+            "334112"
+          ]
+        },
+        "columns": [],
+        "file_format": "csv"
+      },
+      "server_file_name": "PrimeAwardSummariesAndSubawards_2026-09-21_H00M14S04816813.zip",
+      "server_reported": {
+        "total_rows": 2347,
+        "total_columns": 404,
+        "total_size": 357.824,
+        "seconds_elapsed": "27.02807"
+      },
+      "sha256": "98caa532d178d59b2e40ab7a15056dae60bd510aaf79cbbaf5ecf814463b8d60",
+      "bytes": 357824,
+      "members": {
+        "Contracts_PrimeAwardSummaries_2026-09-21_H00M14S06_1.csv": {
+          "rows": 2341,
+          "columns": 286
+        },
+        "Contracts_Subawards_2026-09-21_H00M14S28_1.csv": {
+          "rows": 6,
+          "columns": 118
+        }
+      },
+      "retrieved_at": "2026-09-21T00:30:05.150551+00:00"
+    },
+    "psc_FY2025-FY2026.zip": {
+      "kind": "psc",
+      "fiscal_years": [
+        2025,
+        2026
+      ],
+      "window": [
+        "2024-10-01",
+        "2026-09-21"
+      ],
+      "request": {
+        "filters": {
+          "award_type_codes": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "time_period": [
+            {
+              "start_date": "2024-10-01",
+              "end_date": "2026-09-21",
+              "date_type": "date_signed"
+            }
+          ],
+          "psc_codes": [
+            "7010",
+            "7021",
+            "7022",
+            "7025",
+            "7035",
+            "7042",
+            "7050",
+            "7B20",
+            "7B21",
+            "7B22",
+            "7C20",
+            "7K20",
+            "D310",
+            "D320",
+            "DC01",
+            "DC10",
+            "DK01",
+            "DK10",
+            "J070"
+          ]
+        },
+        "columns": [],
+        "file_format": "csv"
+      },
+      "server_file_name": "PrimeAwardSummariesAndSubawards_2026-09-21_H00M19S58111864.zip",
+      "server_reported": {
+        "total_rows": 15901,
+        "total_columns": 404,
+        "total_size": 3760.756,
+        "seconds_elapsed": "135.747102"
+      },
+      "sha256": "a4a30c57924e87aeacba76b0ef1e5be4d39f810b3f682c7c7241f2a9be03c6fd",
+      "bytes": 3760756,
+      "members": {
+        "Contracts_PrimeAwardSummaries_2026-09-21_H00M20S35_1.csv": {
+          "rows": 15146,
+          "columns": 286
+        },
+        "Contracts_Subawards_2026-09-21_H00M21S56_1.csv": {
+          "rows": 1085,
+          "columns": 118
+        }
+      },
+      "retrieved_at": "2026-09-21T00:30:07.600631+00:00"
+    },
+    "psc_FY2022-FY2024.zip": {
+      "kind": "psc",
+      "fiscal_years": [
+        2022,
+        2024
+      ],
+      "window": [
+        "2021-10-01",
+        "2024-09-30"
+      ],
+      "request": {
+        "filters": {
+          "award_type_codes": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "time_period": [
+            {
+              "start_date": "2021-10-01",
+              "end_date": "2024-09-30",
+              "date_type": "date_signed"
+            }
+          ],
+          "psc_codes": [
+            "7010",
+            "7021",
+            "7022",
+            "7025",
+            "7035",
+            "7042",
+            "7050",
+            "7B20",
+            "7B21",
+            "7B22",
+            "7C20",
+            "7K20",
+            "D310",
+            "D320",
+            "DC01",
+            "DC10",
+            "DK01",
+            "DK10",
+            "J070"
+          ]
+        },
+        "columns": [],
+        "file_format": "csv"
+      },
+      "server_file_name": "PrimeAwardSummariesAndSubawards_2026-09-21_H00M19S56303037.zip",
+      "server_reported": {
+        "total_rows": 43815,
+        "total_columns": 404,
+        "total_size": 7913.321,
+        "seconds_elapsed": "311.98976"
+      },
+      "sha256": "7b2db8a88e8c63688a0a12f60631cf75897c6a8427444242745c0fb53eb88d03",
+      "bytes": 7913321,
+      "members": {
+        "Contracts_PrimeAwardSummaries_2026-09-21_H00M20S13_1.csv": {
+          "rows": 40680,
+          "columns": 286
+        },
+        "Contracts_Subawards_2026-09-21_H00M24S20_1.csv": {
+          "rows": 4396,
+          "columns": 118
+        }
+      },
+      "retrieved_at": "2026-09-21T00:30:10.521021+00:00"
+    },
+    "psc_FY2019-FY2021.zip": {
+      "kind": "psc",
+      "fiscal_years": [
+        2019,
+        2021
+      ],
+      "window": [
+        "2018-10-01",
+        "2021-09-30"
+      ],
+      "request": {
+        "filters": {
+          "award_type_codes": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "time_period": [
+            {
+              "start_date": "2018-10-01",
+              "end_date": "2021-09-30",
+              "date_type": "date_signed"
+            }
+          ],
+          "psc_codes": [
+            "7010",
+            "7021",
+            "7022",
+            "7025",
+            "7035",
+            "7042",
+            "7050",
+            "7B20",
+            "7B21",
+            "7B22",
+            "7C20",
+            "7K20",
+            "D310",
+            "D320",
+            "DC01",
+            "DC10",
+            "DK01",
+            "DK10",
+            "J070"
+          ]
+        },
+        "columns": [],
+        "file_format": "csv"
+      },
+      "server_file_name": "PrimeAwardSummariesAndSubawards_2026-09-21_H00M19S54722170.zip",
+      "server_reported": {
+        "total_rows": 105941,
+        "total_columns": 404,
+        "total_size": 15645.831,
+        "seconds_elapsed": "582.528042"
+      },
+      "sha256": "6bcda12e9d51084ec3b43a5d86c068563b78b84acb49da9af817772e3d0a3f51",
+      "bytes": 15645831,
+      "members": {
+        "Contracts_PrimeAwardSummaries_2026-09-21_H00M20S31_1.csv": {
+          "rows": 93097,
+          "columns": 286
+        },
+        "Contracts_Subawards_2026-09-21_H00M28S47_1.csv": {
+          "rows": 13507,
+          "columns": 118
+        }
+      },
+      "retrieved_at": "2026-09-21T00:30:14.221157+00:00"
+    },
+    "psc_FY2016-FY2018.zip": {
+      "kind": "psc",
+      "fiscal_years": [
+        2016,
+        2018
+      ],
+      "window": [
+        "2015-10-01",
+        "2018-09-30"
+      ],
+      "request": {
+        "filters": {
+          "award_type_codes": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "time_period": [
+            {
+              "start_date": "2015-10-01",
+              "end_date": "2018-09-30",
+              "date_type": "date_signed"
+            }
+          ],
+          "psc_codes": [
+            "7010",
+            "7021",
+            "7022",
+            "7025",
+            "7035",
+            "7042",
+            "7050",
+            "7B20",
+            "7B21",
+            "7B22",
+            "7C20",
+            "7K20",
+            "D310",
+            "D320",
+            "DC01",
+            "DC10",
+            "DK01",
+            "DK10",
+            "J070"
+          ]
+        },
+        "columns": [],
+        "file_format": "csv"
+      },
+      "server_file_name": "PrimeAwardSummariesAndSubawards_2026-09-21_H00M19S53094446.zip",
+      "server_reported": {
+        "total_rows": 126113,
+        "total_columns": 404,
+        "total_size": 21691.271,
+        "seconds_elapsed": "597.93539"
+      },
+      "sha256": "d1fc3cf633b4e1257a96a1c9d7691533029e1c5358b440992eab8548fdf7945c",
+      "bytes": 21691271,
+      "members": {
+        "Contracts_PrimeAwardSummaries_2026-09-21_H00M20S34_1.csv": {
+          "rows": 113426,
+          "columns": 286
+        },
+        "Contracts_Subawards_2026-09-21_H00M29S28_1.csv": {
+          "rows": 13007,
+          "columns": 118
+        }
+      },
+      "retrieved_at": "2026-09-21T00:30:17.994190+00:00"
+    }
+  },
+  "generated_at": "2026-09-21T00:30:17.995189+00:00",
+  "source": "USAspending.gov API v2 /download/awards/ (public domain, 17 U.S.C. 105)",
+  "scope": {
+    "fiscal_years": [
+      2016,
+      2026
+    ],
+    "naics": {
+      "334112": "COMPUTER STORAGE DEVICE MANUFACTURING"
+    },
+    "psc": {
+      "7025": "INFORMATION TECHNOLOGY INPUT/OUTPUT AND STORAGE DEVICES",
+      "7K20": "IT AND TELECOM - STORAGE PRODUCTS (HARDWARE AND PERPETUAL LICENSE SOFTWARE)",
+      "7010": "INFORMATION TECHNOLOGY EQUIPMENT SYSTEM CONFIGURATION",
+      "7021": "INFORMATION TECHNOLOGY CENTRAL PROCESSING UNIT (CPU, COMPUTER), DIGITAL",
+      "7022": "INFORMATION TECHNOLOGY CENTRAL PROCESSING UNIT (CPU, COMPUTER), HYBRID",
+      "7035": "INFORMATION TECHNOLOGY SUPPORT EQUIPMENT",
+      "7042": "MINI AND MICRO COMPUTER CONTROL DEVICES",
+      "7050": "INFORMATION TECHNOLOGY COMPONENTS",
+      "7B20": "IT AND TELECOM - HIGH PERFORMANCE COMPUTE",
+      "7B21": "IT AND TELECOM - COMPUTE: MAINFRAME",
+      "7B22": "IT AND TELECOM - COMPUTE: SERVERS",
+      "7C20": "IT AND TELECOM - DATA CENTER PRODUCTS",
+      "J070": "MAINT/REPAIR/REBUILD OF EQUIPMENT- ADP EQUIPMENT/SOFTWARE/SUPPLIES/SUPPORT EQUIPMENT",
+      "D320": "IT AND TELECOM- ANNUAL HARDWARE MAINTENANCE SERVICE PLANS",
+      "D310": "IT AND TELECOM- CYBER SECURITY AND DATA BACKUP",
+      "DK01": "IT AND TELECOM - STORAGE SUPPORT SERVICES (LABOR)",
+      "DC01": "IT AND TELECOM - DATA CENTER SUPPORT SERVICES (LABOR)",
+      "DK10": "IT AND TELECOM - STORAGE AS A SERVICE",
+      "DC10": "IT AND TELECOM - DATA CENTER AS A SERVICE"
+    },
+    "psc_excluded": {
+      "7030": "IT SOFTWARE (legacy) - licences are not hardware install base",
+      "7A20/7A21": "IT AND TELECOM - APPLICATION SOFTWARE (modern) - same reason",
+      "7045": "IT SUPPLIES - consumables (media, toner, cabling); ~59k mostly sub-$5k awards that would swamp the install-base signal"
+    },
+    "award_type_codes": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "date_type": "date_signed",
+    "date_type_note": "date_signed: an award is counted once, in the fiscal year it was signed. Contracts signed before FY2016 and still running are therefore out of scope."
+  },
+  "totals": {
+    "downloads": 8,
+    "prime_award_rows": 277818,
+    "subaward_rows": 32039,
+    "bytes": 51556139
+  }
+}

@@ -1,0 +1,288 @@
+{
+  "generated_at": "2026-09-21T21:37:21.099883+00:00",
+  "provenance": "REAL (USAspending subaward reporting) + DERIVED signal",
+  "coverage": {
+    "subaward_rows": 29460,
+    "rows_joining_primes_in_scope": 28236,
+    "join_rate": 0.9585,
+    "prime_awards_with_subawards": 1251,
+    "prime_awards_total": 270924,
+    "share_of_primes_with_subawards": 0.00462,
+    "distinct_subawardees": 1566,
+    "subawardees_labelled": 613,
+    "subawardee_label_rate": 0.4401,
+    "limit": "Subaward reporting is threshold-gated, so only about 0.5% of prime awards report one. This signal corroborates; it cannot classify the other 99.5% and is not used to."
+  },
+  "passthrough": {
+    "median": 0.7697,
+    "p25": 0.2409,
+    "p75": 1.0,
+    "clipped_at": 3.0,
+    "note": "Raw ratios run from negative to several hundred because prime obligated amounts include deobligations and modifications. Clipped to [0, 3] before use."
+  },
+  "flow_channel_counts": {
+    "direct": 678,
+    "unknown": 289,
+    "partner": 284
+  },
+  "scoring_vs_sam_flag": {
+    "available": true,
+    "label": "manufacturer_of_goods on the PRIME (SAM registration, REAL)",
+    "hypothesis": "A prime that passes most of an award's value to a registered manufacturer was intermediating, so it should read as PARTNER.",
+    "hypothesis_supported": false,
+    "awards_scored": 962,
+    "accuracy": 0.2765,
+    "error_rate": 0.7235,
+    "direct_precision": 0.2153,
+    "direct_recall": 0.471,
+    "confusion": {
+      "flow_direct_truth_manufacturer": 146,
+      "flow_direct_truth_not": 532,
+      "flow_partner_truth_manufacturer": 164,
+      "flow_partner_truth_not": 120
+    },
+    "base_rate_manufacturer": 0.3222,
+    "majority_class_accuracy": 0.6778,
+    "beats_majority_class": false,
+    "accuracy_if_inverted": 0.7235,
+    "finding": "The hypothesis is REJECTED, and informatively so. At 27.7% the signal sits well below the 67.8% majority-class baseline, which means it carries information running OPPOSITE to the direction assumed. The readable explanation: the firms that subcontract to manufacturers are themselves large manufacturers and integrators with supply chains. A small reseller has nothing to subcontract and, being below the FFATA reporting threshold, never appears here at all. Subcontracting to a manufacturer marks a big prime, not a middleman.",
+    "why_we_do_not_just_invert_it": "Flipping the rule would report 72.3% accuracy, but the direction would have been chosen after seeing the labels, on 962 awards, with no held-out test. That is fitting to the evaluation set, not a validated rule. The signal is reported as rejected and the production channel field continues to use the SAM registration flag."
+  },
+  "comparison_with_naics_rule": {
+    "naics_rule_accuracy_all_awards": 0.5192,
+    "naics_rule_majority_baseline": 0.7738,
+    "note": "The NAICS rule is scored over all 269,557 awards and the flow-through signal over the 1,251 with subaward reporting, so these two accuracies describe different populations. The meaningful comparison is each against its OWN majority-class baseline, which is why both are reported."
+  },
+  "rule": {
+    "partner": "passed through >= 50% of the prime's obligated value AND sent >= 50% of the labelled subaward value to registered manufacturers",
+    "direct": "has the evidence but does not meet the partner conditions",
+    "unknown": "no pass-through ratio or no labelled subawardee - not guessed"
+  },
+  "top_flows": [
+    {
+      "prime_awardee_name": "ASM RESEARCH LLC",
+      "subawardee_name": "PROSOURCE360 CONSULTING SERVICES INC.",
+      "subaward_total": 968087218.0,
+      "subawards": 1,
+      "first_seen": "2019-06-05",
+      "last_seen": "2019-06-05",
+      "subawardee_is_mfg": null
+    },
+    {
+      "prime_awardee_name": "NORTHROP GRUMMAN SYSTEMS CORPORATION",
+      "subawardee_name": "PERATON INC.",
+      "subaward_total": 723872529.0,
+      "subawards": 2,
+      "first_seen": "2021-01-27",
+      "last_seen": "2021-07-22",
+      "subawardee_is_mfg": false
+    },
+    {
+      "prime_awardee_name": "SCIENCE APPLICATIONS INTERNATIONAL CORPORATION",
+      "subawardee_name": "CARAHSOFT TECHNOLOGY CORP",
+      "subaward_total": 232462743.0,
+      "subawards": 32,
+      "first_seen": "2021-03-12",
+      "last_seen": "2025-08-27",
+      "subawardee_is_mfg": false
+    },
+    {
+      "prime_awardee_name": "ENTERPRISE SERVICES LLC",
+      "subawardee_name": "APEX SYSTEMS, LLC",
+      "subaward_total": 217391190.0,
+      "subawards": 1628,
+      "first_seen": "2016-10-04",
+      "last_seen": "2021-05-10",
+      "subawardee_is_mfg": null
+    },
+    {
+      "prime_awardee_name": "ENTERPRISE SERVICES LLC",
+      "subawardee_name": "WESTWIND COMPUTER PRODUCTS, INC.",
+      "subaward_total": 205471320.0,
+      "subawards": 622,
+      "first_seen": "2016-10-06",
+      "last_seen": "2021-04-22",
+      "subawardee_is_mfg": false
+    },
+    {
+      "prime_awardee_name": "NORTHROP GRUMMAN SYSTEMS CORPORATION",
+      "subawardee_name": "INSIGHT GLOBAL, LLC",
+      "subaward_total": 198705276.0,
+      "subawards": 9,
+      "first_seen": "2019-05-07",
+      "last_seen": "2021-02-03",
+      "subawardee_is_mfg": null
+    },
+    {
+      "prime_awardee_name": "GENERAL DYNAMICS INFORMATION TECHNOLOGY, INC.",
+      "subawardee_name": "AMAZON WEB SERVICES, INC.",
+      "subaward_total": 185843321.0,
+      "subawards": 25,
+      "first_seen": "2023-09-26",
+      "last_seen": "2026-07-31",
+      "subawardee_is_mfg": false
+    },
+    {
+      "prime_awardee_name": "ENTERPRISE SERVICES LLC",
+      "subawardee_name": "THUNDERCAT TECHNOLOGY, LLC",
+      "subaward_total": 162052512.0,
+      "subawards": 262,
+      "first_seen": "2016-09-06",
+      "last_seen": "2021-07-15",
+      "subawardee_is_mfg": false
+    },
+    {
+      "prime_awardee_name": "ENTERPRISE SERVICES LLC",
+      "subawardee_name": "AT&T TECHNICAL SERVICES COMPANY, INC",
+      "subaward_total": 131164455.0,
+      "subawards": 147,
+      "first_seen": "2016-10-14",
+      "last_seen": "2020-10-01",
+      "subawardee_is_mfg": false
+    },
+    {
+      "prime_awardee_name": "ENTERPRISE SERVICES LLC",
+      "subawardee_name": "TEKSYSTEMS, INC.",
+      "subaward_total": 116859672.0,
+      "subawards": 839,
+      "first_seen": "2016-10-05",
+      "last_seen": "2021-05-24",
+      "subawardee_is_mfg": null
+    },
+    {
+      "prime_awardee_name": "GOLDSCHMITT-CRI LLC",
+      "subawardee_name": "CENTRAL RESEARCH INC",
+      "subaward_total": 114884233.0,
+      "subawards": 2,
+      "first_seen": "2021-04-26",
+      "last_seen": "2021-07-10",
+      "subawardee_is_mfg": null
+    },
+    {
+      "prime_awardee_name": "NORTHROP GRUMMAN SYSTEMS CORPORATION",
+      "subawardee_name": "ANACAPA MICRO PRODUCTS, INC.",
+      "subaward_total": 103699582.0,
+      "subawards": 15,
+      "first_seen": "2017-09-25",
+      "last_seen": "2020-12-03",
+      "subawardee_is_mfg": false
+    },
+    {
+      "prime_awardee_name": "ENTERPRISE SERVICES LLC",
+      "subawardee_name": "GCORP CONSULTING",
+      "subaward_total": 100982671.0,
+      "subawards": 729,
+      "first_seen": "2016-10-10",
+      "last_seen": "2021-04-26",
+      "subawardee_is_mfg": null
+    },
+    {
+      "prime_awardee_name": "ENTERPRISE SERVICES LLC",
+      "subawardee_name": "EPOCH CONCEPTS LLC",
+      "subaward_total": 94031072.0,
+      "subawards": 163,
+      "first_seen": "2016-10-14",
+      "last_seen": "2021-09-13",
+      "subawardee_is_mfg": false
+    },
+    {
+      "prime_awardee_name": "HP ENTERPRISE SERVICES, LLC",
+      "subawardee_name": "WESTWIND COMPUTER PRODUCTS, INC.",
+      "subaward_total": 89366162.0,
+      "subawards": 181,
+      "first_seen": "2015-10-05",
+      "last_seen": "2016-09-06",
+      "subawardee_is_mfg": false
+    },
+    {
+      "prime_awardee_name": "ADVANCED ACOUSTIC CONCEPTS, LLC",
+      "subawardee_name": "HIPER GLOBAL US, LLC",
+      "subaward_total": 83299329.0,
+      "subawards": 6,
+      "first_seen": "2021-05-26",
+      "last_seen": "2025-06-13",
+      "subawardee_is_mfg": true
+    },
+    {
+      "prime_awardee_name": "SERCO INC.",
+      "subawardee_name": "CDW GOVERNMENT LLC",
+      "subaward_total": 78583005.0,
+      "subawards": 28,
+      "first_seen": "2016-02-10",
+      "last_seen": "2021-05-28",
+      "subawardee_is_mfg": false
+    },
+    {
+      "prime_awardee_name": "GENERAL DYNAMICS INFORMATION TECHNOLOGY, INC.",
+      "subawardee_name": "THALES DIS USA INC.",
+      "subaward_total": 74946871.0,
+      "subawards": 7,
+      "first_seen": "2022-12-30",
+      "last_seen": "2026-01-16",
+      "subawardee_is_mfg": true
+    },
+    {
+      "prime_awardee_name": "ENTERPRISE SERVICES LLC",
+      "subawardee_name": "INSIGHT GLOBAL, LLC",
+      "subaward_total": 72616434.0,
+      "subawards": 502,
+      "first_seen": "2016-10-31",
+      "last_seen": "2021-04-06",
+      "subawardee_is_mfg": null
+    },
+    {
+      "prime_awardee_name": "ADVANCED PROGRAMS INC",
+      "subawardee_name": "ADVANCED PROGRAMS, INC.",
+      "subaward_total": 70396252.0,
+      "subawards": 145,
+      "first_seen": "2016-02-05",
+      "last_seen": "2024-09-24",
+      "subawardee_is_mfg": true
+    },
+    {
+      "prime_awardee_name": "ENTERPRISE SERVICES LLC",
+      "subawardee_name": "SOC LLC",
+      "subaward_total": 69669264.0,
+      "subawards": 500,
+      "first_seen": "2016-10-04",
+      "last_seen": "2021-04-12",
+      "subawardee_is_mfg": null
+    },
+    {
+      "prime_awardee_name": "ACCENTURE NATIONAL SECURITY SERVICES LIMITED LIABILITY COMPANY",
+      "subawardee_name": "KFORCE INC.",
+      "subaward_total": 69422140.0,
+      "subawards": 7,
+      "first_seen": "2017-12-27",
+      "last_seen": "2023-01-31",
+      "subawardee_is_mfg": null
+    },
+    {
+      "prime_awardee_name": "GENERAL DYNAMICS INFORMATION TECHNOLOGY, INC.",
+      "subawardee_name": "FCN, INC.",
+      "subaward_total": 64629511.0,
+      "subawards": 106,
+      "first_seen": "2021-12-07",
+      "last_seen": "2026-02-05",
+      "subawardee_is_mfg": false
+    },
+    {
+      "prime_awardee_name": "NORTHROP GRUMMAN SYSTEMS CORPORATION",
+      "subawardee_name": "LAUREL TECHNOLOGIES PARTNERSHIP",
+      "subaward_total": 61688720.0,
+      "subawards": 7,
+      "first_seen": "2019-07-15",
+      "last_seen": "2021-09-09",
+      "subawardee_is_mfg": true
+    },
+    {
+      "prime_awardee_name": "ZENETEX, LLC",
+      "subawardee_name": "DCS CORPORATION",
+      "subaward_total": 61232677.0,
+      "subawards": 4,
+      "first_seen": "2018-03-30",
+      "last_seen": "2021-01-31",
+      "subawardee_is_mfg": false
+    }
+  ]
+}

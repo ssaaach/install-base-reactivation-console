@@ -1,0 +1,24 @@
+__pycache__/
+*.pyc
+.venv/
+
+# Regenerable from the raw cache; excluded to keep the repo a sensible size.
+data/interim/
+data/processed/*.parquet
+
+# The raw downloads are ~52MB of zips. The MANIFEST is committed instead, so the
+# exact pull is auditable (request body, row/column counts, SHA-256, retrieval
+# time per file) and `python pipeline/run_all.py` reproduces them.
+data/raw/*.zip
+data/raw/*.part
+
+# Committed on purpose, despite living under data/: these are small, and they are
+# what makes the pull and the provenance checkable without re-running anything.
+!data/raw/manifest.json
+!data/raw/plan.json
+!data/processed/*.json
+!data/processed/*.csv
+
+# Build intermediate: export_app_data.py writes it, build_app.py inlines it into
+# app/dist/index.html. Committing both would duplicate 4.6MB of the same JSON.
+app/data/app_data.json

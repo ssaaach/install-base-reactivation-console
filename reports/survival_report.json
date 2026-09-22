@@ -1,0 +1,326 @@
+{
+  "generated_at": "2026-09-21T21:38:23.140612+00:00",
+  "target": "days from one PURCHASE EPISODE to the account's next, right-censored. An episode is an account-day on which awards were placed, not a single award: offices sign dozens of delivery orders on one day, which would otherwise make the median inter-award gap 1 day and model batching rather than repurchase.",
+  "censoring": {
+    "train_censored_at": "2024-09-30",
+    "train_gaps": 143179,
+    "events": 140136,
+    "right_censored": 3043,
+    "censoring_rate": 0.0213
+  },
+  "validation": {
+    "scheme": "time-based; no random splits anywhere",
+    "train_cutoff": "2024-09-30",
+    "evaluation_window": [
+      "2024-10-01",
+      "2025-09-30"
+    ],
+    "test_accounts": 3043,
+    "test_positive_rate": 0.2741,
+    "excluded_unobservable": {
+      "dormant": "computed against the as-of date, not the cutoff",
+      "coverage_rate": "uses maintenance awards placed after the cutoff",
+      "expansion_vs_cohort": "computed over the account's full history including the test window",
+      "expiring_contracts / next_expiry": "derived from the as-of date",
+      "months_since_last_award (as-of)": "recomputed at the cutoff instead",
+      "health_score / telemetry / support cases": "SYNTHETIC; excluded from all modelling"
+    }
+  },
+  "features": [
+    "log_cum_obligated",
+    "awards_to_date",
+    "tenure_years",
+    "mean_gap_days",
+    "log_last_award_amount",
+    "maint_share_to_date",
+    "distinct_vendors_to_date",
+    "distinct_psc_to_date",
+    "hw_share_to_date",
+    "is_defense"
+  ],
+  "baseline_hazard": {
+    "median_observed_gap_days": 5.0,
+    "note": "Nelson-Aalen cumulative hazard plotted in reports/baseline_hazard.png",
+    "concordance_train": 0.7029
+  },
+  "coefficients": [
+    {
+      "covariate": "log_cum_obligated",
+      "coef": 0.32469,
+      "exp(coef)": 1.3836,
+      "se(coef)": 0.00314,
+      "z": 103.49816,
+      "p": 0.0,
+      "coef lower 95%": 0.31854,
+      "coef upper 95%": 0.33084
+    },
+    {
+      "covariate": "awards_to_date",
+      "coef": 0.00085,
+      "exp(coef)": 1.00085,
+      "se(coef)": 2e-05,
+      "z": 52.76797,
+      "p": 0.0,
+      "coef lower 95%": 0.00082,
+      "coef upper 95%": 0.00088
+    },
+    {
+      "covariate": "tenure_years",
+      "coef": -0.11662,
+      "exp(coef)": 0.88992,
+      "se(coef)": 0.00157,
+      "z": -74.08207,
+      "p": 0.0,
+      "coef lower 95%": -0.1197,
+      "coef upper 95%": -0.11353
+    },
+    {
+      "covariate": "mean_gap_days",
+      "coef": -0.00382,
+      "exp(coef)": 0.99619,
+      "se(coef)": 7e-05,
+      "z": -58.72407,
+      "p": 0.0,
+      "coef lower 95%": -0.00395,
+      "coef upper 95%": -0.00369
+    },
+    {
+      "covariate": "log_last_award_amount",
+      "coef": -0.03621,
+      "exp(coef)": 0.96443,
+      "se(coef)": 0.00255,
+      "z": -14.2126,
+      "p": 0.0,
+      "coef lower 95%": -0.04121,
+      "coef upper 95%": -0.03122
+    },
+    {
+      "covariate": "maint_share_to_date",
+      "coef": 0.15378,
+      "exp(coef)": 1.16624,
+      "se(coef)": 0.02764,
+      "z": 5.56449,
+      "p": 0.0,
+      "coef lower 95%": 0.09962,
+      "coef upper 95%": 0.20795
+    },
+    {
+      "covariate": "distinct_vendors_to_date",
+      "coef": 0.00113,
+      "exp(coef)": 1.00113,
+      "se(coef)": 7e-05,
+      "z": 15.13858,
+      "p": 0.0,
+      "coef lower 95%": 0.00098,
+      "coef upper 95%": 0.00127
+    },
+    {
+      "covariate": "distinct_psc_to_date",
+      "coef": -0.00402,
+      "exp(coef)": 0.99599,
+      "se(coef)": 0.00072,
+      "z": -5.59434,
+      "p": 0.0,
+      "coef lower 95%": -0.00543,
+      "coef upper 95%": -0.00261
+    },
+    {
+      "covariate": "hw_share_to_date",
+      "coef": 0.62499,
+      "exp(coef)": 1.86823,
+      "se(coef)": 0.03215,
+      "z": 19.44251,
+      "p": 0.0,
+      "coef lower 95%": 0.56199,
+      "coef upper 95%": 0.688
+    },
+    {
+      "covariate": "is_defense",
+      "coef": -0.01508,
+      "exp(coef)": 0.98504,
+      "se(coef)": 0.00525,
+      "z": -2.87186,
+      "p": 0.00408,
+      "coef lower 95%": -0.02536,
+      "coef upper 95%": -0.00479
+    }
+  ],
+  "results": {
+    "survival_model": {
+      "auc": 0.9222045631941708,
+      "brier": 0.09793034232132973,
+      "ece": 0.04369770315402837,
+      "mean_predicted": 0.248315086769258,
+      "observed_rate": 0.27407163982911603,
+      "calibration": [
+        {
+          "decile": 1,
+          "n": 305,
+          "predicted": 0.0,
+          "observed": 0.0,
+          "gap": 0.0
+        },
+        {
+          "decile": 2,
+          "n": 304,
+          "predicted": 0.0001,
+          "observed": 0.0132,
+          "gap": 0.0131
+        },
+        {
+          "decile": 3,
+          "n": 304,
+          "predicted": 0.0027,
+          "observed": 0.0461,
+          "gap": 0.0434
+        },
+        {
+          "decile": 4,
+          "n": 304,
+          "predicted": 0.0075,
+          "observed": 0.0395,
+          "gap": 0.032
+        },
+        {
+          "decile": 5,
+          "n": 305,
+          "predicted": 0.0187,
+          "observed": 0.0426,
+          "gap": 0.0239
+        },
+        {
+          "decile": 6,
+          "n": 304,
+          "predicted": 0.0481,
+          "observed": 0.1382,
+          "gap": 0.09
+        },
+        {
+          "decile": 7,
+          "n": 304,
+          "predicted": 0.1643,
+          "observed": 0.2796,
+          "gap": 0.1154
+        },
+        {
+          "decile": 8,
+          "n": 304,
+          "predicted": 0.4801,
+          "observed": 0.5099,
+          "gap": 0.0298
+        },
+        {
+          "decile": 9,
+          "n": 304,
+          "predicted": 0.8015,
+          "observed": 0.727,
+          "gap": -0.0745
+        },
+        {
+          "decile": 10,
+          "n": 305,
+          "predicted": 0.9595,
+          "observed": 0.9443,
+          "gap": -0.0152
+        }
+      ]
+    },
+    "rules_baseline": {
+      "auc": 0.8957420754206956,
+      "brier": 0.1745266160877647,
+      "ece": 0.2081943383673661,
+      "mean_predicted": 0.48226597819648204,
+      "observed_rate": 0.27407163982911603,
+      "calibration": [
+        {
+          "decile": 1,
+          "n": 305,
+          "predicted": 0.1127,
+          "observed": 0.0,
+          "gap": -0.1127
+        },
+        {
+          "decile": 2,
+          "n": 304,
+          "predicted": 0.1127,
+          "observed": 0.0329,
+          "gap": -0.0798
+        },
+        {
+          "decile": 3,
+          "n": 304,
+          "predicted": 0.1127,
+          "observed": 0.0362,
+          "gap": -0.0765
+        },
+        {
+          "decile": 4,
+          "n": 304,
+          "predicted": 0.1127,
+          "observed": 0.0526,
+          "gap": -0.06
+        },
+        {
+          "decile": 5,
+          "n": 305,
+          "predicted": 0.1127,
+          "observed": 0.023,
+          "gap": -0.0897
+        },
+        {
+          "decile": 6,
+          "n": 304,
+          "predicted": 0.4431,
+          "observed": 0.1086,
+          "gap": -0.3345
+        },
+        {
+          "decile": 7,
+          "n": 304,
+          "predicted": 0.8434,
+          "observed": 0.3586,
+          "gap": -0.4848
+        },
+        {
+          "decile": 8,
+          "n": 304,
+          "predicted": 0.9851,
+          "observed": 0.5921,
+          "gap": -0.393
+        },
+        {
+          "decile": 9,
+          "n": 304,
+          "predicted": 0.9943,
+          "observed": 0.7599,
+          "gap": -0.2344
+        },
+        {
+          "decile": 10,
+          "n": 305,
+          "predicted": 0.9943,
+          "observed": 0.777,
+          "gap": -0.2172
+        }
+      ]
+    },
+    "recently_active_subset": {
+      "definition": "test accounts whose last purchase episode was within 730 days of the cutoff",
+      "accounts": 1229,
+      "observed_rate": 0.6168,
+      "survival_model": {
+        "auc": 0.8015618260143746,
+        "brier": 0.18502700056007046
+      },
+      "rules_baseline": {
+        "auc": 0.6965419110521038,
+        "brier": 0.3317365013678666
+      },
+      "why": "AUC over the full population is inflated by accounts that have been silent for years and are trivially predicted not to buy. This subset is the harder and more decision-relevant test."
+    }
+  },
+  "model_beats_baseline": true,
+  "ranking_uses": "survival_model",
+  "verdict": "The Cox model beats the recency-only rules baseline on both AUC and Brier score, so the expected-value ranking uses it.",
+  "calibration_note": "Calibration matters more than AUC here. A ranking multiplies the predicted probability by a money value, so a model that orders accounts well but predicts the wrong level produces the wrong expected value. The decile plots in reports/calibration.png are the check that matters; ECE is the single-number summary."
+}

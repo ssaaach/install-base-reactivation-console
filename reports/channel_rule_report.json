@@ -1,0 +1,61 @@
+{
+  "rule": {
+    "direct": "recipient NAICS sector in ('31', '32', '33'), or the recipient name contains a maker token ('MANUFACTURING', 'MANUFACTURER', 'INDUSTRIES', 'FABRICAT')",
+    "partner": "recipient NAICS sector in ('42', '44', '45', '51', '54', '56', '23', '81'), or the name contains a trade token such as RESELL/DISTRIBUT/INTEGRAT",
+    "unknown": "neither signal fires - deliberately not guessed",
+    "precedence": "explicit name evidence overrides the NAICS sector",
+    "provenance": "inputs REAL (NAICS, recipient name); classification DERIVED"
+  },
+  "production_field": "channel uses the REAL manufacturer_of_goods flag where present and falls back to the rule only where it is missing; channel_source records which applied for every award.",
+  "error_rate_vs_sam_flag": {
+    "label": "manufacturer_of_goods (recipient's own SAM registration, REAL)",
+    "awards_scored": 269557,
+    "accuracy": 0.5192,
+    "error_rate": 0.4808,
+    "direct_precision": 0.1879,
+    "direct_recall": 0.3387,
+    "confusion": {
+      "rule_direct_truth_manufacturer": 20653,
+      "rule_direct_truth_not": 89271,
+      "rule_partner_truth_manufacturer": 40322,
+      "rule_partner_truth_not": 119311
+    },
+    "base_rate_manufacturer": 0.2262,
+    "majority_class_accuracy": 0.7738,
+    "beats_majority_class": false,
+    "verdict": "The NAICS+name rule the brief specifies does NOT work on this data. It is 51.9% accurate where always guessing the majority class is 77.4% accurate, so the rule is worse than no rule.",
+    "diagnosis": "NAICS on a federal award describes WHAT WAS BOUGHT, not what the recipient is. 82,901 awards in scope carry NAICS 334111 'Electronic Computer Manufacturing' because a computer was purchased - but most were placed with resellers and integrators, not manufacturers. Any rule that reads vendor type out of the purchase's product code inherits that mismatch. This is why the production channel field uses the SAM registration flag instead, and why the rule is reported rather than used."
+  },
+  "awards_by_channel": {
+    "partner": 209551,
+    "direct": 61373
+  },
+  "awards_by_channel_source": {
+    "sam_manufacturer_flag_REAL": 270924
+  },
+  "rule_coverage": 0.995,
+  "entity_instability_rate": 0.0351,
+  "obligation_weighted_instability_rate": 0.1725,
+  "largest_mixed_entities": {
+    "DELL FEDERAL SYSTEMS L.P.": 1624916272,
+    "FCN, INC.": 1589125329,
+    "GOVERNMENT ACQUISITIONS, INC.": 1304736551,
+    "NEW TECH SOLUTIONS, INC.": 1131139621,
+    "INTERNATIONAL BUSINESS MACHINES CORPORATION": 1027767625,
+    "BLUE TECH INC.": 847235162,
+    "CACI, INC. - FEDERAL": 783773652,
+    "NCS TECHNOLOGIES, INC.": 642579945,
+    "GOVSMART, INC.": 346208704,
+    "TRANSOURCE SERVICES CORP.": 318312656,
+    "NORTHROP GRUMMAN SYSTEMS CORPORATION": 300753953,
+    "HEWLETT PACKARD COMPANY (3067)": 265750010,
+    "IGOV TECHNOLOGIES, INC.": 215942585,
+    "HEWLETT PACKARD ENTERPRISE CO": 211210432,
+    "DELL MARKETING L.P.": 180240768,
+    "MICROTECHNOLOGIES LLC": 171167480,
+    "DOCUMENT STORAGE SYSTEMS, INC.": 154269365,
+    "JC TECHNOLOGY INCORPORATED": 142960469,
+    "LOCKHEED MARTIN CORPORATION": 142392576,
+    "GENERAL DYNAMICS MISSION SYSTEMS, INC": 91145846
+  }
+}

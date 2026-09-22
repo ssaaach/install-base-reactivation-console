@@ -1,0 +1,43 @@
+{
+  "generated_at": "2026-09-21T21:37:23.857923+00:00",
+  "provenance": "SYNTHETIC",
+  "seed": 20260921,
+  "reproducible": true,
+  "warning": "Every field in these three tables is generated. They are not evidence about the real world and no console finding rests on them. They are excluded from the survival model and from the expected-value ranking.",
+  "tables": {
+    "telemetry_synthetic": {
+      "rows": 111456,
+      "accounts": 3096,
+      "months": 36
+    },
+    "support_cases_synthetic": {
+      "rows": 24185,
+      "accounts": 2843
+    },
+    "health_synthetic": {
+      "rows": 3096
+    }
+  },
+  "conditioning": {
+    "utilisation": "level scales with log10 total obligations (REAL), decays with months since last award (REAL), federal Q4 seasonality",
+    "support_cases": "Poisson; rate = hardware asset count (REAL) x annual failure rate at the account's mean asset age (REAL age, REAL Backblaze hazard curve) + spend-scaled floor",
+    "health_score": "composite of SYNTHETIC utilisation level and trend and case load, plus REAL coverage rate and REAL dormancy",
+    "hazard_source": "Backblaze Drive Stats (REAL)",
+    "quarter": "Q1_2025",
+    "drive_days": 27761188,
+    "failures": 1060
+  },
+  "distributions": {
+    "utilisation_mean": 0.379,
+    "utilisation_p10": 0.1776,
+    "utilisation_p90": 0.6007,
+    "cases_per_account_mean": 7.81,
+    "health_mean": 31.29,
+    "health_band_counts": {
+      "at_risk": 2144,
+      "watch": 783,
+      "stable": 162,
+      "strong": 7
+    }
+  }
+}

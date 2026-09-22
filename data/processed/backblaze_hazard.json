@@ -1,0 +1,93 @@
+{
+  "status": "ok",
+  "source": "Backblaze Drive Stats",
+  "url": "https://www.backblaze.com/cloud-storage/resources/hard-drive-test-data",
+  "quarter": "Q1_2025",
+  "retrieved_at": "2026-09-20T23:46:42.684792+00:00",
+  "provenance": "REAL",
+  "note": "Drive age derived from SMART attribute 9 (power-on hours). Hazard is failures per drive-day observed in the quarter; AFR is the annualised equivalent. Applied to federal storage asset age as a DERIVED refresh-risk weight, not as a vendor-specific claim.",
+  "total_drive_days": 27761188,
+  "total_failures": 1060,
+  "buckets": [
+    {
+      "age_bucket": "[0, 1)",
+      "drive_days": 4668208,
+      "failures": 88,
+      "age_low_years": 0,
+      "hazard_daily": 1.8850916668666006e-05,
+      "afr": 0.0068617124149993325
+    },
+    {
+      "age_bucket": "[1, 2)",
+      "drive_days": 4324019,
+      "failures": 67,
+      "age_low_years": 1,
+      "hazard_daily": 1.549484403283149e-05,
+      "afr": 0.0056435506282613845
+    },
+    {
+      "age_bucket": "[2, 3)",
+      "drive_days": 3435096,
+      "failures": 92,
+      "age_low_years": 2,
+      "hazard_daily": 2.6782366489903047e-05,
+      "afr": 0.009734698418652599
+    },
+    {
+      "age_bucket": "[3, 4)",
+      "drive_days": 5232734,
+      "failures": 168,
+      "age_low_years": 3,
+      "hazard_daily": 3.210558763353918e-05,
+      "afr": 0.011658263734871
+    },
+    {
+      "age_bucket": "[4, 5)",
+      "drive_days": 5313009,
+      "failures": 199,
+      "age_low_years": 4,
+      "hazard_daily": 3.74552348772607e-05,
+      "afr": 0.013587624170133816
+    },
+    {
+      "age_bucket": "[5, 6)",
+      "drive_days": 1917885,
+      "failures": 224,
+      "age_low_years": 5,
+      "hazard_daily": 0.0001167953240157778,
+      "afr": 0.0417647653533918
+    },
+    {
+      "age_bucket": "[6, 7)",
+      "drive_days": 411273,
+      "failures": 51,
+      "age_low_years": 6,
+      "hazard_daily": 0.00012400522280820768,
+      "afr": 0.044285180257511714
+    },
+    {
+      "age_bucket": "[7, 8)",
+      "drive_days": 1482673,
+      "failures": 114,
+      "age_low_years": 7,
+      "hazard_daily": 7.68881607744931e-05,
+      "afr": 0.027693777505302997
+    },
+    {
+      "age_bucket": "[8, 10)",
+      "drive_days": 973373,
+      "failures": 57,
+      "age_low_years": 8,
+      "hazard_daily": 5.855925734533422e-05,
+      "afr": 0.021162264194655944
+    },
+    {
+      "age_bucket": "[10, 99)",
+      "drive_days": 2918,
+      "failures": 0,
+      "age_low_years": 10,
+      "hazard_daily": 0.0,
+      "afr": 0.0
+    }
+  ]
+}

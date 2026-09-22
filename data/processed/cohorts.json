@@ -1,0 +1,343 @@
+{
+  "cohorts": {
+    "2016": {
+      "accounts": 2131,
+      "total_obligated": 70850861593.26001,
+      "observable_years": 10.97,
+      "dormant_now": 1387,
+      "dormant_rate_now": 0.6509,
+      "expansion": {
+        "year_1": {
+          "denominator": 2131,
+          "accounts_with_further_award": 1748,
+          "rate": 0.8203
+        },
+        "year_2": {
+          "denominator": 2131,
+          "accounts_with_further_award": 1309,
+          "rate": 0.6143
+        },
+        "year_3": {
+          "denominator": 2131,
+          "accounts_with_further_award": 1162,
+          "rate": 0.5453
+        }
+      },
+      "retention_by_fy": {
+        "2016": 1.0,
+        "2017": 0.6302,
+        "2018": 0.5716,
+        "2019": 0.5031,
+        "2020": 0.5016,
+        "2021": 0.4097,
+        "2022": 0.366,
+        "2023": 0.3604,
+        "2024": 0.3407,
+        "2025": 0.3092,
+        "2026": 0.2229
+      }
+    },
+    "2017": {
+      "accounts": 302,
+      "total_obligated": 1093961714.94,
+      "observable_years": 9.97,
+      "dormant_now": 256,
+      "dormant_rate_now": 0.8477,
+      "expansion": {
+        "year_1": {
+          "denominator": 302,
+          "accounts_with_further_award": 182,
+          "rate": 0.6026
+        },
+        "year_2": {
+          "denominator": 302,
+          "accounts_with_further_award": 145,
+          "rate": 0.4801
+        },
+        "year_3": {
+          "denominator": 302,
+          "accounts_with_further_award": 138,
+          "rate": 0.457
+        }
+      },
+      "retention_by_fy": {
+        "2017": 1.0,
+        "2018": 0.5,
+        "2019": 0.4702,
+        "2020": 0.4338,
+        "2021": 0.2318,
+        "2022": 0.1755,
+        "2023": 0.1987,
+        "2024": 0.1424,
+        "2025": 0.1225,
+        "2026": 0.0695
+      }
+    },
+    "2018": {
+      "accounts": 157,
+      "total_obligated": 681961900.43,
+      "observable_years": 8.97,
+      "dormant_now": 125,
+      "dormant_rate_now": 0.7962,
+      "expansion": {
+        "year_1": {
+          "denominator": 157,
+          "accounts_with_further_award": 76,
+          "rate": 0.4841
+        },
+        "year_2": {
+          "denominator": 157,
+          "accounts_with_further_award": 70,
+          "rate": 0.4459
+        },
+        "year_3": {
+          "denominator": 157,
+          "accounts_with_further_award": 49,
+          "rate": 0.3121
+        }
+      },
+      "retention_by_fy": {
+        "2018": 1.0,
+        "2019": 0.4268,
+        "2020": 0.3439,
+        "2021": 0.2739,
+        "2022": 0.2484,
+        "2023": 0.2102,
+        "2024": 0.1783,
+        "2025": 0.1529,
+        "2026": 0.1019
+      }
+    },
+    "2019": {
+      "accounts": 127,
+      "total_obligated": 634679982.17,
+      "observable_years": 7.97,
+      "dormant_now": 104,
+      "dormant_rate_now": 0.8189,
+      "expansion": {
+        "year_1": {
+          "denominator": 127,
+          "accounts_with_further_award": 60,
+          "rate": 0.4724
+        },
+        "year_2": {
+          "denominator": 127,
+          "accounts_with_further_award": 49,
+          "rate": 0.3858
+        },
+        "year_3": {
+          "denominator": 127,
+          "accounts_with_further_award": 40,
+          "rate": 0.315
+        }
+      },
+      "retention_by_fy": {
+        "2019": 1.0,
+        "2020": 0.4567,
+        "2021": 0.315,
+        "2022": 0.252,
+        "2023": 0.252,
+        "2024": 0.2677,
+        "2025": 0.1575,
+        "2026": 0.0866
+      }
+    },
+    "2020": {
+      "accounts": 165,
+      "total_obligated": 570294216.3299999,
+      "observable_years": 6.95,
+      "dormant_now": 114,
+      "dormant_rate_now": 0.6909,
+      "expansion": {
+        "year_1": {
+          "denominator": 165,
+          "accounts_with_further_award": 88,
+          "rate": 0.5333
+        },
+        "year_2": {
+          "denominator": 165,
+          "accounts_with_further_award": 56,
+          "rate": 0.3394
+        },
+        "year_3": {
+          "denominator": 165,
+          "accounts_with_further_award": 69,
+          "rate": 0.4182
+        }
+      },
+      "retention_by_fy": {
+        "2020": 1.0,
+        "2021": 0.3576,
+        "2022": 0.3939,
+        "2023": 0.3758,
+        "2024": 0.3152,
+        "2025": 0.2667,
+        "2026": 0.1152
+      }
+    },
+    "2021": {
+      "accounts": 48,
+      "total_obligated": 627088098.9000001,
+      "observable_years": 5.9,
+      "dormant_now": 28,
+      "dormant_rate_now": 0.5833,
+      "expansion": {
+        "year_1": {
+          "denominator": 48,
+          "accounts_with_further_award": 27,
+          "rate": 0.5625
+        },
+        "year_2": {
+          "denominator": 48,
+          "accounts_with_further_award": 26,
+          "rate": 0.5417
+        },
+        "year_3": {
+          "denominator": 48,
+          "accounts_with_further_award": 18,
+          "rate": 0.375
+        }
+      },
+      "retention_by_fy": {
+        "2021": 1.0,
+        "2022": 0.5,
+        "2023": 0.5,
+        "2024": 0.3333,
+        "2025": 0.3958,
+        "2026": 0.2292
+      }
+    },
+    "2022": {
+      "accounts": 44,
+      "total_obligated": 157427387.66999996,
+      "observable_years": 4.94,
+      "dormant_now": 27,
+      "dormant_rate_now": 0.6136,
+      "expansion": {
+        "year_1": {
+          "denominator": 44,
+          "accounts_with_further_award": 23,
+          "rate": 0.5227
+        },
+        "year_2": {
+          "denominator": 44,
+          "accounts_with_further_award": 17,
+          "rate": 0.3864
+        },
+        "year_3": {
+          "denominator": 44,
+          "accounts_with_further_award": 19,
+          "rate": 0.4318
+        }
+      },
+      "retention_by_fy": {
+        "2022": 1.0,
+        "2023": 0.4773,
+        "2024": 0.4091,
+        "2025": 0.3182,
+        "2026": 0.1818
+      }
+    },
+    "2023": {
+      "accounts": 34,
+      "total_obligated": 65724308.080000006,
+      "observable_years": 3.94,
+      "dormant_now": 24,
+      "dormant_rate_now": 0.7059,
+      "expansion": {
+        "year_1": {
+          "denominator": 34,
+          "accounts_with_further_award": 14,
+          "rate": 0.4118
+        },
+        "year_2": {
+          "denominator": 34,
+          "accounts_with_further_award": 8,
+          "rate": 0.2353
+        },
+        "year_3": {
+          "denominator": 31,
+          "accounts_with_further_award": 6,
+          "rate": 0.1935
+        }
+      },
+      "retention_by_fy": {
+        "2023": 1.0,
+        "2024": 0.3235,
+        "2025": 0.2941,
+        "2026": 0.1176
+      }
+    },
+    "2024": {
+      "accounts": 35,
+      "total_obligated": 47705296.300000004,
+      "observable_years": 2.92,
+      "dormant_now": 21,
+      "dormant_rate_now": 0.6,
+      "expansion": {
+        "year_1": {
+          "denominator": 35,
+          "accounts_with_further_award": 10,
+          "rate": 0.2857
+        },
+        "year_2": {
+          "denominator": 31,
+          "accounts_with_further_award": 8,
+          "rate": 0.2581
+        }
+      },
+      "retention_by_fy": {
+        "2024": 1.0,
+        "2025": 0.2,
+        "2026": 0.2571
+      }
+    },
+    "2025": {
+      "accounts": 32,
+      "total_obligated": 24741873.529999997,
+      "observable_years": 1.93,
+      "dormant_now": 0,
+      "dormant_rate_now": 0.0,
+      "expansion": {
+        "year_1": {
+          "denominator": 29,
+          "accounts_with_further_award": 8,
+          "rate": 0.2759
+        }
+      },
+      "retention_by_fy": {
+        "2025": 1.0,
+        "2026": 0.2188
+      }
+    },
+    "2026": {
+      "accounts": 21,
+      "total_obligated": 27446512.240000002,
+      "observable_years": 0.78,
+      "dormant_now": 0,
+      "dormant_rate_now": 0.0,
+      "expansion": {},
+      "retention_by_fy": {
+        "2026": 1.0
+      }
+    }
+  },
+  "definition": {
+    "cohort": "fiscal year of the account's first in-scope award (REAL)",
+    "expansion_year_n": "share of the cohort placing a further award within year n",
+    "retention_fy": "share of the cohort with at least one award in that fiscal year",
+    "censoring": "cells omitted where the cohort has not been observable that long"
+  },
+  "cohort_year1_expansion_rate": {
+    "2016": 0.8203,
+    "2017": 0.6026,
+    "2018": 0.4841,
+    "2019": 0.4724,
+    "2020": 0.5333,
+    "2021": 0.5625,
+    "2022": 0.5227,
+    "2023": 0.4118,
+    "2024": 0.2857,
+    "2025": 0.2759
+  }
+}

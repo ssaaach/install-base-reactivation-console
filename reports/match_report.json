@@ -1,0 +1,6007 @@
+{
+  "generated_at": "2026-09-21T21:37:02.847990+00:00",
+  "awards": 270924,
+  "awards_with_unresolved_recipient": 19,
+  "awards_with_unresolved_org": 0,
+  "recipients": {
+    "distinct_raw_names_before": 12536,
+    "entities_after": 11245,
+    "uei_backed_entities": 11245,
+    "uei_missing_entities": 0,
+    "spelling_variants_collapsed": 1291,
+    "collapse_rate": 0.103,
+    "merge_threshold": 0.92,
+    "ambiguity_margin": 0.02,
+    "merge_count": 0,
+    "merges": [],
+    "ambiguous_count": 0,
+    "ambiguous_requiring_review": [],
+    "unresolved_count": 0,
+    "unresolved": [],
+    "same_parent_candidate_count": 260,
+    "same_parent_candidates": [
+      {
+        "normalised": "EMC",
+        "entities": [
+          "E-01767",
+          "E-08683",
+          "E-09215"
+        ],
+        "canonical_names": [
+          "EMC CORPORATION",
+          "EMC CORPORATION",
+          "EMC CORPORATION"
+        ]
+      },
+      {
+        "normalised": "INSIGHT PUBLIC SECTOR",
+        "entities": [
+          "E-02240",
+          "E-03846",
+          "E-05389",
+          "E-05757",
+          "E-09443"
+        ],
+        "canonical_names": [
+          "INSIGHT PUBLIC SECTOR, INC.",
+          "INSIGHT PUBLIC SECTOR, INC.",
+          "INSIGHT PUBLIC SECTOR, INC.",
+          "INSIGHT PUBLIC SECTOR, INC.",
+          "INSIGHT PUBLIC SECTOR, INC."
+        ]
+      },
+      {
+        "normalised": "CDW GOVERNMENT",
+        "entities": [
+          "E-06033",
+          "E-07422",
+          "E-10928"
+        ],
+        "canonical_names": [
+          "CDW GOVERNMENT LLC",
+          "CDW GOVERNMENT LLC",
+          "CDW GOVERNMENT LLC"
+        ]
+      },
+      {
+        "normalised": "PANAMERICA COMPUTERS",
+        "entities": [
+          "E-01092",
+          "E-03314"
+        ],
+        "canonical_names": [
+          "PANAMERICA COMPUTERS, INC.",
+          "PANAMERICA COMPUTERS, INC."
+        ]
+      },
+      {
+        "normalised": "APPLE",
+        "entities": [
+          "E-03453",
+          "E-06730"
+        ],
+        "canonical_names": [
+          "APPLE INC.",
+          "APPLE, INC"
+        ]
+      },
+      {
+        "normalised": "HEWLETT PACKARD",
+        "entities": [
+          "E-06120",
+          "E-08280",
+          "E-08549"
+        ],
+        "canonical_names": [
+          "HEWLETT PACKARD COMPANY (3067)",
+          "HEWLETT PACKARD ENTERPRISE COMPANY",
+          "HP INC."
+        ]
+      },
+      {
+        "normalised": "HP",
+        "entities": [
+          "E-06120",
+          "E-08549"
+        ],
+        "canonical_names": [
+          "HEWLETT PACKARD COMPANY (3067)",
+          "HP INC."
+        ]
+      },
+      {
+        "normalised": "HEWLETT PACKARD ENTERPRISE",
+        "entities": [
+          "E-01504",
+          "E-02461",
+          "E-08280"
+        ],
+        "canonical_names": [
+          "HEWLETT PACKARD ENTERPRISE COMPANY",
+          "HEWLETT PACKARD ENTERPRISE CO",
+          "HEWLETT PACKARD ENTERPRISE COMPANY"
+        ]
+      },
+      {
+        "normalised": "LOCKHEED MARTIN",
+        "entities": [
+          "E-00450",
+          "E-00517",
+          "E-00627",
+          "E-00998",
+          "E-02541",
+          "E-03113",
+          "E-03473",
+          "E-04176",
+          "E-04721",
+          "E-04735",
+          "E-05185",
+          "E-06215",
+          "E-06990",
+          "E-07321",
+          "E-07845",
+          "E-08500",
+          "E-10021"
+        ],
+        "canonical_names": [
+          "LOCKHEED MARTIN CORPORATION",
+          "LOCKHEED MARTIN CORPORATION",
+          "LOCKHEED MARTIN CORPORATION",
+          "LOCKHEED MARTIN CORPORATION",
+          "LOCKHEED MARTIN CORPORATION",
+          "LOCKHEED MARTIN CORPORATION",
+          "LOCKHEED MARTIN CORPORATION",
+          "LOCKHEED MARTIN CORPORATION",
+          "LOCKHEED MARTIN CORPORATION",
+          "LOCKHEED MARTIN CORPORATION",
+          "LOCKHEED MARTIN CORPORATION",
+          "LOCKHEED MARTIN CORPORATION",
+          "LOCKHEED MARTIN CORPORATION",
+          "LOCKHEED MARTIN CORPORATION",
+          "LOCKHEED MARTIN CORPORATION",
+          "LOCKHEED MARTIN CORPORATION",
+          "LOCKHEED MARTIN CORPORATION"
+        ]
+      },
+      {
+        "normalised": "GOVCONNECTION",
+        "entities": [
+          "E-01264",
+          "E-02864"
+        ],
+        "canonical_names": [
+          "GOVCONNECTION, INC.",
+          "GOVCONNECTION, INC."
+        ]
+      },
+      {
+        "normalised": "XEROX",
+        "entities": [
+          "E-01414",
+          "E-01509",
+          "E-02734",
+          "E-02823",
+          "E-03955",
+          "E-05250",
+          "E-07228",
+          "E-10864"
+        ],
+        "canonical_names": [
+          "XEROX CORPORATION",
+          "XEROX CORPORATION",
+          "XEROX CORPORATION",
+          "XEROX CORPORATION",
+          "XEROX CORPORATION",
+          "XEROX CORPORATION",
+          "XEROX CORPORATION",
+          "XEROX CORPORATION"
+        ]
+      },
+      {
+        "normalised": "EXELIS",
+        "entities": [
+          "E-01049",
+          "E-06700"
+        ],
+        "canonical_names": [
+          "EXELIS INC.",
+          "L3HARRIS TECHNOLOGIES, INC."
+        ]
+      },
+      {
+        "normalised": "HARRIS",
+        "entities": [
+          "E-01049",
+          "E-03212",
+          "E-05348",
+          "E-06700",
+          "E-07848",
+          "E-08537"
+        ],
+        "canonical_names": [
+          "EXELIS INC.",
+          "HARRIS CORPORATION",
+          "HARRIS CORPORATION",
+          "L3HARRIS TECHNOLOGIES, INC.",
+          "L3HARRIS TECHNOLOGIES, INC.",
+          "L3HARRIS TECHNOLOGIES, INC."
+        ]
+      },
+      {
+        "normalised": "L3HARRIS TECHNOLOGIES",
+        "entities": [
+          "E-05348",
+          "E-06700",
+          "E-07848",
+          "E-08537"
+        ],
+        "canonical_names": [
+          "HARRIS CORPORATION",
+          "L3HARRIS TECHNOLOGIES, INC.",
+          "L3HARRIS TECHNOLOGIES, INC.",
+          "L3HARRIS TECHNOLOGIES, INC."
+        ]
+      },
+      {
+        "normalised": "INTELLIGENT DECISIONS",
+        "entities": [
+          "E-01790",
+          "E-04559"
+        ],
+        "canonical_names": [
+          "INTELLIGENT DECISIONS, INC.",
+          "INTELLIGENT DECISIONS, INC."
+        ]
+      },
+      {
+        "normalised": "PCMG",
+        "entities": [
+          "E-05340",
+          "E-10506"
+        ],
+        "canonical_names": [
+          "PCMG, INC.",
+          "PCMG, INC."
+        ]
+      },
+      {
+        "normalised": "SPECIALISTS",
+        "entities": [
+          "E-01134",
+          "E-04188",
+          "E-04696"
+        ],
+        "canonical_names": [
+          "PC SPECIALISTS, INC.",
+          "PC SPECIALISTS, INC.",
+          "PC SPECIALISTS INCORPORATED"
+        ]
+      },
+      {
+        "normalised": "ORACLE AMERICA",
+        "entities": [
+          "E-02202",
+          "E-03365"
+        ],
+        "canonical_names": [
+          "ORACLE AMERICA, INC.",
+          "ORACLE AMERICA, INC."
+        ]
+      },
+      {
+        "normalised": "NORTHROP GRUMMAN SYSTEMS",
+        "entities": [
+          "E-00982",
+          "E-01301",
+          "E-01315",
+          "E-01543",
+          "E-01715",
+          "E-02774",
+          "E-03012",
+          "E-03044",
+          "E-03659",
+          "E-05073",
+          "E-05333",
+          "E-05338",
+          "E-05430",
+          "E-06472",
+          "E-07449",
+          "E-07524",
+          "E-08758",
+          "E-10133",
+          "E-10953"
+        ],
+        "canonical_names": [
+          "NORTHROP GRUMMAN SYSTEMS CORPORATION",
+          "NORTHROP GRUMMAN SYSTEMS CORPORATION",
+          "NORTHROP GRUMMAN SYSTEMS CORPORATION",
+          "NORTHROP GRUMMAN SYSTEMS CORPORATION",
+          "NORTHROP GRUMMAN SYSTEMS CORPORATION",
+          "NORTHROP GRUMMAN SYSTEMS CORPORATION",
+          "NORTHROP GRUMMAN SYSTEMS CORPORATION",
+          "NORTHROP GRUMMAN GUIDANCE AND ELECTRONICS COMPANY, INC.",
+          "NORTHROP GRUMMAN SYSTEMS CORPORATION",
+          "NORTHROP GRUMMAN SYSTEMS CORPORATION",
+          "NORTHROP GRUMMAN SYSTEMS CORPORATION",
+          "NORTHROP GRUMMAN SYSTEMS CORPORATION",
+          "NORTHROP GRUMMAN SYSTEMS CORPORATION",
+          "NORTHROP GRUMMAN SYSTEMS CORPORATION",
+          "NORTHROP GRUMMAN SYSTEMS CORPORATION",
+          "NORTHROP GRUMMAN SYSTEMS CORPORATION",
+          "NORTHROP GRUMMAN SYSTEMS CORPORATION",
+          "NORTHROP GRUMMAN SYSTEMS CORPORATION",
+          "NORTHROP GRUMMAN SYSTEMS CORPORATION"
+        ]
+      },
+      {
+        "normalised": "AVAYA FEDERAL SOLUTIONS",
+        "entities": [
+          "E-00725",
+          "E-06993"
+        ],
+        "canonical_names": [
+          "AVAYA FEDERAL SOLUTIONS, INC.",
+          "AVAYA FEDERAL SOLUTIONS, INC."
+        ]
+      },
+      {
+        "normalised": "LEIDOS",
+        "entities": [
+          "E-02492",
+          "E-04350",
+          "E-04840",
+          "E-05043",
+          "E-05532",
+          "E-06108",
+          "E-06525",
+          "E-06938",
+          "E-07746",
+          "E-07841",
+          "E-08514"
+        ],
+        "canonical_names": [
+          "LEIDOS, INC.",
+          "LEIDOS, INC.",
+          "LEIDOS, INC.",
+          "LEIDOS, INC.",
+          "LEIDOS, INC.",
+          "LEIDOS, INC.",
+          "LEIDOS, INC.",
+          "LEIDOS, INC.",
+          "LEIDOS, INC.",
+          "LEIDOS, INC.",
+          "LEIDOS INC"
+        ]
+      },
+      {
+        "normalised": "LEIDOS INNOVATIONS",
+        "entities": [
+          "E-06525",
+          "E-07091",
+          "E-07746"
+        ],
+        "canonical_names": [
+          "LEIDOS, INC.",
+          "LEIDOS INNOVATIONS CORPORATION",
+          "LEIDOS, INC."
+        ]
+      },
+      {
+        "normalised": "DYNAMIC SYSTEMS",
+        "entities": [
+          "E-04541",
+          "E-09227",
+          "E-10929"
+        ],
+        "canonical_names": [
+          "DYNAMIC SYSTEMS, INC.",
+          "DYNAMIC SYSTEMS, INC.",
+          "DYNAMIC SYSTEMS, INC."
+        ]
+      },
+      {
+        "normalised": "MICROTECHNOLOGIES",
+        "entities": [
+          "E-00420",
+          "E-04672"
+        ],
+        "canonical_names": [
+          "MICROTECHNOLOGIES LLC",
+          "MICROTECHNOLOGIES INC"
+        ]
+      },
+      {
+        "normalised": "MICROSOFT SITZ IN REDMOND",
+        "entities": [
+          "E-00420",
+          "E-02277"
+        ],
+        "canonical_names": [
+          "MICROTECHNOLOGIES LLC",
+          "MICROSOFT CORPORATION SITZ IN REDMOND CORPORATION"
+        ]
+      },
+      {
+        "normalised": "DIGITAL TECHNOLOGIES",
+        "entities": [
+          "E-03007",
+          "E-09422"
+        ],
+        "canonical_names": [
+          "DIGITAL TECHNOLOGIES, INC.",
+          "DIGITAL TECHNOLOGIES LLC"
+        ]
+      },
+      {
+        "normalised": "STRYKER",
+        "entities": [
+          "E-04054",
+          "E-07436"
+        ],
+        "canonical_names": [
+          "STRYKER CORPORATION",
+          "STRYKER CORPORATION"
+        ]
+      },
+      {
+        "normalised": "ELMA ELECTRONIC",
+        "entities": [
+          "E-02210",
+          "E-07413"
+        ],
+        "canonical_names": [
+          "ELMA ELECTRONIC INC.",
+          "ELMA ELECTRONIC INC."
+        ]
+      },
+      {
+        "normalised": "EATON",
+        "entities": [
+          "E-06226",
+          "E-07029",
+          "E-09171",
+          "E-11113"
+        ],
+        "canonical_names": [
+          "EATON CORPORATION",
+          "EATON CORPORATION",
+          "EATON CORPORATION",
+          "EATON CORP"
+        ]
+      },
+      {
+        "normalised": "SIEMENS GOVERNMENT TECHNOLOGIES",
+        "entities": [
+          "E-07983",
+          "E-09421"
+        ],
+        "canonical_names": [
+          "SIEMENS GOVERNMENT TECHNOLOGIES, INC.",
+          "SIEMENS GOVERNMENT TECHNOLOGIES, INC."
+        ]
+      },
+      {
+        "normalised": "ENGILITY",
+        "entities": [
+          "E-01124",
+          "E-03415"
+        ],
+        "canonical_names": [
+          "ENGILITY LLC",
+          "ENGILITY CORPORATION"
+        ]
+      },
+      {
+        "normalised": "BECKMAN COULTER",
+        "entities": [
+          "E-07551",
+          "E-10903"
+        ],
+        "canonical_names": [
+          "BECKMAN COULTER, INC.",
+          "BECKMAN COULTER, INC."
+        ]
+      },
+      {
+        "normalised": "MERCURY SYSTEMS",
+        "entities": [
+          "E-02189",
+          "E-03831",
+          "E-04133",
+          "E-08995"
+        ],
+        "canonical_names": [
+          "MERCURY SYSTEMS, INC.",
+          "MERCURY SYSTEMS, INC.",
+          "MERCURY SYSTEMS, INC.",
+          "MERCURY SYSTEMS INC"
+        ]
+      },
+      {
+        "normalised": "VARIAN MEDICAL SYSTEMS",
+        "entities": [
+          "E-06220",
+          "E-07419"
+        ],
+        "canonical_names": [
+          "VARIAN MEDICAL SYSTEMS, INC.",
+          "VARIAN MEDICAL SYSTEMS, INC."
+        ]
+      },
+      {
+        "normalised": "BAYER HEALTHCARE",
+        "entities": [
+          "E-00816",
+          "E-07217"
+        ],
+        "canonical_names": [
+          "BAYER HEALTHCARE LLC",
+          "BAYER HEALTHCARE LLC"
+        ]
+      },
+      {
+        "normalised": "VECNA TECHNOLOGIES",
+        "entities": [
+          "E-01126",
+          "E-11025"
+        ],
+        "canonical_names": [
+          "VECNA TECHNOLOGIES, INC",
+          "VECNA TECHNOLOGIES, INC."
+        ]
+      },
+      {
+        "normalised": "SCANTRON",
+        "entities": [
+          "E-05792",
+          "E-10204"
+        ],
+        "canonical_names": [
+          "SCANTRON CORPORATION",
+          "SCANTRON CORPORATION"
+        ]
+      },
+      {
+        "normalised": "AT AND T ENTERPRISES",
+        "entities": [
+          "E-06343",
+          "E-06496"
+        ],
+        "canonical_names": [
+          "AT&T CORP.",
+          "AT&T ENTERPRISES, LLC"
+        ]
+      },
+      {
+        "normalised": "AT AND T",
+        "entities": [
+          "E-00233",
+          "E-05299",
+          "E-06343",
+          "E-06496"
+        ],
+        "canonical_names": [
+          "AT&T CORP.",
+          "AT&T CORP.",
+          "AT&T CORP.",
+          "AT&T ENTERPRISES, LLC"
+        ]
+      },
+      {
+        "normalised": "BOOZ ALLEN HAMILTON",
+        "entities": [
+          "E-03981",
+          "E-04805",
+          "E-07082"
+        ],
+        "canonical_names": [
+          "BOOZ ALLEN HAMILTON INC.",
+          "BOOZ ALLEN HAMILTON INC.",
+          "BOOZ ALLEN HAMILTON INC."
+        ]
+      },
+      {
+        "normalised": "JANTECH SERVICES",
+        "entities": [
+          "E-04337",
+          "E-07445"
+        ],
+        "canonical_names": [
+          "JANTECH SERVICES, INC.",
+          "JANTECH SERVICES, INC."
+        ]
+      },
+      {
+        "normalised": "AGILENT TECHNOLOGIES",
+        "entities": [
+          "E-00954",
+          "E-00981",
+          "E-01536",
+          "E-08443"
+        ],
+        "canonical_names": [
+          "AGILENT TECHNOLOGIES, INC.",
+          "AGILENT TECHNOLOGIES, INC.",
+          "AGILENT TECHNOLOGIES, INC.",
+          "AGILENT TECHNOLOGIES, INC."
+        ]
+      },
+      {
+        "normalised": "GL2 TECHNOLOGIES",
+        "entities": [
+          "E-03285",
+          "E-03397"
+        ],
+        "canonical_names": [
+          "GL2 TECHNOLOGIES LLC",
+          "GL2 TECHNOLOGIES CORP."
+        ]
+      },
+      {
+        "normalised": "SIMPLEXGRINNELL",
+        "entities": [
+          "E-04636",
+          "E-04916",
+          "E-05734",
+          "E-06241",
+          "E-10286"
+        ],
+        "canonical_names": [
+          "JOHNSON CONTROLS FIRE PROTECTION LP",
+          "SIMPLEXGRINNELL LP",
+          "SIMPLEXGRINNELL LP",
+          "SIMPLEXGRINNELL LP",
+          "SIMPLEXGRINNELL LP"
+        ]
+      },
+      {
+        "normalised": "JOHNSON CONTROLS FIRE PROTECTION",
+        "entities": [
+          "E-02750",
+          "E-02867",
+          "E-04636",
+          "E-06800",
+          "E-08535",
+          "E-10286",
+          "E-10807"
+        ],
+        "canonical_names": [
+          "JOHNSON CONTROLS FIRE PROTECTION LP",
+          "JOHNSON CONTROLS FIRE PROTECTION LP",
+          "JOHNSON CONTROLS FIRE PROTECTION LP",
+          "JOHNSON CONTROLS FIRE PROTECTION LP",
+          "JOHNSON CONTROLS FIRE PROTECTION LP",
+          "SIMPLEXGRINNELL LP",
+          "JOHNSON CONTROLS FIRE PROTECTION LP"
+        ]
+      },
+      {
+        "normalised": "CAROLINA ADVANCED DIGITAL",
+        "entities": [
+          "E-03498",
+          "E-05458"
+        ],
+        "canonical_names": [
+          "CAROLINA ADVANCED DIGITAL, INC.",
+          "CAROLINA ADVANCED DIGITAL, INC."
+        ]
+      },
+      {
+        "normalised": "BAE SYSTEMS INFORMATION AND ELECTRONIC SYSTEMS INTEGRATION",
+        "entities": [
+          "E-01986",
+          "E-02302",
+          "E-05426",
+          "E-09993"
+        ],
+        "canonical_names": [
+          "BAE SYSTEMS INFORMATION AND ELECTRONIC SYSTEMS INTEGRATION INC.",
+          "BAE SYSTEMS INFORMATION AND ELECTRONIC SYSTEMS INTEGRATION INC.",
+          "BAE SYSTEMS INFORMATION AND ELECTRONIC SYSTEMS INTEGRATION INC.",
+          "BAE SYSTEMS INFORMATION AND ELECTRONIC SYSTEMS INTEGRATION INC."
+        ]
+      },
+      {
+        "normalised": "SPATIAL INTEGRATED SYSTEMS",
+        "entities": [
+          "E-07530",
+          "E-09223"
+        ],
+        "canonical_names": [
+          "SPATIAL INTEGRATED SYSTEMS, INC.",
+          "SPATIAL INTEGRATED SYSTEMS, INC."
+        ]
+      },
+      {
+        "normalised": "TERADYNE",
+        "entities": [
+          "E-06498",
+          "E-07520"
+        ],
+        "canonical_names": [
+          "TERADYNE, INC.",
+          "TERADYNE, INC."
+        ]
+      },
+      {
+        "normalised": "INTEGRATED SECURITY TECHNOLOGIES",
+        "entities": [
+          "E-05747",
+          "E-08521",
+          "E-10596"
+        ],
+        "canonical_names": [
+          "INTEGRATED SECURITY TECHNOLOGIES, INC",
+          "INTEGRATED SECURITY TECHNOLOGIES INC.",
+          "INTEGRATED SECURITY TECHNOLOGIES, INC."
+        ]
+      },
+      {
+        "normalised": "SPECTRUM SYSTEMS",
+        "entities": [
+          "E-02211",
+          "E-11162"
+        ],
+        "canonical_names": [
+          "SPECTRUM SYSTEMS, INC",
+          "SPECTRUM SYSTEMS, LLC"
+        ]
+      },
+      {
+        "normalised": "BETIS GROUP",
+        "entities": [
+          "E-02379",
+          "E-04122"
+        ],
+        "canonical_names": [
+          "BETIS GROUP, INC",
+          "BETIS GROUP, INC."
+        ]
+      },
+      {
+        "normalised": "ANIXTER",
+        "entities": [
+          "E-02062",
+          "E-08762",
+          "E-09028"
+        ],
+        "canonical_names": [
+          "ANIXTER INC.",
+          "ANIXTER INC.",
+          "ANIXTER INC"
+        ]
+      },
+      {
+        "normalised": "SECURITY ENGINEERED MACHINERY",
+        "entities": [
+          "E-04663",
+          "E-07120"
+        ],
+        "canonical_names": [
+          "SECURITY ENGINEERED MACHINERY CO., INC.",
+          "SECURITY ENGINEERED MACHINERY CO., INC."
+        ]
+      },
+      {
+        "normalised": "APPLIED GLOBAL TECHNOLOGIES",
+        "entities": [
+          "E-00657",
+          "E-03537"
+        ],
+        "canonical_names": [
+          "APPLIED GLOBAL TECHNOLOGIES, LLC",
+          "APPLIED GLOBAL TECHNOLOGIES, INC."
+        ]
+      },
+      {
+        "normalised": "INFOR US",
+        "entities": [
+          "E-00807",
+          "E-05163"
+        ],
+        "canonical_names": [
+          "INFOR (US), LLC",
+          "INFOR (US), INC"
+        ]
+      },
+      {
+        "normalised": "GENERAL ELECTRIC",
+        "entities": [
+          "E-00984",
+          "E-01274"
+        ],
+        "canonical_names": [
+          "GENERAL ELECTRIC COMPANY",
+          "GENERAL ELECTRIC COMPANY"
+        ]
+      },
+      {
+        "normalised": "KONICA MINOLTA BUSINESS SOLUTIONS U S A",
+        "entities": [
+          "E-00456",
+          "E-07826",
+          "E-11123"
+        ],
+        "canonical_names": [
+          "KONICA MINOLTA BUSINESS SOLUTIONS U.S.A., INC.",
+          "KONICA MINOLTA BUSINESS SOLUTIONS U.S.A., INC.",
+          "KONICA MINOLTA BUSINESS SOLUTIONS U.S.A., INC."
+        ]
+      },
+      {
+        "normalised": "IHS GLOBAL",
+        "entities": [
+          "E-00031",
+          "E-01792"
+        ],
+        "canonical_names": [
+          "IHS GLOBAL INC.",
+          "IHS GLOBAL LIMITED"
+        ]
+      },
+      {
+        "normalised": "WOODWARD",
+        "entities": [
+          "E-01360",
+          "E-05486",
+          "E-07788"
+        ],
+        "canonical_names": [
+          "WOODWARD, INC.",
+          "WOODWARD, INC.",
+          "WOODWARD, INC."
+        ]
+      },
+      {
+        "normalised": "CURTISS WRIGHT DS",
+        "entities": [
+          "E-04370",
+          "E-07259"
+        ],
+        "canonical_names": [
+          "DY4 INC.",
+          "PACIFIC STAR COMMUNICATIONS, INC."
+        ]
+      },
+      {
+        "normalised": "SAAB SENSIS",
+        "entities": [
+          "E-03250",
+          "E-04301"
+        ],
+        "canonical_names": [
+          "SAAB SENSIS CORPORATION",
+          "SAAB SENSIS CORPORATION"
+        ]
+      },
+      {
+        "normalised": "V AND Z ENTERPRISES",
+        "entities": [
+          "E-02871",
+          "E-10056"
+        ],
+        "canonical_names": [
+          "V & Z ENTERPRISES INCORPORATED",
+          "V & Z ENTERPRISES INCORPORATED"
+        ]
+      },
+      {
+        "normalised": "ROCKWELL AUTOMATION",
+        "entities": [
+          "E-01437",
+          "E-09071"
+        ],
+        "canonical_names": [
+          "ROCKWELL AUTOMATION, INC.",
+          "ROCKWELL AUTOMATION, INC."
+        ]
+      },
+      {
+        "normalised": "VIASAT",
+        "entities": [
+          "E-03961",
+          "E-05323"
+        ],
+        "canonical_names": [
+          "VIASAT, INC.",
+          "VIASAT, INC."
+        ]
+      },
+      {
+        "normalised": "SYSTEM ENGINEERING INTERNATIONAL",
+        "entities": [
+          "E-10632",
+          "E-10763"
+        ],
+        "canonical_names": [
+          "SYSTEM ENGINEERING INTERNATIONAL INC",
+          "SYSTEM ENGINEERING INTERNATIONAL, LLC"
+        ]
+      },
+      {
+        "normalised": "SMS DATA PRODUCTS GROUP",
+        "entities": [
+          "E-04193",
+          "E-09631"
+        ],
+        "canonical_names": [
+          "SMS DATA PRODUCTS GROUP, INC.",
+          "SMS DATA PRODUCTS GROUP INCORPORATED"
+        ]
+      },
+      {
+        "normalised": "CAREFUSION SOLUTIONS",
+        "entities": [
+          "E-01376",
+          "E-04031"
+        ],
+        "canonical_names": [
+          "CAREFUSION SOLUTIONS, LLC",
+          "CAREFUSION SOLUTIONS, LLC"
+        ]
+      },
+      {
+        "normalised": "FORCEPOINT FEDERAL",
+        "entities": [
+          "E-02540",
+          "E-06351"
+        ],
+        "canonical_names": [
+          "FORCEPOINT FEDERAL LLC",
+          "FORCEPOINT FEDERAL LLC"
+        ]
+      },
+      {
+        "normalised": "CELARTEM",
+        "entities": [
+          "E-04023",
+          "E-05335"
+        ],
+        "canonical_names": [
+          "LIZARDTECH INCORPORATED",
+          "CELARTEM, INC."
+        ]
+      },
+      {
+        "normalised": "HPI FEDERAL",
+        "entities": [
+          "E-00979",
+          "E-08563"
+        ],
+        "canonical_names": [
+          "HPI FEDERAL LLC",
+          "HPI FEDERAL LLC"
+        ]
+      },
+      {
+        "normalised": "EASTMAN KODAK",
+        "entities": [
+          "E-01816",
+          "E-04952"
+        ],
+        "canonical_names": [
+          "EASTMAN KODAK COMPANY",
+          "EASTMAN KODAK COMPANY"
+        ]
+      },
+      {
+        "normalised": "MOOG",
+        "entities": [
+          "E-05219",
+          "E-09431"
+        ],
+        "canonical_names": [
+          "MOOG INC.",
+          "MOOG INC."
+        ]
+      },
+      {
+        "normalised": "GRAYBAR ELECTRIC",
+        "entities": [
+          "E-02513",
+          "E-04540",
+          "E-05341",
+          "E-06634",
+          "E-07190",
+          "E-08126",
+          "E-09168",
+          "E-09661",
+          "E-10020",
+          "E-10148",
+          "E-10663"
+        ],
+        "canonical_names": [
+          "GRAYBAR ELECTRIC COMPANY INCORPORATED (4380)",
+          "GRAYBAR ELECTRIC COMPANY, INC.",
+          "GRAYBAR ELECTRIC COMPANY, INC.",
+          "GRAYBAR ELECTRIC COMPANY, INC.",
+          "GRAYBAR ELECTRIC COMPANY, INC.",
+          "GRAYBAR ELECTRIC COMPANY, INC",
+          "GRAYBAR ELECTRIC COMPANY, INC.",
+          "GRAYBAR ELECTRIC COMPANY, INC.",
+          "GRAYBAR ELECTRIC COMPANY, INC.",
+          "GRAYBAR ELECTRIC COMPANY, INC.",
+          "GRAYBAR ELECTRIC COMPANY, INC."
+        ]
+      },
+      {
+        "normalised": "ABACO SYSTEMS",
+        "entities": [
+          "E-07908",
+          "E-09968"
+        ],
+        "canonical_names": [
+          "ABACO SYSTEMS, INC.",
+          "ABACO SYSTEMS, INC."
+        ]
+      },
+      {
+        "normalised": "THERMO ELECTRON NORTH AMERICA",
+        "entities": [
+          "E-00449",
+          "E-04791"
+        ],
+        "canonical_names": [
+          "THERMO ELECTRON NORTH AMERICA LLC",
+          "THERMO ELECTRON NORTH AMERICA LLC"
+        ]
+      },
+      {
+        "normalised": "CSC GOVERNMENT SOLUTIONS",
+        "entities": [
+          "E-05178",
+          "E-05320"
+        ],
+        "canonical_names": [
+          "CSC GOVERNMENT SOLUTIONS LLC",
+          "CSRA LLC"
+        ]
+      },
+      {
+        "normalised": "CSRA",
+        "entities": [
+          "E-03215",
+          "E-05320",
+          "E-09694",
+          "E-10883"
+        ],
+        "canonical_names": [
+          "COMPUTER SCIENCES CORPORATION",
+          "CSRA LLC",
+          "CSRA LLC",
+          "CSRA LLC"
+        ]
+      },
+      {
+        "normalised": "REXEL UNITED STATES",
+        "entities": [
+          "E-01488",
+          "E-02058",
+          "E-08728"
+        ],
+        "canonical_names": [
+          "REXEL USA, INC.",
+          "REXEL USA, INC.",
+          "REXEL USA, INC."
+        ]
+      },
+      {
+        "normalised": "LEXMARK INTERNATIONAL",
+        "entities": [
+          "E-01521",
+          "E-01703"
+        ],
+        "canonical_names": [
+          "LEXMARK INTERNATIONAL INC",
+          "LEXMARK INTERNATIONAL INC"
+        ]
+      },
+      {
+        "normalised": "MICROSOFT",
+        "entities": [
+          "E-02277",
+          "E-10324"
+        ],
+        "canonical_names": [
+          "MICROSOFT CORPORATION SITZ IN REDMOND CORPORATION",
+          "MICROSOFT CORPORATION"
+        ]
+      },
+      {
+        "normalised": "DRS NETWORK AND IMAGING SYSTEMS",
+        "entities": [
+          "E-06067",
+          "E-06867"
+        ],
+        "canonical_names": [
+          "DRS NETWORK & IMAGING SYSTEMS, LLC",
+          "DRS NETWORK & IMAGING SYSTEMS, LLC"
+        ]
+      },
+      {
+        "normalised": "GENERAL DYNAMICS C4 SYSTEMS",
+        "entities": [
+          "E-03649",
+          "E-04101",
+          "E-08353"
+        ],
+        "canonical_names": [
+          "GENERAL DYNAMICS C4 SYSTEMS INCORPORATED",
+          "GENERAL DYNAMICS MISSION SYSTEMS, INC",
+          "GENERAL DYNAMICS MISSION SYSTEMS, INC."
+        ]
+      },
+      {
+        "normalised": "AVID TECHNOLOGY",
+        "entities": [
+          "E-02303",
+          "E-03246"
+        ],
+        "canonical_names": [
+          "AVID TECHNOLOGY INC",
+          "AVID TECHNOLOGY INC"
+        ]
+      },
+      {
+        "normalised": "SAENATECH",
+        "entities": [
+          "E-07578",
+          "E-08624"
+        ],
+        "canonical_names": [
+          "SAENATECH CORPORATION",
+          "SAENATECH CORPORATION"
+        ]
+      },
+      {
+        "normalised": "CANON U S A",
+        "entities": [
+          "E-01159",
+          "E-08384"
+        ],
+        "canonical_names": [
+          "CANON U.S.A., INC.",
+          "CANON U.S.A., INC."
+        ]
+      },
+      {
+        "normalised": "2 S 2",
+        "entities": [
+          "E-05017",
+          "E-11061"
+        ],
+        "canonical_names": [
+          "2 S 2, INC.",
+          "2 S 2, INC."
+        ]
+      },
+      {
+        "normalised": "PHILIPS NORTH AMERICA",
+        "entities": [
+          "E-05193",
+          "E-07568",
+          "E-08703"
+        ],
+        "canonical_names": [
+          "PHILIPS NORTH AMERICA LLC",
+          "PHILIPS ELECTRONICS NORTH AMERICA CORPORATION",
+          "PHILIPS NORTH AMERICA LLC"
+        ]
+      },
+      {
+        "normalised": "FIRELAKE CONSTRUCTION",
+        "entities": [
+          "E-09663",
+          "E-11228"
+        ],
+        "canonical_names": [
+          "FIRELAKE CONSTRUCTION, INC.",
+          "FIRELAKE CONSTRUCTION, INC."
+        ]
+      },
+      {
+        "normalised": "TRIMBLE",
+        "entities": [
+          "E-07402",
+          "E-10405"
+        ],
+        "canonical_names": [
+          "TRIMBLE INC",
+          "TRIMBLE INC."
+        ]
+      },
+      {
+        "normalised": "TRIMBLE NAVIGATION",
+        "entities": [
+          "E-07402",
+          "E-10405"
+        ],
+        "canonical_names": [
+          "TRIMBLE INC",
+          "TRIMBLE INC."
+        ]
+      },
+      {
+        "normalised": "JSI TELECOM",
+        "entities": [
+          "E-07722",
+          "E-10656"
+        ],
+        "canonical_names": [
+          "JSI TELECOM INC.",
+          "JSI TELECOM INC."
+        ]
+      },
+      {
+        "normalised": "TELOS",
+        "entities": [
+          "E-00703",
+          "E-04207"
+        ],
+        "canonical_names": [
+          "TELOS CORPORATION",
+          "TELOS CORPORATION"
+        ]
+      },
+      {
+        "normalised": "ROCKWELL COLLINS",
+        "entities": [
+          "E-03822",
+          "E-08479",
+          "E-08635"
+        ],
+        "canonical_names": [
+          "ROCKWELL COLLINS, INC.",
+          "ROCKWELL COLLINS, INC.",
+          "ROCKWELL COLLINS, INC."
+        ]
+      },
+      {
+        "normalised": "GENERAL DYNAMICS MISSION SYSTEMS",
+        "entities": [
+          "E-00715",
+          "E-01285",
+          "E-02522",
+          "E-04101",
+          "E-04879",
+          "E-05410",
+          "E-05553",
+          "E-06474",
+          "E-08353"
+        ],
+        "canonical_names": [
+          "GENERAL DYNAMICS MISSION SYSTEMS, INC",
+          "GENERAL DYNAMICS MISSION SYSTEMS, INC",
+          "GENERAL DYNAMICS MISSION SYSTEMS, INC.",
+          "GENERAL DYNAMICS MISSION SYSTEMS, INC",
+          "GENERAL DYNAMICS SATCOM TECHNOLOGIES, INC.",
+          "GENERAL DYNAMICS MISSION SYSTEMS, INC",
+          "GENERAL DYNAMICS MISSION SYSTEMS, INC",
+          "GENERAL DYNAMICS MISSION SYSTEMS, INC",
+          "GENERAL DYNAMICS MISSION SYSTEMS, INC."
+        ]
+      },
+      {
+        "normalised": "MOTOROLA SOLUTIONS",
+        "entities": [
+          "E-02511",
+          "E-03402",
+          "E-06415"
+        ],
+        "canonical_names": [
+          "MOTOROLA SOLUTIONS, INC.",
+          "MOTOROLA SOLUTIONS, INC.",
+          "MOTOROLA SOLUTIONS, INC."
+        ]
+      },
+      {
+        "normalised": "FISHER SCIENTIFIC L L C",
+        "entities": [
+          "E-03288",
+          "E-03362",
+          "E-06453",
+          "E-06978"
+        ],
+        "canonical_names": [
+          "FISHER SCIENTIFIC COMPANY L.L.C.",
+          "FISHER SCIENTIFIC COMPANY L.L.C.",
+          "FISHER SCIENTIFIC COMPANY L.L.C.",
+          "FISHER SCIENTIFIC COMPANY L.L.C."
+        ]
+      },
+      {
+        "normalised": "HONEYWELL INTERNATIONAL",
+        "entities": [
+          "E-00655",
+          "E-01254",
+          "E-01991",
+          "E-02131",
+          "E-03382",
+          "E-03982",
+          "E-04676",
+          "E-05703",
+          "E-05803",
+          "E-06497",
+          "E-07130",
+          "E-07378",
+          "E-08737",
+          "E-08748",
+          "E-08875",
+          "E-10618",
+          "E-10917",
+          "E-11016",
+          "E-11062",
+          "E-11104"
+        ],
+        "canonical_names": [
+          "HONEYWELL INTERNATIONAL INC",
+          "HONEYWELL INTERNATIONAL INC.",
+          "HONEYWELL INTERNATIONAL INC.",
+          "HONEYWELL INTERNATIONAL INC.",
+          "HONEYWELL INTERNATIONAL INC",
+          "HONEYWELL INTERNATIONAL INC.",
+          "HONEYWELL INTERNATIONAL INC.",
+          "HONEYWELL INTERNATIONAL INC",
+          "HONEYWELL INTERNATIONAL INC.",
+          "HONEYWELL INTERNATIONAL INC.",
+          "HONEYWELL INTERNATIONAL INC",
+          "HONEYWELL INTERNATIONAL INC.",
+          "HONEYWELL INTERNATIONAL INC.",
+          "HONEYWELL INTERNATIONAL INC.",
+          "HONEYWELL INTERNATIONAL INC.",
+          "HONEYWELL INTERNATIONAL INC",
+          "HONEYWELL INTERNATIONAL INC",
+          "HONEYWELL INTERNATIONAL INC.",
+          "HONEYWELL INTERNATIONAL INC.",
+          "HONEYWELL INTERNATIONAL INC."
+        ]
+      },
+      {
+        "normalised": "COMMUNICATIONS SUPPLY",
+        "entities": [
+          "E-00300",
+          "E-01366",
+          "E-01465",
+          "E-05202",
+          "E-09371",
+          "E-09850"
+        ],
+        "canonical_names": [
+          "COMMUNICATIONS SUPPLY CORPORATION",
+          "COMMUNICATIONS SUPPLY CORPORATION",
+          "COMMUNICATIONS SUPPLY CORPORATION",
+          "COMMUNICATIONS SUPPLY CORPORATION",
+          "COMMUNICATIONS SUPPLY CORPORATION",
+          "COMMUNICATIONS SUPPLY CORPORATION"
+        ]
+      },
+      {
+        "normalised": "DAISY DATA DISPLAYS",
+        "entities": [
+          "E-00346",
+          "E-06683"
+        ],
+        "canonical_names": [
+          "DAISY DATA DISPLAYS INC",
+          "DAISY DATA DISPLAYS INC"
+        ]
+      },
+      {
+        "normalised": "APPLANIX",
+        "entities": [
+          "E-03118",
+          "E-06040"
+        ],
+        "canonical_names": [
+          "APPLANIX LLC",
+          "APPLANIX CORPORATION"
+        ]
+      },
+      {
+        "normalised": "BSET",
+        "entities": [
+          "E-03714",
+          "E-04997"
+        ],
+        "canonical_names": [
+          "BSET, LLC",
+          "BSET LLC"
+        ]
+      },
+      {
+        "normalised": "B AND H INTERNATIONAL",
+        "entities": [
+          "E-04377",
+          "E-06895"
+        ],
+        "canonical_names": [
+          "B&H INTERNATIONAL LLC",
+          "B & H INTERNATIONAL"
+        ]
+      },
+      {
+        "normalised": "COMARK",
+        "entities": [
+          "E-00134",
+          "E-10011"
+        ],
+        "canonical_names": [
+          "COMARK, LLC",
+          "COMARK, LLC"
+        ]
+      },
+      {
+        "normalised": "LIFE TECHNOLOGIES",
+        "entities": [
+          "E-01422",
+          "E-04422"
+        ],
+        "canonical_names": [
+          "LIFE TECHNOLOGIES CORPORATION",
+          "LIFE TECHNOLOGIES CORPORATION"
+        ]
+      },
+      {
+        "normalised": "VAISALA",
+        "entities": [
+          "E-02044",
+          "E-02243"
+        ],
+        "canonical_names": [
+          "VAISALA INC.",
+          "VAISALA INC."
+        ]
+      },
+      {
+        "normalised": "WILDFLOWER INTERNATIONAL",
+        "entities": [
+          "E-07099",
+          "E-08867"
+        ],
+        "canonical_names": [
+          "WILDFLOWER INTERNATIONAL, LTD.",
+          "WILDFLOWER INTERNATIONAL, LTD."
+        ]
+      },
+      {
+        "normalised": "DIBERT VALVE AND FITTING",
+        "entities": [
+          "E-03194",
+          "E-10766"
+        ],
+        "canonical_names": [
+          "DIBERT VALVE & FITTING CO INC",
+          "DIBERT VALVE AND FITTING COMPANY, INCORPORATED"
+        ]
+      },
+      {
+        "normalised": "OWL CYBER DEFENSE SOLUTIONS",
+        "entities": [
+          "E-00913",
+          "E-08755"
+        ],
+        "canonical_names": [
+          "OWL CYBER DEFENSE SOLUTIONS, LLC",
+          "OWL CYBER DEFENSE SOLUTIONS, LLC"
+        ]
+      },
+      {
+        "normalised": "JOHNSON CONTROLS",
+        "entities": [
+          "E-00291",
+          "E-02681",
+          "E-04651",
+          "E-10010",
+          "E-10093",
+          "E-10885"
+        ],
+        "canonical_names": [
+          "JOHNSON CONTROLS, INC.",
+          "JOHNSON CONTROLS INC",
+          "JOHNSON CONTROLS, INC.",
+          "JOHNSON CONTROLS, INC.",
+          "JOHNSON CONTROLS, INC.",
+          "JOHNSON CONTROLS, INC."
+        ]
+      },
+      {
+        "normalised": "PITNEY BOWES",
+        "entities": [
+          "E-00355",
+          "E-08239"
+        ],
+        "canonical_names": [
+          "PITNEY BOWES INC",
+          "PITNEY BOWES INC."
+        ]
+      },
+      {
+        "normalised": "CITRIX SYSTEMS",
+        "entities": [
+          "E-06790",
+          "E-10191"
+        ],
+        "canonical_names": [
+          "CITRIX SYSTEMS, INC.",
+          "CITRIX SYSTEMS, INC."
+        ]
+      },
+      {
+        "normalised": "AVI SPL",
+        "entities": [
+          "E-03105",
+          "E-06494"
+        ],
+        "canonical_names": [
+          "AUDIO VISUAL INNOVATIONS, INC.",
+          "AVI-SPL, INC."
+        ]
+      },
+      {
+        "normalised": "ELECTRONIC COMPONENTS",
+        "entities": [
+          "E-04060",
+          "E-09706"
+        ],
+        "canonical_names": [
+          "ELECTRONIC COMPONENTS INC.",
+          "ELECTRONIC COMPONENTS LLC"
+        ]
+      },
+      {
+        "normalised": "INTERNATIONAL BUSINESS MACHINES",
+        "entities": [
+          "E-02393",
+          "E-02845",
+          "E-03852",
+          "E-04697",
+          "E-04706",
+          "E-04957",
+          "E-07701",
+          "E-08797",
+          "E-09091",
+          "E-09720"
+        ],
+        "canonical_names": [
+          "INTERNATIONAL BUSINESS MACHINES CORPORATION",
+          "INTERNATIONAL BUSINESS MACHINES CORPORATION",
+          "INTERNATIONAL BUSINESS MACHINES CORPORATION",
+          "INTERNATIONAL BUSINESS MACHINES CORPORATION",
+          "INTERNATIONAL BUSINESS MACHINES CORPORATION",
+          "INTERNATIONAL BUSINESS MACHINES CORPORATION",
+          "INTERNATIONAL BUSINESS MACHINES CORPORATION",
+          "INTERNATIONAL BUSINESS MACHINES CORPORATION",
+          "INTERNATIONAL BUSINESS MACHINES CORPORATION",
+          "INTERNATIONAL BUSINESS MACHINES CORPORATION"
+        ]
+      },
+      {
+        "normalised": "RED ORANGE NORTH AMERICA",
+        "entities": [
+          "E-06017",
+          "E-06478",
+          "E-08395"
+        ],
+        "canonical_names": [
+          "RED ORANGE NORTH AMERICA",
+          "RED ORANGE NORTH AMERICA",
+          "RED ORANGE NORTH AMERICA INC."
+        ]
+      },
+      {
+        "normalised": "PROGENY SYSTEMS",
+        "entities": [
+          "E-06443",
+          "E-06468"
+        ],
+        "canonical_names": [
+          "PROGENY SYSTEMS CORPORATION",
+          "PROGENY SYSTEMS CORPORATION"
+        ]
+      },
+      {
+        "normalised": "L3 TECHNOLOGIES",
+        "entities": [
+          "E-00384",
+          "E-01440",
+          "E-01881",
+          "E-02272",
+          "E-02349",
+          "E-03270",
+          "E-03653",
+          "E-03813",
+          "E-04424",
+          "E-07548",
+          "E-10025",
+          "E-10569"
+        ],
+        "canonical_names": [
+          "L3 TECHNOLOGIES, INC.",
+          "L3 TECHNOLOGIES, INC.",
+          "L-3 COMMUNICATIONS CORPORATION",
+          "L3 TECHNOLOGIES, INC.",
+          "L3 TECHNOLOGIES, INC.",
+          "L3 TECHNOLOGIES, INC.",
+          "L3 TECHNOLOGIES, INC.",
+          "L3 TECHNOLOGIES, INC.",
+          "L-3 COMMUNICATIONS CORPORATION",
+          "L3 TECHNOLOGIES, INC.",
+          "L3 TECHNOLOGIES, INC.",
+          "L3 TECHNOLOGIES, INC."
+        ]
+      },
+      {
+        "normalised": "L 3 COMMUNICATIONS",
+        "entities": [
+          "E-01242",
+          "E-01881",
+          "E-02128",
+          "E-02272",
+          "E-02349",
+          "E-03270",
+          "E-03673",
+          "E-04424",
+          "E-07483",
+          "E-08399",
+          "E-10025",
+          "E-10569"
+        ],
+        "canonical_names": [
+          "L-3 COMMUNICATIONS CORPORATION",
+          "L-3 COMMUNICATIONS CORPORATION",
+          "L-3 COMMUNICATIONS CORPORATION",
+          "L3 TECHNOLOGIES, INC.",
+          "L3 TECHNOLOGIES, INC.",
+          "L3 TECHNOLOGIES, INC.",
+          "L-3 COMMUNICATIONS CORPORATION",
+          "L-3 COMMUNICATIONS CORPORATION",
+          "L3 AVIATION PRODUCTS, INC.",
+          "L-3 COMMUNICATIONS CORPORATION",
+          "L3 TECHNOLOGIES, INC.",
+          "L3 TECHNOLOGIES, INC."
+        ]
+      },
+      {
+        "normalised": "L3 AVIATION PRODUCTS",
+        "entities": [
+          "E-04423",
+          "E-07483",
+          "E-08399"
+        ],
+        "canonical_names": [
+          "L3 AVIATION PRODUCTS, INC.",
+          "L3 AVIATION PRODUCTS, INC.",
+          "L-3 COMMUNICATIONS CORPORATION"
+        ]
+      },
+      {
+        "normalised": "KEYSIGHT TECHNOLOGIES",
+        "entities": [
+          "E-06944",
+          "E-07018",
+          "E-07754"
+        ],
+        "canonical_names": [
+          "KEYSIGHT TECHNOLOGIES, INC.",
+          "KEYSIGHT TECHNOLOGIES, INC.",
+          "KEYSIGHT TECHNOLOGIES, INC."
+        ]
+      },
+      {
+        "normalised": "RAYTHEON",
+        "entities": [
+          "E-00259",
+          "E-00792",
+          "E-02801",
+          "E-02885",
+          "E-03025",
+          "E-03631",
+          "E-04478",
+          "E-04903",
+          "E-05780",
+          "E-05841",
+          "E-06356",
+          "E-06521",
+          "E-06756",
+          "E-07748",
+          "E-09699",
+          "E-10445",
+          "E-10544",
+          "E-10629",
+          "E-11110"
+        ],
+        "canonical_names": [
+          "RAYTHEON COMPANY",
+          "RAYTHEON COMPANY",
+          "RAYTHEON COMPANY",
+          "RAYTHEON COMPANY",
+          "RAYTHEON COMPANY",
+          "RAYTHEON COMPANY",
+          "RAYTHEON COMPANY",
+          "RAYTHEON COMPANY",
+          "RAYTHEON COMPANY",
+          "RAYTHEON COMPANY",
+          "RAYTHEON COMPANY",
+          "RAYTHEON COMPANY",
+          "RAYTHEON COMPANY",
+          "RAYTHEON COMPANY",
+          "RAYTHEON COMPANY",
+          "RAYTHEON COMPANY",
+          "RAYTHEON COMPANY",
+          "RAYTHEON COMPANY",
+          "RAYTHEON COMPANY"
+        ]
+      },
+      {
+        "normalised": "RAYTHEON TECHNICAL SERVICES",
+        "entities": [
+          "E-00535",
+          "E-04478",
+          "E-10201"
+        ],
+        "canonical_names": [
+          "RAYTHEON TECHNICAL SERVICES COMPANY LLC",
+          "RAYTHEON COMPANY",
+          "RAYTHEON TECHNICAL SERVICES COMPANY LLC"
+        ]
+      },
+      {
+        "normalised": "CAMERON TECHNOLOGIES US",
+        "entities": [
+          "E-02167",
+          "E-08182"
+        ],
+        "canonical_names": [
+          "CAMERON TECHNOLOGIES US, INC.",
+          "CAMERON TECHNOLOGIES US, INC."
+        ]
+      },
+      {
+        "normalised": "GUROBI OPTIMIZATION",
+        "entities": [
+          "E-02685",
+          "E-08754"
+        ],
+        "canonical_names": [
+          "GUROBI OPTIMIZATION, INC.",
+          "GUROBI OPTIMIZATION, LLC"
+        ]
+      },
+      {
+        "normalised": "CTS GROUP",
+        "entities": [
+          "E-01494",
+          "E-09767"
+        ],
+        "canonical_names": [
+          "CTS GROUP, INC.",
+          "CTS GROUP INC."
+        ]
+      },
+      {
+        "normalised": "VIAVI SOLUTIONS",
+        "entities": [
+          "E-03423",
+          "E-04347",
+          "E-10015"
+        ],
+        "canonical_names": [
+          "AEROFLEX WICHITA, INC.",
+          "VIAVI SOLUTIONS INC.",
+          "VIAVI SOLUTIONS INC."
+        ]
+      },
+      {
+        "normalised": "LGS INNOVATIONS",
+        "entities": [
+          "E-00533",
+          "E-08453"
+        ],
+        "canonical_names": [
+          "LGS INNOVATIONS LLC",
+          "LGS INNOVATIONS LLC"
+        ]
+      },
+      {
+        "normalised": "CONCURRENT COMPUTER",
+        "entities": [
+          "E-02957",
+          "E-06043",
+          "E-06959"
+        ],
+        "canonical_names": [
+          "CONCURRENT COMPUTER CORPORATION",
+          "CONCURRENT COMPUTER CORPORATION",
+          "CONCURRENT COMPUTER CORPORATION"
+        ]
+      },
+      {
+        "normalised": "TEXTRON SYSTEMS",
+        "entities": [
+          "E-08056",
+          "E-08561"
+        ],
+        "canonical_names": [
+          "TEXTRON SYSTEMS CORPORATION",
+          "AAI CORPORATION"
+        ]
+      },
+      {
+        "normalised": "OLYMPUS AMERICA",
+        "entities": [
+          "E-02238",
+          "E-05400",
+          "E-07226"
+        ],
+        "canonical_names": [
+          "OLYMPUS AMERICA INC.",
+          "OLYMPUS AMERICA INC.",
+          "OLYMPUS AMERICA INC."
+        ]
+      },
+      {
+        "normalised": "AMERICAN TONER AND INK",
+        "entities": [
+          "E-01825",
+          "E-05932"
+        ],
+        "canonical_names": [
+          "AMERICAN TONER & INK",
+          "AMERICAN TONER AND INK CORPORATION"
+        ]
+      },
+      {
+        "normalised": "SYNNEX",
+        "entities": [
+          "E-01847",
+          "E-05821"
+        ],
+        "canonical_names": [
+          "SYNNEX CORPORATION",
+          "SYNNEX CORPORATION"
+        ]
+      },
+      {
+        "normalised": "TD SYNNEX",
+        "entities": [
+          "E-01847",
+          "E-05821"
+        ],
+        "canonical_names": [
+          "SYNNEX CORPORATION",
+          "SYNNEX CORPORATION"
+        ]
+      },
+      {
+        "normalised": "MEDTRONIC UNITED STATES",
+        "entities": [
+          "E-02940",
+          "E-04550"
+        ],
+        "canonical_names": [
+          "MEDTRONIC USA, INC.",
+          "MEDTRONIC USA, INC."
+        ]
+      },
+      {
+        "normalised": "W W GRAINGER",
+        "entities": [
+          "E-00829",
+          "E-03598"
+        ],
+        "canonical_names": [
+          "W.W. GRAINGER, INC.",
+          "W W GRAINGER INC"
+        ]
+      },
+      {
+        "normalised": "HAMILTON SUNDSTRAND",
+        "entities": [
+          "E-03978",
+          "E-06253"
+        ],
+        "canonical_names": [
+          "HAMILTON SUNDSTRAND CORPORATION",
+          "HAMILTON SUNDSTRAND CORPORATION"
+        ]
+      },
+      {
+        "normalised": "ARGON ST",
+        "entities": [
+          "E-02683",
+          "E-02738",
+          "E-05377"
+        ],
+        "canonical_names": [
+          "ARGON ST, INC.",
+          "ARGON ST, INC.",
+          "ARGON ST, INC."
+        ]
+      },
+      {
+        "normalised": "COMMUNICATIONS ENGINEERING",
+        "entities": [
+          "E-00087",
+          "E-07554"
+        ],
+        "canonical_names": [
+          "COMMUNICATIONS ENGINEERING, INC",
+          "COMMUNICATIONS ENGINEERING COMPANY"
+        ]
+      },
+      {
+        "normalised": "SYSTEMS INTEGRATION",
+        "entities": [
+          "E-01275",
+          "E-02023"
+        ],
+        "canonical_names": [
+          "SYSTEMS INTEGRATION LLC",
+          "SYSTEMS INTEGRATION, INC."
+        ]
+      },
+      {
+        "normalised": "HEXAGON MANUFACTURING INTELLIGENCE",
+        "entities": [
+          "E-01582",
+          "E-05317"
+        ],
+        "canonical_names": [
+          "HEXAGON METROLOGY, INC.",
+          "HEXAGON MANUFACTURING INTELLIGENCE-METROLOGY SOFTWARE,INC."
+        ]
+      },
+      {
+        "normalised": "FRONTIER TECHNOLOGY",
+        "entities": [
+          "E-05829",
+          "E-07293"
+        ],
+        "canonical_names": [
+          "FRONTIER TECHNOLOGY, LLC",
+          "FRONTIER TECHNOLOGY INC."
+        ]
+      },
+      {
+        "normalised": "SIEMENS INDUSTRY",
+        "entities": [
+          "E-01999",
+          "E-04468",
+          "E-06088"
+        ],
+        "canonical_names": [
+          "SIEMENS INDUSTRY, INC.",
+          "SIEMENS INDUSTRY INC.",
+          "SIEMENS INDUSTRY, INC."
+        ]
+      },
+      {
+        "normalised": "IMAGE ACCESS",
+        "entities": [
+          "E-06540",
+          "E-06667",
+          "E-10977"
+        ],
+        "canonical_names": [
+          "IMAGE ACCESS CORP.",
+          "IMAGE ACCESS GMBH",
+          "IMAGE ACCESS, INC."
+        ]
+      },
+      {
+        "normalised": "AUDIO VISUAL ASSOCIATES",
+        "entities": [
+          "E-02430",
+          "E-04723"
+        ],
+        "canonical_names": [
+          "AUDIO VISUAL ASSOCIATES, INC",
+          "AUDIO-VISUAL ASSOCIATES, INCORPORATED"
+        ]
+      },
+      {
+        "normalised": "UNIVERSITY OF MARYLAND COLLEGE PARK",
+        "entities": [
+          "E-07055",
+          "E-10740"
+        ],
+        "canonical_names": [
+          "UNIVERSITY OF MARYLAND",
+          "UNIVERSITY OF MARYLAND, COLLEGE PARK"
+        ]
+      },
+      {
+        "normalised": "BELL AND HOWELL",
+        "entities": [
+          "E-01692",
+          "E-03480"
+        ],
+        "canonical_names": [
+          "BELL AND HOWELL, LLC",
+          "BELL AND HOWELL LLC"
+        ]
+      },
+      {
+        "normalised": "OSI MARITIME SYSTEMS",
+        "entities": [
+          "E-05796",
+          "E-09516"
+        ],
+        "canonical_names": [
+          "OSI MARITIME SYSTEMS INC.",
+          "OSI MARITIME SYSTEMS LTD"
+        ]
+      },
+      {
+        "normalised": "GENERAL DYNAMICS INFORMATION TECHNOLOGY",
+        "entities": [
+          "E-08553",
+          "E-11170"
+        ],
+        "canonical_names": [
+          "GENERAL DYNAMICS INFORMATION TECHNOLOGY, INC.",
+          "GENERAL DYNAMICS INFORMATION TECHNOLOGY, INC."
+        ]
+      },
+      {
+        "normalised": "MERCURY SYSTEMS TRUSTED MISSION SOLUTIONS",
+        "entities": [
+          "E-04612",
+          "E-07674"
+        ],
+        "canonical_names": [
+          "MERCURY SYSTEMS - TRUSTED MISSION SOLUTIONS INC",
+          "MERCURY SYSTEMS - TRUSTED MISSION SOLUTIONS INC."
+        ]
+      },
+      {
+        "normalised": "IDEAL SYSTEM SOLUTIONS",
+        "entities": [
+          "E-03682",
+          "E-08780"
+        ],
+        "canonical_names": [
+          "IDEAL SYSTEM SOLUTIONS, INC.",
+          "IDEAL SYSTEM SOLUTIONS, INC."
+        ]
+      },
+      {
+        "normalised": "CURTISS WRIGHT CONTROLS ELECTRONIC SYSTEMS",
+        "entities": [
+          "E-01384",
+          "E-08761"
+        ],
+        "canonical_names": [
+          "CURTISS-WRIGHT CONTROLS ELECTRONIC SYSTEMS, INC.",
+          "CURTISS-WRIGHT CONTROLS ELECTRONIC SYSTEMS, INC."
+        ]
+      },
+      {
+        "normalised": "BIO RAD LABORATORIES",
+        "entities": [
+          "E-04678",
+          "E-07139",
+          "E-08600",
+          "E-10353"
+        ],
+        "canonical_names": [
+          "BIO-RAD LABORATORIES, INC.",
+          "BIO-RAD LABORATORIES, INC.",
+          "BIO-RAD LABORATORIES, INC.",
+          "BIO RAD LABORATORIES SA"
+        ]
+      },
+      {
+        "normalised": "CUBIC DEFENSE APPLICATIONS",
+        "entities": [
+          "E-06670",
+          "E-07691"
+        ],
+        "canonical_names": [
+          "CUBIC DEFENSE APPLICATIONS, INC.",
+          "CUBIC DEFENSE APPLICATIONS, INC."
+        ]
+      },
+      {
+        "normalised": "SCIENCE APPLICATIONS INTERNATIONAL",
+        "entities": [
+          "E-05265",
+          "E-06014",
+          "E-06321",
+          "E-08109",
+          "E-10539"
+        ],
+        "canonical_names": [
+          "SCIENCE APPLICATIONS INTERNATIONAL CORPORATION",
+          "SCIENCE APPLICATIONS INTERNATIONAL CORPORATION",
+          "SCIENCE APPLICATIONS INTERNATIONAL CORPORATION",
+          "SCIENCE APPLICATIONS INTERNATIONAL CORPORATION",
+          "SCIENCE APPLICATIONS INTERNATIONAL CORPORATION"
+        ]
+      },
+      {
+        "normalised": "ASRC FEDERAL FACILITIES LOGISTICS",
+        "entities": [
+          "E-06014",
+          "E-06822"
+        ],
+        "canonical_names": [
+          "SCIENCE APPLICATIONS INTERNATIONAL CORPORATION",
+          "ASRC FEDERAL FACILITIES LOGISTICS LLC"
+        ]
+      },
+      {
+        "normalised": "HUNTINGTON INGALLS",
+        "entities": [
+          "E-00092",
+          "E-10001"
+        ],
+        "canonical_names": [
+          "HUNTINGTON INGALLS INCORPORATED",
+          "HUNTINGTON INGALLS INCORPORATED"
+        ]
+      },
+      {
+        "normalised": "MERGE HEALTHCARE SOLUTIONS",
+        "entities": [
+          "E-02820",
+          "E-07729"
+        ],
+        "canonical_names": [
+          "MERGE HEALTHCARE SOLUTIONS INC.",
+          "MERGE HEALTHCARE INCORPORATED"
+        ]
+      },
+      {
+        "normalised": "ARGON",
+        "entities": [
+          "E-03599",
+          "E-10222"
+        ],
+        "canonical_names": [
+          "ARGON CORP.",
+          "ARGON CORP."
+        ]
+      },
+      {
+        "normalised": "ECI DEFENSE GROUP",
+        "entities": [
+          "E-00610",
+          "E-01459"
+        ],
+        "canonical_names": [
+          "ECI DEFENSE GROUP, INC.",
+          "ECI DEFENSE GROUP, INC."
+        ]
+      },
+      {
+        "normalised": "GATR TECHNOLOGIES",
+        "entities": [
+          "E-01476",
+          "E-08923"
+        ],
+        "canonical_names": [
+          "GATR TECHNOLOGIES, INC.",
+          "GATR TECHNOLOGIES, INC."
+        ]
+      },
+      {
+        "normalised": "GLENAIR",
+        "entities": [
+          "E-10388",
+          "E-10821"
+        ],
+        "canonical_names": [
+          "GLENAIR INC.",
+          "GLENAIR, INC."
+        ]
+      },
+      {
+        "normalised": "ARROW ELECTRONICS",
+        "entities": [
+          "E-00268",
+          "E-04010",
+          "E-09856",
+          "E-10591"
+        ],
+        "canonical_names": [
+          "ARROW ELECTRONICS, INC.",
+          "ARROW ELECTRONICS, INC.",
+          "ARROW ELECTRONICS, INC.",
+          "ARROW ELECTRONICS, INC."
+        ]
+      },
+      {
+        "normalised": "BACULA SYSTEMS",
+        "entities": [
+          "E-03569",
+          "E-07200"
+        ],
+        "canonical_names": [
+          "BACULA SYSTEMS CORPORATION",
+          "BACULA SYSTEMS SA"
+        ]
+      },
+      {
+        "normalised": "UNIVERSITY OF CHICAGO THE",
+        "entities": [
+          "E-10810",
+          "E-11188"
+        ],
+        "canonical_names": [
+          "UNIVERSITY OF CHICAGO, THE",
+          "UNIVERSITY OF CHICAGO"
+        ]
+      },
+      {
+        "normalised": "ILLINOIS TOOL WORKS",
+        "entities": [
+          "E-00442",
+          "E-02137"
+        ],
+        "canonical_names": [
+          "ILLINOIS TOOL WORKS INC.",
+          "ILLINOIS TOOL WORKS INC."
+        ]
+      },
+      {
+        "normalised": "SONY ELECTRONICS",
+        "entities": [
+          "E-07650",
+          "E-11029"
+        ],
+        "canonical_names": [
+          "SONY ELECTRONICS INC.",
+          "SONY ELECTRONICS INC."
+        ]
+      },
+      {
+        "normalised": "NUMA",
+        "entities": [
+          "E-02077",
+          "E-05898"
+        ],
+        "canonical_names": [
+          "NUMA LLC",
+          "NUMA, INC"
+        ]
+      },
+      {
+        "normalised": "JACOBS TECHNOLOGY",
+        "entities": [
+          "E-04516",
+          "E-07717",
+          "E-10611"
+        ],
+        "canonical_names": [
+          "JACOBS TECHNOLOGY INC.",
+          "JACOBS TECHNOLOGY INC.",
+          "JACOBS TECHNOLOGY INC."
+        ]
+      },
+      {
+        "normalised": "ADVANCED ACOUSTIC CONCEPTS",
+        "entities": [
+          "E-00333",
+          "E-04775"
+        ],
+        "canonical_names": [
+          "ADVANCED ACOUSTIC CONCEPTS, LLC",
+          "ADVANCED ACOUSTIC CONCEPTS, LLC"
+        ]
+      },
+      {
+        "normalised": "CONCURRENT TECHNOLOGIES",
+        "entities": [
+          "E-04139",
+          "E-04956"
+        ],
+        "canonical_names": [
+          "CONCURRENT TECHNOLOGIES, INC.",
+          "CONCURRENT TECHNOLOGIES CORPORATION"
+        ]
+      },
+      {
+        "normalised": "AVNET",
+        "entities": [
+          "E-03792",
+          "E-03919",
+          "E-05492",
+          "E-07944",
+          "E-10887"
+        ],
+        "canonical_names": [
+          "AVNET, INC.",
+          "AVNET, INC.",
+          "AVNET, INC.",
+          "AVNET, INC.",
+          "AVNET, INC."
+        ]
+      },
+      {
+        "normalised": "DIVERSIFIED DISTRIBUTORS INTERNATIONAL",
+        "entities": [
+          "E-04566",
+          "E-07376"
+        ],
+        "canonical_names": [
+          "DIVERSIFIED DISTRIBUTORS INTERNATIONAL, INC.",
+          "DIVERSIFIED DISTRIBUTORS INTERNATIONAL, INC."
+        ]
+      },
+      {
+        "normalised": "LUMEN TECHNOLOGIES GOVERNMENT SOLUTIONS",
+        "entities": [
+          "E-05563",
+          "E-08028"
+        ],
+        "canonical_names": [
+          "LUMEN TECHNOLOGIES GOVERNMENT SOLUTIONS, INC.",
+          "QWEST GOVERNMENT SERVICES INC"
+        ]
+      },
+      {
+        "normalised": "MID ATLANTIC COMPUTER SERVICES",
+        "entities": [
+          "E-02784",
+          "E-09978"
+        ],
+        "canonical_names": [
+          "MID-ATLANTIC COMPUTER SERVICES, INC.",
+          "MID ATLANTIC COMPUTER SERVICES"
+        ]
+      },
+      {
+        "normalised": "VITEC",
+        "entities": [
+          "E-02747",
+          "E-10606"
+        ],
+        "canonical_names": [
+          "VITEC, INC.",
+          "VITEC, INC."
+        ]
+      },
+      {
+        "normalised": "KVH INDUSTRIES",
+        "entities": [
+          "E-03334",
+          "E-08725"
+        ],
+        "canonical_names": [
+          "KVH INDUSTRIES, INC.",
+          "KVH INDUSTRIES, INC."
+        ]
+      },
+      {
+        "normalised": "VALKYRIE ENTERPRISES",
+        "entities": [
+          "E-06754",
+          "E-10231"
+        ],
+        "canonical_names": [
+          "QUALITY PERFORMANCE, INC.",
+          "VALKYRIE ENTERPRISES, LLC"
+        ]
+      },
+      {
+        "normalised": "UNIVERSITY OF WISCONSIN SYSTEM",
+        "entities": [
+          "E-03671",
+          "E-05380"
+        ],
+        "canonical_names": [
+          "UNIVERSITY OF WISCONSIN SYSTEM",
+          "UNIVERSITY OF WISCONSIN SYSTEM"
+        ]
+      },
+      {
+        "normalised": "NEU TECHNOLOGIES GROUP",
+        "entities": [
+          "E-01572",
+          "E-06200"
+        ],
+        "canonical_names": [
+          "NEU TECHNOLOGIES GROUP, LLC",
+          "NEU TECHNOLOGIES GROUP, LLC"
+        ]
+      },
+      {
+        "normalised": "BOEING",
+        "entities": [
+          "E-00668",
+          "E-03387",
+          "E-10119"
+        ],
+        "canonical_names": [
+          "BOEING COMPANY, THE",
+          "THE BOEING COMPANY",
+          "THE BOEING COMPANY"
+        ]
+      },
+      {
+        "normalised": "BOEING THE",
+        "entities": [
+          "E-00668",
+          "E-04128",
+          "E-06139",
+          "E-07818",
+          "E-09015",
+          "E-09191"
+        ],
+        "canonical_names": [
+          "BOEING COMPANY, THE",
+          "BOEING COMPANY, THE",
+          "BOEING COMPANY, THE",
+          "BOEING COMPANY, THE",
+          "BOEING COMPANY, THE",
+          "BOEING COMPANY, THE"
+        ]
+      },
+      {
+        "normalised": "SD SOLUTIONS",
+        "entities": [
+          "E-05626",
+          "E-06254"
+        ],
+        "canonical_names": [
+          "SD SOLUTIONS LLC",
+          "SD SOLUTIONS LLC"
+        ]
+      },
+      {
+        "normalised": "ABBOTT LABORATORIES",
+        "entities": [
+          "E-01503",
+          "E-05195",
+          "E-06865"
+        ],
+        "canonical_names": [
+          "ABBOTT LABORATORIES",
+          "ABBOTT LABORATORIES INC",
+          "ABBOTT LABORATORIES"
+        ]
+      },
+      {
+        "normalised": "BOSCH SECURITY SYSTEMS",
+        "entities": [
+          "E-00650",
+          "E-00824"
+        ],
+        "canonical_names": [
+          "BOSCH SECURITY SYSTEMS, LLC",
+          "BOSCH SECURITY SYSTEMS, INC."
+        ]
+      },
+      {
+        "normalised": "BAE SYSTEMS CONTROLS",
+        "entities": [
+          "E-02266",
+          "E-03326"
+        ],
+        "canonical_names": [
+          "BAE SYSTEMS CONTROLS INC.",
+          "BAE SYSTEMS CONTROLS INC."
+        ]
+      },
+      {
+        "normalised": "BECTON DICKINSON AND",
+        "entities": [
+          "E-01084",
+          "E-04120",
+          "E-06304"
+        ],
+        "canonical_names": [
+          "BECTON, DICKINSON AND COMPANY",
+          "BECTON, DICKINSON AND COMPANY",
+          "BECTON, DICKINSON AND COMPANY"
+        ]
+      },
+      {
+        "normalised": "ABT ASSOCIATES",
+        "entities": [
+          "E-00209",
+          "E-10136"
+        ],
+        "canonical_names": [
+          "ABT ASSOCIATES, INC.",
+          "ABT ASSOCIATES INC."
+        ]
+      },
+      {
+        "normalised": "SYPRIS ELECTRONICS",
+        "entities": [
+          "E-07005",
+          "E-08587"
+        ],
+        "canonical_names": [
+          "SYPRIS ELECTRONICS, LLC",
+          "SYPRIS ELECTRONICS, LLC"
+        ]
+      },
+      {
+        "normalised": "EXECUTIVE TECHNOLOGIES",
+        "entities": [
+          "E-07481",
+          "E-08237"
+        ],
+        "canonical_names": [
+          "EXECUTIVE TECHNOLOGIES CORPORATION",
+          "EXECUTIVE TECHNOLOGIES INC"
+        ]
+      },
+      {
+        "normalised": "DECISIVE ANALYTICS",
+        "entities": [
+          "E-06143",
+          "E-10798"
+        ],
+        "canonical_names": [
+          "DECISIVE ANALYTICS CORPORATION",
+          "DECISIVE ANALYTICS CORPORATION"
+        ]
+      },
+      {
+        "normalised": "ATRENNE COMPUTING SOLUTIONS",
+        "entities": [
+          "E-00949",
+          "E-01328"
+        ],
+        "canonical_names": [
+          "ATRENNE COMPUTING SOLUTIONS LLC",
+          "ATRENNE COMPUTING SOLUTIONS, LLC"
+        ]
+      },
+      {
+        "normalised": "LAKE SHORE SYSTEMS",
+        "entities": [
+          "E-01620",
+          "E-06774",
+          "E-10645"
+        ],
+        "canonical_names": [
+          "LAKE SHORE SYSTEMS, INC.",
+          "LAKE SHORE SYSTEMS, INC.",
+          "LAKE SHORE SYSTEMS, INC."
+        ]
+      },
+      {
+        "normalised": "PINNACLE SYSTEMS",
+        "entities": [
+          "E-00930",
+          "E-03667"
+        ],
+        "canonical_names": [
+          "PINNACLE SYSTEMS, LLC",
+          "PINNACLE SYSTEMS INC."
+        ]
+      },
+      {
+        "normalised": "KI HO MILITARY ACQUISITION CONSULTING",
+        "entities": [
+          "E-07773",
+          "E-09097"
+        ],
+        "canonical_names": [
+          "KI HO MILITARY ACQUISITION CONSULTING, INC.",
+          "KIHOMAC, INC."
+        ]
+      },
+      {
+        "normalised": "WESCO DISTRIBUTION",
+        "entities": [
+          "E-04907",
+          "E-05444",
+          "E-06188",
+          "E-10634"
+        ],
+        "canonical_names": [
+          "WESCO DISTRIBUTION, INC.",
+          "WESCO DISTRIBUTION, INC.",
+          "WESCO DISTRIBUTION, INC.",
+          "WESCO DISTRIBUTION, INC."
+        ]
+      },
+      {
+        "normalised": "IRON MOUNTAIN INFORMATION MANAGEMENT",
+        "entities": [
+          "E-02722",
+          "E-04827"
+        ],
+        "canonical_names": [
+          "IRON MOUNTAIN INFORMATION MANAGEMENT, LLC",
+          "IRON MOUNTAIN INFORMATION MANAGEMENT, LLC"
+        ]
+      },
+      {
+        "normalised": "EPSILON SYSTEMS SOLUTIONS",
+        "entities": [
+          "E-04256",
+          "E-06523"
+        ],
+        "canonical_names": [
+          "EPSILON SYSTEMS SOLUTIONS, INC.",
+          "EPSILON SYSTEMS SOLUTIONS, INC."
+        ]
+      },
+      {
+        "normalised": "APPOSITE TECHNOLOGIES",
+        "entities": [
+          "E-00463",
+          "E-10320"
+        ],
+        "canonical_names": [
+          "APPOSITE TECHNOLOGIES LLC",
+          "APPOSITE TECHNOLOGIES, INC."
+        ]
+      },
+      {
+        "normalised": "MERCURY MISSION SYSTEMS",
+        "entities": [
+          "E-02718",
+          "E-04172",
+          "E-06891"
+        ],
+        "canonical_names": [
+          "MERCURY MISSION SYSTEMS LLC",
+          "AVALEX TECHNOLOGIES CORPORATION",
+          "MERCURY MISSION SYSTEMS, LLC"
+        ]
+      },
+      {
+        "normalised": "BAE SYSTEMS LAND AND ARMAMENTS L P",
+        "entities": [
+          "E-09609",
+          "E-10234",
+          "E-10762"
+        ],
+        "canonical_names": [
+          "BAE SYSTEMS LAND & ARMAMENTS L.P.",
+          "BAE SYSTEMS LAND & ARMAMENTS L.P.",
+          "BAE SYSTEMS LAND & ARMAMENTS L.P."
+        ]
+      },
+      {
+        "normalised": "POWELL ELECTRONICS",
+        "entities": [
+          "E-05871",
+          "E-07969"
+        ],
+        "canonical_names": [
+          "POWELL ELECTRONICS INC.",
+          "POWELL ELECTRONICS INC."
+        ]
+      },
+      {
+        "normalised": "COURTLAND TECHNOLOGY INDUSTRY",
+        "entities": [
+          "E-06705",
+          "E-10129"
+        ],
+        "canonical_names": [
+          "COURTLAND TECHNOLOGY INDUSTRY INC.",
+          "COURTLAND TECHNOLOGY INDUSTRY INC."
+        ]
+      },
+      {
+        "normalised": "CHENEGA PROFESSIONAL AND TECHNICAL SERVICES",
+        "entities": [
+          "E-01452",
+          "E-05833"
+        ],
+        "canonical_names": [
+          "CHENEGA PROFESSIONAL & TECHNICAL SERVICES, LLC",
+          "CHENEGA PROFESSIONAL & TECHNICAL SERVICES, LLC"
+        ]
+      },
+      {
+        "normalised": "CHARON TECHNOLOGIES",
+        "entities": [
+          "E-06022",
+          "E-11049"
+        ],
+        "canonical_names": [
+          "CHARON TECHNOLOGIES, LLC",
+          "CHARON TECHNOLOGIES, LLC"
+        ]
+      },
+      {
+        "normalised": "PROLOGIC",
+        "entities": [
+          "E-00758",
+          "E-06812"
+        ],
+        "canonical_names": [
+          "PROLOGIC, INC.",
+          "PROLOGIC, INC."
+        ]
+      },
+      {
+        "normalised": "SAN BERNARDINO COUNTY OF",
+        "entities": [
+          "E-06276",
+          "E-06401"
+        ],
+        "canonical_names": [
+          "SAN BERNARDINO, COUNTY OF",
+          "SAN BERNARDINO, COUNTY OF"
+        ]
+      },
+      {
+        "normalised": "METOCEAN DATA SYSTEMS",
+        "entities": [
+          "E-07689",
+          "E-10570"
+        ],
+        "canonical_names": [
+          "METOCEAN TELEMATICS, INC.",
+          "METOCEAN DATA SYSTEMS LIMITED"
+        ]
+      },
+      {
+        "normalised": "SAAB DEFENSE AND SECURITY UNITED STATES",
+        "entities": [
+          "E-03192",
+          "E-09496"
+        ],
+        "canonical_names": [
+          "SAAB INC.",
+          "SAAB DEFENSE AND SECURITY USA LLC"
+        ]
+      },
+      {
+        "normalised": "DELL",
+        "entities": [
+          "E-05290",
+          "E-09418",
+          "E-09674"
+        ],
+        "canonical_names": [
+          "DELL",
+          "DELL CORPORATION",
+          "DELL INC."
+        ]
+      },
+      {
+        "normalised": "MARINE ELECTRIC SYSTEMS",
+        "entities": [
+          "E-08287",
+          "E-09075"
+        ],
+        "canonical_names": [
+          "MARINE ELECTRIC SYSTEMS, LLC",
+          "MARINE ELECTRIC SYSTEMS, INC."
+        ]
+      },
+      {
+        "normalised": "BEAR COMMUNICATIONS",
+        "entities": [
+          "E-04736",
+          "E-09956"
+        ],
+        "canonical_names": [
+          "BEAR COMMUNICATIONS, INC",
+          "BEAR COMMUNICATIONS, INC"
+        ]
+      },
+      {
+        "normalised": "LEVEL 3 COMMUNICATIONS",
+        "entities": [
+          "E-06699",
+          "E-10068"
+        ],
+        "canonical_names": [
+          "LEVEL 3 COMMUNICATIONS LIMITED LIABILITY COMPANY",
+          "LEVEL 3 COMMUNICATIONS, INC."
+        ]
+      },
+      {
+        "normalised": "COMCAST CABLE COMMUNICATIONS",
+        "entities": [
+          "E-00136",
+          "E-05272",
+          "E-08265",
+          "E-10444",
+          "E-10911"
+        ],
+        "canonical_names": [
+          "COMCAST CABLE COMMUNICATIONS, LLC",
+          "COMCAST CABLE COMMUNICATIONS, LLC",
+          "COMCAST CABLE COMMUNICATIONS, LLC",
+          "COMCAST CABLE COMMUNICATIONS, LLC",
+          "COMCAST CABLE COMMUNICATIONS, LLC"
+        ]
+      },
+      {
+        "normalised": "COPPER RIVER TECHNOLOGIES",
+        "entities": [
+          "E-10434",
+          "E-10882"
+        ],
+        "canonical_names": [
+          "COPPER RIVER TECHNOLOGIES, LLC",
+          "COPPER RIVER TECHNOLOGIES, LLC"
+        ]
+      },
+      {
+        "normalised": "MIDWEST TECHNICAL SALES",
+        "entities": [
+          "E-09569",
+          "E-10450"
+        ],
+        "canonical_names": [
+          "MIDWEST TECHNICAL SALES INC",
+          "MIDWEST TECHNICAL SALES INC"
+        ]
+      },
+      {
+        "normalised": "PENTEK",
+        "entities": [
+          "E-04384",
+          "E-04725"
+        ],
+        "canonical_names": [
+          "PENTEK INC.",
+          "PENTEK, INC."
+        ]
+      },
+      {
+        "normalised": "CENGAGE LEARNING",
+        "entities": [
+          "E-01074",
+          "E-03023"
+        ],
+        "canonical_names": [
+          "INFOSEC INSTITUTE INC.",
+          "CENGAGE LEARNING, INC."
+        ]
+      },
+      {
+        "normalised": "NORTH COAST ELECTRIC",
+        "entities": [
+          "E-01009",
+          "E-01690",
+          "E-03193"
+        ],
+        "canonical_names": [
+          "NORTH COAST ELECTRIC COMPANY",
+          "NORTH COAST ELECTRIC COMPANY",
+          "NORTH COAST ELECTRIC COMPANY"
+        ]
+      },
+      {
+        "normalised": "A M S NETWORK",
+        "entities": [
+          "E-01290",
+          "E-07252"
+        ],
+        "canonical_names": [
+          "A.M.S. NETWORK, LLC",
+          "A.M.S. NETWORK, LLC"
+        ]
+      },
+      {
+        "normalised": "ANDOR TECHNOLOGY",
+        "entities": [
+          "E-01903",
+          "E-07062"
+        ],
+        "canonical_names": [
+          "ANDOR TECHNOLOGY, INC.",
+          "ANDOR TECHNOLOGY LTD."
+        ]
+      },
+      {
+        "normalised": "GETDATA",
+        "entities": [
+          "E-00146",
+          "E-03182"
+        ],
+        "canonical_names": [
+          "GETDATA PTY LTD",
+          "GETDATA"
+        ]
+      },
+      {
+        "normalised": "DNN",
+        "entities": [
+          "E-00057",
+          "E-06736"
+        ],
+        "canonical_names": [
+          "DNN LLC",
+          "DNN CORP."
+        ]
+      },
+      {
+        "normalised": "CISCO SYSTEMS",
+        "entities": [
+          "E-05676",
+          "E-09429"
+        ],
+        "canonical_names": [
+          "CISCO SYSTEMS, INC.",
+          "CISCO SYSTEMS INC."
+        ]
+      },
+      {
+        "normalised": "CACI ISS",
+        "entities": [
+          "E-01714",
+          "E-09070"
+        ],
+        "canonical_names": [
+          "CACI-ISS, INC.",
+          "CACI-ISS, INC."
+        ]
+      },
+      {
+        "normalised": "EXPERIAN INFORMATION SOLUTIONS",
+        "entities": [
+          "E-01249",
+          "E-04462",
+          "E-09310"
+        ],
+        "canonical_names": [
+          "EXPERIAN INFORMATION SOLUTIONS, INC",
+          "EXPERIAN INFORMATION SOLUTIONS, INC.",
+          "EXPERIAN INFORMATION SOLUTIONS, INC"
+        ]
+      },
+      {
+        "normalised": "INSCAPE",
+        "entities": [
+          "E-00282",
+          "E-05359"
+        ],
+        "canonical_names": [
+          "INSCAPE CORPORATION",
+          "INSCAPE INC."
+        ]
+      },
+      {
+        "normalised": "GBS",
+        "entities": [
+          "E-04088",
+          "E-10999"
+        ],
+        "canonical_names": [
+          "GBS CORP.",
+          "GBS INCORPORATED"
+        ]
+      },
+      {
+        "normalised": "OVERWATCH SYSTEMS",
+        "entities": [
+          "E-00820",
+          "E-11092"
+        ],
+        "canonical_names": [
+          "OVERWATCH SYSTEMS, LTD.",
+          "OVERWATCH SYSTEMS, LTD."
+        ]
+      },
+      {
+        "normalised": "SIEMENS HEALTHCARE DIAGNOSTICS",
+        "entities": [
+          "E-02667",
+          "E-08060"
+        ],
+        "canonical_names": [
+          "SIEMENS HEALTHCARE DIAGNOSTICS INC.",
+          "SIEMENS HEALTHCARE DIAGNOSTICS INC."
+        ]
+      },
+      {
+        "normalised": "QINETIQ",
+        "entities": [
+          "E-00731",
+          "E-03638"
+        ],
+        "canonical_names": [
+          "QINETIQ INC.",
+          "QINETIQ INC."
+        ]
+      },
+      {
+        "normalised": "CONEXUS",
+        "entities": [
+          "E-09533",
+          "E-10658"
+        ],
+        "canonical_names": [
+          "CONEXUS INCORPORATED",
+          "CONEXUS, INC."
+        ]
+      },
+      {
+        "normalised": "CACI NSS",
+        "entities": [
+          "E-01489",
+          "E-02972",
+          "E-10580"
+        ],
+        "canonical_names": [
+          "CACI NSS, LLC",
+          "CACI NSS, LLC",
+          "CACI NSS, INC."
+        ]
+      },
+      {
+        "normalised": "MACKAY COMMUNICATIONS",
+        "entities": [
+          "E-00424",
+          "E-01728"
+        ],
+        "canonical_names": [
+          "MACKAY COMMUNICATIONS, INC",
+          "MACKAY COMMUNICATIONS, INC."
+        ]
+      },
+      {
+        "normalised": "UMYUAQ TECHNOLOGY",
+        "entities": [
+          "E-03794",
+          "E-10454"
+        ],
+        "canonical_names": [
+          "UMYUAQ TECHNOLOGY, LLC",
+          "UMYUAQ TECHNOLOGY, LLC"
+        ]
+      },
+      {
+        "normalised": "BRUKER AXS",
+        "entities": [
+          "E-02374",
+          "E-06074"
+        ],
+        "canonical_names": [
+          "BRUKER AXS LLC",
+          "BRUKER AXS INC"
+        ]
+      },
+      {
+        "normalised": "CURTISS WRIGHT FLOW CONTROL",
+        "entities": [
+          "E-02634",
+          "E-07204"
+        ],
+        "canonical_names": [
+          "CURTISS-WRIGHT FLOW CONTROL CORPORATION",
+          "CURTISS-WRIGHT FLOW CONTROL CORPORATION"
+        ]
+      },
+      {
+        "normalised": "FLIR COMMERCIAL SYSTEMS",
+        "entities": [
+          "E-01128",
+          "E-09284"
+        ],
+        "canonical_names": [
+          "FLIR COMMERCIAL SYSTEMS, INC",
+          "FLIR COMMERCIAL SYSTEMS, INC"
+        ]
+      },
+      {
+        "normalised": "EVOQUA WATER TECHNOLOGIES",
+        "entities": [
+          "E-00108",
+          "E-03269"
+        ],
+        "canonical_names": [
+          "EVOQUA WATER TECHNOLOGIES LLC",
+          "EVOQUA WATER TECHNOLOGIES LLC"
+        ]
+      },
+      {
+        "normalised": "OVC ENGINEERED SOLUTIONS",
+        "entities": [
+          "E-07824",
+          "E-10036"
+        ],
+        "canonical_names": [
+          "OVC-ENGINEERED SOLUTIONS LLC",
+          "OVC-ENGINEERED SOLUTIONS, LLC"
+        ]
+      },
+      {
+        "normalised": "KPMG",
+        "entities": [
+          "E-06018",
+          "E-09947"
+        ],
+        "canonical_names": [
+          "KPMG LLP",
+          "KPMG LLP"
+        ]
+      },
+      {
+        "normalised": "NCS PEARSON",
+        "entities": [
+          "E-02778",
+          "E-03497"
+        ],
+        "canonical_names": [
+          "NCS PEARSON, INC.",
+          "NCS PEARSON, INC."
+        ]
+      },
+      {
+        "normalised": "METOCEAN TELEMATICS",
+        "entities": [
+          "E-05059",
+          "E-07689"
+        ],
+        "canonical_names": [
+          "METOCEAN TELEMATICS LIMITED",
+          "METOCEAN TELEMATICS, INC."
+        ]
+      },
+      {
+        "normalised": "MID COAST ELECTRIC SUPPLY",
+        "entities": [
+          "E-02854",
+          "E-06367"
+        ],
+        "canonical_names": [
+          "MID-COAST ELECTRIC SUPPLY, INC.",
+          "MID-COAST ELECTRIC SUPPLY, INC."
+        ]
+      },
+      {
+        "normalised": "OKI GENERAL TRADING",
+        "entities": [
+          "E-05763",
+          "E-10091"
+        ],
+        "canonical_names": [
+          "OKI GENERAL TRADING LLC",
+          "OKI GENERAL TRADING INC."
+        ]
+      },
+      {
+        "normalised": "EBSCO INDUSTRIES",
+        "entities": [
+          "E-04066",
+          "E-05502",
+          "E-05801"
+        ],
+        "canonical_names": [
+          "EBSCO INDUSTRIES, INC.",
+          "EBSCO INDUSTRIES, INC.",
+          "EBSCO INDUSTRIES, INC."
+        ]
+      },
+      {
+        "normalised": "LOCKHEED MARTIN SERVICES",
+        "entities": [
+          "E-02621",
+          "E-11151"
+        ],
+        "canonical_names": [
+          "LOCKHEED MARTIN SERVICES, INC",
+          "LOCKHEED MARTIN SERVICES, INC."
+        ]
+      },
+      {
+        "normalised": "SBC GLOBAL SERVICES",
+        "entities": [
+          "E-09718",
+          "E-10035",
+          "E-10796"
+        ],
+        "canonical_names": [
+          "SBC GLOBAL SERVICES, INC.",
+          "SBC GLOBAL SERVICES, INC.",
+          "SBC GLOBAL SERVICES, INC"
+        ]
+      },
+      {
+        "normalised": "UNIVERSITY OF FLORIDA",
+        "entities": [
+          "E-00864",
+          "E-07015"
+        ],
+        "canonical_names": [
+          "UNIVERSITY OF FLORIDA",
+          "UNIVERSITY OF FLORIDA"
+        ]
+      },
+      {
+        "normalised": "MILLENNIUM ALLIANCE",
+        "entities": [
+          "E-03963",
+          "E-04210"
+        ],
+        "canonical_names": [
+          "MILLENNIUM ALLIANCE INC.",
+          "MILLENNIUM ALLIANCE INC"
+        ]
+      },
+      {
+        "normalised": "ADACEL SYSTEMS",
+        "entities": [
+          "E-00375",
+          "E-07560"
+        ],
+        "canonical_names": [
+          "ADACEL SYSTEMS, INC.",
+          "ADACEL SYSTEMS INC"
+        ]
+      },
+      {
+        "normalised": "CERTARA UNITED STATES",
+        "entities": [
+          "E-02359",
+          "E-03688"
+        ],
+        "canonical_names": [
+          "CERTARA USA INC",
+          "CERTARA USA INC"
+        ]
+      },
+      {
+        "normalised": "KBR WYLE SERVICES",
+        "entities": [
+          "E-03716",
+          "E-05244"
+        ],
+        "canonical_names": [
+          "KBR WYLE SERVICES, LLC",
+          "KBR WYLE SERVICES, LLC"
+        ]
+      },
+      {
+        "normalised": "PARSONS GOVERNMENT SERVICES",
+        "entities": [
+          "E-05126",
+          "E-06986"
+        ],
+        "canonical_names": [
+          "PARSONS GOVERNMENT SERVICES INC",
+          "PARSONS GOVERNMENT SERVICES INC."
+        ]
+      },
+      {
+        "normalised": "COMPUTER MEDIC",
+        "entities": [
+          "E-08765",
+          "E-11127"
+        ],
+        "canonical_names": [
+          "COMPUTER MEDIC INC",
+          "COMPUTER MEDIC, INC."
+        ]
+      },
+      {
+        "normalised": "TETRA TECHNOLOGY",
+        "entities": [
+          "E-02208",
+          "E-05617"
+        ],
+        "canonical_names": [
+          "TETRA TECH, INC.",
+          "TETRA TECH, INC."
+        ]
+      },
+      {
+        "normalised": "GEORGE MASON UNIVERSITY",
+        "entities": [
+          "E-01401",
+          "E-03174"
+        ],
+        "canonical_names": [
+          "GEORGE MASON UNIVERSITY",
+          "GEORGE MASON UNIVERSITY"
+        ]
+      },
+      {
+        "normalised": "GUIDEHOUSE",
+        "entities": [
+          "E-04067",
+          "E-06716"
+        ],
+        "canonical_names": [
+          "GUIDEHOUSE LLP",
+          "GUIDEHOUSE INC."
+        ]
+      },
+      {
+        "normalised": "HEALTH FORUM",
+        "entities": [
+          "E-06486",
+          "E-07877"
+        ],
+        "canonical_names": [
+          "HEALTH FORUM, LLC",
+          "HEALTH FORUM, INC."
+        ]
+      },
+      {
+        "normalised": "TTI",
+        "entities": [
+          "E-01642",
+          "E-09102"
+        ],
+        "canonical_names": [
+          "TTI INC",
+          "TTI INC."
+        ]
+      }
+    ],
+    "name_uei_conflict_count": 211,
+    "name_uei_conflicts": [
+      {
+        "raw_name": "NORTHROP GRUMMAN SYSTEMS CORPORATION",
+        "ueis": [
+          "PQGNEEY9W5M3",
+          "EHBBTWLFSMW1",
+          "GHKDJMJNPL13",
+          "LALWKM623MU7",
+          "GWFBQY413N79",
+          "GUVUU89P78Q3",
+          "DJUCEANK2KP4",
+          "E5NBQZGYM1D1",
+          "PK8PM2GNVMP8",
+          "E4X3BLZPPPX3",
+          "LEMLXG994AU3",
+          "HUDHMPV9B6M9",
+          "Z9TUHQN8QK35",
+          "X1MRDHSQMJ58",
+          "LAHZNLNSANJ7",
+          "MWAUCX6M7LG5",
+          "KV8YDNS7VMT9",
+          "EPSYXPS5MK39",
+          "T9XKQSKMW4J1"
+        ],
+        "counts": [
+          257,
+          76,
+          28,
+          15,
+          15,
+          10,
+          8,
+          7,
+          7,
+          6,
+          6,
+          6,
+          5,
+          4,
+          2,
+          2,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "raw_name": "RAYTHEON COMPANY",
+        "ueis": [
+          "CCGBEVKUU2F3",
+          "VTEWM5QSE598",
+          "Y5ZZFR2AQC63",
+          "KLW3ZYL15493",
+          "GMBYU6KAN9J3",
+          "YD6LTFVUZNG1",
+          "M1BVCGDKJ1L7",
+          "XSV6AZJ6SDJ7",
+          "MNQWKJKDKBE7",
+          "K1H5GGQPBLV5",
+          "GVH5NK36P911",
+          "NBSLHP77ZJQ1",
+          "MYA7PT4VMGS8",
+          "D9DKLKAJ48M9",
+          "HSLPBHN3E7Q3",
+          "GJJCW7W8HCF5",
+          "QF4VA87ST9F7",
+          "ZLW5UKDCY9L1",
+          "LWF3QUSCDNG1"
+        ],
+        "counts": [
+          58,
+          24,
+          18,
+          16,
+          14,
+          12,
+          8,
+          7,
+          4,
+          4,
+          3,
+          3,
+          2,
+          2,
+          2,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "raw_name": "LOCKHEED MARTIN CORPORATION",
+        "ueis": [
+          "NMHFLDYJJ4C5",
+          "PAMVUBYPXF48",
+          "HJP4JZG1FUL9",
+          "H11HD5VHGHN3",
+          "KDT2YLB34NT6",
+          "CWM4UN76ZQW8",
+          "L2Y1QCAQHRH5",
+          "CMCXD2QLGKF9",
+          "SJDEB3MKJEW5",
+          "MJENSFHZJP11",
+          "QLY9AA8Y3DC1",
+          "WPCEMX8K7TJ9",
+          "DKELBA3FW769",
+          "KEDGNDMH1LN3",
+          "JKVWEPKJRR65",
+          "G4KDGE4JFFK7",
+          "CQWLW9XRQTH5"
+        ],
+        "counts": [
+          498,
+          274,
+          85,
+          36,
+          23,
+          21,
+          16,
+          15,
+          6,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "raw_name": "HONEYWELL INTERNATIONAL INC.",
+        "ueis": [
+          "ZLHMCNLMEYK1",
+          "F9KYRN7FM2B7",
+          "T8GEBYLY8T89",
+          "FGALAZF3ERP2",
+          "KBL6XLDCXKG8",
+          "PF4UXZ18LQD1",
+          "YBVGQEYENNM6",
+          "E21VP9DNS4N8",
+          "JCCHJ122AVW9",
+          "ZJ88T7TL9584",
+          "ZFGKA37BFT15",
+          "T7MWJYLMAZP3",
+          "LXR8CJQ8J9J7",
+          "TKE2CB4A5YW4",
+          "MXACAUQAMCN5"
+        ],
+        "counts": [
+          16,
+          11,
+          9,
+          5,
+          4,
+          3,
+          2,
+          2,
+          2,
+          2,
+          2,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "raw_name": "L-3 COMMUNICATIONS CORPORATION",
+        "ueis": [
+          "WPP2ABN6UCF5",
+          "F3AWTHWK95Q3",
+          "FRJQGQHDX4J3",
+          "Y8F3N3YJDF17",
+          "HVQBAL5E7R23",
+          "FG7CGCHSNML9",
+          "JXBPKGYKBXK6",
+          "HA3UFSU8FN75",
+          "FMNXG2RGM9Q5",
+          "PMH3MAVQGE44",
+          "DZTMCJKQZ4K4",
+          "S8YGG2HFWZP8"
+        ],
+        "counts": [
+          25,
+          4,
+          4,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "raw_name": "L3 TECHNOLOGIES, INC.",
+        "ueis": [
+          "WPP2ABN6UCF5",
+          "FRJQGQHDX4J3",
+          "HA3UFSU8FN75",
+          "FMNXG2RGM9Q5",
+          "Y8F3N3YJDF17",
+          "F3AWTHWK95Q3",
+          "PTMFLMD2CUB4",
+          "JXBPKGYKBXK6",
+          "EBYPBY55M2J3",
+          "HU7EGLNHP6X5",
+          "CJSNYUAHYFH4",
+          "J4BFCJJ3VK36"
+        ],
+        "counts": [
+          27,
+          13,
+          8,
+          6,
+          4,
+          2,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "raw_name": "LEIDOS, INC.",
+        "ueis": [
+          "KTMAJCY6JXM3",
+          "JSTDGZNFP4A3",
+          "G1JYD7L3V8B7",
+          "QF2FPVNBYJM1",
+          "QLNMVC12KWY3",
+          "MYKLJHTX3MM7",
+          "NKN8TLUW4MW1",
+          "MDSWM6MB1BH7",
+          "SK7ZAANKL1T6",
+          "KJKZNSAKACF5",
+          "LK5RJU5V68X6"
+        ],
+        "counts": [
+          82,
+          31,
+          23,
+          23,
+          20,
+          16,
+          3,
+          2,
+          2,
+          1,
+          1
+        ]
+      },
+      {
+        "raw_name": "GRAYBAR ELECTRIC COMPANY, INC.",
+        "ueis": [
+          "WP8LRX9KNTC4",
+          "VND2JCL6YJV1",
+          "NXKDJKPKLRR6",
+          "UCQ5NLMDK4H4",
+          "N5B5DG2ACG33",
+          "LASGAL26BHD5",
+          "X2WQMZ272Y39",
+          "G2NLP3NLX5Q7",
+          "RG1SQE6FLRV4",
+          "YG9DJVM8FFA8",
+          "K57KCRQDFFS7"
+        ],
+        "counts": [
+          44,
+          2,
+          2,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "raw_name": "INTERNATIONAL BUSINESS MACHINES CORPORATION",
+        "ueis": [
+          "VV9KH3L99VE3",
+          "GKURBKCK28R2",
+          "QBYKN4NQ6GQ9",
+          "J64CSQTQNRC1",
+          "U5MRJDKCL1D7",
+          "KNX5BZK5BK85",
+          "TDJBFKDTEM22",
+          "KCN4HMN8T5K1",
+          "FU7PX76JHM17",
+          "KD3BVF5ZZQL2"
+        ],
+        "counts": [
+          184,
+          18,
+          17,
+          12,
+          2,
+          2,
+          2,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "raw_name": "XEROX CORPORATION",
+        "ueis": [
+          "EFMFNAELHYR5",
+          "P1GMLJLGQ5D5",
+          "L6KBNLY5UPW1",
+          "GK1MRK2WPM88",
+          "JB4NTVR9XMN4",
+          "GFD7M3M5TAX1",
+          "Z14YCAEST944",
+          "EAWFCD9QB246"
+        ],
+        "counts": [
+          229,
+          160,
+          46,
+          37,
+          2,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "raw_name": "HONEYWELL INTERNATIONAL INC",
+        "ueis": [
+          "ZLHMCNLMEYK1",
+          "YBVGQEYENNM6",
+          "HEPCDKMV7L98",
+          "NTLJYDG4HA29",
+          "LS9FECEECDM3",
+          "Z5LZYBJJHKB5",
+          "CZ11GS5EAEF6"
+        ],
+        "counts": [
+          11,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "raw_name": "GENERAL DYNAMICS MISSION SYSTEMS, INC",
+        "ueis": [
+          "MWDRZJ2ZVPV7",
+          "JHY6AZA6H191",
+          "E422A91WKZ57",
+          "LDUJLC79HNK5",
+          "LKMMNBMPUNH7",
+          "KL3FGJUARFC3",
+          "D3RLWWNS55A5"
+        ],
+        "counts": [
+          53,
+          15,
+          14,
+          3,
+          3,
+          1,
+          1
+        ]
+      },
+      {
+        "raw_name": "JOHNSON CONTROLS FIRE PROTECTION LP",
+        "ueis": [
+          "K9HJHLAKXE96",
+          "XDWLHY7LLYM8",
+          "GGB6LEYZG9N6",
+          "YTRUJUSN5QT3",
+          "SLTNAWXL9KH3",
+          "NDENPLQSBCJ1",
+          "GLLKZCJ4DKK3"
+        ],
+        "counts": [
+          11,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "raw_name": "HARRIS CORPORATION",
+        "ueis": [
+          "LB5KVANFKPY7",
+          "QM4EZDV15JL8",
+          "SLVERBJAVNS4",
+          "DMMUDNRTD773",
+          "H6KFJFUTQ353",
+          "N91TELG3HNB6"
+        ],
+        "counts": [
+          47,
+          14,
+          6,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "raw_name": "COMMUNICATIONS SUPPLY CORPORATION",
+        "ueis": [
+          "CERQGQ3KA8N7",
+          "L3MJCA9N8YF7",
+          "E8MCJHBTT9X4",
+          "EDBQC2A2R5V7",
+          "UWKMCNQRNJK5",
+          "WAHNQMT3M5N5"
+        ],
+        "counts": [
+          67,
+          2,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "raw_name": "BOEING COMPANY, THE",
+        "ueis": [
+          "MF2LE5RK6L84",
+          "JJM4FRDZJDX1",
+          "D17AN2KWNJK3",
+          "QK7VQKC76AA3",
+          "UEGFHX6R6KJ1",
+          "TXT3HAAZREF1"
+        ],
+        "counts": [
+          23,
+          2,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "raw_name": "INSIGHT PUBLIC SECTOR, INC.",
+        "ueis": [
+          "LD98S4LK2113",
+          "J5PGNYJXCHZ9",
+          "FLZ4SYA9U2D1",
+          "V4KHCLP4PJ51",
+          "LVK1C1V1B1J4"
+        ],
+        "counts": [
+          583,
+          90,
+          44,
+          3,
+          2
+        ]
+      },
+      {
+        "raw_name": "SIMPLEXGRINNELL LP",
+        "ueis": [
+          "K9HJHLAKXE96",
+          "XDWLHY7LLYM8",
+          "LU99H46UMK28",
+          "KMJPMSWU3BN5",
+          "MKEYLRFKTNJ7"
+        ],
+        "counts": [
+          2,
+          2,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "raw_name": "JOHNSON CONTROLS, INC.",
+        "ueis": [
+          "CE8MGXAS9KJ6",
+          "Z2N8C3NL8FW5",
+          "WNC9M5DG8N96",
+          "KACJNLZPZ7F7",
+          "WX1YXMJTCR26"
+        ],
+        "counts": [
+          32,
+          5,
+          2,
+          1,
+          1
+        ]
+      },
+      {
+        "raw_name": "SCIENCE APPLICATIONS INTERNATIONAL CORPORATION",
+        "ueis": [
+          "MMLKPW9JLX64",
+          "L7EUZR8R5RZ3",
+          "MA1VZ6667CB1",
+          "RE7WMNV9L719",
+          "Y5GWLJFV2DV5"
+        ],
+        "counts": [
+          55,
+          36,
+          24,
+          5,
+          1
+        ]
+      },
+      {
+        "raw_name": "AVNET, INC.",
+        "ueis": [
+          "Z2VAJVVHTKD5",
+          "J3H5JVGM2KE8",
+          "J8WCYWJQKJE9",
+          "QXJEN27KYKW8",
+          "LHZRME5MGXR4"
+        ],
+        "counts": [
+          7,
+          5,
+          4,
+          1,
+          1
+        ]
+      },
+      {
+        "raw_name": "COMCAST CABLE COMMUNICATIONS, LLC",
+        "ueis": [
+          "L7KGLE8QGYF9",
+          "Z59NM47V58R9",
+          "RUZVC6L4HT53",
+          "XSQJKHLNNAC4",
+          "C65YDZQ8W319"
+        ],
+        "counts": [
+          3,
+          3,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "raw_name": "AT&T CORP.",
+        "ueis": [
+          "MNALR8D818N7",
+          "CB61T5EE6T53",
+          "L8M5DTR48U19",
+          "MX89BGD5FK75"
+        ],
+        "counts": [
+          62,
+          3,
+          1,
+          1
+        ]
+      },
+      {
+        "raw_name": "AGILENT TECHNOLOGIES, INC.",
+        "ueis": [
+          "SD9JZ9S7MEA6",
+          "EH1RW7J692F6",
+          "DJTGLNW6QM99",
+          "DJ1XBRHZNZK9"
+        ],
+        "counts": [
+          22,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "raw_name": "BAE SYSTEMS INFORMATION AND ELECTRONIC SYSTEMS INTEGRATION INC.",
+        "ueis": [
+          "WMKXMDJFSXA7",
+          "FNZGNWHTXVL4",
+          "LEDQU4AJK841",
+          "F9AVUZ8YBGQ6"
+        ],
+        "counts": [
+          80,
+          35,
+          8,
+          3
+        ]
+      },
+      {
+        "raw_name": "FISHER SCIENTIFIC COMPANY L.L.C.",
+        "ueis": [
+          "HE7NJQGP4ED6",
+          "NM4KGF2MKK96",
+          "HAMJKAN1TGW3",
+          "MUW4UUKWD4E1"
+        ],
+        "counts": [
+          13,
+          3,
+          1,
+          1
+        ]
+      },
+      {
+        "raw_name": "GENERAL DYNAMICS MISSION SYSTEMS, INC.",
+        "ueis": [
+          "S4ZAF64LJ1G3",
+          "MWDRZJ2ZVPV7",
+          "LDUJLC79HNK5",
+          "G396FGQMKLX8"
+        ],
+        "counts": [
+          73,
+          6,
+          1,
+          1
+        ]
+      },
+      {
+        "raw_name": "ARROW ELECTRONICS, INC.",
+        "ueis": [
+          "CD2FBNHK3ME1",
+          "WB89LWFY4VV1",
+          "JDN6V9MECJD5",
+          "YA36Z8R2H4T4"
+        ],
+        "counts": [
+          15,
+          3,
+          2,
+          2
+        ]
+      },
+      {
+        "raw_name": "CSRA LLC",
+        "ueis": [
+          "Z2L7LVNEAPC3",
+          "L9QSJLNJL9Q3",
+          "H6M7EXCEWV85",
+          "VSFCW25ZAE49"
+        ],
+        "counts": [
+          12,
+          3,
+          3,
+          2
+        ]
+      },
+      {
+        "raw_name": "WESCO DISTRIBUTION, INC.",
+        "ueis": [
+          "YDXMFQLHETN5",
+          "LFEAN2WH5TL6",
+          "MH81M72DE735",
+          "KM3GYQ78P2L6"
+        ],
+        "counts": [
+          5,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "raw_name": "L3HARRIS TECHNOLOGIES, INC.",
+        "ueis": [
+          "QM4EZDV15JL8",
+          "N91TELG3HNB6",
+          "SLVERBJAVNS4",
+          "LB5KVANFKPY7"
+        ],
+        "counts": [
+          60,
+          14,
+          13,
+          9
+        ]
+      },
+      {
+        "raw_name": "EMC CORPORATION",
+        "ueis": [
+          "UGK1N1BHHC94",
+          "T27KNLYMV4V3",
+          "ETMWNWTZ1CW5"
+        ],
+        "counts": [
+          113,
+          21,
+          12
+        ]
+      },
+      {
+        "raw_name": "CDW GOVERNMENT LLC",
+        "ueis": [
+          "PHZDZ8SJ5CM1",
+          "Z75ZJGGHAGD6",
+          "MAXVYG4KCS94"
+        ],
+        "counts": [
+          7381,
+          78,
+          2
+        ]
+      },
+      {
+        "raw_name": "HEWLETT-PACKARD COMPANY",
+        "ueis": [
+          "ME5HM459PVE5",
+          "RWHWRBRSBXN6",
+          "SMLNZ8X9SHE7"
+        ],
+        "counts": [
+          105,
+          2,
+          1
+        ]
+      },
+      {
+        "raw_name": "DYNAMIC SYSTEMS, INC.",
+        "ueis": [
+          "Z78DJNKYJ2K5",
+          "UJ3VH334HF67",
+          "K58FZEC3JB77"
+        ],
+        "counts": [
+          845,
+          1,
+          1
+        ]
+      },
+      {
+        "raw_name": "EATON CORPORATION",
+        "ueis": [
+          "NP3NSFVMNUM3",
+          "MJULHCAW5GL5",
+          "UD5ZGEXYYBZ9"
+        ],
+        "counts": [
+          59,
+          1,
+          1
+        ]
+      },
+      {
+        "raw_name": "MERCURY SYSTEMS, INC.",
+        "ueis": [
+          "FKEYGBAYJLH3",
+          "J51ULX3CNCZ4",
+          "JJRQMU3NZBV5"
+        ],
+        "counts": [
+          12,
+          9,
+          1
+        ]
+      },
+      {
+        "raw_name": "PC SPECIALISTS, INC.",
+        "ueis": [
+          "KCMTUMM6PHD8",
+          "DSS5P86JRLX9",
+          "JL5RNQ2NLLE6"
+        ],
+        "counts": [
+          41,
+          1,
+          1
+        ]
+      },
+      {
+        "raw_name": "BOOZ ALLEN HAMILTON INC.",
+        "ueis": [
+          "JCBMLGPE6Z71",
+          "NQXJBJTPPK65",
+          "KHK6E1JW9C15"
+        ],
+        "counts": [
+          138,
+          1,
+          1
+        ]
+      },
+      {
+        "raw_name": "HEWLETT PACKARD ENTERPRISE COMPANY",
+        "ueis": [
+          "EFAJMASTF3J7",
+          "FYLAKMN93AK5",
+          "RWHWRBRSBXN6"
+        ],
+        "counts": [
+          399,
+          9,
+          8
+        ]
+      },
+      {
+        "raw_name": "KONICA MINOLTA BUSINESS SOLUTIONS U.S.A., INC.",
+        "ueis": [
+          "QKYFZQL5VZ32",
+          "ZMXHU47WJNM8",
+          "CMJLTNPMKWD5"
+        ],
+        "counts": [
+          107,
+          2,
+          2
+        ]
+      },
+      {
+        "raw_name": "WOODWARD, INC.",
+        "ueis": [
+          "QHSALYLFAC85",
+          "E8DPL4KSPGU5",
+          "LHMYXMTCMM76"
+        ],
+        "counts": [
+          37,
+          37,
+          3
+        ]
+      },
+      {
+        "raw_name": "ANIXTER INC.",
+        "ueis": [
+          "TAB4FBLR5UM1",
+          "FDJFUMFC3BK3",
+          "TYQ7WJJPGH91"
+        ],
+        "counts": [
+          9,
+          6,
+          2
+        ]
+      },
+      {
+        "raw_name": "ROCKWELL COLLINS, INC.",
+        "ueis": [
+          "J4Q3HP6NHK47",
+          "SWBKVD2EKUH7",
+          "SGC2TV22X3H3"
+        ],
+        "counts": [
+          40,
+          40,
+          2
+        ]
+      },
+      {
+        "raw_name": "GENERAL DYNAMICS C4 SYSTEMS, INC.",
+        "ueis": [
+          "JHY6AZA6H191",
+          "HTY9WJRUKPK1",
+          "S4ZAF64LJ1G3"
+        ],
+        "counts": [
+          5,
+          2,
+          1
+        ]
+      },
+      {
+        "raw_name": "MOTOROLA SOLUTIONS, INC.",
+        "ueis": [
+          "HFK9V1G2B513",
+          "G2LUXP8ND8U6",
+          "MSJ4JJEFNDE6"
+        ],
+        "counts": [
+          44,
+          7,
+          1
+        ]
+      },
+      {
+        "raw_name": "KEYSIGHT TECHNOLOGIES, INC.",
+        "ueis": [
+          "NKSMXE4H3SX7",
+          "NNMLTBU9E5H3",
+          "QFTTRMNRK5Z8"
+        ],
+        "counts": [
+          27,
+          8,
+          1
+        ]
+      },
+      {
+        "raw_name": "CONCURRENT COMPUTER CORPORATION",
+        "ueis": [
+          "NLFZPPLMAM54",
+          "GQVHFN9CZMV1",
+          "MBBCPNWGCYH5"
+        ],
+        "counts": [
+          14,
+          2,
+          1
+        ]
+      },
+      {
+        "raw_name": "OLYMPUS AMERICA INC.",
+        "ueis": [
+          "P159MYHGYMX5",
+          "FLWQVLFLMEL3",
+          "LDHXN68FY2E5"
+        ],
+        "counts": [
+          6,
+          4,
+          3
+        ]
+      },
+      {
+        "raw_name": "ARGON ST, INC.",
+        "ueis": [
+          "GCPKYPWTALH8",
+          "LCKATM42Y1M1",
+          "GFLRXRHACMM9"
+        ],
+        "counts": [
+          26,
+          4,
+          3
+        ]
+      },
+      {
+        "raw_name": "RAYTHEON TECHNICAL SERVICES COMPANY LLC",
+        "ueis": [
+          "K1H5GGQPBLV5",
+          "X6H8KDBJJGD9",
+          "CRSME8ZHJQN7"
+        ],
+        "counts": [
+          4,
+          1,
+          1
+        ]
+      },
+      {
+        "raw_name": "BIO-RAD LABORATORIES, INC.",
+        "ueis": [
+          "SSHPDYFGN7J9",
+          "NU6KQEPZHYG8",
+          "KBN4ZDJ47ZB9"
+        ],
+        "counts": [
+          9,
+          2,
+          1
+        ]
+      },
+      {
+        "raw_name": "JACOBS TECHNOLOGY INC.",
+        "ueis": [
+          "K3NWHLVFMKB5",
+          "QCYBSZKSAFV6",
+          "YBKJCWNH1V95"
+        ],
+        "counts": [
+          6,
+          2,
+          1
+        ]
+      },
+      {
+        "raw_name": "BECTON, DICKINSON AND COMPANY",
+        "ueis": [
+          "MM5ZHL8SRFY5",
+          "JJFKLGY7TBJ5",
+          "DP4CNEMUF5F3"
+        ],
+        "counts": [
+          5,
+          3,
+          2
+        ]
+      },
+      {
+        "raw_name": "LAKE SHORE SYSTEMS, INC.",
+        "ueis": [
+          "YELYMYLF82L9",
+          "NCGUFA1VBKE3",
+          "ELC5EVMWFVM8"
+        ],
+        "counts": [
+          23,
+          1,
+          1
+        ]
+      },
+      {
+        "raw_name": "LEIDOS INNOVATIONS CORPORATION",
+        "ueis": [
+          "QF2FPVNBYJM1",
+          "NRCCMBKQ6FD7",
+          "MYKLJHTX3MM7"
+        ],
+        "counts": [
+          8,
+          1,
+          1
+        ]
+      },
+      {
+        "raw_name": "THE BOEING COMPANY",
+        "ueis": [
+          "WZWRLY4G3PL8",
+          "HF1ZJJM2MWB5",
+          "D17AN2KWNJK3"
+        ],
+        "counts": [
+          20,
+          1,
+          1
+        ]
+      },
+      {
+        "raw_name": "L3 AVIATION PRODUCTS, INC.",
+        "ueis": [
+          "JXBJK7KZBLF9",
+          "PMH3MAVQGE44",
+          "S8YGG2HFWZP8"
+        ],
+        "counts": [
+          14,
+          4,
+          1
+        ]
+      },
+      {
+        "raw_name": "BAE SYSTEMS LAND & ARMAMENTS L.P.",
+        "ueis": [
+          "X9S9DMKTAPY9",
+          "VKHNSDHDGP13",
+          "YNJNTZWVC3H6"
+        ],
+        "counts": [
+          3,
+          1,
+          1
+        ]
+      },
+      {
+        "raw_name": "REXEL USA, INC.",
+        "ueis": [
+          "FDEBHRY3KWF3",
+          "EELCNMZG4SQ9",
+          "T6LUAD3FJ1C3"
+        ],
+        "counts": [
+          21,
+          8,
+          1
+        ]
+      },
+      {
+        "raw_name": "NORTH COAST ELECTRIC COMPANY",
+        "ueis": [
+          "H5NQK16G91T1",
+          "DKZFLA1JJ1T8",
+          "ENLWAP4XQUC6"
+        ],
+        "counts": [
+          3,
+          2,
+          1
+        ]
+      },
+      {
+        "raw_name": "PHILIPS NORTH AMERICA LLC",
+        "ueis": [
+          "PWFVQLA9SX78",
+          "T41NB3MDAPZ6",
+          "L39CAPDUSB98"
+        ],
+        "counts": [
+          4,
+          4,
+          1
+        ]
+      },
+      {
+        "raw_name": "EBSCO INDUSTRIES, INC.",
+        "ueis": [
+          "JFYKDEKM4K73",
+          "LXMMX7QSZE39",
+          "LJ9NBNYAFAV3"
+        ],
+        "counts": [
+          3,
+          1,
+          1
+        ]
+      },
+      {
+        "raw_name": "SIEMENS INDUSTRY, INC.",
+        "ueis": [
+          "JZXZSN3BBL98",
+          "F9ZENVS243U3",
+          "MCSMGXNC7YA5"
+        ],
+        "counts": [
+          4,
+          1,
+          1
+        ]
+      },
+      {
+        "raw_name": "LEIDOS INC",
+        "ueis": [
+          "SK7ZAANKL1T6",
+          "KTMAJCY6JXM3",
+          "G1JYD7L3V8B7"
+        ],
+        "counts": [
+          11,
+          6,
+          1
+        ]
+      },
+      {
+        "raw_name": "PANAMERICA COMPUTERS, INC.",
+        "ueis": [
+          "DPQEDJ6CXZM5",
+          "HBMLZLJ3KQF5"
+        ],
+        "counts": [
+          1729,
+          196
+        ]
+      },
+      {
+        "raw_name": "GOVCONNECTION, INC.",
+        "ueis": [
+          "GLGWMH9BMP76",
+          "E2X5LT2W8T57"
+        ],
+        "counts": [
+          1752,
+          10
+        ]
+      },
+      {
+        "raw_name": "EXELIS INC.",
+        "ueis": [
+          "N91TELG3HNB6",
+          "DMMUDNRTD773"
+        ],
+        "counts": [
+          4,
+          1
+        ]
+      },
+      {
+        "raw_name": "INTELLIGENT DECISIONS, INC.",
+        "ueis": [
+          "K5TBNBLVG1F8",
+          "EVQMDJBD2LL9"
+        ],
+        "counts": [
+          1623,
+          2
+        ]
+      },
+      {
+        "raw_name": "PCMG, INC.",
+        "ueis": [
+          "Y1J2B8WV2VC5",
+          "LAREGMTRNJ55"
+        ],
+        "counts": [
+          906,
+          90
+        ]
+      },
+      {
+        "raw_name": "ORACLE AMERICA, INC.",
+        "ueis": [
+          "HE98WLUBNW88",
+          "FKUCYGRK1EQ3"
+        ],
+        "counts": [
+          18,
+          5
+        ]
+      },
+      {
+        "raw_name": "AVAYA FEDERAL SOLUTIONS, INC.",
+        "ueis": [
+          "NML3JFNVEAW6",
+          "D4PHSMM4R125"
+        ],
+        "counts": [
+          89,
+          30
+        ]
+      },
+      {
+        "raw_name": "STRYKER CORPORATION",
+        "ueis": [
+          "PJJ1HJS3LQD6",
+          "JFHWFWDCVDV8"
+        ],
+        "counts": [
+          1,
+          1
+        ]
+      },
+      {
+        "raw_name": "ELMA ELECTRONIC INC.",
+        "ueis": [
+          "PGWNKJF89FV5",
+          "FL5CPD2Z71Z7"
+        ],
+        "counts": [
+          37,
+          11
+        ]
+      },
+      {
+        "raw_name": "SIEMENS GOVERNMENT TECHNOLOGIES, INC.",
+        "ueis": [
+          "R2VGJTEMCNL5",
+          "V25NZRTBX3R3"
+        ],
+        "counts": [
+          15,
+          1
+        ]
+      },
+      {
+        "raw_name": "BECKMAN COULTER, INC.",
+        "ueis": [
+          "Z4DRFM3LMJB8",
+          "PU6HHX2R11C7"
+        ],
+        "counts": [
+          5,
+          2
+        ]
+      },
+      {
+        "raw_name": "VARIAN MEDICAL SYSTEMS, INC.",
+        "ueis": [
+          "PHMMJPNSNZV5",
+          "MJJDZ9S82GA3"
+        ],
+        "counts": [
+          9,
+          2
+        ]
+      },
+      {
+        "raw_name": "BAYER HEALTHCARE LLC",
+        "ueis": [
+          "DAVLZMN2HEP5",
+          "NZD7JL1Y9LX3"
+        ],
+        "counts": [
+          5,
+          1
+        ]
+      },
+      {
+        "raw_name": "SCANTRON CORPORATION",
+        "ueis": [
+          "LX9CPJGMFUP9",
+          "X6SLNW3S8KR1"
+        ],
+        "counts": [
+          57,
+          4
+        ]
+      },
+      {
+        "raw_name": "JANTECH SERVICES, INC.",
+        "ueis": [
+          "JS11FFJLMEF8",
+          "PK4MFBE9HZT6"
+        ],
+        "counts": [
+          1,
+          1
+        ]
+      },
+      {
+        "raw_name": "CAROLINA ADVANCED DIGITAL, INC.",
+        "ueis": [
+          "LG6LJC4VPD93",
+          "HKDWB1A75LE3"
+        ],
+        "counts": [
+          129,
+          1
+        ]
+      },
+      {
+        "raw_name": "SPATIAL INTEGRATED SYSTEMS, INC.",
+        "ueis": [
+          "PR5MRFMCH3W7",
+          "UHW1TV9MWFK4"
+        ],
+        "counts": [
+          31,
+          1
+        ]
+      },
+      {
+        "raw_name": "TERADYNE, INC.",
+        "ueis": [
+          "MXAYK8PM3D99",
+          "PQA5MF4SGFC9"
+        ],
+        "counts": [
+          6,
+          5
+        ]
+      },
+      {
+        "raw_name": "ANIXTER INC",
+        "ueis": [
+          "TYQ7WJJPGH91",
+          "TAB4FBLR5UM1"
+        ],
+        "counts": [
+          6,
+          1
+        ]
+      },
+      {
+        "raw_name": "GENERAL ELECTRIC COMPANY",
+        "ueis": [
+          "DJY8WLTGF577",
+          "E3HYKKLT5ZT1"
+        ],
+        "counts": [
+          30,
+          2
+        ]
+      },
+      {
+        "raw_name": "SAAB SENSIS CORPORATION",
+        "ueis": [
+          "H8MZV6APC1Q7",
+          "JPXMEVKHLYF8"
+        ],
+        "counts": [
+          1,
+          1
+        ]
+      },
+      {
+        "raw_name": "V & Z ENTERPRISES INCORPORATED",
+        "ueis": [
+          "WSWXQKC9KER1",
+          "GLQ1UGJK1HL9"
+        ],
+        "counts": [
+          15,
+          13
+        ]
+      },
+      {
+        "raw_name": "ROCKWELL AUTOMATION, INC.",
+        "ueis": [
+          "U3XBGM4B32Z1",
+          "EBVSJ958HJS1"
+        ],
+        "counts": [
+          42,
+          2
+        ]
+      },
+      {
+        "raw_name": "VIASAT, INC.",
+        "ueis": [
+          "L9Z1ASN3B8E7",
+          "JB7UBCTNM6N5"
+        ],
+        "counts": [
+          59,
+          1
+        ]
+      },
+      {
+        "raw_name": "CAREFUSION SOLUTIONS, LLC",
+        "ueis": [
+          "E99HA2K3YTG8",
+          "JEC9J3E8QBJ7"
+        ],
+        "counts": [
+          32,
+          12
+        ]
+      },
+      {
+        "raw_name": "HPI FEDERAL LLC",
+        "ueis": [
+          "DJRUN4KK1HK3",
+          "SNR6WHNBSGC7"
+        ],
+        "counts": [
+          5382,
+          10
+        ]
+      },
+      {
+        "raw_name": "EASTMAN KODAK COMPANY",
+        "ueis": [
+          "KNQNWMGFVGA3",
+          "EX2TTM9JHVX5"
+        ],
+        "counts": [
+          5,
+          3
+        ]
+      },
+      {
+        "raw_name": "MOOG INC.",
+        "ueis": [
+          "L4ZMKLM4MPL3",
+          "V3MQWEVF1UY3"
+        ],
+        "counts": [
+          21,
+          1
+        ]
+      },
+      {
+        "raw_name": "CSC GOVERNMENT SOLUTIONS LLC",
+        "ueis": [
+          "L2RLDSEQJ5M1",
+          "L9QSJLNJL9Q3"
+        ],
+        "counts": [
+          9,
+          2
+        ]
+      },
+      {
+        "raw_name": "LEXMARK INTERNATIONAL, INC.",
+        "ueis": [
+          "EGG9MAKS16P7",
+          "EP89B44CN3J1"
+        ],
+        "counts": [
+          7,
+          6
+        ]
+      },
+      {
+        "raw_name": "MICROSOFT CORPORATION SITZ IN REDMOND CORPORATION",
+        "ueis": [
+          "FMVPEWNJGLM1",
+          "CL69E7KATK59"
+        ],
+        "counts": [
+          21,
+          1
+        ]
+      },
+      {
+        "raw_name": "DRS NETWORK & IMAGING SYSTEMS, LLC",
+        "ueis": [
+          "MC27B7LGBL34",
+          "NH4LGWUGAMM7"
+        ],
+        "counts": [
+          152,
+          4
+        ]
+      },
+      {
+        "raw_name": "GRAYBAR ELECTRIC COMPANY, INC",
+        "ueis": [
+          "WP8LRX9KNTC4",
+          "RG1SQE6FLRV4"
+        ],
+        "counts": [
+          6,
+          5
+        ]
+      },
+      {
+        "raw_name": "AVID TECHNOLOGY INC",
+        "ueis": [
+          "FNZKNYDRXTK1",
+          "H8JDZJAA7EJ4"
+        ],
+        "counts": [
+          15,
+          2
+        ]
+      },
+      {
+        "raw_name": "SAENATECH CORPORATION",
+        "ueis": [
+          "SUSQC6TDTBK1",
+          "PXK7RB6GMN37"
+        ],
+        "counts": [
+          1,
+          1
+        ]
+      },
+      {
+        "raw_name": "CANON U.S.A., INC.",
+        "ueis": [
+          "DTQLFAEKKCP5",
+          "S7MVM3RTJJM9"
+        ],
+        "counts": [
+          240,
+          1
+        ]
+      },
+      {
+        "raw_name": "2 S 2, INC.",
+        "ueis": [
+          "KRQKQZU3Y5B7",
+          "ZJ81GNDESAN3"
+        ],
+        "counts": [
+          8,
+          6
+        ]
+      },
+      {
+        "raw_name": "FIRELAKE CONSTRUCTION, INC.",
+        "ueis": [
+          "ZYJJM9AQ1VE6",
+          "VNKJEMRCA424"
+        ],
+        "counts": [
+          3,
+          3
+        ]
+      },
+      {
+        "raw_name": "TRIMBLE NAVIGATION LIMITED",
+        "ueis": [
+          "PGCSXZ1SSA68",
+          "XNL9Q2AZ3M47"
+        ],
+        "counts": [
+          7,
+          1
+        ]
+      },
+      {
+        "raw_name": "JSI TELECOM INC.",
+        "ueis": [
+          "QDH4ECM28DM1",
+          "YFRYGKLNPQF7"
+        ],
+        "counts": [
+          36,
+          35
+        ]
+      },
+      {
+        "raw_name": "TELOS CORPORATION",
+        "ueis": [
+          "JLW7WAKPEKD4",
+          "D31CYNG9ULR3"
+        ],
+        "counts": [
+          575,
+          4
+        ]
+      },
+      {
+        "raw_name": "DAISY DATA DISPLAYS INC",
+        "ueis": [
+          "CHDNT5MW6BF6",
+          "N8DXG12KNKF6"
+        ],
+        "counts": [
+          22,
+          5
+        ]
+      },
+      {
+        "raw_name": "COMARK, LLC",
+        "ueis": [
+          "WNDYZX3ALFB1",
+          "C61PPJW2U1G6"
+        ],
+        "counts": [
+          41,
+          2
+        ]
+      },
+      {
+        "raw_name": "SECURITY ENGINEERED MACHINERY CO., INC.",
+        "ueis": [
+          "NSW6L6MM5GS5",
+          "KAX1JSXJKQ37"
+        ],
+        "counts": [
+          109,
+          1
+        ]
+      },
+      {
+        "raw_name": "LIFE TECHNOLOGIES CORPORATION",
+        "ueis": [
+          "EB8QTC6575E7",
+          "JXAKAG32BVN4"
+        ],
+        "counts": [
+          27,
+          1
+        ]
+      },
+      {
+        "raw_name": "VAISALA INC.",
+        "ueis": [
+          "FCMPZKYCYKH5",
+          "FM3KCUXJ2J61"
+        ],
+        "counts": [
+          26,
+          1
+        ]
+      },
+      {
+        "raw_name": "WILDFLOWER INTERNATIONAL, LTD.",
+        "ueis": [
+          "TK17ZGD5YNA9",
+          "NRMVHZ1M6MN4"
+        ],
+        "counts": [
+          1296,
+          1
+        ]
+      },
+      {
+        "raw_name": "PITNEY BOWES INC.",
+        "ueis": [
+          "CHTAKEYGS386",
+          "RRZYENJ15MZ8"
+        ],
+        "counts": [
+          6,
+          1
+        ]
+      },
+      {
+        "raw_name": "CITRIX SYSTEMS, INC.",
+        "ueis": [
+          "ND4YRE2B35N5",
+          "X5WUD1GF3BR7"
+        ],
+        "counts": [
+          5,
+          1
+        ]
+      },
+      {
+        "raw_name": "PROGENY SYSTEMS CORPORATION",
+        "ueis": [
+          "MU3CM1145E44",
+          "MVVAKQUHTTQ6"
+        ],
+        "counts": [
+          60,
+          2
+        ]
+      },
+      {
+        "raw_name": "HP INC.",
+        "ueis": [
+          "ME5HM459PVE5",
+          "SMLNZ8X9SHE7"
+        ],
+        "counts": [
+          31,
+          2
+        ]
+      },
+      {
+        "raw_name": "CAMERON TECHNOLOGIES US, INC.",
+        "ueis": [
+          "RLYHS582JDW8",
+          "FJMAMQK89ZB8"
+        ],
+        "counts": [
+          8,
+          1
+        ]
+      },
+      {
+        "raw_name": "LGS INNOVATIONS LLC",
+        "ueis": [
+          "CRJJZA4KFZ42",
+          "SE7GBR9AR4Y1"
+        ],
+        "counts": [
+          24,
+          1
+        ]
+      },
+      {
+        "raw_name": "ABACO SYSTEMS, INC.",
+        "ueis": [
+          "WLHBRDWEW7T4",
+          "QTJAC9ZRL667"
+        ],
+        "counts": [
+          47,
+          2
+        ]
+      },
+      {
+        "raw_name": "BETIS GROUP, INC.",
+        "ueis": [
+          "FT8BRQDY67H8",
+          "JJGZF3DNMD96"
+        ],
+        "counts": [
+          7,
+          2
+        ]
+      },
+      {
+        "raw_name": "SYNNEX CORPORATION",
+        "ueis": [
+          "LYXBWDHL4VR9",
+          "EZJVKZAMCBB4"
+        ],
+        "counts": [
+          256,
+          48
+        ]
+      },
+      {
+        "raw_name": "LEXMARK INTERNATIONAL INC",
+        "ueis": [
+          "EP89B44CN3J1",
+          "EGG9MAKS16P7"
+        ],
+        "counts": [
+          144,
+          12
+        ]
+      },
+      {
+        "raw_name": "AVID TECHNOLOGY, INC.",
+        "ueis": [
+          "FNZKNYDRXTK1",
+          "H8JDZJAA7EJ4"
+        ],
+        "counts": [
+          14,
+          2
+        ]
+      },
+      {
+        "raw_name": "HAMILTON SUNDSTRAND CORPORATION",
+        "ueis": [
+          "JC42EBJ5NFJ1",
+          "MKRCHD2CBAY1"
+        ],
+        "counts": [
+          22,
+          4
+        ]
+      },
+      {
+        "raw_name": "RED ORANGE NORTH AMERICA",
+        "ueis": [
+          "MA6VCFFQ4596",
+          "MWFGYJ5MJ878"
+        ],
+        "counts": [
+          3,
+          2
+        ]
+      },
+      {
+        "raw_name": "BELL AND HOWELL, LLC",
+        "ueis": [
+          "ENNMWN7J4QN5",
+          "HJWWVLNJB9J6"
+        ],
+        "counts": [
+          6,
+          1
+        ]
+      },
+      {
+        "raw_name": "GENERAL DYNAMICS INFORMATION TECHNOLOGY, INC.",
+        "ueis": [
+          "SMNWM6HN79X5",
+          "ZSFKCCEB18G4"
+        ],
+        "counts": [
+          172,
+          77
+        ]
+      },
+      {
+        "raw_name": "IDEAL SYSTEM SOLUTIONS, INC.",
+        "ueis": [
+          "TC3NF4XRLGV7",
+          "HW7XENNCAWL5"
+        ],
+        "counts": [
+          129,
+          1
+        ]
+      },
+      {
+        "raw_name": "CURTISS-WRIGHT CONTROLS ELECTRONIC SYSTEMS, INC.",
+        "ueis": [
+          "E9KNWFM7ESD1",
+          "TA4KL4KMJNP1"
+        ],
+        "counts": [
+          24,
+          1
+        ]
+      },
+      {
+        "raw_name": "VIAVI SOLUTIONS INC.",
+        "ueis": [
+          "WNLFTYYA2F28",
+          "JSPPKLQMZMJ9"
+        ],
+        "counts": [
+          5,
+          2
+        ]
+      },
+      {
+        "raw_name": "CUBIC DEFENSE APPLICATIONS, INC.",
+        "ueis": [
+          "N7NUHPAKNME8",
+          "QB4YMGYNL4R3"
+        ],
+        "counts": [
+          21,
+          1
+        ]
+      },
+      {
+        "raw_name": "CELARTEM, INC.",
+        "ueis": [
+          "JE8RHLN96NP9",
+          "LAJGHB1WPYC3"
+        ],
+        "counts": [
+          2,
+          1
+        ]
+      },
+      {
+        "raw_name": "HUNTINGTON INGALLS INCORPORATED",
+        "ueis": [
+          "C3NLZNSMU254",
+          "WMXDDH6HJNA5"
+        ],
+        "counts": [
+          3,
+          2
+        ]
+      },
+      {
+        "raw_name": "ARGON CORP.",
+        "ueis": [
+          "X8JEWU51WR69",
+          "HPL8EK7FKDA3"
+        ],
+        "counts": [
+          9,
+          1
+        ]
+      },
+      {
+        "raw_name": "ECI DEFENSE GROUP, INC.",
+        "ueis": [
+          "ED16VKVTCHC8",
+          "CW7HJMUQB621"
+        ],
+        "counts": [
+          25,
+          4
+        ]
+      },
+      {
+        "raw_name": "GATR TECHNOLOGIES, INC.",
+        "ueis": [
+          "TNMNYWRNFDK9",
+          "EDRPWMZNBE53"
+        ],
+        "counts": [
+          7,
+          1
+        ]
+      },
+      {
+        "raw_name": "FORCEPOINT FEDERAL LLC",
+        "ueis": [
+          "G4J1RJ94JBU1",
+          "MNL5VYKA4B98"
+        ],
+        "counts": [
+          35,
+          1
+        ]
+      },
+      {
+        "raw_name": "UNIVERSITY OF CHICAGO, THE",
+        "ueis": [
+          "YUCMDPR2MAQ4",
+          "ZUE9HKT2CLC9"
+        ],
+        "counts": [
+          2,
+          1
+        ]
+      },
+      {
+        "raw_name": "THERMO ELECTRON NORTH AMERICA LLC",
+        "ueis": [
+          "CMBPHDRMCS51",
+          "KGXJZFLXJ3H5"
+        ],
+        "counts": [
+          8,
+          2
+        ]
+      },
+      {
+        "raw_name": "ILLINOIS TOOL WORKS INC.",
+        "ueis": [
+          "CM3YHLY12DF5",
+          "FGH1NL69G6L5"
+        ],
+        "counts": [
+          11,
+          1
+        ]
+      },
+      {
+        "raw_name": "SONY ELECTRONICS INC.",
+        "ueis": [
+          "ZGB7NG6VJDL5",
+          "Q6BJGYCLVHA3"
+        ],
+        "counts": [
+          2,
+          1
+        ]
+      },
+      {
+        "raw_name": "ADVANCED ACOUSTIC CONCEPTS, LLC",
+        "ueis": [
+          "CGL3BBHE4LD5",
+          "KG6UMKVX2DZ2"
+        ],
+        "counts": [
+          9,
+          1
+        ]
+      },
+      {
+        "raw_name": "DIVERSIFIED DISTRIBUTORS INTERNATIONAL, INC.",
+        "ueis": [
+          "K66PLKUGND35",
+          "PF38B84BUHD9"
+        ],
+        "counts": [
+          30,
+          2
+        ]
+      },
+      {
+        "raw_name": "VITEC, INC.",
+        "ueis": [
+          "GG6DK2GLRYB6",
+          "YBAHNUERCEC1"
+        ],
+        "counts": [
+          8,
+          3
+        ]
+      },
+      {
+        "raw_name": "KVH INDUSTRIES, INC.",
+        "ueis": [
+          "HCJET1PHKSZ1",
+          "T6FJQXNNZ5L8"
+        ],
+        "counts": [
+          2,
+          1
+        ]
+      },
+      {
+        "raw_name": "UNIVERSITY OF WISCONSIN SYSTEM",
+        "ueis": [
+          "LCLSJAGTNZQ7",
+          "HVEKL7MENUK1"
+        ],
+        "counts": [
+          3,
+          1
+        ]
+      },
+      {
+        "raw_name": "NEU TECHNOLOGIES GROUP, LLC",
+        "ueis": [
+          "MHSKMC68NLN3",
+          "EJM6K315JXH5"
+        ],
+        "counts": [
+          5,
+          1
+        ]
+      },
+      {
+        "raw_name": "SD SOLUTIONS LLC",
+        "ueis": [
+          "MKRMA48ZFBY3",
+          "LMY7MRR6V7Z3"
+        ],
+        "counts": [
+          2,
+          1
+        ]
+      },
+      {
+        "raw_name": "BAE SYSTEMS CONTROLS INC.",
+        "ueis": [
+          "HC3ZN7CJFGT1",
+          "FMK3LU77W4G6"
+        ],
+        "counts": [
+          6,
+          3
+        ]
+      },
+      {
+        "raw_name": "SYPRIS ELECTRONICS, LLC",
+        "ueis": [
+          "NN5HLB6MZCG9",
+          "SQWNTTYHLA58"
+        ],
+        "counts": [
+          1,
+          1
+        ]
+      },
+      {
+        "raw_name": "TRIMBLE INC.",
+        "ueis": [
+          "PGCSXZ1SSA68",
+          "XNL9Q2AZ3M47"
+        ],
+        "counts": [
+          6,
+          4
+        ]
+      },
+      {
+        "raw_name": "OWL CYBER DEFENSE SOLUTIONS, LLC",
+        "ueis": [
+          "T9NJJ77KV7N3",
+          "DG87J5EZLC94"
+        ],
+        "counts": [
+          9,
+          4
+        ]
+      },
+      {
+        "raw_name": "DECISIVE ANALYTICS CORPORATION",
+        "ueis": [
+          "MFA3QKYKLL31",
+          "YS5LRD4F7YP4"
+        ],
+        "counts": [
+          2,
+          1
+        ]
+      },
+      {
+        "raw_name": "KI HO MILITARY ACQUISITION CONSULTING, INC.",
+        "ueis": [
+          "U61MKRKMVQN3",
+          "QGQ1PMLTGFQ8"
+        ],
+        "counts": [
+          11,
+          1
+        ]
+      },
+      {
+        "raw_name": "IRON MOUNTAIN INFORMATION MANAGEMENT, LLC",
+        "ueis": [
+          "KJB1WJG4NXS7",
+          "GEVJNJJNNPQ8"
+        ],
+        "counts": [
+          71,
+          1
+        ]
+      },
+      {
+        "raw_name": "EPSILON SYSTEMS SOLUTIONS, INC.",
+        "ueis": [
+          "MYJHF1S2HGV5",
+          "JNCSLJ1D5975"
+        ],
+        "counts": [
+          1,
+          1
+        ]
+      },
+      {
+        "raw_name": "POWELL ELECTRONICS INC.",
+        "ueis": [
+          "M2XAYNY2P889",
+          "R1N8N7BY1JX5"
+        ],
+        "counts": [
+          2,
+          1
+        ]
+      },
+      {
+        "raw_name": "COURTLAND TECHNOLOGY INDUSTRY INC.",
+        "ueis": [
+          "X1G2X6KYK247",
+          "N99AEBNRPJ37"
+        ],
+        "counts": [
+          6,
+          2
+        ]
+      },
+      {
+        "raw_name": "CHENEGA PROFESSIONAL & TECHNICAL SERVICES, LLC",
+        "ueis": [
+          "ECMESLV5KNB1",
+          "LZZKBLJ4RUK3"
+        ],
+        "counts": [
+          2,
+          1
+        ]
+      },
+      {
+        "raw_name": "CHARON TECHNOLOGIES, LLC",
+        "ueis": [
+          "MAGSSMJYTZX1",
+          "ZHC4PH8HXKQ4"
+        ],
+        "counts": [
+          5,
+          5
+        ]
+      },
+      {
+        "raw_name": "PROLOGIC, INC.",
+        "ueis": [
+          "D798ZKMLHJ33",
+          "NEA7MHMD2B76"
+        ],
+        "counts": [
+          1,
+          1
+        ]
+      },
+      {
+        "raw_name": "SAN BERNARDINO, COUNTY OF",
+        "ueis": [
+          "MRVXQC4UA6D4",
+          "MLBXC2C6AEX1"
+        ],
+        "counts": [
+          1,
+          1
+        ]
+      },
+      {
+        "raw_name": "SAAB DEFENSE AND SECURITY USA LLC",
+        "ueis": [
+          "H5FMLSGM29L1",
+          "V8WNWUXMHEP5"
+        ],
+        "counts": [
+          2,
+          1
+        ]
+      },
+      {
+        "raw_name": "BEAR COMMUNICATIONS, INC",
+        "ueis": [
+          "WKQAZQZFG6K3",
+          "KEDVMPDKE9U9"
+        ],
+        "counts": [
+          1,
+          1
+        ]
+      },
+      {
+        "raw_name": "COPPER RIVER TECHNOLOGIES, LLC",
+        "ueis": [
+          "XRDNJ63CCP56",
+          "Z2KVYMEX3ZN4"
+        ],
+        "counts": [
+          4,
+          3
+        ]
+      },
+      {
+        "raw_name": "MIDWEST TECHNICAL SALES INC",
+        "ueis": [
+          "XT2LRJDDCLC5",
+          "VH16WZ7J2LY5"
+        ],
+        "counts": [
+          1,
+          1
+        ]
+      },
+      {
+        "raw_name": "A.M.S. NETWORK, LLC",
+        "ueis": [
+          "E4FCE9AKZ9P9",
+          "P3MDGR69GJM8"
+        ],
+        "counts": [
+          5,
+          2
+        ]
+      },
+      {
+        "raw_name": "ABBOTT LABORATORIES",
+        "ueis": [
+          "NH3LDK8CFAK7",
+          "EF9EAJ1MF6U3"
+        ],
+        "counts": [
+          1,
+          1
+        ]
+      },
+      {
+        "raw_name": "MICROSOFT CORPORATION",
+        "ueis": [
+          "FMVPEWNJGLM1",
+          "XHB1K9HA7VQ1"
+        ],
+        "counts": [
+          17,
+          1
+        ]
+      },
+      {
+        "raw_name": "CACI-ISS, INC.",
+        "ueis": [
+          "EPPXR2P9KYU6",
+          "U3VEYMBJ35L8"
+        ],
+        "counts": [
+          3,
+          1
+        ]
+      },
+      {
+        "raw_name": "EXPERIAN INFORMATION SOLUTIONS, INC",
+        "ueis": [
+          "E17NYCW47M57",
+          "UQ31MGUMQNS5"
+        ],
+        "counts": [
+          3,
+          1
+        ]
+      },
+      {
+        "raw_name": "MID-ATLANTIC COMPUTER SERVICES, INC.",
+        "ueis": [
+          "GHTVLPBYFPV4",
+          "WLTGMTKRCY68"
+        ],
+        "counts": [
+          37,
+          2
+        ]
+      },
+      {
+        "raw_name": "MERGE HEALTHCARE SOLUTIONS INC.",
+        "ueis": [
+          "GJXQJC5NSUN3",
+          "QDQZBA4B6FM3"
+        ],
+        "counts": [
+          1,
+          1
+        ]
+      },
+      {
+        "raw_name": "MEDTRONIC USA, INC.",
+        "ueis": [
+          "K5G5VSTYCNN4",
+          "GPRGARK3K6L8"
+        ],
+        "counts": [
+          3,
+          2
+        ]
+      },
+      {
+        "raw_name": "OVERWATCH SYSTEMS, LTD.",
+        "ueis": [
+          "ZKRUZKMHDAV1",
+          "DB37NYYU3K95"
+        ],
+        "counts": [
+          5,
+          3
+        ]
+      },
+      {
+        "raw_name": "SIEMENS HEALTHCARE DIAGNOSTICS INC.",
+        "ueis": [
+          "GC14SNHB3JN1",
+          "R9ZPM8QQKK66"
+        ],
+        "counts": [
+          9,
+          1
+        ]
+      },
+      {
+        "raw_name": "QINETIQ INC.",
+        "ueis": [
+          "D59PAWL7C3J5",
+          "HT58ZMDJJEF3"
+        ],
+        "counts": [
+          2,
+          1
+        ]
+      },
+      {
+        "raw_name": "CONEXUS, INC.",
+        "ueis": [
+          "YG1PQ8CKWDD5",
+          "VD6UN5WCCWQ6"
+        ],
+        "counts": [
+          1,
+          1
+        ]
+      },
+      {
+        "raw_name": "CACI NSS, INC.",
+        "ueis": [
+          "EELEC8QCC3N8",
+          "Y9CDLHK3A125"
+        ],
+        "counts": [
+          2,
+          1
+        ]
+      },
+      {
+        "raw_name": "UMYUAQ TECHNOLOGY, LLC",
+        "ueis": [
+          "J3JQPCE9H887",
+          "XTBHXXA5ZLF5"
+        ],
+        "counts": [
+          81,
+          1
+        ]
+      },
+      {
+        "raw_name": "VECNA TECHNOLOGIES, INC.",
+        "ueis": [
+          "DRVPK616LSR4",
+          "ZG41XH8ABL91"
+        ],
+        "counts": [
+          2,
+          1
+        ]
+      },
+      {
+        "raw_name": "CURTISS-WRIGHT FLOW CONTROL CORPORATION",
+        "ueis": [
+          "NYGUEDY27AM8",
+          "GA4GHJVX7NT3"
+        ],
+        "counts": [
+          1,
+          1
+        ]
+      },
+      {
+        "raw_name": "FLIR COMMERCIAL SYSTEMS, INC",
+        "ueis": [
+          "DSC6J71L8HY4",
+          "UNGJTMCSDB81"
+        ],
+        "counts": [
+          1,
+          1
+        ]
+      },
+      {
+        "raw_name": "EVOQUA WATER TECHNOLOGIES LLC",
+        "ueis": [
+          "C4JPCM9T9X69",
+          "HA3GWLK3JK58"
+        ],
+        "counts": [
+          2,
+          1
+        ]
+      },
+      {
+        "raw_name": "KPMG LLP",
+        "ueis": [
+          "WKAPYA4P7GG6",
+          "MAA3SBSDQVM1"
+        ],
+        "counts": [
+          3,
+          2
+        ]
+      },
+      {
+        "raw_name": "JOHNSON CONTROLS INC",
+        "ueis": [
+          "Z2N8C3NL8FW5",
+          "GCLJF687K9A3"
+        ],
+        "counts": [
+          2,
+          1
+        ]
+      },
+      {
+        "raw_name": "MERCURY SYSTEMS - TRUSTED MISSION SOLUTIONS INC.",
+        "ueis": [
+          "Q9D3LSUU5BN6",
+          "K85XUK3ARLX6"
+        ],
+        "counts": [
+          8,
+          6
+        ]
+      },
+      {
+        "raw_name": "NCS PEARSON, INC.",
+        "ueis": [
+          "GHN5LE3949H9",
+          "HKD8ENC9F271"
+        ],
+        "counts": [
+          1,
+          1
+        ]
+      },
+      {
+        "raw_name": "MID-COAST ELECTRIC SUPPLY, INC.",
+        "ueis": [
+          "GL4EA29B1RE8",
+          "MP7VY1289V49"
+        ],
+        "counts": [
+          2,
+          1
+        ]
+      },
+      {
+        "raw_name": "CENGAGE LEARNING, INC.",
+        "ueis": [
+          "GVF9XNR1HF79",
+          "DNXNHWE7TKM9"
+        ],
+        "counts": [
+          3,
+          1
+        ]
+      },
+      {
+        "raw_name": "SBC GLOBAL SERVICES, INC.",
+        "ueis": [
+          "VV4FMBLKNFC5",
+          "WQZXNEWV4A98"
+        ],
+        "counts": [
+          3,
+          1
+        ]
+      },
+      {
+        "raw_name": "LOCKHEED MARTIN SERVICES, INC.",
+        "ueis": [
+          "ZQ8SJ4B5AM73",
+          "G9CZJMSCRR28"
+        ],
+        "counts": [
+          1,
+          1
+        ]
+      },
+      {
+        "raw_name": "TEXTRON SYSTEMS CORPORATION",
+        "ueis": [
+          "SNJ8YY61GB95",
+          "R9MCJ6BRC8M7"
+        ],
+        "counts": [
+          3,
+          1
+        ]
+      },
+      {
+        "raw_name": "MERCURY MISSION SYSTEMS, LLC",
+        "ueis": [
+          "GELNG3K35FA5",
+          "NJASN4TJRNU1"
+        ],
+        "counts": [
+          10,
+          1
+        ]
+      },
+      {
+        "raw_name": "CACI NSS, LLC",
+        "ueis": [
+          "EELEC8QCC3N8",
+          "GS59ABNVD6N7"
+        ],
+        "counts": [
+          5,
+          1
+        ]
+      },
+      {
+        "raw_name": "UNIVERSITY OF FLORIDA",
+        "ueis": [
+          "NNFQH1JAPEP3",
+          "DDB5DRMCMJM7"
+        ],
+        "counts": [
+          2,
+          1
+        ]
+      },
+      {
+        "raw_name": "LUMEN TECHNOLOGIES GOVERNMENT SOLUTIONS, INC.",
+        "ueis": [
+          "R649KR5942C3",
+          "LL22S1ELLY93"
+        ],
+        "counts": [
+          6,
+          3
+        ]
+      },
+      {
+        "raw_name": "TD SYNNEX CORPORATION",
+        "ueis": [
+          "LYXBWDHL4VR9",
+          "EZJVKZAMCBB4"
+        ],
+        "counts": [
+          45,
+          18
+        ]
+      },
+      {
+        "raw_name": "CERTARA USA INC",
+        "ueis": [
+          "FS75C834WEF4",
+          "HWLYE4KDVHB6"
+        ],
+        "counts": [
+          2,
+          1
+        ]
+      },
+      {
+        "raw_name": "SCIENCE APPLICATIONS INTERNATIONAL CORP",
+        "ueis": [
+          "MMLKPW9JLX64",
+          "MA1VZ6667CB1"
+        ],
+        "counts": [
+          2,
+          1
+        ]
+      }
+    ]
+  },
+  "organisations": {
+    "office_code_present_rate": 1.0,
+    "distinct_office_name_strings_before": 2802,
+    "office_entities_after": 3096,
+    "office_name_strings_shared_by_several_offices": 123,
+    "offices_sharing_a_name": 416,
+    "office_name_collision_note": "There are fewer distinct office NAME strings than office CODES: the same name is reused across offices. Resolving on name would have merged genuinely separate buying organisations, which is why the authority here is awarding_office_code.",
+    "offices_with_multiple_name_spellings": 0,
+    "office_name_variants": [],
+    "distinct_sub_agency_name_strings_before": 166,
+    "sub_agency_entities_after": 175,
+    "sub_agency_collapse_rate": -0.0542,
+    "sub_agencies_with_multiple_name_spellings": 1,
+    "sub_agency_name_variants": [
+      {
+        "sub_agency_code": "2099",
+        "canonical": "",
+        "variant_count": 2,
+        "variants": [
+          "",
+          "Treasury Common Services Center"
+        ]
+      }
+    ],
+    "note": "Codes are authoritative and present on effectively every record, so organisations resolve on code rather than on name similarity. The account grain is the awarding OFFICE within its sub-agency."
+  },
+  "validation": {
+    "available": true,
+    "method": "parent UEI held back from matching and used only to grade the same-parent candidates our name similarity flagged",
+    "entities_with_known_parent": 11201,
+    "true_multi_uei_parent_families": 367,
+    "true_same_parent_pairs": 3148,
+    "flagged_pairs": 1488,
+    "scorable_flagged_pairs": 1486,
+    "true_positives": 765,
+    "false_positives": 721,
+    "false_negatives": 2383,
+    "same_parent_precision": 0.5148,
+    "same_parent_recall": 0.243,
+    "normalisation_agreement_with_usaspending": 0.8886,
+    "reading": "Precision says how trustworthy our flagged same-parent pairs are. Recall is expected to be low: identical normalised names catch 'ACME CORP' vs 'ACME INC', not a parent owning a differently named subsidiary. Low recall here is a property of the rule, stated rather than hidden."
+  },
+  "method": {
+    "normalisation": "uppercase; & -> AND; punctuation to space; leading THE dropped; DBA/FKA/AKA split off; token abbreviations expanded; legal-form suffixes removed (legal forms only - GROUP, SYSTEMS, TECHNOLOGIES are kept)",
+    "similarity": "token-set ratio over difflib.SequenceMatcher",
+    "blocking": "inverted token index, tokens with document frequency <= 400",
+    "authority": "recipient_uei for vendors; awarding_office_code within awarding_sub_agency_code for organisations",
+    "never_merged": "two distinct UEIs are never merged; they are reported as same-parent candidates and graded against recipient_parent_uei"
+  }
+}

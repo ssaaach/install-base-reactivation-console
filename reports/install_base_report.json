@@ -1,0 +1,493 @@
+{
+  "generated_at": "2026-09-21T21:37:18.006812+00:00",
+  "as_of": "2026-09-21",
+  "framing": "US federal enterprise-storage procurement, used as a PROXY for install-base dynamics. This is not any vendor's install base.",
+  "account_grain": "awarding office within sub-agency (REAL, from awarding_office_code)",
+  "accounts_without_office_code": 0,
+  "awards_in_scope": 270924,
+  "awards_out_of_scope": 0,
+  "accounts": 3096,
+  "total_obligated_usd": 74781892883.85,
+  "dormant_accounts": 2086,
+  "dormancy_rate": 0.6738,
+  "dormancy_months": 24,
+  "dormancy_by_threshold": {
+    "12m": 2418,
+    "18m": 2201,
+    "36m": 1855
+  },
+  "dormancy_sensitivity": {
+    "scopes": {
+      "all_in_scope_codes": {
+        "accounts": 3096,
+        "median_months_idle": 60.3,
+        "dormant_12m": 0.7791,
+        "dormant_18m": 0.7109,
+        "dormant_24m": 0.6738,
+        "dormant_36m": 0.5982
+      },
+      "hardware_core_only": {
+        "accounts": 2013,
+        "median_months_idle": 71.7,
+        "dormant_12m": 0.8922,
+        "dormant_18m": 0.8321,
+        "dormant_24m": 0.7854,
+        "dormant_36m": 0.6925
+      },
+      "storage_core_maintenance_saas": {
+        "accounts": 2313,
+        "median_months_idle": 65.2,
+        "dormant_12m": 0.8591,
+        "dormant_18m": 0.7942,
+        "dormant_24m": 0.7445,
+        "dormant_36m": 0.661
+      },
+      "modern_era_codes_only": {
+        "accounts": 1553,
+        "median_months_idle": 14.0,
+        "dormant_12m": 0.5827,
+        "dormant_18m": 0.4533,
+        "dormant_24m": 0.3876,
+        "dormant_36m": 0.2453
+      }
+    },
+    "reading": "The headline dormancy rate uses all in-scope codes. It is the highest of the four because the legacy 70-series covered more ground than the modern slices we carry forward, so offices leave scope at FY2021 without changing behaviour. The modern-era-only figure is the cleanest read of recent behaviour, since every recent award is coded that way; it is much lower. Neither is wrong - they answer different questions, and quoting only the first would be misleading.",
+    "what_is_real": "The ABSENCE of an award in scope is a real observation, not a simulation. What is definitional is the word 'in scope'."
+  },
+  "accounts_by_segment": {
+    "Civilian": 2142,
+    "Defense": 954
+  },
+  "accounts_by_region": {
+    "South": 1579,
+    "West": 565,
+    "Other/Unknown": 394,
+    "Midwest": 339,
+    "Northeast": 219
+  },
+  "accounts_by_cohort_fy": {
+    "2016": 2131,
+    "2017": 302,
+    "2018": 157,
+    "2019": 127,
+    "2020": 165,
+    "2021": 48,
+    "2022": 44,
+    "2023": 34,
+    "2024": 35,
+    "2025": 32,
+    "2026": 21
+  },
+  "channel_shift_accounts": 151,
+  "psc_era_transition": {
+    "break_fiscal_year": 2021,
+    "awards_by_fy_and_era": {
+      "2016": {
+        "legacy": 41023,
+        "unmapped": 806
+      },
+      "2017": {
+        "legacy": 38260,
+        "unmapped": 766
+      },
+      "2018": {
+        "legacy": 34143,
+        "unmapped": 668
+      },
+      "2019": {
+        "legacy": 37725,
+        "unmapped": 514
+      },
+      "2020": {
+        "legacy": 36223,
+        "unmapped": 434
+      },
+      "2021": {
+        "modern": 17794,
+        "legacy": 1355,
+        "unmapped": 848
+      },
+      "2022": {
+        "modern": 13921,
+        "unmapped": 1222,
+        "legacy": 1
+      },
+      "2023": {
+        "modern": 14630,
+        "unmapped": 802
+      },
+      "2024": {
+        "modern": 12128,
+        "unmapped": 1124
+      },
+      "2025": {
+        "modern": 9678,
+        "unmapped": 903
+      },
+      "2026": {
+        "modern": 5468,
+        "unmapped": 488
+      }
+    },
+    "note": "Legacy 70-series/J-D PSC codes fall to zero from FY2022 and the modern 7A-7K/DA-DK codes are absent before FY2019. Every PSC family in scope spans both eras so accounts do not appear to go dormant when the coding changed."
+  },
+  "coverage": {
+    "definition": "A hardware award is covered when a maintenance/support award exists for the same ACCOUNT within +/-365 days of its base action date.",
+    "hardware_awards": 251414,
+    "covered": 150578,
+    "uncovered": 100836,
+    "coverage_rate": 0.5989,
+    "coverage_rate_same_vendor": 0.0817,
+    "uncovered_obligations_usd": 15629586202.119999,
+    "by_segment": {
+      "Civilian": 0.6258,
+      "Defense": 0.5653
+    },
+    "by_channel": {
+      "direct": 0.4197,
+      "partner": 0.6533
+    },
+    "by_fy": {
+      "2016": 0.6909,
+      "2017": 0.749,
+      "2018": 0.6979,
+      "2019": 0.6068,
+      "2020": 0.6093,
+      "2021": 0.4999,
+      "2022": 0.4772,
+      "2023": 0.4549,
+      "2024": 0.4438,
+      "2025": 0.3378,
+      "2026": 0.21
+    },
+    "by_psc_era": {
+      "legacy": {
+        "hardware_awards": 172830,
+        "coverage_rate": 0.6712
+      },
+      "modern": {
+        "hardware_awards": 70009,
+        "coverage_rate": 0.4387
+      },
+      "unmapped": {
+        "hardware_awards": 8575,
+        "coverage_rate": 0.45
+      }
+    },
+    "by_sub_agency_top": {
+      "": 0.0,
+      "Agency for Healthcare Research and Quality": 0.0,
+      "American Battle Monuments Commission": 0.0,
+      "Committee for Purchase from People Who Are Blind or Severely Disabled": 0.0,
+      "Council of the Inspectors General on Integrity and Efficiency": 0.0,
+      "Election Assistance Commission": 0.0,
+      "Department of Commerce": 0.0,
+      "Defense Security Cooperation Agency": 0.0,
+      "Missile Defense Agency": 0.0,
+      "Federal Prison Industries / Unicor": 0.0,
+      "Occupational Safety and Health Review Commission": 0.0,
+      "John F. Kennedy Center for the Performing Arts": 0.0,
+      "Federal Mine Safety and Health Review Commission": 0.0,
+      "Federal Labor Relations Authority": 0.0,
+      "Under Secretary for Farm and Foreign Agricultural Services": 0.0405,
+      "Defense Logistics Agency": 0.0578,
+      "U.S. International Development Finance Corporation": 0.0714,
+      "Natural Resources Conservation Service": 0.0807,
+      "Public Buildings Service": 0.0822,
+      "Mine Safety and Health Administration": 0.0833
+    },
+    "limitation": "Support bought outside the PSC codes in scope, folded into the hardware instrument itself, or delivered under a separate IDV reads as uncovered. This measures separately identifiable maintenance inside the scoped PSC set, not true service attachment. The same-vendor rate is the stricter read."
+  },
+  "renewals": {
+    "lookahead_days": 365,
+    "coterm_window_days": 90,
+    "expiring_contracts": 4005,
+    "expiring_value_usd": 9450906072.650002,
+    "accounts_with_expiry": 568,
+    "coterm_clusters": 546,
+    "contracts_in_coterm_clusters": 3541,
+    "coterm_value_usd": 8465335300.59,
+    "largest_clusters": [
+      {
+        "account_name": "OFC OF ACQUISITION AND GRANTS MGMT",
+        "segment": "Civilian",
+        "contracts": 2,
+        "value": 647335009.0,
+        "first_expiry": "2026-11-30 00:00:00",
+        "last_expiry": "2027-02-28 00:00:00"
+      },
+      {
+        "account_name": "TECHNOLOGY ACQUISITION CENTER NJ (36C10B)",
+        "segment": "Civilian",
+        "contracts": 17,
+        "value": 638514324.0,
+        "first_expiry": "2026-09-24 00:00:00",
+        "last_expiry": "2026-12-04 00:00:00"
+      },
+      {
+        "account_name": "OFC OF ACQUISITION AND GRANTS MGMT",
+        "segment": "Civilian",
+        "contracts": 3,
+        "value": 631505966.0,
+        "first_expiry": "2027-06-30 00:00:00",
+        "last_expiry": "2027-08-31 00:00:00"
+      },
+      {
+        "account_name": "ACQUISITIONS - AQM MOMENTUM",
+        "segment": "Civilian",
+        "contracts": 15,
+        "value": 354686494.0,
+        "first_expiry": "2027-03-31 00:00:00",
+        "last_expiry": "2027-06-14 00:00:00"
+      },
+      {
+        "account_name": "IT OPERATIONS",
+        "segment": "Civilian",
+        "contracts": 12,
+        "value": 341175277.0,
+        "first_expiry": "2027-04-16 00:00:00",
+        "last_expiry": "2027-07-12 00:00:00"
+      },
+      {
+        "account_name": "INFORMATION TECHNOLOGY CONTRACTING DIVISION",
+        "segment": "Civilian",
+        "contracts": 34,
+        "value": 305135241.0,
+        "first_expiry": "2026-09-21 00:00:00",
+        "last_expiry": "2026-11-07 00:00:00"
+      },
+      {
+        "account_name": "IT STRATEGY AND MODERNIZATION",
+        "segment": "Civilian",
+        "contracts": 4,
+        "value": 265137792.0,
+        "first_expiry": "2027-03-31 00:00:00",
+        "last_expiry": "2027-06-29 00:00:00"
+      },
+      {
+        "account_name": "INFORMATION TECHNOLOGY CONTRACTING DIVISION",
+        "segment": "Civilian",
+        "contracts": 15,
+        "value": 256405964.0,
+        "first_expiry": "2026-12-28 00:00:00",
+        "last_expiry": "2027-03-16 00:00:00"
+      },
+      {
+        "account_name": "DEPT OF COMMERCE PTO",
+        "segment": "Civilian",
+        "contracts": 2,
+        "value": 197985439.0,
+        "first_expiry": "2026-09-30 00:00:00",
+        "last_expiry": "2026-12-06 00:00:00"
+      },
+      {
+        "account_name": "SSA OFC OF ACQUISITION  GRANTS",
+        "segment": "Civilian",
+        "contracts": 29,
+        "value": 185041485.0,
+        "first_expiry": "2026-09-29 00:00:00",
+        "last_expiry": "2026-12-05 00:00:00"
+      },
+      {
+        "account_name": "SSA OFC OF ACQUISITION  GRANTS",
+        "segment": "Civilian",
+        "contracts": 8,
+        "value": 154508615.0,
+        "first_expiry": "2027-07-26 00:00:00",
+        "last_expiry": "2027-08-31 00:00:00"
+      },
+      {
+        "account_name": "TECHNOLOGY ACQUISITION CENTER NJ (36C10B)",
+        "segment": "Civilian",
+        "contracts": 11,
+        "value": 148885571.0,
+        "first_expiry": "2027-08-31 00:00:00",
+        "last_expiry": "2027-09-21 00:00:00"
+      },
+      {
+        "account_name": "DEPT OF COMMERCE NOAA",
+        "segment": "Civilian",
+        "contracts": 5,
+        "value": 125148652.0,
+        "first_expiry": "2027-07-19 00:00:00",
+        "last_expiry": "2027-09-08 00:00:00"
+      },
+      {
+        "account_name": "DEPT OF COMMERCE NOAA",
+        "segment": "Civilian",
+        "contracts": 4,
+        "value": 119515478.0,
+        "first_expiry": "2027-05-28 00:00:00",
+        "last_expiry": "2027-08-24 00:00:00"
+      },
+      {
+        "account_name": "INFORMATION TECHNOLOGY COMMODITIES AND TELECOMMUNICATIONS",
+        "segment": "Civilian",
+        "contracts": 2,
+        "value": 113842097.0,
+        "first_expiry": "2027-03-26 00:00:00",
+        "last_expiry": "2027-03-26 00:00:00"
+      }
+    ],
+    "by_month": {
+      "2026-09": 935,
+      "2026-10": 412,
+      "2026-11": 316,
+      "2026-12": 345,
+      "2027-01": 207,
+      "2027-02": 156,
+      "2027-03": 250,
+      "2027-04": 220,
+      "2027-05": 190,
+      "2027-06": 229,
+      "2027-07": 197,
+      "2027-08": 368,
+      "2027-09": 180
+    }
+  },
+  "whitespace": {
+    "peer_group_definition": "segment (Defense/Civilian) x obligation size quintile",
+    "peer_adoption_floor": 0.4,
+    "peer_groups": 10,
+    "whitespace_rows": 5890,
+    "accounts_with_whitespace": 1791,
+    "top_gaps": [
+      {
+        "psc_code": "7035",
+        "psc_description": "INFORMATION TECHNOLOGY SUPPORT EQUIPMENT",
+        "accounts_missing": 733
+      },
+      {
+        "psc_code": "7050",
+        "psc_description": "INFORMATION TECHNOLOGY COMPONENTS",
+        "accounts_missing": 601
+      },
+      {
+        "psc_code": "7021",
+        "psc_description": "INFORMATION TECHNOLOGY CENTRAL PROCESSING UNIT (CPU, COMPUTER, DIGITAL)",
+        "accounts_missing": 587
+      },
+      {
+        "psc_code": "7025",
+        "psc_description": "INFORMATION TECHNOLOGY INPUT/OUTPUT AND STORAGE DEVICES",
+        "accounts_missing": 519
+      },
+      {
+        "psc_code": "7B22",
+        "psc_description": "IT AND TELECOM - COMPUTE: SERVERS (HARDWARE AND PERPETUAL LICENSE SOFTWARE)",
+        "accounts_missing": 403
+      },
+      {
+        "psc_code": "7010",
+        "psc_description": "INFORMATION TECHNOLOGY EQUIPMENT SYSTEM CONFIGURATION",
+        "accounts_missing": 394
+      },
+      {
+        "psc_code": "7042",
+        "psc_description": "MINI AND MICRO COMPUTER CONTROL DEVICES",
+        "accounts_missing": 335
+      },
+      {
+        "psc_code": "D310",
+        "psc_description": "IT AND TELECOM- CYBER SECURITY AND DATA BACKUP",
+        "accounts_missing": 310
+      },
+      {
+        "psc_code": "7B20",
+        "psc_description": "IT AND TELECOM - HIGH PERFORMANCE COMPUTE (HARDWARE AND PERPETUAL LICENSE SOFTWARE)",
+        "accounts_missing": 304
+      },
+      {
+        "psc_code": "D320",
+        "psc_description": "IT AND TELECOM- ANNUAL HARDWARE MAINTENANCE SERVICE PLANS",
+        "accounts_missing": 267
+      },
+      {
+        "psc_code": "J070",
+        "psc_description": "MAINT/REPAIR/REBUILD OF EQUIPMENT- ADP EQUIPMENT/SOFTWARE/SUPPLIES/SUPPORT EQUIPMENT",
+        "accounts_missing": 260
+      },
+      {
+        "psc_code": "7C20",
+        "psc_description": "IT AND TELECOM - DATA CENTER PRODUCTS (HARDWARE AND PERPETUAL LICENSE SOFTWARE)",
+        "accounts_missing": 256
+      },
+      {
+        "psc_code": "7B21",
+        "psc_description": "IT AND TELECOM - COMPUTE: MAINFRAME (HARDWARE AND PERPETUAL LICENSE SOFTWARE)",
+        "accounts_missing": 220
+      },
+      {
+        "psc_code": "7K20",
+        "psc_description": "IT AND TELECOM - STORAGE PRODUCTS (HARDWARE AND PERPETUAL LICENSE SOFTWARE)",
+        "accounts_missing": 202
+      },
+      {
+        "psc_code": "7022",
+        "psc_description": "INFORMATION TECHNOLOGY CENTRAL PROCESSING UNIT (CPU, COMPUTER, HYBRID)",
+        "accounts_missing": 190
+      }
+    ]
+  },
+  "channel": {
+    "rule": {
+      "direct": "recipient NAICS sector in ('31', '32', '33'), or the recipient name contains a maker token ('MANUFACTURING', 'MANUFACTURER', 'INDUSTRIES', 'FABRICAT')",
+      "partner": "recipient NAICS sector in ('42', '44', '45', '51', '54', '56', '23', '81'), or the name contains a trade token such as RESELL/DISTRIBUT/INTEGRAT",
+      "unknown": "neither signal fires - deliberately not guessed",
+      "precedence": "explicit name evidence overrides the NAICS sector",
+      "provenance": "inputs REAL (NAICS, recipient name); classification DERIVED"
+    },
+    "production_field": "channel uses the REAL manufacturer_of_goods flag where present and falls back to the rule only where it is missing; channel_source records which applied for every award.",
+    "error_rate_vs_sam_flag": {
+      "label": "manufacturer_of_goods (recipient's own SAM registration, REAL)",
+      "awards_scored": 269557,
+      "accuracy": 0.5192,
+      "error_rate": 0.4808,
+      "direct_precision": 0.1879,
+      "direct_recall": 0.3387,
+      "confusion": {
+        "rule_direct_truth_manufacturer": 20653,
+        "rule_direct_truth_not": 89271,
+        "rule_partner_truth_manufacturer": 40322,
+        "rule_partner_truth_not": 119311
+      },
+      "base_rate_manufacturer": 0.2262,
+      "majority_class_accuracy": 0.7738,
+      "beats_majority_class": false,
+      "verdict": "The NAICS+name rule the brief specifies does NOT work on this data. It is 51.9% accurate where always guessing the majority class is 77.4% accurate, so the rule is worse than no rule.",
+      "diagnosis": "NAICS on a federal award describes WHAT WAS BOUGHT, not what the recipient is. 82,901 awards in scope carry NAICS 334111 'Electronic Computer Manufacturing' because a computer was purchased - but most were placed with resellers and integrators, not manufacturers. Any rule that reads vendor type out of the purchase's product code inherits that mismatch. This is why the production channel field uses the SAM registration flag instead, and why the rule is reported rather than used."
+    },
+    "awards_by_channel": {
+      "partner": 209551,
+      "direct": 61373
+    },
+    "awards_by_channel_source": {
+      "sam_manufacturer_flag_REAL": 270924
+    },
+    "rule_coverage": 0.995,
+    "entity_instability_rate": 0.0351,
+    "obligation_weighted_instability_rate": 0.1725,
+    "largest_mixed_entities": {
+      "DELL FEDERAL SYSTEMS L.P.": 1624916272,
+      "FCN, INC.": 1589125329,
+      "GOVERNMENT ACQUISITIONS, INC.": 1304736551,
+      "NEW TECH SOLUTIONS, INC.": 1131139621,
+      "INTERNATIONAL BUSINESS MACHINES CORPORATION": 1027767625,
+      "BLUE TECH INC.": 847235162,
+      "CACI, INC. - FEDERAL": 783773652,
+      "NCS TECHNOLOGIES, INC.": 642579945,
+      "GOVSMART, INC.": 346208704,
+      "TRANSOURCE SERVICES CORP.": 318312656,
+      "NORTHROP GRUMMAN SYSTEMS CORPORATION": 300753953,
+      "HEWLETT PACKARD COMPANY (3067)": 265750010,
+      "IGOV TECHNOLOGIES, INC.": 215942585,
+      "HEWLETT PACKARD ENTERPRISE CO": 211210432,
+      "DELL MARKETING L.P.": 180240768,
+      "MICROTECHNOLOGIES LLC": 171167480,
+      "DOCUMENT STORAGE SYSTEMS, INC.": 154269365,
+      "JC TECHNOLOGY INCORPORATED": 142960469,
+      "LOCKHEED MARTIN CORPORATION": 142392576,
+      "GENERAL DYNAMICS MISSION SYSTEMS, INC": 91145846
+    }
+  }
+}

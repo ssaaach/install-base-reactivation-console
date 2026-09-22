@@ -1,0 +1,1494 @@
+<title>Install Base Reactivation Console</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+
+<style>
+/* ------------------------------------------------------------------ tokens
+   Greenbar ledger: the alternating-band accounting register this data
+   actually comes from. Hierarchy from rules and spacing, not cards.
+   Two accents only - ink blue (structural) and oxide red (flag).
+   Chart series colours are the validated categorical ramp.            */
+:root{
+  --paper:#F7F8F6; --band:#ECF0EA; --raise:#FFFFFF;
+  --ink:#161A17; --ink-2:#59625B; --ink-3:#818B83;
+  --rule:#CBD2C8; --rule-2:#E0E5DD;
+  --accent:#3A76BD; --accent-soft:#E4EDF7;
+  --flag:#CC4B22; --flag-soft:#FAE8E2;
+  --good:#1F7A5C; --warn:#A87B10;
+  --s1:#3A76BD; --s2:#CC4B22; --s3:#1F9179; --s4:#A87B10; --s5:#8C5BB0;
+  --grid:#DDE3DA;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --sans:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;
+  --cond:"IBM Plex Sans Condensed","IBM Plex Sans",sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#0F1311; --band:#171C19; --raise:#121714;
+    --ink:#E7EBE6; --ink-2:#98A29A; --ink-3:#6E7872;
+    --rule:#29312B; --rule-2:#1E2520;
+    --accent:#4788C4; --accent-soft:#16242F;
+    --flag:#D55C3C; --flag-soft:#2A1A15;
+    --good:#3E9E7C; --warn:#B08718;
+    --s1:#4788C4; --s2:#D55C3C; --s3:#199F86; --s4:#B08718; --s5:#9670C0;
+    --grid:#232B26;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0F1311; --band:#171C19; --raise:#121714;
+  --ink:#E7EBE6; --ink-2:#98A29A; --ink-3:#6E7872;
+  --rule:#29312B; --rule-2:#1E2520;
+  --accent:#4788C4; --accent-soft:#16242F;
+  --flag:#D55C3C; --flag-soft:#2A1A15;
+  --good:#3E9E7C; --warn:#B08718;
+  --s1:#4788C4; --s2:#D55C3C; --s3:#199F86; --s4:#B08718; --s5:#9670C0;
+  --grid:#232B26;
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--paper); color:var(--ink);
+  font:400 14px/1.5 var(--sans);
+  -webkit-font-smoothing:antialiased;
+  font-variant-numeric:tabular-nums;
+}
+.wrap{max-width:1360px;margin:0 auto;padding-inline:20px}
+@media(max-width:560px){.wrap{padding-inline:16px}}
+
+/* ------------------------------------------------------------- masthead */
+.masthead{border-bottom:2px solid var(--ink);padding-block:18px 10px}
+.mast-row{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:baseline;justify-content:space-between}
+h1{
+  font:700 25px/1.1 var(--cond);margin:0;letter-spacing:-.01em;
+  text-wrap:balance;
+}
+.mast-meta{font:500 11px/1.4 var(--mono);color:var(--ink-2);display:flex;gap:16px;flex-wrap:wrap}
+.mast-meta b{color:var(--ink);font-weight:600}
+
+/* the framing constraint, always on screen, never dismissible */
+.framing{
+  border-left:3px solid var(--flag);background:var(--flag-soft);
+  padding:9px 13px;margin-top:12px;
+  font:400 12.5px/1.45 var(--sans);color:var(--ink);
+}
+.framing b{font-weight:600}
+.framing.ok{border-left-color:var(--good);background:transparent;
+            border:1px solid var(--rule);border-left:3px solid var(--good)}
+
+/* ----------------------------------------------------------------- nav */
+nav{
+  position:sticky;top:env(safe-area-inset-top,0px);z-index:30;
+  background:var(--paper);border-bottom:1px solid var(--rule);
+  margin-top:14px;
+}
+.tabs{display:flex;gap:0;overflow-x:auto;scrollbar-width:thin}
+.tab{
+  appearance:none;background:none;border:0;border-bottom:2px solid transparent;
+  color:var(--ink-2);font:600 11.5px/1 var(--cond);letter-spacing:.07em;
+  text-transform:uppercase;padding:11px 13px;cursor:pointer;white-space:nowrap;
+}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+.tab:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+
+main{padding-block:22px 60px}
+section[hidden]{display:none!important}
+
+/* -------------------------------------------------------------- blocks */
+.lede{color:var(--ink-2);font-size:13px;max-width:78ch;margin:0 0 18px}
+h2{font:700 15px/1.2 var(--cond);letter-spacing:.06em;text-transform:uppercase;
+   margin:30px 0 4px;padding-bottom:6px;border-bottom:1px solid var(--ink);}
+h2:first-of-type{margin-top:6px}
+h3{font:600 12.5px/1.2 var(--cond);letter-spacing:.06em;text-transform:uppercase;
+   color:var(--ink-2);margin:20px 0 8px}
+.note{font-size:12px;color:var(--ink-2);margin:8px 0 0;max-width:80ch}
+.note code{font:500 11px var(--mono);background:var(--band);padding:1px 4px}
+
+/* ---------------------------------------------------------- stat strip */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+       gap:0;border-block:1px solid var(--rule);margin-bottom:6px}
+.stat{padding:12px 14px 13px;border-right:1px solid var(--rule-2)}
+.stat:last-child{border-right:0}
+.stat .k{font:600 10px/1.3 var(--cond);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)}
+.stat .v{font:500 21px/1.15 var(--mono);margin-top:5px;letter-spacing:-.02em}
+.stat .s{font-size:11px;color:var(--ink-2);margin-top:3px}
+.stat .v.flag{color:var(--flag)}
+
+/* ------------------------------------------------------------- tagging */
+.tag{
+  font:600 9.5px/1 var(--cond);letter-spacing:.09em;text-transform:uppercase;
+  padding:3px 5px 3px 6px;border-left:3px solid var(--ink-3);
+  background:var(--band);color:var(--ink-2);white-space:nowrap;display:inline-block;
+}
+.tag.real{border-left-color:var(--s1);color:var(--s1)}
+.tag.derived{border-left-color:var(--s3);color:var(--s3)}
+.tag.synthetic{border-left-color:var(--s2);color:var(--s2);background:var(--flag-soft)}
+.tag.assumption{border-left-color:var(--s4);color:var(--s4)}
+
+/* -------------------------------------------------------------- tables */
+.tscroll{overflow-x:auto;border-block:1px solid var(--rule);margin-top:10px}
+table{border-collapse:collapse;width:100%;font-size:12.5px}
+thead th{
+  position:sticky;top:0;background:var(--paper);z-index:2;
+  font:600 10px/1.2 var(--cond);letter-spacing:.08em;text-transform:uppercase;
+  color:var(--ink-2);text-align:left;padding:8px 10px;white-space:nowrap;
+  border-bottom:1px solid var(--ink);
+}
+thead th.r,td.r{text-align:right}
+tbody tr:nth-child(even){background:var(--band)}       /* greenbar */
+tbody tr:hover{background:var(--accent-soft)}
+tbody td{padding:6px 10px;border-bottom:1px solid var(--rule-2);vertical-align:top}
+td.num,td.mono,th.mono{font:400 12px/1.4 var(--mono)}
+td.name{min-width:190px;max-width:330px}
+td.wrap{white-space:normal;max-width:460px;font-size:12px;color:var(--ink-2)}
+tbody tr.sel{background:var(--accent-soft);box-shadow:inset 3px 0 0 var(--accent)}
+tbody tr[data-click]{cursor:pointer}
+.pos{color:var(--good)}.neg{color:var(--flag)}
+.dim{color:var(--ink-3)}
+a{color:var(--accent);text-underline-offset:2px}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* -------------------------------------------------------------- charts */
+.chart{margin-top:12px;position:relative}
+.chart svg{display:block;width:100%;height:auto;overflow:visible}
+.legend{display:flex;flex-wrap:wrap;gap:4px 16px;margin:8px 0 0;
+        font:500 11px var(--mono);color:var(--ink-2)}
+.legend i{width:10px;height:10px;display:inline-block;margin-right:6px;
+          vertical-align:-1px;border-radius:1px}
+.ax{font:500 10px var(--mono);fill:var(--ink-3)}
+.axl{font:600 9.5px var(--cond);fill:var(--ink-3);letter-spacing:.08em;text-transform:uppercase}
+.gridline{stroke:var(--grid);stroke-width:1}
+.tip{
+  position:absolute;pointer-events:none;z-index:20;opacity:0;transition:opacity .08s;
+  background:var(--raise);border:1px solid var(--rule);border-left:3px solid var(--accent);
+  padding:7px 9px;font:500 11.5px/1.5 var(--mono);color:var(--ink);
+  box-shadow:0 4px 14px rgba(0,0,0,.14);max-width:280px;
+}
+.tip b{font-weight:600;font-family:var(--cond);letter-spacing:.04em;text-transform:uppercase;font-size:10px;
+       display:block;color:var(--ink-2);margin-bottom:3px}
+
+/* ------------------------------------------------------------- 2-up row */
+.cols{display:grid;gap:26px;grid-template-columns:1fr 1fr}
+@media(max-width:900px){.cols{grid-template-columns:1fr}}
+
+/* ------------------------------------------------------------- drawer */
+.drawer{border-top:2px solid var(--ink);margin-top:20px;padding-top:14px}
+.drawer h3{margin-top:0}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:3px 14px;font-size:12.5px;margin:0 0 14px}
+.kv dt{font:600 10px/1.6 var(--cond);letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3)}
+.kv dd{margin:0;font:400 12.5px/1.6 var(--mono)}
+.reason{border-left:3px solid var(--rule);padding:8px 0 8px 12px;margin-bottom:10px}
+.reason.real{border-left-color:var(--s1)}
+.reason.derived{border-left-color:var(--s3)}
+.reason.synthetic{border-left-color:var(--s2)}
+.reason .rh{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+.reason .rc{font:600 11.5px var(--cond);letter-spacing:.07em;text-transform:uppercase}
+.reason p{margin:5px 0 0;font-size:12.5px;color:var(--ink-2)}
+.reason .ev{font:400 11px/1.6 var(--mono);color:var(--ink-3);margin-top:5px;word-break:break-all}
+
+/* -------------------------------------------------------------- misc */
+.controls{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center;margin:14px 0 4px}
+select,input[type=search]{
+  font:400 12px var(--mono);padding:5px 7px;background:var(--raise);
+  color:var(--ink);border:1px solid var(--rule);
+}
+select:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:-1px}
+label.ctl{font:600 10px var(--cond);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.pill{font:500 11px var(--mono);color:var(--ink-2);border:1px solid var(--rule);padding:3px 7px}
+.srcs{border-top:1px solid var(--rule);margin-top:34px;padding-top:14px;
+      font-size:12px;color:var(--ink-2)}
+.srcs b{color:var(--ink);font-family:var(--cond);letter-spacing:.04em}
+.bar-row{display:grid;grid-template-columns:170px 1fr 66px;gap:10px;align-items:center;
+         font-size:12px;padding:3px 0}
+.bar-row .lab{font:500 11.5px var(--mono);color:var(--ink-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bar-row .track{background:var(--band);height:15px;position:relative}
+.bar-row .fill{height:100%;border-radius:0 2px 2px 0}
+.bar-row .val{font:500 11.5px var(--mono);text-align:right}
+@media(max-width:560px){.bar-row{grid-template-columns:120px 1fr 56px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="wrap">
+  <header class="masthead">
+    <div class="mast-row">
+      <h1>Install Base Reactivation Console</h1>
+      <div class="mast-meta">
+        <span>as of <b id="m-asof">—</b></span>
+        <span>accounts <b id="m-acct">—</b></span>
+        <span>awards <b id="m-awards">—</b></span>
+        <span>built <b id="m-built">—</b></span>
+      </div>
+    </div>
+    <p class="framing">
+      <b>This is not any vendor's install base.</b> The data is US federal
+      enterprise-storage procurement from USAspending.gov, used as a
+      <b>proxy</b> for install-base dynamics. Accounts are federal awarding
+      offices, not any company's customers. Every commercial figure is an
+      assumption, listed in the register.
+    </p>
+  </header>
+
+  <nav>
+    <div class="tabs" role="tablist" id="tabs"></div>
+  </nav>
+
+  <main id="main"></main>
+
+  <div class="srcs" id="sources"></div>
+</div>
+<div class="tip" id="tip"></div>
+
+<script id="app-data" type="application/json">__APP_DATA__</script>
+<script>
+(function(){
+"use strict";
+var D={};
+try{ D=JSON.parse(document.getElementById("app-data").textContent||"{}"); }
+catch(e){ D={}; }
+var M=D.meta||{}, K=D.kpis||{};
+
+/* ------------------------------------------------------------ helpers */
+var SER=["--s1","--s2","--s3","--s4","--s5"];
+function cssv(n){return getComputedStyle(document.documentElement).getPropertyValue(n).trim()||"#888";}
+function ser(i){return cssv(SER[i%SER.length]);}
+function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){
+  return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+function num(v,d){ if(v==null||v!==v) return "—";
+  return Number(v).toLocaleString("en-US",{minimumFractionDigits:d||0,maximumFractionDigits:d||0});}
+function money(v){ if(v==null||v!==v) return "—"; var a=Math.abs(v);
+  if(a>=1e9) return "$"+(v/1e9).toFixed(1)+"bn";
+  if(a>=1e6) return "$"+(v/1e6).toFixed(1)+"m";
+  if(a>=1e3) return "$"+(v/1e3).toFixed(0)+"k";
+  return "$"+v.toFixed(0);}
+function pct(v,d){ return (v==null||v!==v)?"—":(v*100).toFixed(d==null?1:d)+"%";}
+function tag(t){ var c=String(t||"").toLowerCase();
+  if(c.indexOf("synthetic")>=0) c="synthetic";
+  else if(c.indexOf("assumption")>=0) c="assumption";
+  else if(c.indexOf("derived")>=0) c="derived";
+  else if(c.indexOf("real")>=0) c="real"; else c="";
+  return '<span class="tag '+c+'">'+esc(t)+'</span>';}
+function el(h){var d=document.createElement("div");d.innerHTML=h;return d.firstElementChild;}
+
+/* tooltip layer - every chart gets one */
+var TIP=document.getElementById("tip");
+function showTip(ev,html){
+  TIP.innerHTML=html; TIP.style.opacity="1";
+  var x=ev.clientX+14, y=ev.clientY+14, w=TIP.offsetWidth, h=TIP.offsetHeight;
+  if(x+w>innerWidth-8) x=ev.clientX-w-14;
+  if(y+h>innerHeight-8) y=ev.clientY-h-14;
+  TIP.style.left=(x+scrollX)+"px"; TIP.style.top=(y+scrollY)+"px";
+}
+function hideTip(){TIP.style.opacity="0";}
+
+/* ---------------------------------------------------------- SVG charts */
+function svgEl(n,a){var e=document.createElementNS("http://www.w3.org/2000/svg",n);
+  for(var k in a) if(a[k]!=null) e.setAttribute(k,a[k]); return e;}
+
+/* grouped or stacked vertical bars */
+function vbars(host,opts){
+  var data=opts.data, keys=opts.keys, W=opts.width||680, H=opts.height||240;
+  var mL=opts.marginLeft||52, mR=14, mT=10, mB=30;
+  var iw=W-mL-mR, ih=H-mT-mB;
+  var totals=data.map(function(d){var t=0;keys.forEach(function(k){t+=(d[k]||0);});return t;});
+  var max=opts.max||Math.max.apply(null,totals.concat([1]));
+  var svg=svgEl("svg",{viewBox:"0 0 "+W+" "+H,role:"img","aria-label":opts.label||""});
+  var ticks=4,i,y;
+  for(i=0;i<=ticks;i++){
+    y=mT+ih-(ih*i/ticks);
+    svg.appendChild(svgEl("line",{x1:mL,x2:W-mR,y1:y,y2:y,class:"gridline"}));
+    var t=svgEl("text",{x:mL-7,y:y+3.5,class:"ax","text-anchor":"end"});
+    t.textContent=opts.fmt?opts.fmt(max*i/ticks):num(max*i/ticks);
+    svg.appendChild(t);
+  }
+  var bw=iw/data.length, bar=Math.min(opts.barWidth||30,bw*0.68);
+  data.forEach(function(d,di){
+    var cx=mL+bw*di+bw/2, acc=0;
+    keys.forEach(function(k,ki){
+      var v=d[k]||0; if(!v) return;
+      var hgt=ih*v/max, yy=mT+ih-acc-hgt;
+      /* 2px surface gap between stacked segments */
+      var r=svgEl("rect",{x:cx-bar/2,y:yy,width:bar,height:Math.max(hgt-(acc>0?2:0),1),
+        fill:ser(ki),rx:2});
+      r.addEventListener("mousemove",function(ev){
+        showTip(ev,"<b>"+esc(opts.xlab?opts.xlab(d):d.x)+"</b>"+esc(k)+" &nbsp;"+
+          (opts.fmt?opts.fmt(v):num(v)));});
+      r.addEventListener("mouseleave",hideTip);
+      svg.appendChild(r); acc+=hgt;
+    });
+    if(di%(opts.every||1)===0){
+      var tx=svgEl("text",{x:cx,y:H-9,class:"ax","text-anchor":"middle"});
+      tx.textContent=opts.xlab?opts.xlab(d):d.x; svg.appendChild(tx);
+    }
+  });
+  host.appendChild(svg);
+  if(keys.length>1) host.appendChild(legend(keys));
+  return svg;
+}
+
+function legend(keys,names){
+  var d=document.createElement("div"); d.className="legend";
+  keys.forEach(function(k,i){
+    var s=document.createElement("span");
+    s.innerHTML='<i style="background:'+ser(i)+'"></i>'+esc(names?names[i]:k);
+    d.appendChild(s);
+  });
+  return d;
+}
+
+/* multi-series lines with markers; x is categorical index */
+function lines(host,opts){
+  var series=opts.series, xs=opts.x, W=opts.width||680, H=opts.height||240;
+  var mL=opts.marginLeft||48, mR=16, mT=12, mB=30;
+  var iw=W-mL-mR, ih=H-mT-mB;
+  var max=opts.max!=null?opts.max:Math.max(1,Math.max.apply(null,
+    series.reduce(function(a,s){return a.concat(s.v.filter(function(z){return z!=null;}));},[])));
+  var min=opts.min!=null?opts.min:0;
+  var svg=svgEl("svg",{viewBox:"0 0 "+W+" "+H,role:"img","aria-label":opts.label||""});
+  var i,y;
+  for(i=0;i<=4;i++){
+    y=mT+ih-(ih*i/4);
+    svg.appendChild(svgEl("line",{x1:mL,x2:W-mR,y1:y,y2:y,class:"gridline"}));
+    var t=svgEl("text",{x:mL-7,y:y+3.5,class:"ax","text-anchor":"end"});
+    t.textContent=opts.fmt?opts.fmt(min+(max-min)*i/4):num(min+(max-min)*i/4);
+    svg.appendChild(t);
+  }
+  var step=xs.length>1?iw/(xs.length-1):0;
+  function X(i){return mL+step*i;}
+  function Y(v){return mT+ih-ih*((v-min)/(max-min||1));}
+  series.forEach(function(s,si){
+    var pts=[],d="";
+    s.v.forEach(function(v,i){ if(v==null) return;
+      pts.push([X(i),Y(v),i,v]); d+=(d?"L":"M")+X(i).toFixed(1)+" "+Y(v).toFixed(1);});
+    if(d) svg.appendChild(svgEl("path",{d:d,fill:"none",stroke:ser(si),"stroke-width":2,
+      "stroke-linejoin":"round","stroke-linecap":"round"}));
+    pts.forEach(function(p){
+      /* 2px surface ring so overlapping markers stay separable */
+      var c=svgEl("circle",{cx:p[0],cy:p[1],r:4,fill:ser(si),
+        stroke:cssv("--paper"),"stroke-width":2});
+      c.addEventListener("mousemove",function(ev){
+        showTip(ev,"<b>"+esc(xs[p[2]])+"</b>"+esc(s.name)+" &nbsp;"+
+          (opts.fmt?opts.fmt(p[3]):num(p[3])));});
+      c.addEventListener("mouseleave",hideTip);
+      svg.appendChild(c);
+    });
+  });
+  xs.forEach(function(x,i){
+    if(i%(opts.every||1)) return;
+    var t=svgEl("text",{x:X(i),y:H-9,class:"ax","text-anchor":"middle"});
+    t.textContent=x; svg.appendChild(t);
+  });
+  /* Direct-label the last real point of each series, so identity is never
+     carried by colour alone. Only up to four, or the labels collide. */
+  if(series.length<=4){
+    series.forEach(function(s,si){
+      var last=-1;
+      s.v.forEach(function(v,i){ if(v!=null) last=i; });
+      if(last<0) return;
+      var t=svgEl("text",{x:X(last)+7,y:Y(s.v[last])+3.5,
+        "font-size":10,"font-weight":600,fill:ser(si),
+        "font-family":"var(--mono)"});
+      t.textContent=opts.fmt?opts.fmt(s.v[last]):num(s.v[last]);
+      svg.appendChild(t);
+    });
+  }
+  host.appendChild(svg);
+  if(series.length>1) host.appendChild(legend(series.map(function(s){return s.name;})));
+  return svg;
+}
+
+/* scatter with a 45-degree reference line - used for calibration */
+function scatter(host,opts){
+  var W=opts.width||330,H=opts.height||270,mL=48,mR=14,mT=12,mB=36;
+  var iw=W-mL-mR, ih=H-mT-mB;
+  var max=opts.max||1;
+  var svg=svgEl("svg",{viewBox:"0 0 "+W+" "+H,role:"img","aria-label":opts.label||""});
+  function X(v){return mL+iw*v/max;} function Y(v){return mT+ih-ih*v/max;}
+  for(var i=0;i<=4;i++){
+    var y=mT+ih-(ih*i/4);
+    svg.appendChild(svgEl("line",{x1:mL,x2:W-mR,y1:y,y2:y,class:"gridline"}));
+    var t=svgEl("text",{x:mL-7,y:y+3.5,class:"ax","text-anchor":"end"});
+    t.textContent=pct(max*i/4,0); svg.appendChild(t);
+    var xx=mL+iw*i/4;
+    var t2=svgEl("text",{x:xx,y:H-20,class:"ax","text-anchor":"middle"});
+    t2.textContent=pct(max*i/4,0); svg.appendChild(t2);
+  }
+  svg.appendChild(svgEl("line",{x1:X(0),y1:Y(0),x2:X(max),y2:Y(max),
+    stroke:cssv("--ink-3"),"stroke-width":1,"stroke-dasharray":"4 4"}));
+  var d="";
+  (opts.points||[]).forEach(function(p,i){
+    d+=(d?"L":"M")+X(p.predicted).toFixed(1)+" "+Y(p.observed).toFixed(1);});
+  if(d) svg.appendChild(svgEl("path",{d:d,fill:"none",stroke:ser(opts.si||0),"stroke-width":2}));
+  (opts.points||[]).forEach(function(p){
+    var c=svgEl("circle",{cx:X(p.predicted),cy:Y(p.observed),r:4.5,fill:ser(opts.si||0),
+      stroke:cssv("--paper"),"stroke-width":2});
+    c.addEventListener("mousemove",function(ev){
+      showTip(ev,"<b>decile "+p.decile+"</b>predicted "+pct(p.predicted)+
+        "<br>observed &nbsp;"+pct(p.observed)+"<br>n = "+num(p.n));});
+    c.addEventListener("mouseleave",hideTip);
+    svg.appendChild(c);
+  });
+  var lx=svgEl("text",{x:mL+iw/2,y:H-4,class:"axl","text-anchor":"middle"});
+  lx.textContent="predicted"; svg.appendChild(lx);
+  var ly=svgEl("text",{x:11,y:mT+ih/2,class:"axl","text-anchor":"middle",
+    transform:"rotate(-90 11 "+(mT+ih/2)+")"});
+  ly.textContent="observed"; svg.appendChild(ly);
+  host.appendChild(svg);
+  return svg;
+}
+
+/* horizontal bars in plain HTML - for ranked category lists */
+function hbars(host,rows,opts){
+  opts=opts||{};
+  var max=Math.max.apply(null,rows.map(function(r){return r.v;}).concat([1]));
+  rows.forEach(function(r){
+    var row=el('<div class="bar-row"><span class="lab"></span>'+
+      '<span class="track"><span class="fill"></span></span><span class="val"></span></div>');
+    row.querySelector(".lab").textContent=r.k;
+    row.querySelector(".lab").title=r.k;
+    var f=row.querySelector(".fill");
+    f.style.width=Math.max(2,100*r.v/max)+"%";
+    f.style.background=r.color||ser(opts.si||0);
+    row.querySelector(".val").textContent=opts.fmt?opts.fmt(r.v):num(r.v);
+    if(r.tip){
+      row.addEventListener("mousemove",function(ev){showTip(ev,r.tip);});
+      row.addEventListener("mouseleave",hideTip);
+    }
+    host.appendChild(row);
+  });
+}
+
+function table(cols,rows,opts){
+  opts=opts||{};
+  var h='<div class="tscroll"><table><thead><tr>';
+  cols.forEach(function(c){h+='<th class="'+(c.r?"r":"")+'">'+esc(c.h)+'</th>';});
+  h+='</tr></thead><tbody>';
+  rows.forEach(function(r,ri){
+    h+='<tr'+(opts.click?' data-click="'+ri+'"':'')+'>';
+    cols.forEach(function(c){
+      var v=c.f?c.f(r):r[c.k];
+      h+='<td class="'+(c.cls||"")+(c.r?" r":"")+'">'+(c.raw?v:esc(v))+'</td>';
+    });
+    h+='</tr>';
+  });
+  h+='</tbody></table></div>';
+  var node=el(h);
+  if(opts.click){
+    node.querySelectorAll("tr[data-click]").forEach(function(tr){
+      tr.addEventListener("click",function(){
+        node.querySelectorAll("tr.sel").forEach(function(x){x.classList.remove("sel");});
+        tr.classList.add("sel");
+        opts.click(rows[+tr.getAttribute("data-click")]);
+      });
+    });
+  }
+  return node;
+}
+
+function stats(items){
+  var h='<div class="stats">';
+  items.forEach(function(i){
+    h+='<div class="stat"><div class="k">'+esc(i.k)+'</div>'+
+       '<div class="v'+(i.flag?" flag":"")+'">'+esc(i.v)+'</div>'+
+       (i.s?'<div class="s">'+esc(i.s)+'</div>':'')+'</div>';
+  });
+  return el(h+'</div>');
+}
+
+function h2(t){var e=document.createElement("h2");e.textContent=t;return e;}
+function h3(t){var e=document.createElement("h3");e.textContent=t;return e;}
+function p(cls,html){var e=document.createElement("p");e.className=cls;e.innerHTML=html;return e;}
+function chartBox(){var d=document.createElement("div");d.className="chart";return d;}
+
+/* ------------------------------------------------------------- pages */
+var PAGES=[];
+function page(id,name,build){PAGES.push({id:id,name:name,build:build});}
+
+/* ---- Overview */
+page("overview","Overview",function(root){
+  root.appendChild(p("lede",
+    "The portfolio at a glance. Dormancy, coverage and expiry are computed from "+
+    "real award records; every commercial figure is an assumption."));
+  root.appendChild(stats([
+    {k:"Accounts",v:num(K.accounts),s:M.account_grain||""},
+    {k:"Awards in scope",v:num(K.awards_in_scope)},
+    {k:"Obligated",v:money(K.total_obligated_usd)},
+    {k:"Dormant "+(D.assumptions&&D.assumptions[5]?D.assumptions[5].value:24)+"m",
+     v:pct(K.dormancy_rate),s:num(K.dormant_accounts)+" accounts",flag:true},
+    {k:"Coverage rate",v:pct(K.coverage_rate),s:num(K.uncovered_assets)+" uncovered"},
+    {k:"Expiring 365d",v:money(K.expiring_value_usd),s:num(K.expiring_contracts)+" contracts"},
+    {k:"Co-term clusters",v:num(K.coterm_clusters)},
+    {k:"Vendors resolved",v:num(K.distinct_vendors)}
+  ]));
+
+  var ds=((D.aggregates||{}).dormancy_sensitivity)||{};
+  if(ds.scopes){
+    root.appendChild(h2("What the dormancy rate does and does not tell you"));
+    root.appendChild(p("lede",esc(ds.reading||"")));
+    var order=["all_in_scope_codes","hardware_core_only",
+               "storage_core_maintenance_saas","modern_era_codes_only"];
+    var label={all_in_scope_codes:"All in-scope codes (headline)",
+               hardware_core_only:"Hardware core only",
+               storage_core_maintenance_saas:"Storage core + maintenance + aaS",
+               modern_era_codes_only:"Modern-era codes only"};
+    root.appendChild(table([
+      {h:"Scope",f:function(r){return label[r.k]||r.k;},cls:"name"},
+      {h:"Accounts",f:function(r){return num(r.v.accounts);},cls:"num",r:true},
+      {h:"Dormant 12m",f:function(r){return pct(r.v.dormant_12m);},cls:"num",r:true},
+      {h:"Dormant 24m",f:function(r){return pct(r.v.dormant_24m);},cls:"num",r:true},
+      {h:"Dormant 36m",f:function(r){return pct(r.v.dormant_36m);},cls:"num",r:true},
+      {h:"Median months idle",f:function(r){return num(r.v.median_months_idle,0);},cls:"num",r:true}
+    ],order.filter(function(k){return ds.scopes[k];}).map(function(k){
+      return {k:k,v:ds.scopes[k]};})));
+    root.appendChild(p("note","<b>What is real:</b> "+esc(ds.what_is_real||"")));
+  }
+
+  var ser_=(D.series||{}).by_fy_and_era||[];
+  if(ser_.length){
+    root.appendChild(h2("Obligations by fiscal year and PSC coding era"));
+    root.appendChild(p("lede",
+      "The legacy 70-series codes fall to zero from FY2022; the modern 7A–7K / "+
+      "DA–DK codes are absent before FY2019. Every code family in scope spans "+
+      "both eras, so accounts do not appear to go dormant when the coding changed."));
+    var fys=[],byfy={};
+    ser_.forEach(function(r){
+      var f=String(r.award_fy); if(!byfy[f]){byfy[f]={x:f};fys.push(f);}
+      byfy[f][r.psc_era]=(byfy[f][r.psc_era]||0)+r.obligated;});
+    fys.sort();
+    var eras=["legacy","modern","unmapped"].filter(function(e){
+      return ser_.some(function(r){return r.psc_era===e;});});
+    var box=chartBox();
+    vbars(box,{data:fys.map(function(f){return byfy[f];}),keys:eras,
+      height:250,fmt:money,label:"Obligations by fiscal year and coding era"});
+    root.appendChild(box);
+  }
+
+  var pc=(D.plays||{}).reason_counts||{};
+  var pb=(D.plays||{}).playbook||[];
+  if(pb.length){
+    root.appendChild(h2("Play mix"));
+    root.appendChild(p("lede",
+      "Every account resolves to one recommended action or an explicit NO_ACTION. "+
+      "A SYNTHETIC-provenance code never becomes the recommended action — it can "+
+      "only appear alongside real ones."));
+    var provColor={REAL:cssv("--s1"),DERIVED:cssv("--s3"),SYNTHETIC:cssv("--s2")};
+    var box2=chartBox();
+    hbars(box2,pb.filter(function(r){return (pc[r.reason_code]||0)>0;})
+      .sort(function(a,b){return (pc[b.reason_code]||0)-(pc[a.reason_code]||0);})
+      .map(function(r){return {k:r.reason_code,v:pc[r.reason_code]||0,
+        color:provColor[r.provenance]||cssv("--ink-3"),
+        tip:"<b>"+esc(r.reason_code)+"</b>"+esc(r.provenance)+"<br>"+esc(r.action)};}),{});
+    root.appendChild(box2);
+    var lg=document.createElement("div"); lg.className="legend";
+    lg.innerHTML='<span><i style="background:'+cssv("--s1")+'"></i>REAL</span>'+
+      '<span><i style="background:'+cssv("--s3")+'"></i>DERIVED</span>'+
+      '<span><i style="background:'+cssv("--s2")+'"></i>SYNTHETIC</span>';
+    root.appendChild(lg);
+    root.appendChild(p("note","Accounts with an explicit NO_ACTION: <b>"+
+      num((D.plays||{}).accounts_no_action)+"</b>. Refresh-risk age threshold: <b>"+
+      esc((D.plays||{}).refresh_risk_threshold_years)+" years</b> — "+
+      esc((D.plays||{}).refresh_risk_basis||"")));
+
+    var sel=(D.plays||{}).selectivity||{};
+    if(Object.keys(sel).length){
+      root.appendChild(h3("Selectivity — does the code actually narrow anything?"));
+      root.appendChild(p("lede","A reason code that fires on almost every account "+
+        "cannot prioritise, however real its trigger."));
+      root.appendChild(table([
+        {h:"Reason code",f:function(r){return r.k;},cls:"mono"},
+        {h:"Provenance",f:function(r){
+           var pb=((D.plays||{}).playbook||[]).filter(function(x){
+             return x.reason_code===r.k;})[0];
+           return tag(pb?pb.provenance:"REAL");},raw:true},
+        {h:"Accounts",f:function(r){return num(r.v.accounts);},cls:"num",r:true},
+        {h:"Share",f:function(r){return pct(r.v.share_of_accounts);},cls:"num",r:true},
+        {h:"",f:function(r){return r.v.low_information?
+           '<span class="tag synthetic">LOW INFORMATION</span>':"";},raw:true}
+      ],Object.keys(sel).map(function(k){return {k:k,v:sel[k]};})
+        .sort(function(a,b){return b.v.share_of_accounts-a.v.share_of_accounts;})));
+      root.appendChild(p("note",esc((D.plays||{}).selectivity_note||"")));
+    }
+  }
+});
+
+/* ---- Accounts */
+page("accounts","Accounts",function(root){
+  var rows=(D.accounts||[]).slice();
+  root.appendChild(p("lede",
+    "Ranked by expected value. Two of the four terms in that calculation are "+
+    "assumptions (A-01 margin, A-02 engagement cost), so treat the ordering as "+
+    "the output and the money as a planning figure. Select a row for its reason "+
+    "codes and the award records that triggered them."));
+  root.appendChild(p("note","Showing <b>"+num(M.account_rows_shown)+"</b> of <b>"+
+    num(M.account_rows_total)+"</b> accounts, ordered by expected value. "+
+    "Aggregates elsewhere in the console cover all accounts."));
+
+  var ctl=el('<div class="controls"></div>');
+  var segs=["all"].concat(Object.keys((D.aggregates||{}).by_segment||{}));
+  var reasons=["all"].concat(Object.keys((D.plays||{}).reason_counts||{}));
+  ctl.innerHTML=
+    '<label class="ctl" for="f-seg">Segment</label><select id="f-seg">'+
+      segs.map(function(s){return '<option>'+esc(s)+'</option>';}).join("")+'</select>'+
+    '<label class="ctl" for="f-rsn">Reason</label><select id="f-rsn">'+
+      reasons.map(function(s){return '<option>'+esc(s)+'</option>';}).join("")+'</select>'+
+    '<label class="ctl" for="f-dorm">Dormant only</label>'+
+      '<input type="checkbox" id="f-dorm">'+
+    '<input type="search" id="f-q" placeholder="filter by office or agency" size="26">';
+  root.appendChild(ctl);
+
+  var host=document.createElement("div"); root.appendChild(host);
+  var drawer=document.createElement("div"); drawer.className="drawer"; drawer.hidden=true;
+  root.appendChild(drawer);
+
+  var cols=[
+    {h:"#",k:"ev_rank",cls:"num",r:true},
+    {h:"Awarding office",f:function(r){return r.account_name||r.account_id;},cls:"name"},
+    {h:"Sub-agency",k:"sub_agency",cls:"name"},
+    {h:"Seg",k:"segment"},
+    {h:"Obligated",f:function(r){return money(r.total_obligated);},cls:"num",r:true},
+    {h:"Awards",f:function(r){return num(r.award_count);},cls:"num",r:true},
+    {h:"Idle mo",f:function(r){return r.months_since_last_award==null?"—":
+       num(r.months_since_last_award,0);},cls:"num",r:true},
+    {h:"Cov",f:function(r){return r.coverage_rate==null?"—":pct(r.coverage_rate,0);},cls:"num",r:true},
+    {h:"P(buy)",f:function(r){return pct(r.p_purchase);},cls:"num",r:true},
+    {h:"Exp. value",f:function(r){
+       var v=r.expected_value;
+       return v==null?"—":'<span class="'+(v>0?"pos":"neg")+'">'+money(v)+'</span>';},
+     cls:"num",r:true,raw:true},
+    {h:"Primary reason",f:function(r){return r.primary_reason||"NO_ACTION";},cls:"mono"},
+    {h:"Prov",f:function(r){return tag(r.primary_provenance||"REAL");},raw:true}
+  ];
+
+  function detail(r){
+    drawer.hidden=false;
+    var ev=(D.evidence||[]).filter(function(e){return e.account_id===r.account_id;});
+    var h='<h3>'+esc(r.account_name||r.account_id)+'</h3>'+
+      '<dl class="kv">'+
+      '<dt>Account id</dt><dd>'+esc(r.account_id)+'</dd>'+
+      '<dt>Sub-agency</dt><dd>'+esc(r.sub_agency||"—")+'</dd>'+
+      '<dt>Department</dt><dd>'+esc(r.department||"—")+'</dd>'+
+      '<dt>Segment / region</dt><dd>'+esc(r.segment||"—")+" / "+esc(r.region||"—")+'</dd>'+
+      '<dt>Cohort FY</dt><dd>'+esc(r.cohort_fy||"—")+'</dd>'+
+      '<dt>Obligated</dt><dd>'+money(r.total_obligated)+" over "+num(r.award_count)+" awards"+'</dd>'+
+      '<dt>Last award</dt><dd>'+(r.months_since_last_award==null?"—":
+          num(r.months_since_last_award,0)+" months ago"+(r.dormant?"  — DORMANT":""))+'</dd>'+
+      '<dt>Coverage</dt><dd>'+(r.coverage_rate==null?"—":pct(r.coverage_rate))+
+          " · "+num(r.uncovered_assets)+" uncovered"+'</dd>'+
+      '<dt>Expiring</dt><dd>'+num(r.expiring_contracts)+" contracts, "+
+          money(r.expiring_value)+'</dd>'+
+      '<dt>P(award ≤365d)</dt><dd>'+pct(r.p_purchase)+
+          '  <span class="dim">model '+pct(r.p_purchase_365d_model)+
+          ' · rules '+pct(r.p_purchase_365d_rules)+'</span></dd>'+
+      '<dt>Expected value</dt><dd>'+money(r.expected_value)+
+          '  <span class="dim">= P × '+money(r.expected_award_value)+
+          ' × margin − cost</span></dd>'+
+      '<dt>Recommended</dt><dd>'+esc(r.recommended_action||"No action this cycle")+'</dd>';
+    if(r.health_score!=null){
+      h+='<dt>Health '+tag("SYNTHETIC")+'</dt><dd>'+num(r.health_score,1)+
+         ' <span class="dim">'+esc(r.health_band||"")+' — generated, not evidence</span></dd>';
+    }
+    h+='</dl>';
+    h+='<h3>Reason codes and evidence</h3>';
+    if(!ev.length){
+      h+='<p class="note">No reason code fired on real evidence. '+
+         esc(r.primary_evidence||"")+'</p>';
+    } else {
+      ev.forEach(function(e){
+        var cls=String(e.provenance||"").toLowerCase();
+        h+='<div class="reason '+cls+'"><div class="rh"><span class="rc">'+
+          esc(e.reason_code)+'</span>'+tag(e.provenance)+
+          '<span class="pill">'+num(e.evidence_count)+' evidence rows</span></div>'+
+          '<p>'+esc(e.detail)+'</p>';
+        if(e.evidence_ids) h+='<div class="ev">'+esc(e.evidence_ids)+'</div>';
+        h+='</div>';
+      });
+    }
+    drawer.innerHTML=h;
+    drawer.scrollIntoView({behavior:"smooth",block:"nearest"});
+  }
+
+  function render(){
+    var seg=document.getElementById("f-seg").value;
+    var rsn=document.getElementById("f-rsn").value;
+    var dorm=document.getElementById("f-dorm").checked;
+    var q=(document.getElementById("f-q").value||"").toLowerCase();
+    var f=rows.filter(function(r){
+      if(seg!=="all"&&r.segment!==seg) return false;
+      if(dorm&&!r.dormant) return false;
+      if(rsn!=="all"&&String(r.all_reason_codes||"").indexOf(rsn)<0) return false;
+      if(q){ var s=((r.account_name||"")+" "+(r.sub_agency||"")+" "+
+                   (r.department||"")).toLowerCase();
+        if(s.indexOf(q)<0) return false;}
+      return true;
+    }).slice(0,400);
+    host.innerHTML="";
+    host.appendChild(table(cols,f,{click:detail}));
+    host.appendChild(p("note","Showing "+num(f.length)+" rows after filtering."));
+  }
+  ["f-seg","f-rsn","f-dorm","f-q"].forEach(function(id){
+    document.getElementById(id).addEventListener("input",render);});
+  render();
+});
+
+/* ---- Coverage */
+page("coverage","Coverage",function(root){
+  var C_=D.coverage||{}, s=C_.summary||{};
+  root.appendChild(p("lede",
+    "Whether a hardware award has a maintenance award attached for the same "+
+    "account inside the coverage window (A-05). This is a lower bound: support "+
+    "bought outside the scoped PSC codes, folded into the hardware instrument, or "+
+    "delivered under a separate IDV reads as uncovered."));
+  root.appendChild(stats([
+    {k:"Hardware awards",v:num(s.hardware_awards)},
+    {k:"Coverage rate",v:pct(s.coverage_rate)},
+    {k:"Same-vendor rate",v:pct(s.coverage_rate_same_vendor),s:"stricter read"},
+    {k:"Uncovered",v:num(s.uncovered),flag:true},
+    {k:"Uncovered value",v:money(s.uncovered_obligations_usd),flag:true}
+  ]));
+
+  if(s.by_fy&&Object.keys(s.by_fy).length){
+    root.appendChild(h2("Coverage rate by fiscal year"));
+    var fys=Object.keys(s.by_fy).sort();
+    var box=chartBox();
+    lines(box,{x:fys,series:[{name:"coverage rate",v:fys.map(function(f){return s.by_fy[f];})}],
+      max:1,fmt:function(v){return pct(v,0);},height:230,label:"Coverage rate by fiscal year"});
+    root.appendChild(box);
+    root.appendChild(p("note",
+      "Read this against the PSC coding break on the Data Quality page. Part of any "+
+      "movement around FY2019–2022 is the migration from legacy maintenance codes "+
+      "to the modern DK/DC family, not purchasing behaviour."));
+  }
+  if(s.by_psc_era){
+    root.appendChild(h3("By coding era"));
+    var rows=Object.keys(s.by_psc_era).map(function(k){
+      return {era:k,n:s.by_psc_era[k].hardware_awards,r:s.by_psc_era[k].coverage_rate};});
+    root.appendChild(table([
+      {h:"PSC era",k:"era",cls:"mono"},
+      {h:"Hardware awards",f:function(r){return num(r.n);},cls:"num",r:true},
+      {h:"Coverage rate",f:function(r){return pct(r.r);},cls:"num",r:true}],rows));
+  }
+  if(s.by_segment||s.by_channel){
+    root.appendChild(h2("By segment and channel"));
+    var c=el('<div class="cols"></div>');
+    var a=document.createElement("div"), b=document.createElement("div");
+    a.appendChild(h3("Segment")); b.appendChild(h3("Channel"));
+    hbars(a,Object.keys(s.by_segment||{}).map(function(k){
+      return {k:k,v:s.by_segment[k]};}),{fmt:function(v){return pct(v,0);}});
+    hbars(b,Object.keys(s.by_channel||{}).map(function(k){
+      return {k:k,v:s.by_channel[k]};}),{si:2,fmt:function(v){return pct(v,0);}});
+    c.appendChild(a); c.appendChild(b); root.appendChild(c);
+  }
+  if(C_.by_sub_agency&&C_.by_sub_agency.length){
+    root.appendChild(h2("Coverage by sub-agency"));
+    root.appendChild(table([
+      {h:"Sub-agency",k:"sub_agency",cls:"name"},
+      {h:"Hardware awards",f:function(r){return num(r.hardware_awards);},cls:"num",r:true},
+      {h:"Coverage",f:function(r){return pct(r.coverage_rate);},cls:"num",r:true},
+      {h:"Value",f:function(r){return money(r.uncovered_value);},cls:"num",r:true}
+    ],C_.by_sub_agency));
+  }
+  if(C_.uncovered_top&&C_.uncovered_top.length){
+    root.appendChild(h2("Uncovered assets"));
+    root.appendChild(p("lede","Largest hardware awards with no maintenance award "+
+      "attached. Every row links to its USAspending record."));
+    root.appendChild(table([
+      {h:"PIID",k:"award_id_piid",cls:"mono"},
+      {h:"Office",k:"account_name",cls:"name"},
+      {h:"Sub-agency",k:"sub_agency",cls:"name"},
+      {h:"Recipient",k:"recipient_canonical",cls:"name"},
+      {h:"PSC",f:function(r){return r.psc_code+" · "+(r.psc_era||"");},cls:"mono"},
+      {h:"Amount",f:function(r){return money(r.award_amount);},cls:"num",r:true},
+      {h:"Age y",f:function(r){return num(r.asset_age_years,1);},cls:"num",r:true},
+      {h:"Record",f:function(r){return r.usaspending_permalink?
+         '<a href="'+esc(r.usaspending_permalink)+'" target="_blank" rel="noopener">open</a>':"—";},
+       raw:true}
+    ],C_.uncovered_top));
+  }
+});
+
+/* ---- Renewals */
+page("renewals","Renewals",function(root){
+  var R=D.renewals||{}, s=R.summary||{};
+  root.appendChild(p("lede",
+    "Periods of performance ending inside the next "+num(s.lookahead_days||365)+
+    " days. A co-termination cluster is two or more of an account's contracts "+
+    "ending within "+num(s.coterm_window_days||90)+" days of each other — one "+
+    "conversation instead of several."));
+  root.appendChild(stats([
+    {k:"Expiring contracts",v:num(s.expiring_contracts)},
+    {k:"Value at risk",v:money(s.expiring_value_usd)},
+    {k:"Accounts affected",v:num(s.accounts_with_expiry)},
+    {k:"Co-term clusters",v:num(s.coterm_clusters)},
+    {k:"In clusters",v:num(s.contracts_in_coterm_clusters),
+     s:money(s.coterm_value_usd)}
+  ]));
+  if(s.by_month&&Object.keys(s.by_month).length){
+    root.appendChild(h2("Expiries by month"));
+    var ms=Object.keys(s.by_month).sort();
+    var box=chartBox();
+    vbars(box,{data:ms.map(function(m){return {x:m.slice(2),n:s.by_month[m]};}),
+      keys:["n"],height:230,barWidth:26,label:"Contract expiries by month"});
+    root.appendChild(box);
+  }
+  if(s.largest_clusters&&s.largest_clusters.length){
+    root.appendChild(h2("Largest co-termination clusters"));
+    root.appendChild(table([
+      {h:"Office",k:"account_name",cls:"name"},
+      {h:"Seg",k:"segment"},
+      {h:"Contracts",f:function(r){return num(r.contracts);},cls:"num",r:true},
+      {h:"Value",f:function(r){return money(r.value);},cls:"num",r:true},
+      {h:"First expiry",k:"first_expiry",cls:"mono"},
+      {h:"Last expiry",k:"last_expiry",cls:"mono"}
+    ],s.largest_clusters));
+  }
+  if(R.rows&&R.rows.length){
+    root.appendChild(h2("Renewal calendar"));
+    root.appendChild(table([
+      {h:"PIID",k:"award_id_piid",cls:"mono"},
+      {h:"Office",k:"account_name",cls:"name"},
+      {h:"Recipient",k:"recipient_canonical",cls:"name"},
+      {h:"PSC",k:"psc_code",cls:"mono"},
+      {h:"Amount",f:function(r){return money(r.award_amount);},cls:"num",r:true},
+      {h:"Ends",k:"end_date",cls:"mono"},
+      {h:"Days",f:function(r){return num(r.days_to_expiry);},cls:"num",r:true},
+      {h:"Co-term",f:function(r){return r.in_coterm_cluster?
+         num(r.coterm_cluster_size)+" together":"—";}},
+      {h:"Record",f:function(r){return r.usaspending_permalink?
+         '<a href="'+esc(r.usaspending_permalink)+'" target="_blank" rel="noopener">open</a>':"—";},
+       raw:true}
+    ],R.rows));
+  }
+});
+
+/* ---- Cohorts */
+page("cohorts","Cohorts",function(root){
+  var C_=D.cohorts||{}, cs=C_.cohorts||{};
+  root.appendChild(p("lede",
+    "Accounts grouped by the fiscal year of their first in-scope award. "+
+    "Right-censoring is explicit: a cohort is only measured as far as it has "+
+    "actually been observable, and every cell carries its own denominator."));
+  var years=Object.keys(cs).sort();
+  if(!years.length){root.appendChild(p("note","No cohort data in this build."));return;}
+
+  root.appendChild(h2("Expansion rate by cohort year"));
+  var e1=years.map(function(y){var e=(cs[y].expansion||{}).year_1;return e?e.rate:null;});
+  var e2=years.map(function(y){var e=(cs[y].expansion||{}).year_2;return e?e.rate:null;});
+  var e3=years.map(function(y){var e=(cs[y].expansion||{}).year_3;return e?e.rate:null;});
+  var box=chartBox();
+  lines(box,{x:years,series:[{name:"year 1",v:e1},{name:"year 2",v:e2},{name:"year 3",v:e3}],
+    max:1,fmt:function(v){return pct(v,0);},height:250,
+    label:"Expansion rate by cohort and year"});
+  root.appendChild(box);
+  root.appendChild(p("note","A missing point means the cohort has not been observable "+
+    "for that many years yet — it is omitted rather than counted as zero."));
+
+  root.appendChild(h2("Retention by fiscal year"));
+  var allFy=[];
+  years.forEach(function(y){Object.keys(cs[y].retention_by_fy||{}).forEach(function(f){
+    if(allFy.indexOf(f)<0) allFy.push(f);});});
+  allFy.sort();
+  var pick=years.slice(-5);
+  var box2=chartBox();
+  lines(box2,{x:allFy,series:pick.map(function(y){
+      return {name:"FY"+y+" cohort",v:allFy.map(function(f){
+        var v=(cs[y].retention_by_fy||{})[f]; return v==null?null:v;})};}),
+    max:1,fmt:function(v){return pct(v,0);},height:250,label:"Retention by cohort"});
+  root.appendChild(box2);
+
+  root.appendChild(h2("Cohort table"));
+  root.appendChild(table([
+    {h:"Cohort FY",f:function(r){return r.y;},cls:"mono"},
+    {h:"Accounts",f:function(r){return num(cs[r.y].accounts);},cls:"num",r:true},
+    {h:"Obligated",f:function(r){return money(cs[r.y].total_obligated);},cls:"num",r:true},
+    {h:"Observable y",f:function(r){return num(cs[r.y].observable_years,1);},cls:"num",r:true},
+    {h:"Yr1 expansion",f:function(r){var e=(cs[r.y].expansion||{}).year_1;
+      return e?pct(e.rate)+"  (n="+num(e.denominator)+")":"—";},cls:"num",r:true},
+    {h:"Yr2",f:function(r){var e=(cs[r.y].expansion||{}).year_2;return e?pct(e.rate):"—";},
+     cls:"num",r:true},
+    {h:"Yr3",f:function(r){var e=(cs[r.y].expansion||{}).year_3;return e?pct(e.rate):"—";},
+     cls:"num",r:true},
+    {h:"Dormant now",f:function(r){return pct(cs[r.y].dormant_rate_now);},cls:"num",r:true}
+  ],years.map(function(y){return {y:y};})));
+
+  var W=D.whitespace||{};
+  if(W.rows&&W.rows.length){
+    root.appendChild(h2("Whitespace"));
+    root.appendChild(p("lede","Categories an account has never bought that its peer "+
+      "group — segment × obligation size quintile — routinely does. The "+
+      "peer adoption floor is assumption A-08."));
+    root.appendChild(table([
+      {h:"Account",k:"account_id",cls:"mono"},
+      {h:"Peer group",k:"peer_group"},
+      {h:"PSC",k:"psc_code",cls:"mono"},
+      {h:"Category",k:"psc_description",cls:"wrap"},
+      {h:"Peer adoption",f:function(r){return pct(r.peer_adoption_rate,0);},cls:"num",r:true},
+      {h:"Adopters",f:function(r){return num(r.peer_adopters);},cls:"num",r:true}
+    ],W.rows.slice(0,150)));
+  }
+});
+
+/* ---- Vendors and channel */
+page("vendors","Vendors",function(root){
+  var V=D.vendors||{}, sa=V.subaward_report||{}, sc=sa.scoring_vs_sam_flag||{},
+      ch=(D.data_quality||{}).channel_rule||{}, err=ch.error_rate_vs_sam_flag||{};
+  root.appendChild(p("lede",
+    "Channel — did this account buy from a maker or through an intermediary "+
+    "— turned out to be the hardest thing in this dataset to derive. Two "+
+    "independent attempts are recorded here, both of which failed, which is why "+
+    "the production field uses the recipient's own registration flag instead."));
+
+  root.appendChild(h2("Two attempts to derive channel, and what happened"));
+  var rows=[];
+  if(err.awards_scored) rows.push({
+    m:"NAICS + name rule (the specified approach)",
+    n:err.awards_scored, a:err.accuracy, b:err.majority_class_accuracy,
+    v:err.beats_majority_class});
+  if(sc.available) rows.push({
+    m:"Subaward flow-through (pass-through to manufacturers)",
+    n:sc.awards_scored, a:sc.accuracy, b:sc.majority_class_accuracy,
+    v:sc.beats_majority_class});
+  if(rows.length){
+    root.appendChild(table([
+      {h:"Signal",k:"m",cls:"name"},
+      {h:"Awards scored",f:function(r){return num(r.n);},cls:"num",r:true},
+      {h:"Accuracy",f:function(r){return pct(r.a);},cls:"num",r:true},
+      {h:"Majority baseline",f:function(r){return pct(r.b);},cls:"num",r:true},
+      {h:"Beats baseline?",f:function(r){return r.v?
+         '<span class="tag derived">YES</span>':
+         '<span class="tag synthetic">NO</span>';},raw:true}
+    ],rows));
+    root.appendChild(p("note","Both are scored against <code>manufacturer_of_goods"+
+      "</code>, the recipient's own SAM registration flag, which plays no part in "+
+      "either signal's inputs. They cover different populations — all awards "+
+      "versus the 0.5% with subaward reporting — so each is judged against its "+
+      "own baseline, not against the other."));
+  }
+  if(err.diagnosis){
+    root.appendChild(h3("Why the NAICS rule fails"));
+    root.appendChild(p("lede",esc(err.diagnosis)));
+  }
+  if(sc.finding){
+    root.appendChild(h3("Why the subaward signal fails"));
+    root.appendChild(p("lede",esc(sc.finding)));
+    if(sc.why_we_do_not_just_invert_it){
+      root.appendChild(el('<p class="framing"><b>And why we do not simply invert '+
+        'it.</b> '+esc(sc.why_we_do_not_just_invert_it)+'</p>'));
+    }
+  }
+
+  var cov=sa.coverage||{};
+  if(cov.prime_awards_with_subawards){
+    root.appendChild(h2("The subaward graph"));
+    root.appendChild(stats([
+      {k:"Subaward rows",v:num(cov.rows_joining_primes_in_scope)},
+      {k:"Primes with subawards",v:num(cov.prime_awards_with_subawards),
+       s:pct(cov.share_of_primes_with_subawards,2)+" of all primes"},
+      {k:"Distinct subawardees",v:num(cov.distinct_subawardees)},
+      {k:"Labelled subawardees",v:num(cov.subawardees_labelled)},
+      {k:"Median pass-through",v:pct((sa.passthrough||{}).median)}
+    ]));
+    root.appendChild(p("note",esc(cov.limit||"")));
+  }
+  var ph=V.passthrough_hist||{};
+  if(Object.keys(ph).length){
+    root.appendChild(h3("Pass-through ratio — share of prime value sent onward"));
+    var bx=chartBox();
+    vbars(bx,{data:Object.keys(ph).map(function(k){return {x:k,n:ph[k]};}),
+      keys:["n"],height:210,barWidth:38,label:"Pass-through ratio distribution"});
+    root.appendChild(bx);
+    root.appendChild(p("note","Ratios are clipped to [0, 3]: prime obligated amounts "+
+      "include deobligations and modifications, so raw ratios run from negative to "+
+      "several hundred."));
+  }
+  if(V.top_flows&&V.top_flows.length){
+    root.appendChild(h2("Largest prime → subcontractor flows"));
+    root.appendChild(table([
+      {h:"Prime",k:"prime_awardee_name",cls:"name"},
+      {h:"Subcontractor",k:"subawardee_name",cls:"name"},
+      {h:"Sub is mfr",f:function(r){return r.subawardee_is_mfg==null?
+         '<span class="dim">unknown</span>':(r.subawardee_is_mfg?"yes":"no");},raw:true},
+      {h:"Subaward total",f:function(r){return money(r.subaward_total);},cls:"num",r:true},
+      {h:"Subawards",f:function(r){return num(r.subawards);},cls:"num",r:true},
+      {h:"First",k:"first_seen",cls:"mono"},
+      {h:"Last",k:"last_seen",cls:"mono"}
+    ],V.top_flows.slice(0,60)));
+  }
+  if(V.flows_sample&&V.flows_sample.length){
+    root.appendChild(h2("Prime awards by pass-through"));
+    root.appendChild(table([
+      {h:"PIID",k:"prime_piid",cls:"mono"},
+      {h:"Prime",k:"prime_name",cls:"name"},
+      {h:"Registered mfr",f:function(r){return r.prime_is_mfg==null?"—":
+         (r.prime_is_mfg?"yes":"no");}},
+      {h:"Obligated",f:function(r){return money(r.prime_obligated);},cls:"num",r:true},
+      {h:"Passed on",f:function(r){return money(r.subaward_total);},cls:"num",r:true},
+      {h:"Ratio",f:function(r){return r.passthrough_ratio==null?"—":
+         Number(r.passthrough_ratio).toFixed(2);},cls:"num",r:true},
+      {h:"Subs",f:function(r){return num(r.distinct_subawardees);},cls:"num",r:true},
+      {h:"Flow signal",k:"flow_channel",cls:"mono"}
+    ],V.flows_sample.slice(0,60)));
+  }
+});
+
+/* ---- Data quality */
+page("quality","Data quality",function(root){
+  var Q=D.data_quality||{}, mr=Q.match_report||{}, v=Q.validation||{},
+      org=Q.organisations||{}, ch=Q.channel_rule||{}, err=ch.error_rate_vs_sam_flag||{};
+  root.appendChild(p("lede",
+    "Entity resolution is a stewardship artefact, not a preprocessing footnote. "+
+    "Nothing merges silently: every merge carries its rule and score, every "+
+    "refusal is listed, and the result is graded against a label held back from "+
+    "the matching."));
+
+  root.appendChild(stats([
+    {k:"Raw name strings",v:num(mr.distinct_raw_names_before)},
+    {k:"Resolved entities",v:num(mr.entities_after)},
+    {k:"Variants collapsed",v:num(mr.spelling_variants_collapsed),
+     s:pct(mr.collapse_rate)+" collapse"},
+    {k:"Logged merges",v:num(mr.merge_count)},
+    {k:"Refused ambiguous",v:num(mr.ambiguous_count),flag:true},
+    {k:"Unresolved",v:num(mr.unresolved_count),flag:true}
+  ]));
+
+  if(v.available){
+    root.appendChild(h2("Grading the matcher against a held-back label"));
+    root.appendChild(p("lede",
+      "<code>recipient_parent_uei</code> is USAspending's own corporate-family "+
+      "rollup. It is never used to do the matching — that would be circular — "+
+      "only to score it afterwards."));
+    root.appendChild(stats([
+      {k:"Entities with known parent",v:num(v.entities_with_known_parent)},
+      {k:"Real multi-UEI families",v:num(v.true_multi_uei_parent_families)},
+      {k:"Pairs flagged",v:num(v.flagged_pairs)},
+      {k:"Precision",v:pct(v.same_parent_precision)},
+      {k:"Recall",v:pct(v.same_parent_recall)},
+      {k:"Normalisation agreement",v:pct(v.normalisation_agreement_with_usaspending)}
+    ]));
+    root.appendChild(p("note",esc(v.reading||"")));
+  }
+
+  var era=(Q.psc_era_transition||{}).awards_by_fy_and_era;
+  if(era&&Object.keys(era).length){
+    root.appendChild(h2("The PSC coding break"));
+    root.appendChild(p("lede",
+      "Federal IT product codes migrated from the numeric 70-series and J/D "+
+      "service codes to the alphanumeric 7A–7K / DA–DK family. A code set "+
+      "drawn from one era alone would show accounts going dormant and coverage "+
+      "collapsing in 2021 as a pure artefact of recoding."));
+    var fys=Object.keys(era).sort();
+    var box=chartBox();
+    vbars(box,{data:fys.map(function(f){
+        return {x:f,legacy:(era[f].legacy||0),modern:(era[f].modern||0),
+                unmapped:(era[f].unmapped||0)};}),
+      keys:["legacy","modern","unmapped"].filter(function(k){
+        return fys.some(function(f){return era[f][k];});}),
+      height:240,label:"Awards by fiscal year and PSC coding era"});
+    root.appendChild(box);
+    root.appendChild(p("note",esc((Q.psc_era_transition||{}).note||"")));
+  }
+
+  if(err.awards_scored){
+    root.appendChild(h2("Channel rule — measured error rate"));
+    root.appendChild(p("lede",
+      "The rule classifies channel from recipient NAICS and name. "+
+      "<code>manufacturer_of_goods</code> is the recipient's own SAM registration "+
+      "flag and plays no part in the rule's inputs, so scoring against it is a "+
+      "genuine out-of-rule evaluation rather than a hand-wave."));
+    root.appendChild(stats([
+      {k:"Awards scored",v:num(err.awards_scored)},
+      {k:"Accuracy",v:pct(err.accuracy)},
+      {k:"Error rate",v:pct(err.error_rate),flag:true},
+      {k:"Direct precision",v:pct(err.direct_precision)},
+      {k:"Direct recall",v:pct(err.direct_recall)},
+      {k:"Base rate mfr",v:pct(err.base_rate_manufacturer)}
+    ]));
+    var cm=err.confusion||{};
+    root.appendChild(table([
+      {h:"",k:"r"},
+      {h:"Truth: manufacturer",f:function(r){return num(r.a);},cls:"num",r:true},
+      {h:"Truth: not",f:function(r){return num(r.b);},cls:"num",r:true}],[
+      {r:"Rule says direct",a:cm.rule_direct_truth_manufacturer,b:cm.rule_direct_truth_not},
+      {r:"Rule says partner",a:cm.rule_partner_truth_manufacturer,b:cm.rule_partner_truth_not}
+    ]));
+    root.appendChild(p("note","In production the <code>channel</code> field uses the "+
+      "REAL SAM flag wherever it is populated and falls back to the rule only where "+
+      "it is not; <code>channel_source</code> records which applied for every award. "+
+      "Obligation-weighted share of recipients whose own NAICS places them in both "+
+      "classes: <b>"+pct(ch.obligation_weighted_instability_rate)+"</b>."));
+  }
+
+  root.appendChild(h2("Awarding organisations"));
+  root.appendChild(stats([
+    {k:"Awards with office code",v:pct(org.office_code_present_rate)},
+    {k:"Office name strings",v:num(org.distinct_office_name_strings_before)},
+    {k:"Offices resolved",v:num(org.office_entities_after)},
+    {k:"Offices w/ several spellings",v:num(org.offices_with_multiple_name_spellings)},
+    {k:"Sub-agencies",v:num(org.sub_agency_entities_after)}
+  ]));
+  if(Q.office_name_variants&&Q.office_name_variants.length){
+    root.appendChild(table([
+      {h:"Office code",k:"office_code",cls:"mono"},
+      {h:"Canonical",k:"canonical",cls:"name"},
+      {h:"Spellings",f:function(r){return num(r.variant_count);},cls:"num",r:true},
+      {h:"Variants",f:function(r){return (r.variants||[]).join("  ·  ");},cls:"wrap"}
+    ],Q.office_name_variants.slice(0,25)));
+  }
+
+  if(Q.merges_sample&&Q.merges_sample.length){
+    root.appendChild(h2("Merges, with evidence"));
+    root.appendChild(table([
+      {h:"Raw name",k:"raw_name",cls:"name"},
+      {h:"Normalised",k:"normalised",cls:"mono"},
+      {h:"Entity",k:"entity",cls:"mono"},
+      {h:"Rule",k:"rule",cls:"mono"},
+      {h:"Score",f:function(r){return Number(r.score).toFixed(3);},cls:"num",r:true},
+      {h:"Awards",f:function(r){return num(r.awards);},cls:"num",r:true}
+    ],Q.merges_sample.slice(0,40)));
+  }
+  if(Q.ambiguous_sample&&Q.ambiguous_sample.length){
+    root.appendChild(h2("Refused — ambiguous, need human review"));
+    root.appendChild(table([
+      {h:"Raw name",k:"raw_name",cls:"name"},
+      {h:"Candidates",f:function(r){return (r.candidates||[]).join(", ");},cls:"mono"},
+      {h:"Scores",f:function(r){return (r.scores||[]).map(function(s){
+        return Number(s).toFixed(3);}).join(", ");},cls:"mono"},
+      {h:"Awards",f:function(r){return num(r.awards);},cls:"num",r:true},
+      {h:"Why",k:"reason",cls:"wrap"}
+    ],Q.ambiguous_sample.slice(0,30)));
+  }
+
+  var miss=(Q.missingness||{}).by_base_fy||{};
+  if(Object.keys(miss).length){
+    root.appendChild(h2("Missing-field rates by fiscal year"));
+    var fys2=Object.keys(miss).sort();
+    var fields=["recipient_uei","awarding_office_code","manufacturer_of_goods",
+                "end_date","number_of_offers_received"];
+    var box3=chartBox();
+    lines(box3,{x:fys2,series:fields.map(function(f){
+        return {name:f,v:fys2.map(function(y){return miss[y][f]==null?null:miss[y][f];})};}),
+      max:1,fmt:function(v){return pct(v,0);},height:250,label:"Missing-field rates"});
+    root.appendChild(box3);
+    root.appendChild(p("note","The UEI curve is the reason entity resolution needs a "+
+      "name-similarity fallback at all: UEI replaced DUNS in April 2022 and the "+
+      "back-fill on older records is incomplete."));
+  }
+  root.appendChild(p("note","Rows in the PSC and NAICS pulls that overlapped: <b>"+
+    pct(Q.pull_overlap_rate)+"</b> of raw rows. That is pull overlap, not an "+
+    "entity-resolution duplicate rate."));
+});
+
+/* ---- Model */
+page("model","Model",function(root){
+  var Mo=D.model||{}, sv=Mo.survival||{}, res=sv.results||{}, evs=Mo.ev_sensitivity||{};
+  root.appendChild(p("lede",
+    "Time from one award to an account's next award, right-censored for accounts "+
+    "that have not bought again. Validation is strictly time-based — train "+
+    "through a cutoff, evaluate on what happened after. No random splits anywhere."));
+
+  var cen=sv.censoring||{}, val=sv.validation||{};
+  root.appendChild(stats([
+    {k:"Training gaps",v:num(cen.train_gaps)},
+    {k:"Events",v:num(cen.events)},
+    {k:"Right-censored",v:num(cen.right_censored),s:pct(cen.censoring_rate)+" censored"},
+    {k:"Train cutoff",v:String(val.train_cutoff||M.train_cutoff||"—")},
+    {k:"Test accounts",v:num(val.test_accounts)},
+    {k:"Actual buy rate",v:pct(val.test_positive_rate)}
+  ]));
+
+  if(sv.verdict){
+    root.appendChild(el('<p class="framing '+
+      (sv.model_beats_baseline?"ok":"")+'"><b>Verdict.</b> '+esc(sv.verdict)+'</p>'));
+  }
+
+  var ra=res.recently_active_subset||{};
+  if(ra.accounts){
+    root.appendChild(h2("The same model on a harder test"));
+    root.appendChild(p("lede",esc(ra.why||"")));
+    root.appendChild(table([
+      {h:"Population",k:"pop",cls:"name"},
+      {h:"Accounts",f:function(r){return num(r.n);},cls:"num",r:true},
+      {h:"Observed buy rate",f:function(r){return pct(r.obs);},cls:"num",r:true},
+      {h:"Model AUC",f:function(r){return r.m==null?"—":Number(r.m).toFixed(3);},
+       cls:"num",r:true},
+      {h:"Baseline AUC",f:function(r){return r.b==null?"—":Number(r.b).toFixed(3);},
+       cls:"num",r:true}
+    ],[
+      {pop:"All test accounts",n:val.test_accounts,obs:val.test_positive_rate,
+       m:(res.survival_model||{}).auc,b:(res.rules_baseline||{}).auc},
+      {pop:"Recently active (last purchase within 730 days)",n:ra.accounts,
+       obs:ra.observed_rate,m:(ra.survival_model||{}).auc,b:(ra.rules_baseline||{}).auc}
+    ]));
+    root.appendChild(p("note","The model's margin over the baseline is <b>wider</b> "+
+      "on the harder subset, not narrower, which is the reassuring direction."));
+  }
+
+  var m=res.survival_model||{}, b=res.rules_baseline||{};
+  if(m.calibration||b.calibration){
+    root.appendChild(h2("Calibration — predicted versus observed, by decile"));
+    root.appendChild(p("lede",
+      "This matters more than AUC. The ranking multiplies a predicted probability "+
+      "by a money value, so a model that orders accounts well but predicts the "+
+      "wrong level produces the wrong expected value."));
+    var c=el('<div class="cols"></div>');
+    [[m,"Survival model",0],[b,"Rules baseline (recency only)",1]].forEach(function(pair){
+      var d=document.createElement("div");
+      d.appendChild(h3(pair[1]));
+      var mx=Math.max(0.05,Math.max.apply(null,(pair[0].calibration||[{observed:0}])
+        .map(function(q){return Math.max(q.observed||0,q.predicted||0);}))*1.1);
+      var bx=chartBox();
+      scatter(bx,{points:pair[0].calibration||[],max:mx,si:pair[2],
+        label:pair[1]+" calibration"});
+      d.appendChild(bx);
+      d.appendChild(el('<p class="note">AUC <b>'+
+        (pair[0].auc==null?"—":Number(pair[0].auc).toFixed(3))+'</b> · Brier <b>'+
+        (pair[0].brier==null?"—":Number(pair[0].brier).toFixed(4))+'</b> · ECE <b>'+
+        (pair[0].ece==null?"—":Number(pair[0].ece).toFixed(4))+'</b></p>'));
+      c.appendChild(d);
+    });
+    root.appendChild(c);
+    root.appendChild(p("note","The dashed line is perfect calibration. Points above it "+
+      "mean the model under-predicts; below, it over-predicts."));
+  }
+
+  if(Mo.coefficients&&Mo.coefficients.length){
+    root.appendChild(h2("Covariate effects"));
+    root.appendChild(p("lede","Hazard ratios from the Cox model. Above 1 means the "+
+      "covariate shortens the wait to the next award; below 1 lengthens it."));
+    root.appendChild(table([
+      {h:"Covariate",k:"covariate",cls:"mono"},
+      {h:"coef",f:function(r){return Number(r.coef).toFixed(4);},cls:"num",r:true},
+      {h:"hazard ratio",f:function(r){return Number(r["exp(coef)"]).toFixed(3);},cls:"num",r:true},
+      {h:"z",f:function(r){return Number(r.z).toFixed(2);},cls:"num",r:true},
+      {h:"p",f:function(r){var v=Number(r.p);
+        return v<0.001?"<0.001":v.toFixed(3);},cls:"num",r:true}
+    ],Mo.coefficients));
+    root.appendChild(p("note","Features that would not have been observable before "+
+      "the cutoff are excluded by construction. The exclusion list is in "+
+      "<code>reports/survival_report.json</code>."));
+  }
+
+  if(evs.margin_sensitivity&&evs.margin_sensitivity.length){
+    root.appendChild(h2("Expected value — sensitivity to the margin assumption"));
+    root.appendChild(p("lede",esc(evs.reading||"")));
+    var ms=evs.margin_sensitivity;
+    var topKey=Object.keys(ms[0]).filter(function(k){
+      return k.indexOf("overlap_with_base")>=0;})[0];
+    var c2=el('<div class="cols"></div>');
+    var d1=document.createElement("div"); d1.appendChild(h3("Accounts clearing the cost floor"));
+    var bx1=chartBox();
+    lines(bx1,{x:ms.map(function(r){return pct(r.margin,0);}),
+      series:[{name:"positive EV share",v:ms.map(function(r){return r.positive_ev_share;})}],
+      max:1,fmt:function(v){return pct(v,0);},height:230,label:"Positive EV share by margin"});
+    d1.appendChild(bx1);
+    var d2=document.createElement("div"); d2.appendChild(h3("Is the ordering stable?"));
+    var bx2=chartBox();
+    lines(bx2,{x:ms.map(function(r){return pct(r.margin,0);}),
+      series:[{name:"top-N overlap with base",v:ms.map(function(r){return r[topKey];})}],
+      max:1,fmt:function(v){return pct(v,0);},height:230,si:1,label:"Ranking stability"});
+    d2.appendChild(bx2);
+    c2.appendChild(d1); c2.appendChild(d2); root.appendChild(c2);
+    root.appendChild(table([
+      {h:"Margin",f:function(r){return pct(r.margin,0);},cls:"num",r:true},
+      {h:"Positive-EV accounts",f:function(r){return num(r.positive_ev_accounts);},cls:"num",r:true},
+      {h:"Share",f:function(r){return pct(r.positive_ev_share);},cls:"num",r:true},
+      {h:"Total EV",f:function(r){return money(r.total_expected_value);},cls:"num",r:true},
+      {h:"Top-N overlap",f:function(r){return pct(r[topKey]);},cls:"num",r:true}
+    ],ms));
+    if(evs.why_margin_cannot_reorder){
+      root.appendChild(el('<p class="framing"><b>Read the right panel as a control, '+
+        'not a result.</b> '+esc(evs.why_margin_cannot_reorder)+'</p>'));
+    }
+    if(evs.structural_sensitivity&&evs.structural_sensitivity.length){
+      root.appendChild(h3("The choices that genuinely reorder the ranking"));
+      var ok=Object.keys(evs.structural_sensitivity[0]).filter(function(k){
+        return k.indexOf("overlap_with_base")>=0;})[0];
+      root.appendChild(table([
+        {h:"Variant",k:"variant",cls:"wrap"},
+        {h:"Top-N overlap with base",f:function(r){return pct(r[ok]);},cls:"num",r:true},
+        {h:"Positive-EV accounts",f:function(r){return num(r.positive_ev_accounts);},
+         cls:"num",r:true}
+      ],evs.structural_sensitivity));
+      root.appendChild(p("note","These are the numbers worth arguing about: they "+
+        "change who is at the top of the list, not just how long the list is."));
+    }
+    if(evs.engagement_cost_sensitivity){
+      root.appendChild(h3("And to the engagement-cost assumption"));
+      root.appendChild(table([
+        {h:"Engagement cost",f:function(r){return money(r.engagement_cost);},cls:"num",r:true},
+        {h:"Positive-EV accounts",f:function(r){return num(r.positive_ev_accounts);},cls:"num",r:true},
+        {h:"Share",f:function(r){return pct(r.positive_ev_share);},cls:"num",r:true}
+      ],evs.engagement_cost_sensitivity));
+    }
+    root.appendChild(p("note",esc(evs.warning||"")));
+  }
+
+  var hz=D.hazard||{};
+  if(hz.status==="ok"&&hz.buckets){
+    root.appendChild(h2("Drive failure hazard by age — Backblaze"));
+    root.appendChild(p("lede",
+      "The refresh-risk threshold is derived from this curve rather than picked by "+
+      "hand: "+num(hz.total_drive_days)+" drive-days and "+num(hz.total_failures)+
+      " observed failures. Drive age is SMART attribute 9, power-on hours."));
+    var bs=hz.buckets.filter(function(b){return b.drive_days>50000;});
+    var bx=chartBox();
+    vbars(bx,{data:bs.map(function(b){return {x:b.age_bucket,afr:b.afr};}),
+      keys:["afr"],height:230,barWidth:34,fmt:function(v){return pct(v,1);},
+      label:"Annualised failure rate by drive age"});
+    root.appendChild(bx);
+    root.appendChild(p("note","The curve is non-monotonic past about seven years. That "+
+      "is a fleet-composition effect — only some models survive that long, and "+
+      "fleets get migrated — not evidence that old drives get safer. Applying "+
+      "datacentre drive hazards to federal storage assets is itself an assumption "+
+      "(A-07)."));
+  }
+});
+
+/* ---- Provenance */
+page("provenance","Provenance",function(root){
+  var P_=D.provenance||{}, counts=P_.counts||{}, fields=P_.fields||[];
+  root.appendChild(p("lede",
+    "Every field in the final model carries one tag. A reviewer should be able to "+
+    "tell in ten seconds which numbers are real."));
+  root.appendChild(stats([
+    {k:"REAL",v:num(counts.REAL),s:"unmodified public data"},
+    {k:"DERIVED",v:num(counts.DERIVED),s:"computed from REAL only"},
+    {k:"SYNTHETIC",v:num(counts.SYNTHETIC),s:"generated — not evidence",flag:true},
+    {k:"ASSUMPTION",v:num(counts.ASSUMPTION),s:"stated, not measured"}
+  ]));
+
+  var ctl=el('<div class="controls">'+
+    '<label class="ctl" for="p-tag">Tag</label><select id="p-tag">'+
+    ["all","REAL","DERIVED","SYNTHETIC","ASSUMPTION"].map(function(t){
+      return '<option>'+t+'</option>';}).join("")+'</select></div>');
+  root.appendChild(ctl);
+  var host=document.createElement("div"); root.appendChild(host);
+  function draw(){
+    var t=document.getElementById("p-tag").value;
+    var rows=fields.filter(function(f){return t==="all"||f.tag.indexOf(t)>=0;});
+    host.innerHTML="";
+    host.appendChild(table([
+      {h:"Table",k:"table",cls:"mono"},
+      {h:"Field",k:"field",cls:"mono"},
+      {h:"Provenance",f:function(r){return tag(r.tag);},raw:true},
+      {h:"Source",k:"source",cls:"wrap"},
+      {h:"Note",k:"note",cls:"wrap"}
+    ],rows));
+  }
+  document.getElementById("p-tag").addEventListener("input",draw);
+  draw();
+
+  root.appendChild(h2("The synthetic layer"));
+  var sy=(D.synthetic||{}).report||{};
+  root.appendChild(el('<p class="framing"><b>'+esc((D.synthetic||{}).warning||
+    "Synthetic fields are generated and are not evidence about the real world.")+
+    '</b></p>'));
+  if(sy.conditioning){
+    root.appendChild(table([
+      {h:"Field",k:"k",cls:"mono"},{h:"How it is conditioned on real data",k:"v",cls:"wrap"}],
+      Object.keys(sy.conditioning).map(function(k){
+        return {k:k,v:String(sy.conditioning[k])};})));
+  }
+  root.appendChild(p("note","Seed <code>"+esc(sy.seed)+"</code>, fully reproducible. "+
+    "These tables are excluded from the survival model and the expected-value "+
+    "ranking entirely."));
+
+  root.appendChild(h2("Assumption register"));
+  root.appendChild(p("lede","Every commercial number the console uses. None of these "+
+    "is a finding."));
+  root.appendChild(table([
+    {h:"ID",k:"id",cls:"mono"},
+    {h:"Assumption",k:"name",cls:"name"},
+    {h:"Value",f:function(r){return r.value==null?"derived at runtime":
+      (typeof r.value==="number"?num(r.value,r.value<10?4:0):String(r.value))+
+      " "+(r.unit||"");},cls:"num",r:true},
+    {h:"Kind",f:function(r){return tag(r.kind);},raw:true},
+    {h:"Source",k:"source",cls:"wrap"},
+    {h:"Why it is an assumption",k:"why_it_is_an_assumption",cls:"wrap"}
+  ],D.assumptions||[]));
+
+  var bm=D.benchmarks||{};
+  if(bm.company){
+    root.appendChild(h2("Filing benchmarks — benchmark only"));
+    root.appendChild(p("lede",esc(bm.caveat||"")));
+    var nar=bm.narrative||{};
+    var rows=[];
+    (bm.annual_gross_margin||[]).slice(0,4).forEach(function(g){
+      rows.push({m:"Gross margin, FY ending "+g.fiscal_year_end,
+        v:pct(g.gross_margin),s:g.accession});});
+    Object.keys(nar.subscription_ndr||{}).forEach(function(y){
+      rows.push({m:"Subscription net dollar retention FY"+y,
+        v:pct(nar.subscription_ndr[y],0),s:nar.accession});});
+    Object.keys(nar.subscription_arr_growth||{}).forEach(function(y){
+      rows.push({m:"Subscription ARR growth FY"+y,
+        v:pct(nar.subscription_arr_growth[y],0),s:nar.accession});});
+    root.appendChild(table([
+      {h:"Measure",k:"m",cls:"name"},
+      {h:"Value",k:"v",cls:"num",r:true},
+      {h:"SEC accession",k:"s",cls:"mono"}],rows));
+    root.appendChild(p("note",esc(bm.company)+" · CIK "+esc(bm.cik)+" · SIC "+
+      esc(bm.sic)+" · retrieved "+esc(String(bm.retrieved_at).slice(0,10))+
+      ". These figures are never joined to the account data."));
+  }
+});
+
+/* ------------------------------------------------------------- shell */
+function render(){
+  document.getElementById("m-asof").textContent=M.as_of||"—";
+  document.getElementById("m-acct").textContent=num(K.accounts);
+  document.getElementById("m-awards").textContent=num(K.awards_in_scope);
+  document.getElementById("m-built").textContent=String(M.generated_at||"").slice(0,10)||"—";
+
+  var tabs=document.getElementById("tabs"), main=document.getElementById("main");
+  PAGES.forEach(function(pg,i){
+    var b=document.createElement("button");
+    b.className="tab"; b.type="button"; b.textContent=pg.name;
+    b.setAttribute("role","tab"); b.id="tab-"+pg.id;
+    b.setAttribute("aria-selected",i===0?"true":"false");
+    b.setAttribute("aria-controls","sec-"+pg.id);
+    b.addEventListener("click",function(){select(pg.id);});
+    tabs.appendChild(b);
+
+    var s=document.createElement("section");
+    s.id="sec-"+pg.id; s.setAttribute("role","tabpanel");
+    s.setAttribute("aria-labelledby","tab-"+pg.id);
+    s.hidden=i!==0;
+    main.appendChild(s);
+  });
+  /* first page eagerly, the rest on demand */
+  build(PAGES[0]);
+
+  var srcs=(M.sources||[]).map(function(s){
+    return "<b>"+esc(s.name)+"</b> ("+esc(s.kind)+") — "+esc(s.detail)+
+      ". "+esc(s.licence)+(s.retrieved?", retrieved "+esc(s.retrieved):"")+
+      ' · <a href="'+esc(s.url)+'" target="_blank" rel="noopener">source</a>';
+  }).join("<br>");
+  document.getElementById("sources").innerHTML=
+    '<p style="margin:0 0 8px"><b>Sources.</b></p>'+srcs+
+    '<p style="margin-top:10px">'+esc(M.disclaimer||"")+'</p>';
+}
+var built={};
+function build(pg){
+  if(built[pg.id]) return;
+  built[pg.id]=true;
+  var s=document.getElementById("sec-"+pg.id);
+  try{ pg.build(s); }
+  catch(e){ s.appendChild(el('<p class="framing"><b>This page could not render.</b> '+
+    esc(String(e&&e.message||e))+'</p>')); }
+}
+function select(id){
+  PAGES.forEach(function(pg){
+    var t=document.getElementById("tab-"+pg.id), s=document.getElementById("sec-"+pg.id);
+    var on=pg.id===id;
+    t.setAttribute("aria-selected",on?"true":"false");
+    s.hidden=!on;
+    if(on) build(pg);
+  });
+  hideTip();
+  try{ localStorage.setItem("ibrc.tab",id); }catch(e){}
+}
+render();
+try{
+  var saved=localStorage.getItem("ibrc.tab");
+  if(saved&&PAGES.some(function(p){return p.id===saved;})) select(saved);
+}catch(e){}
+})();
+</script>

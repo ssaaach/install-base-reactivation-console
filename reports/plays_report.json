@@ -1,0 +1,188 @@
+{
+  "generated_at": "2026-09-21T21:38:16.758175+00:00",
+  "accounts": 3096,
+  "play_rows": 12937,
+  "accounts_with_any_reason": 3095,
+  "accounts_no_action": 1,
+  "refresh_risk_threshold_years": 3.0,
+  "refresh_risk_basis": "Backblaze Drive Stats Q1_2025: AFR reaches 1.13% (2x the 0.56% floor) at 3y across 27,761,188 drive-days",
+  "playbook": [
+    {
+      "reason_code": "COTERM_WINDOW",
+      "provenance": "REAL",
+      "action": "Consolidate co-terminating contracts into one renewal",
+      "priority": 0,
+      "accounts": 311
+    },
+    {
+      "reason_code": "RENEWAL_DUE",
+      "provenance": "REAL",
+      "action": "Renewal outreach before period of performance ends",
+      "priority": 1,
+      "accounts": 568
+    },
+    {
+      "reason_code": "UNCOVERED",
+      "provenance": "REAL",
+      "action": "Attach maintenance to uncovered hardware",
+      "priority": 2,
+      "accounts": 2723
+    },
+    {
+      "reason_code": "LAPSED_SUPPORT",
+      "provenance": "REAL",
+      "action": "Reinstate lapsed support coverage",
+      "priority": 3,
+      "accounts": 1141
+    },
+    {
+      "reason_code": "REFRESH_RISK",
+      "provenance": "DERIVED",
+      "action": "Technology refresh proposal for ageing assets",
+      "priority": 4,
+      "accounts": 2925
+    },
+    {
+      "reason_code": "DORMANT_REACTIVATION",
+      "provenance": "REAL",
+      "action": "Reactivation outreach after prolonged silence",
+      "priority": 5,
+      "accounts": 2086
+    },
+    {
+      "reason_code": "WHITESPACE",
+      "provenance": "REAL",
+      "action": "Introduce a category the account's peers already buy",
+      "priority": 6,
+      "accounts": 1791
+    },
+    {
+      "reason_code": "CHANNEL_SHIFT",
+      "provenance": "REAL",
+      "action": "Channel alignment review",
+      "priority": 7,
+      "accounts": 151
+    },
+    {
+      "reason_code": "COHORT_LAG",
+      "provenance": "DERIVED",
+      "action": "Cohort-lag diagnostic: why is expansion below peers",
+      "priority": 8,
+      "accounts": 576
+    },
+    {
+      "reason_code": "EXPANSION_SIGNAL",
+      "provenance": "DERIVED",
+      "action": "Expansion proposal while buying is accelerating",
+      "priority": 9,
+      "accounts": 40
+    },
+    {
+      "reason_code": "VENDOR_CONCENTRATION",
+      "provenance": "REAL",
+      "action": "Competitive review of a single-vendor account",
+      "priority": 10,
+      "accounts": 153
+    },
+    {
+      "reason_code": "SUPPORT_RECOVERY",
+      "provenance": "SYNTHETIC",
+      "action": "Support recovery plan",
+      "priority": 11,
+      "accounts": 472
+    }
+  ],
+  "reason_counts": {
+    "REFRESH_RISK": 2925,
+    "UNCOVERED": 2723,
+    "DORMANT_REACTIVATION": 2086,
+    "WHITESPACE": 1791,
+    "LAPSED_SUPPORT": 1141,
+    "COHORT_LAG": 576,
+    "RENEWAL_DUE": 568,
+    "SUPPORT_RECOVERY": 472,
+    "COTERM_WINDOW": 311,
+    "VENDOR_CONCENTRATION": 153,
+    "CHANNEL_SHIFT": 151,
+    "EXPANSION_SIGNAL": 40
+  },
+  "selectivity": {
+    "COTERM_WINDOW": {
+      "accounts": 311,
+      "share_of_accounts": 0.1005,
+      "low_information": false
+    },
+    "RENEWAL_DUE": {
+      "accounts": 568,
+      "share_of_accounts": 0.1835,
+      "low_information": false
+    },
+    "UNCOVERED": {
+      "accounts": 2723,
+      "share_of_accounts": 0.8795,
+      "low_information": true
+    },
+    "LAPSED_SUPPORT": {
+      "accounts": 1141,
+      "share_of_accounts": 0.3685,
+      "low_information": false
+    },
+    "REFRESH_RISK": {
+      "accounts": 2925,
+      "share_of_accounts": 0.9448,
+      "low_information": true
+    },
+    "DORMANT_REACTIVATION": {
+      "accounts": 2086,
+      "share_of_accounts": 0.6738,
+      "low_information": false
+    },
+    "WHITESPACE": {
+      "accounts": 1791,
+      "share_of_accounts": 0.5785,
+      "low_information": false
+    },
+    "CHANNEL_SHIFT": {
+      "accounts": 151,
+      "share_of_accounts": 0.0488,
+      "low_information": false
+    },
+    "COHORT_LAG": {
+      "accounts": 576,
+      "share_of_accounts": 0.186,
+      "low_information": false
+    },
+    "EXPANSION_SIGNAL": {
+      "accounts": 40,
+      "share_of_accounts": 0.0129,
+      "low_information": false
+    },
+    "VENDOR_CONCENTRATION": {
+      "accounts": 153,
+      "share_of_accounts": 0.0494,
+      "low_information": false
+    },
+    "SUPPORT_RECOVERY": {
+      "accounts": 472,
+      "share_of_accounts": 0.1525,
+      "low_information": false
+    }
+  },
+  "selectivity_note": "REFRESH_RISK fires on almost every account because the hazard-derived age threshold is low and the award window is eleven years, so most assets are older than it. The trigger is real but it does not discriminate; treat a near-universal code as context, not as a ranking signal. The expected-value ranking does not weight codes.",
+  "provenance_counts": {
+    "REAL": 8924,
+    "DERIVED": 3541,
+    "SYNTHETIC": 472
+  },
+  "recommended_action_counts": {
+    "Attach maintenance to uncovered hardware": 2189,
+    "Reinstate lapsed support coverage": 324,
+    "Consolidate co-terminating contracts into one renewal": 311,
+    "Renewal outreach before period of performance ends": 257,
+    "Introduce a category the account's peers already buy": 5,
+    "Reactivation outreach after prolonged silence": 5,
+    "Technology refresh proposal for ageing assets": 4,
+    "No action this cycle": 1
+  },
+  "rule": "A SYNTHETIC-provenance reason code never becomes an account's recommended action; it can only appear alongside real ones."
+}
