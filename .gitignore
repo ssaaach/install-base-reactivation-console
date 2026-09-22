@@ -22,3 +22,6 @@ data/raw/*.part
 # Build intermediate: export_app_data.py writes it, build_app.py inlines it into
 # app/dist/index.html. Committing both would duplicate 4.6MB of the same JSON.
 app/data/app_data.json
+
+# The original brief. Kept locally, deliberately not published.
+Prompt_1.md
