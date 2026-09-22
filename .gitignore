@@ -25,3 +25,9 @@ app/data/app_data.json
 
 # The original brief. Kept locally, deliberately not published.
 Prompt_1.md
+
+# Written by the Vercel CLI on `vercel link`. .env.local holds a
+# VERCEL_OIDC_TOKEN and .vercel/ holds the project linkage - neither belongs in
+# the repo. The CLI adds these itself; kept here so the protection is recorded.
+.vercel
+.env*

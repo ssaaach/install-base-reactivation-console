@@ -5,8 +5,10 @@ show install-base reactivation mechanics end to end: who has gone quiet, whose
 hardware has no support attached, what is expiring, and which accounts are worth
 a conversation — with the evidence rows that triggered every recommendation.
 
-**Console:** the built page is `app/dist/index.html` — a single self-contained
-file, no server, no build step, no runtime fetch. 0.56 MB over the wire.
+**Live:** <https://install-base-reactivation-console.vercel.app>
+
+The built page is `app/dist/index.html` — a single self-contained file, no
+server, no build step, no runtime fetch. 4.59 MB raw, **0.57 MB over the wire**.
 Deploys as a static site anywhere; `vercel.json` and `netlify.toml` are in the
 repo and need no configuration. See [Deploying the console](#deploying-the-console).
 
@@ -80,7 +82,7 @@ The same statement appears on every page of the console.
 | Ranking uses | **survival_model** |
 | Backblaze drive-days behind the hazard curve | 27,761,188 |
 
-_Generated 2026-09-22 09:06 UTC by `pipeline/make_docs.py`. As-of date 2026-09-21._
+_Generated 2026-09-22 11:57 UTC by `pipeline/make_docs.py`. As-of date 2026-09-21._
 <!-- END HEADLINE_FIGURES -->
 
 ---
@@ -740,9 +742,29 @@ so it deploys as an ordinary static site anywhere.
 The repo ships config for the two easiest options. Both point at `app/dist` and
 run no build command.
 
-### Vercel
+### Vercel — currently deployed here
 
-`vercel.json` is already set up, so this is zero-config:
+<https://install-base-reactivation-console.vercel.app>
+
+Static serve, no build step, ~3s deploys. The response carries the headers set
+in `vercel.json` (`X-Content-Type-Options`, `Referrer-Policy`, and a
+revalidating cache policy on the entry point) and Vercel applies brotli, so the
+4.59 MB page transfers in about 0.57 MB.
+
+**Auto-deploy on push is not connected yet.** Vercel's GitHub App needs access
+granted to this repo before it can watch it, and that cannot be done from the
+CLI for a private repo:
+
+> `Error: Failed to connect ssaaach/install-base-reactivation-console to project.`
+
+Grant it under **Project → Settings → Git → Connect Git Repository**, after
+which every push to `main` redeploys. Until then, redeploy explicitly:
+
+```bash
+npx vercel deploy --prod --yes
+```
+
+`vercel.json` is already set up, so a fresh project is zero-config:
 
 ```bash
 # one-off, from the repo root
