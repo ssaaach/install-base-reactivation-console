@@ -4,48 +4,25 @@
   "buildCommand": null,
   "installCommand": null,
   "outputDirectory": "app/dist",
-  "trailingSlash": false,
-  "headers": [
+  "routes": [
     {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        },
-        {
-          "key": "Referrer-Policy",
-          "value": "strict-origin-when-cross-origin"
-        },
-        {
-          "key": "Permissions-Policy",
-          "value": "geolocation=(), microphone=(), camera=()"
-        }
-      ]
+      "src": "/(.*)",
+      "headers": {
+        "X-Content-Type-Options": "nosniff",
+        "Referrer-Policy": "strict-origin-when-cross-origin",
+        "Permissions-Policy": "geolocation=(), microphone=(), camera=()"
+      },
+      "continue": true
     },
     {
-      "source": "/index.html",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=0, must-revalidate"
-        }
-      ]
+      "src": "/",
+      "headers": { "Cache-Control": "public, max-age=0, must-revalidate" },
+      "dest": "/landing.html"
     },
     {
-      "source": "/landing.html",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=0, must-revalidate"
-        }
-      ]
-    }
-  ],
-  "rewrites": [
-    {
-      "source": "/",
-      "destination": "/landing.html"
+      "src": "/(index|landing)\\.html",
+      "headers": { "Cache-Control": "public, max-age=0, must-revalidate" },
+      "continue": true
     }
   ]
 }

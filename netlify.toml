@@ -16,7 +16,10 @@
 
 # The cover is the site root; the console keeps /index.html so deep links
 # from the cover (index.html#accounts) resolve without a redirect hop.
+# force is required: the publish directory has a real index.html, and Netlify
+# serves an existing file in preference to a rewrite unless the rule forces it.
 [[redirects]]
   from = "/"
   to = "/landing.html"
   status = 200
+  force = true
