@@ -5,7 +5,7 @@ show install-base reactivation mechanics end to end: who has gone quiet, whose
 hardware has no support attached, what is expiring, and which accounts are worth
 a conversation — with the evidence rows that triggered every recommendation.
 
-**Live:** <https://install-base-reactivation-console.vercel.app>
+**Live:** <https://install-base-console.vercel.app>
 
 The built page is `app/dist/index.html` — a single self-contained file, no
 server, no build step, no runtime fetch. 4.59 MB raw, **0.57 MB over the wire**.
@@ -82,7 +82,7 @@ The same statement appears on every page of the console.
 | Ranking uses | **survival_model** |
 | Backblaze drive-days behind the hazard curve | 27,761,188 |
 
-_Generated 2026-09-22 11:57 UTC by `pipeline/make_docs.py`. As-of date 2026-09-21._
+_Generated 2026-09-22 12:10 UTC by `pipeline/make_docs.py`. As-of date 2026-09-21._
 <!-- END HEADLINE_FIGURES -->
 
 ---
@@ -744,20 +744,23 @@ run no build command.
 
 ### Vercel — currently deployed here
 
-<https://install-base-reactivation-console.vercel.app>
+<https://install-base-console.vercel.app>
+
+(The original `install-base-reactivation-console.vercel.app` still resolves, so
+older links do not break.)
 
 Static serve, no build step, ~3s deploys. The response carries the headers set
 in `vercel.json` (`X-Content-Type-Options`, `Referrer-Policy`, and a
 revalidating cache policy on the entry point) and Vercel applies brotli, so the
 4.59 MB page transfers in about 0.57 MB.
 
-**Auto-deploy on push is not connected yet.** Vercel's GitHub App needs access
-granted to this repo before it can watch it, and that cannot be done from the
-CLI for a private repo:
+**Auto-deploy on push is not connected yet.** `vercel git connect` fails even
+with the repository public, which points to Vercel's GitHub App not being
+authorized on the account rather than to repository visibility:
 
 > `Error: Failed to connect ssaaach/install-base-reactivation-console to project.`
 
-Grant it under **Project → Settings → Git → Connect Git Repository**, after
+Authorize it under **Project → Settings → Git → Connect Git Repository**, after
 which every push to `main` redeploys. Until then, redeploy explicitly:
 
 ```bash
@@ -794,10 +797,9 @@ npx netlify-cli deploy --prod
 No config file needed — set **build command** to empty and **build output
 directory** to `app/dist` in the dashboard.
 
-### GitHub Pages — one caveat
+### GitHub Pages
 
-Pages can serve this too, but **the repo is private, and Pages on a private repo
-requires a paid GitHub plan**. If you make the repo public it works free:
+The repository is public, so Pages works on the free plan:
 
 ```bash
 git subtree push --prefix app/dist origin gh-pages
