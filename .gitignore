@@ -35,3 +35,7 @@ Prompt_1.md
 # Private working notes - operational status, local paths, auth state.
 # Eyes only: never published, same treatment as the original brief.
 context.md
+
+# Pre-theme backups of the files the restyle rewrote. Kept locally as a
+# rollback; git already has the originals, so they never need committing.
+*.bak

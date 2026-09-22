@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Install Base Reactivation Console</title>
+<meta name="description" content="US federal enterprise-storage procurement, FY2016-FY2026, scored for reactivation value. Not any vendor's install base.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Tokens are copied verbatim from index.html. If one moves, both move -
+   the cover and the console are one product and must not drift.          */
+:root{
+  --paper:#0F1311; --band:#171C19; --raise:#121714;
+  --ink:#E7EBE6; --ink-2:#98A29A; --ink-3:#6E7872;
+  --rule:#29312B; --rule-2:#1E2520;
+  --accent:#4788C4; --accent-soft:#16242F;
+  --flag:#D55C3C; --flag-soft:#2A1A15;
+  --good:#3E9E7C; --warn:#B08718;
+  --s1:#4788C4; --s2:#D55C3C; --s3:#199F86; --s4:#B08718; --s5:#9670C0;
+  --grid:#232B26;
+  --arc-alpha:1; --star-alpha:1; --grid-alpha:.50;
+  --scrim:rgba(11,14,12,.74); --scrim-2:rgba(32,39,35,.55); --scrim-3:rgba(11,14,12,.90);
+  --grad-1:#5E9BD6; --grad-2:#9E7ECB; --grad-3:#C9BCE8;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --sans:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;
+  --cond:"IBM Plex Sans Condensed","IBM Plex Sans",sans-serif;
+}
+@media (prefers-color-scheme:light){
+  :root:not([data-theme="dark"]){
+    --paper:#F7F8F6; --band:#ECF0EA; --raise:#FFFFFF;
+    --ink:#161A17; --ink-2:#59625B; --ink-3:#818B83;
+    --rule:#CBD2C8; --rule-2:#E0E5DD;
+    --accent:#3A76BD; --accent-soft:#E4EDF7;
+    --flag:#CC4B22; --flag-soft:#FAE8E2;
+    --good:#1F7A5C; --warn:#A87B10;
+    --s1:#3A76BD; --s2:#CC4B22; --s3:#1F9179; --s4:#A87B10; --s5:#8C5BB0;
+    --grid:#DDE3DA;
+  --arc-alpha:.30; --star-alpha:0; --grid-alpha:.60;
+  --scrim:rgba(247,248,246,.80); --scrim-2:rgba(214,222,211,.55); --scrim-3:rgba(247,248,246,.93);
+  --grad-1:#2E63A8; --grad-2:#7A52A8; --grad-3:#9A6FBF;
+  }
+}
+:root[data-theme="light"]{
+  --paper:#F7F8F6; --band:#ECF0EA; --raise:#FFFFFF;
+  --ink:#161A17; --ink-2:#59625B; --ink-3:#818B83;
+  --rule:#CBD2C8; --rule-2:#E0E5DD;
+  --accent:#3A76BD; --accent-soft:#E4EDF7;
+  --flag:#CC4B22; --flag-soft:#FAE8E2;
+  --good:#1F7A5C; --warn:#A87B10;
+  --s1:#3A76BD; --s2:#CC4B22; --s3:#1F9179; --s4:#A87B10; --s5:#8C5BB0;
+  --grid:#DDE3DA;
+  --arc-alpha:.30; --star-alpha:0; --grid-alpha:.60;
+  --scrim:rgba(247,248,246,.80); --scrim-2:rgba(214,222,211,.55); --scrim-3:rgba(247,248,246,.93);
+  --grad-1:#2E63A8; --grad-2:#7A52A8; --grad-3:#9A6FBF;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+html{background:var(--paper)}
+body{
+  background:transparent; color:var(--ink);
+  font:400 14px/1.55 var(--sans); -webkit-font-smoothing:antialiased;
+  font-variant-numeric:tabular-nums;
+}
+a{color:inherit}
+.wrap{max-width:1100px;margin:0 auto;padding-inline:24px}
+@media(max-width:560px){.wrap{padding-inline:16px}}
+
+/* ------------------------------------------------------------- backdrop
+   Grid, starfield and the hero arc are layers behind the whole page. The
+   backdrop is fixed and carries stars only; the hero's own arc scrolls away
+   with it, because two arcs in one frame fight each other.               */
+.backdrop{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.backdrop canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.bd-grid{
+  position:absolute;inset:0;opacity:var(--grid-alpha);
+  background-image:
+    linear-gradient(to right,var(--grid) 1px,transparent 1px),
+    linear-gradient(to bottom,var(--grid) 1px,transparent 1px);
+  background-size:clamp(84px,9vw,124px) clamp(84px,9vw,124px);
+  -webkit-mask-image:radial-gradient(130% 100% at 50% 22%,#000 10%,transparent 76%);
+  mask-image:radial-gradient(130% 100% at 50% 22%,#000 10%,transparent 76%);
+}
+.bd-vig{position:absolute;inset:0;opacity:.55;
+  background:radial-gradient(150% 120% at 50% 18%,transparent 36%,var(--paper) 96%)}
+.page{position:relative;z-index:1}
+
+.hero{
+  position:relative;color:var(--ink);overflow:hidden;
+  padding-block:clamp(72px,11vw,132px) clamp(56px,8vw,96px);
+}
+#arc{position:absolute;inset:0;width:100%;height:100%;z-index:0;display:block;pointer-events:none}
+.hero-inner{position:relative;z-index:3;text-align:center}
+.tick{position:absolute;z-index:2;width:11px;height:11px;opacity:.55}
+.tick::before,.tick::after{content:"";position:absolute;background:var(--ink-3)}
+.tick::before{left:0;top:5px;width:11px;height:1px}
+.tick::after{top:0;left:5px;width:1px;height:11px}
+.tick.a{left:7%;top:30%}.tick.b{right:7%;top:30%}
+.tick.c{left:14%;bottom:22%}.tick.d{right:14%;bottom:22%}
+@media(max-width:700px){.tick{display:none}}
+.reticle{
+  position:relative;display:flex;align-items:center;justify-content:center;
+  width:46px;height:26px;margin:0 auto clamp(120px,17vw,196px);
+  font:600 10px/1 var(--mono);letter-spacing:.14em;color:var(--ink-2);
+}
+.reticle span{position:relative;z-index:1}
+.reticle i{position:absolute;width:7px;height:7px;border-color:var(--ink-3);border-style:solid;border-width:0}
+.reticle i:nth-child(1){left:0;top:0;border-left-width:1px;border-top-width:1px}
+.reticle i:nth-child(2){right:0;top:0;border-right-width:1px;border-top-width:1px}
+.reticle i:nth-child(3){left:0;bottom:0;border-left-width:1px;border-bottom-width:1px}
+.reticle i:nth-child(4){right:0;bottom:0;border-right-width:1px;border-bottom-width:1px}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  border:1px solid var(--rule);padding:7px 14px;
+  font:500 10.5px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-2);background:var(--scrim);backdrop-filter:blur(3px);
+}
+.eyebrow b{color:var(--accent);font-weight:500}
+h1{
+  margin:22px auto 0;max-width:17ch;
+  font:600 clamp(34px,6.4vw,66px)/1.06 var(--sans);
+  letter-spacing:-.033em;text-wrap:balance;color:var(--ink);
+}
+h1 em{
+  font-style:normal;
+  background:linear-gradient(96deg,var(--grad-1) 6%,var(--grad-2) 62%,var(--grad-3) 96%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.framing{
+  margin:20px auto 0;max-width:62ch;
+  font:400 13.5px/1.62 var(--sans);color:var(--ink-2);
+  border-left:3px solid var(--flag);padding:2px 0 2px 14px;text-align:left;
+}
+.framing b{color:var(--ink);font-weight:600}
+.cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:30px}
+.btn{
+  display:inline-flex;align-items:center;gap:9px;cursor:pointer;
+  padding:11px 20px;border:1px solid var(--rule);background:transparent;
+  color:var(--ink);text-decoration:none;
+  font:600 11.5px/1 var(--cond);letter-spacing:.09em;text-transform:uppercase;
+  transition:border-color .18s,background .18s,color .18s;
+}
+.btn:hover{border-color:var(--accent);background:var(--accent-soft)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#08120B}
+.btn.primary:hover{background:#7DB1E0;border-color:#7DB1E0}
+.btn .k{font:500 10px/1 var(--mono);letter-spacing:.08em;opacity:.75}
+.themebtn{
+  position:absolute;top:16px;right:20px;z-index:4;cursor:pointer;
+  background:var(--scrim);border:1px solid var(--rule);color:var(--ink-2);
+  font:600 10px/1 var(--cond);letter-spacing:.1em;text-transform:uppercase;padding:7px 11px;
+}
+.themebtn:hover{color:var(--ink);border-color:var(--accent)}
+
+.scale{border-block:1px solid var(--rule);background:var(--scrim)}
+.scale .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+.fig{padding:22px 20px;border-left:1px solid var(--rule-2)}
+.fig:first-child{border-left:0}
+@media(max-width:720px){.fig:nth-child(odd){border-left:0}}
+.fig .v{font:600 clamp(21px,3vw,30px)/1.1 var(--sans);letter-spacing:-.02em;color:var(--ink)}
+.fig .k{margin-top:6px;font:600 9.5px/1.35 var(--cond);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.fig .s{margin-top:3px;font:400 11.5px/1.4 var(--sans);color:var(--ink-2)}
+@media(max-width:720px){.scale .wrap{grid-template-columns:repeat(2,1fr)}}
+
+section.band{padding-block:clamp(52px,7vw,84px)}
+.lab{font:600 10px/1 var(--cond);letter-spacing:.14em;text-transform:uppercase;
+     color:var(--ink-3);display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.lab::after{content:"";flex:1;height:1px;background:var(--rule-2)}
+h2{margin:0 0 10px;font:600 clamp(22px,3.1vw,31px)/1.2 var(--sans);letter-spacing:-.024em;text-wrap:balance}
+.lede{margin:0 0 30px;max-width:72ch;color:var(--ink-2);font-size:14px}
+.finds{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--rule-2);border:1px solid var(--rule-2)}
+.find{background:var(--scrim);padding:24px 22px}
+.find h3{margin:0 0 9px;font:600 15px/1.35 var(--sans);letter-spacing:-.012em;color:var(--ink)}
+.find p{margin:0;font-size:13px;line-height:1.6;color:var(--ink-2)}
+.find .num{display:block;margin-bottom:13px;font:600 clamp(23px,3vw,31px)/1 var(--sans);letter-spacing:-.02em}
+.find .num.b{color:var(--accent)}.find .num.f{color:var(--flag)}
+.find .num.g{color:var(--good)}.find .num.w{color:var(--warn)}
+.find .num small{font:500 11px/1 var(--mono);letter-spacing:.04em;color:var(--ink-3);margin-left:8px}
+@media(max-width:720px){.finds{grid-template-columns:1fr}}
+.surfaces{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule-2);border:1px solid var(--rule-2)}
+.surf{background:var(--scrim);padding:19px 18px;text-decoration:none;color:inherit;display:block;
+      transition:background .16s;border-left:2px solid transparent}
+.surf:hover{background:var(--accent-soft);border-left-color:var(--accent)}
+.surf .n{font:500 10px/1 var(--mono);color:var(--ink-3);letter-spacing:.05em}
+.surf .t{margin-top:9px;font:600 14px/1.3 var(--sans);letter-spacing:-.01em}
+.surf .d{margin-top:5px;font-size:12.5px;line-height:1.5;color:var(--ink-2)}
+@media(max-width:860px){.surfaces{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.surfaces{grid-template-columns:1fr}}
+.prov{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px}
+.tag{font:500 10.5px/1.5 var(--mono);letter-spacing:.06em;padding:4px 10px;
+     border-left:3px solid var(--rule);background:var(--band);color:var(--ink-2)}
+.tag.real{border-left-color:var(--s1);color:var(--s1)}
+.tag.derived{border-left-color:var(--s3);color:var(--s3)}
+.tag.synthetic{border-left-color:var(--s2);color:var(--s2);background:var(--flag-soft)}
+.tag.assumption{border-left-color:var(--s4);color:var(--s4)}
+footer{border-top:1px solid var(--rule);background:var(--scrim-2);padding-block:34px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:26px;justify-content:space-between;align-items:flex-start}
+footer p{margin:0;font-size:12px;line-height:1.6;color:var(--ink-2);max-width:56ch}
+footer b{color:var(--ink)}
+footer a{color:var(--accent)}
+.meta{font:500 11px/1.8 var(--mono);color:var(--ink-3)}
+.meta b{color:var(--ink-2);font-weight:500}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="backdrop" aria-hidden="true">
+  <canvas data-arc="stars"></canvas>
+  <div class="bd-grid"></div>
+  <div class="bd-vig"></div>
+</div>
+
+<div class="page">
+<header class="hero">
+  <canvas id="arc" data-arc="hero" aria-hidden="true"></canvas>
+  <i class="tick a" aria-hidden="true"></i><i class="tick b" aria-hidden="true"></i>
+  <i class="tick c" aria-hidden="true"></i><i class="tick d" aria-hidden="true"></i>
+  <button class="themebtn" id="theme-btn" type="button">Light</button>
+
+  <div class="hero-inner wrap">
+    <div class="reticle" aria-hidden="true"><i></i><i></i><i></i><i></i><span>IB</span></div>
+    <div class="eyebrow"><span>Federal procurement</span><b>&middot;</b><span id="k-span">FY2016&ndash;FY2026</span></div>
+    <h1>The <em>absence</em> of an award is a signal.</h1>
+    <p class="framing">
+      <b>This is not any vendor's install base.</b> It is US federal
+      enterprise-storage procurement from USAspending.gov, used as a
+      <b>proxy</b> for install-base dynamics &mdash; <span id="k-awards">270,924</span>
+      awards across <span id="k-accounts">3,096</span> awarding offices, scored
+      for reactivation value.
+    </p>
+    <div class="cta">
+      <a class="btn primary" href="index.html#overview">Open the console <span class="k">&rarr;</span></a>
+      <a class="btn" href="#method">How it was built</a>
+    </div>
+  </div>
+</header>
+
+<div class="scale">
+  <div class="wrap">
+    <div class="fig"><div class="v" id="f-awards">270,924</div><div class="k">Awards in scope</div><div class="s" id="f-awards-s">From 277,818 prime rows</div></div>
+    <div class="fig"><div class="v" id="f-oblig">$74.8bn</div><div class="k">Total obligated</div><div class="s" id="f-oblig-s">FY2016&ndash;FY2026</div></div>
+    <div class="fig"><div class="v" id="f-acct">3,096</div><div class="k">Awarding offices</div><div class="s" id="f-acct-s">550 with positive EV</div></div>
+    <div class="fig"><div class="v" id="f-exp">4,005</div><div class="k">Expiring &lt; 365d</div><div class="s" id="f-exp-s">546 co-term clusters</div></div>
+  </div>
+</div>
+
+<section class="band" id="method">
+  <div class="wrap">
+    <div class="lab">What the data forced</div>
+    <h2>Four results that changed the model.</h2>
+    <p class="lede">Each of these cost real time to establish and each one is load-bearing &mdash;
+      change the scope without accounting for them and the output is silently wrong.</p>
+    <div class="finds">
+      <article class="find">
+        <span class="num f">67.4%<small>vs 38.8%</small></span>
+        <h3>Dormancy is a spread, not a number</h3>
+        <p>Federal IT product codes migrated from the numeric 70-series to the alphanumeric
+        7A&ndash;7K family in a single step at the FY2020/21 boundary. A code set drawn from one
+        era alone shows accounts going dormant as a pure artifact of recoding. Every family
+        spans both eras, and every award carries its coding era.</p>
+      </article>
+      <article class="find">
+        <span class="num w">51.9%<small>baseline 77.4%</small></span>
+        <h3>The channel rule is worse than no rule</h3>
+        <p>Classifying vendors from NAICS and name scores below always guessing the majority
+        class. NAICS on a federal award describes what was bought, not what the vendor is:
+        82,901 awards carry &ldquo;Electronic Computer Manufacturing&rdquo; because a computer
+        was purchased. Production uses the SAM registration flag; the rule is reported, not used.</p>
+      </article>
+      <article class="find">
+        <span class="num b">0.802<small>baseline 0.697</small></span>
+        <h3>The headline AUC is flattered</h3>
+        <p>Across all 3,043 test accounts the model reaches 0.922 &mdash; but most of that lift
+        is separating long-dead accounts from live ones, which needs no model. On the 1,229
+        recently-active accounts, where the ranking actually operates, it scores 0.802 against
+        a 0.697 baseline. That is the number worth quoting.</p>
+      </article>
+      <article class="find">
+        <span class="num g">153,911<small>from 270,924</small></span>
+        <h3>Model the purchase episode</h3>
+        <p>Time between individual awards gives a median gap of one day, because offices sign
+        dozens of delivery orders together. Collapsing awards to account-days makes the interval
+        mean something &mdash; and makes survival analysis on it defensible.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="band" style="background:var(--scrim-2);border-block:1px solid var(--rule)">
+  <div class="wrap">
+    <div class="lab">Nine surfaces</div>
+    <h2>Every figure traces back to a row.</h2>
+    <p class="lede">The console is one static page with no backend. Each surface below is a tab
+      inside it, deep-linked.</p>
+    <div class="surfaces">
+      <a class="surf" href="index.html#overview"><div class="n">01</div><div class="t">Overview</div><div class="d">Portfolio scale, dormancy spread, coding-era volume</div></a>
+      <a class="surf" href="index.html#accounts"><div class="n">02</div><div class="t">Accounts</div><div class="d">Offices ranked by expected value, with evidence</div></a>
+      <a class="surf" href="index.html#coverage"><div class="n">03</div><div class="t">Coverage</div><div class="d">Hardware awards carrying no maintenance line</div></a>
+      <a class="surf" href="index.html#renewals"><div class="n">04</div><div class="t">Renewals</div><div class="d">Contracts inside 365 days and their co-term clusters</div></a>
+      <a class="surf" href="index.html#cohorts"><div class="n">05</div><div class="t">Cohorts</div><div class="d">First-purchase cohorts and their retention curves</div></a>
+      <a class="surf" href="index.html#vendors"><div class="n">06</div><div class="t">Vendors</div><div class="d">Resolved entities and the prime&rarr;sub network</div></a>
+      <a class="surf" href="index.html#quality"><div class="n">07</div><div class="t">Data quality</div><div class="d">Match rates, UEI population, what never fired</div></a>
+      <a class="surf" href="index.html#model"><div class="n">08</div><div class="t">Model</div><div class="d">Survival fit, calibration, and the baseline it beat</div></a>
+      <a class="surf" href="index.html#provenance"><div class="n">09</div><div class="t">Provenance</div><div class="d">Every field tagged, and where each number came from</div></a>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <div class="lab">Provenance</div>
+    <h2>Four tags, applied to every field.</h2>
+    <p class="lede">Defined once in the pipeline and rendered into both the documentation and the
+      console, so the two cannot disagree. Synthetic data never reaches the model or the ranking,
+      and a synthetic reason code never becomes a recommended action &mdash; enforced by tests,
+      not by convention.</p>
+    <div class="prov">
+      <span class="tag real">REAL &mdash; straight from the source</span>
+      <span class="tag derived">DERIVED &mdash; computed from real fields only</span>
+      <span class="tag synthetic">SYNTHETIC &mdash; generated, never scored</span>
+      <span class="tag assumption">ASSUMPTION &mdash; a stated commercial input</span>
+    </div>
+    <p class="lede" style="margin-bottom:0">24 invariant checks run with the pipeline and all 24
+      pass. If the model fails to beat its baseline, the baseline is kept and the console says so.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><b>Install Base Reactivation Console.</b> Built on US federal procurement data from
+    USAspending.gov, public domain, with hardware failure rates from Backblaze drive statistics
+    and margin benchmarks from SEC EDGAR filings. Accounts are federal awarding offices, not
+    customers of any company.</p>
+    <div class="meta">
+      As of <b id="m-asof">&mdash;</b><br>
+      Pipeline <b>15 steps &middot; 19 modules</b><br>
+      Invariants <b>24/24 passing</b><br>
+      Build <b>static, no backend</b>
+    </div>
+  </div>
+</footer>
+</div>
+
+<script id="landing-data" type="application/json">{"as_of":"2026-09-21","awards":270924,"accounts":3096,"obligated":74781892883.85,"expiring":4005,"coterm":546,"positive_ev":550,"prime_rows":277818,"fy_span":"FY2016\u2013FY2026"}</script>
+<script>
+/* Figures come from the same bundle the console reads, so the cover can
+   never quote a number the pipeline no longer produces. Anything missing
+   keeps the markup's value rather than printing a dash. */
+(function(){
+  var L={};
+  try{ L=JSON.parse(document.getElementById("landing-data").textContent||"{}"); }catch(e){}
+  function n(v){ return v==null?null:Number(v).toLocaleString("en-US"); }
+  function money(v){
+    if(v==null) return null; var a=Math.abs(v);
+    if(a>=1e9) return "$"+(v/1e9).toFixed(1)+"bn";
+    if(a>=1e6) return "$"+(v/1e6).toFixed(1)+"m";
+    return "$"+Number(v).toLocaleString("en-US");
+  }
+  function put(id,val){ var e=document.getElementById(id); if(e&&val!=null) e.textContent=val; }
+  put("k-awards",n(L.awards));            put("k-accounts",n(L.accounts));
+  put("f-awards",n(L.awards));            put("f-acct",n(L.accounts));
+  put("f-oblig",money(L.obligated));      put("f-exp",n(L.expiring));
+  put("m-asof",L.as_of);
+  if(L.prime_rows!=null)  put("f-awards-s","From "+n(L.prime_rows)+" prime rows");
+  if(L.fy_span)           put("f-oblig-s",L.fy_span), put("k-span",L.fy_span);
+  if(L.positive_ev!=null) put("f-acct-s",n(L.positive_ev)+" with positive EV");
+  if(L.coterm!=null)      put("f-exp-s",n(L.coterm)+" co-term clusters");
+})();
+
+/* Same toggle, same storage key as the console, so the choice carries across. */
+(function(){
+  var KEY="ibrc.theme", btn=document.getElementById("theme-btn");
+  function system(){ return (window.matchMedia&&window.matchMedia("(prefers-color-scheme:light)").matches)?"light":"dark"; }
+  function current(){ return document.documentElement.getAttribute("data-theme")||system(); }
+  function apply(t){
+    if(t) document.documentElement.setAttribute("data-theme",t);
+    else document.documentElement.removeAttribute("data-theme");
+    var now=current();
+    if(btn){ btn.textContent=(now==="dark")?"Light":"Dark";
+             btn.setAttribute("aria-label","Switch to "+((now==="dark")?"light":"dark")+" theme"); }
+  }
+  var saved=null; try{ saved=localStorage.getItem(KEY); }catch(e){}
+  apply(saved==="light"||saved==="dark"?saved:null);
+  if(btn) btn.addEventListener("click",function(){
+    var next=(current()==="dark")?"light":"dark";
+    apply(next);
+    try{ localStorage.setItem(KEY,next); }catch(e){}
+    try{ window.dispatchEvent(new Event("themechange")); }catch(e){}
+  });
+})();
+</script>
+<script>/* ---------------------------------------------------------------- arc.js
+   The atmosphere both pages sit on: a drifting starfield, and a filament
+   torus drawn as a bundle of nested elliptical arcs seen edge-on, composited
+   additively so the overlaps bloom. Colour runs along the console's own
+   categorical ramp - accent blue through series violet - so nothing here
+   introduces a hue the palette does not already contain.
+
+   Inlined into both pages by build_app.py, so the two cannot drift apart.
+
+   Every canvas carrying data-arc is initialised. data-arc picks the figure:
+
+     hero   the cover's opening arc, large and centred, scrolls away
+     page   the fixed backdrop behind everything else: stars, and a low
+            horizon arc well clear of the reading column
+     stars  the same backdrop without the arc, for the cover, whose hero
+            already carries one - two arcs in a frame fight each other
+
+   Intensity is theme-controlled through --arc-alpha and --star-alpha rather
+   than hard-coded here, so the light theme dims the atmosphere instead of
+   needing a second implementation. Pages dispatch "themechange" on window
+   after a toggle; we re-read the tokens then.                            */
+(function(){
+  var nodes=[].slice.call(document.querySelectorAll("canvas[data-arc]"));
+  if(!nodes.length) return;
+  var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion:reduce)").matches;
+  var A={arc:1,star:1};
+
+  function readTokens(){
+    var cs=getComputedStyle(document.documentElement);
+    var a=parseFloat(cs.getPropertyValue("--arc-alpha")),
+        s=parseFloat(cs.getPropertyValue("--star-alpha"));
+    A.arc =isNaN(a)?1:a;
+    A.star=isNaN(s)?1:s;
+  }
+  readTokens();
+
+  /* #5E9BD6 -> #9E7ECB -> #C9BCE8 */
+  function ramp(k){
+    var a=[94,155,214], b=[158,126,203], d=[201,188,232], t;
+    if(k<0.62){ t=k/0.62;
+      return [(a[0]+(b[0]-a[0])*t)|0,(a[1]+(b[1]-a[1])*t)|0,(a[2]+(b[2]-a[2])*t)|0]; }
+    t=(k-0.62)/0.38;
+    return [(b[0]+(d[0]-b[0])*t)|0,(b[1]+(d[1]-b[1])*t)|0,(b[2]+(d[2]-b[2])*t)|0];
+  }
+
+  function make(c){
+    var x=c.getContext("2d"); if(!x) return null;
+    var mode=c.getAttribute("data-arc");
+    var hero=mode==="hero", starsOnly=mode==="stars";
+    var W=0,H=0,DPR=1,stars=[];
+
+    function resize(){
+      var r=c.getBoundingClientRect();
+      DPR=Math.min(window.devicePixelRatio||1,2);
+      W=Math.max(1,r.width); H=Math.max(1,r.height);
+      c.width=Math.round(W*DPR); c.height=Math.round(H*DPR);
+      x.setTransform(DPR,0,0,DPR,0,0);
+      stars=[];
+      var n=Math.round(W*H/(hero?9000:11000));
+      for(var i=0;i<n;i++) stars.push({
+        x:Math.random()*W, y:Math.random()*H,
+        r:Math.random()*0.9+0.25, a:Math.random()*0.5+0.12,
+        p:Math.random()*Math.PI*2, s:Math.random()*0.5+0.2});
+    }
+
+    function draw(ms){
+      var t=ms*0.001;
+      x.clearRect(0,0,W,H);
+
+      if(A.star>0.01){
+        for(var i=0;i<stars.length;i++){
+          var s=stars[i];
+          x.globalAlpha=s.a*A.star*(reduce?1:(0.6+0.4*Math.sin(t*s.s+s.p)));
+          x.fillStyle="#C8D4E6";
+          x.beginPath(); x.arc(s.x,s.y,s.r,0,6.2832); x.fill();
+        }
+        x.globalAlpha=1;
+      }
+      if(starsOnly||A.arc<=0.01) return;
+
+      /* The page arc is a horizon: wide, shallow, and pushed below the
+         viewport so only its crown enters the frame, well clear of the
+         column the tables are read in. */
+      var cx=W/2, cy, RX, RY;
+      if(hero){ cy=H*0.585; RX=Math.min(W*0.335,430); RY=RX*0.46; }
+      else    { cy=H*1.22;  RX=W*0.60;                RY=Math.min(RX*0.28,H*0.36); }
+
+      var N=hero?104:78;
+      x.globalCompositeOperation="lighter";
+      x.lineCap="round";
+      for(var j=0;j<N;j++){
+        var k=j/(N-1);
+        var breathe=reduce?0:0.035*Math.sin(t*0.42+k*5.2);
+        var rx=RX*(0.70+0.32*k)*(1+breathe);
+        var ry=RY*(0.50+0.62*k)*(1+breathe*1.6);
+        var rot=(k-0.5)*0.085+(reduce?0:0.032*Math.sin(t*0.3+k*3.1));
+        var band=Math.pow(Math.sin(Math.PI*Math.min(1,Math.max(0,k))),1.5);
+        var shim=reduce?1:(0.72+0.28*Math.sin(t*0.85+k*9.4));
+        var al=(0.030+(hero?0.165:0.095)*band)*shim*A.arc;
+        var col=ramp(Math.min(1,k*0.92+0.06));
+        x.strokeStyle="rgba("+col[0]+","+col[1]+","+col[2]+","+al.toFixed(4)+")";
+        x.lineWidth=0.7+1.5*band;
+        x.beginPath();
+        x.ellipse(cx,cy,rx,ry,rot,Math.PI+0.10,-0.10,false);
+        x.stroke();
+      }
+
+      var pulse=(reduce?0.42:(0.38+0.14*Math.sin(t*0.7)))*A.arc*(hero?1:0.50);
+      x.strokeStyle="rgba(214,226,245,"+pulse.toFixed(3)+")";
+      x.lineWidth=1.05;
+      x.beginPath();
+      x.ellipse(cx,cy,RX*0.905,RY*0.955,(reduce?0:0.02*Math.sin(t*0.3)),Math.PI+0.13,-0.13,false);
+      x.stroke();
+
+      if(!reduce){
+        /* Glints travel along the crown. The sweep ADDS to the start angle:
+           subtracting walks the bottom half of the ellipse and strands them
+           below the figure as unexplained smudges. */
+        for(var g=0; g<(hero?3:2); g++){
+          var u=((t*0.085+g*0.41)%1);
+          var ang=Math.PI+0.13+(Math.PI-0.26)*u;
+          var gx=cx+Math.cos(ang)*RX*0.905, gy=cy+Math.sin(ang)*RY*0.955;
+          var fade=Math.sin(Math.PI*u), rad=hero?22:17;
+          var rg=x.createRadialGradient(gx,gy,0,gx,gy,rad);
+          rg.addColorStop(0,"rgba(226,235,250,"+(0.5*fade*A.arc).toFixed(3)+")");
+          rg.addColorStop(1,"rgba(226,235,250,0)");
+          x.fillStyle=rg;
+          x.beginPath(); x.arc(gx,gy,rad,0,6.2832); x.fill();
+        }
+      }
+      x.globalCompositeOperation="source-over";
+    }
+    return {resize:resize,draw:draw};
+  }
+
+  var figs=[]; for(var i=0;i<nodes.length;i++){ var f=make(nodes[i]); if(f) figs.push(f); }
+  if(!figs.length) return;
+
+  var raf=null;
+  function all(fn){ for(var i=0;i<figs.length;i++) figs[i][fn](arguments[1]); }
+  function loop(ts){ for(var i=0;i<figs.length;i++) figs[i].draw(ts); raf=requestAnimationFrame(loop); }
+  function once(){ for(var i=0;i<figs.length;i++) figs[i].draw(0); }
+  function start(){
+    all("resize");
+    if(raf){ cancelAnimationFrame(raf); raf=null; }
+    if(reduce) once(); else raf=requestAnimationFrame(loop);
+  }
+
+  /* A hidden tab still fires rAF in some browsers; stop burning frames. */
+  document.addEventListener("visibilitychange",function(){
+    if(document.hidden){ if(raf){ cancelAnimationFrame(raf); raf=null; } }
+    else if(!reduce && !raf){ raf=requestAnimationFrame(loop); }
+  });
+  window.addEventListener("themechange",function(){ readTokens(); if(reduce) once(); });
+  var rt=null;
+  window.addEventListener("resize",function(){
+    clearTimeout(rt); rt=setTimeout(function(){ all("resize"); if(reduce) once(); },120);
+  });
+  start();
+})();
+</script>
+</body>
+</html>

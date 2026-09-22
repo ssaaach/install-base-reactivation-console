@@ -1,3 +1,4 @@
+<meta charset="utf-8">
 <title>Install Base Reactivation Console</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -10,31 +11,10 @@
    Two accents only - ink blue (structural) and oxide red (flag).
    Chart series colours are the validated categorical ramp.            */
 :root{
-  --paper:#F7F8F6; --band:#ECF0EA; --raise:#FFFFFF;
-  --ink:#161A17; --ink-2:#59625B; --ink-3:#818B83;
-  --rule:#CBD2C8; --rule-2:#E0E5DD;
-  --accent:#3A76BD; --accent-soft:#E4EDF7;
-  --flag:#CC4B22; --flag-soft:#FAE8E2;
-  --good:#1F7A5C; --warn:#A87B10;
-  --s1:#3A76BD; --s2:#CC4B22; --s3:#1F9179; --s4:#A87B10; --s5:#8C5BB0;
-  --grid:#DDE3DA;
-  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
-  --sans:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;
-  --cond:"IBM Plex Sans Condensed","IBM Plex Sans",sans-serif;
-}
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    --paper:#0F1311; --band:#171C19; --raise:#121714;
-    --ink:#E7EBE6; --ink-2:#98A29A; --ink-3:#6E7872;
-    --rule:#29312B; --rule-2:#1E2520;
-    --accent:#4788C4; --accent-soft:#16242F;
-    --flag:#D55C3C; --flag-soft:#2A1A15;
-    --good:#3E9E7C; --warn:#B08718;
-    --s1:#4788C4; --s2:#D55C3C; --s3:#199F86; --s4:#B08718; --s5:#9670C0;
-    --grid:#232B26;
-  }
-}
-:root[data-theme="dark"]{
+  /* Dark is now the default ground. The console is an instrument, and the
+     emitting arc it opens with only exists on black. Light remains a
+     first-class theme one toggle away - every value below is paired, and
+     nothing anywhere in this file hard-codes a colour outside this block. */
   --paper:#0F1311; --band:#171C19; --raise:#121714;
   --ink:#E7EBE6; --ink-2:#98A29A; --ink-3:#6E7872;
   --rule:#29312B; --rule-2:#1E2520;
@@ -43,8 +23,47 @@
   --good:#3E9E7C; --warn:#B08718;
   --s1:#4788C4; --s2:#D55C3C; --s3:#199F86; --s4:#B08718; --s5:#9670C0;
   --grid:#232B26;
-}
 
+  /* Atmosphere, and the scrims that keep data off it. The backdrop is one
+     fixed layer behind the whole page; anything carrying a number sits on a
+     scrim opaque enough that no digit is ever read against a star or a
+     gridline. Texture belongs at the margins, not under the figures.      */
+  --arc-alpha:1; --star-alpha:1; --grid-alpha:.50;
+  --scrim:rgba(11,14,12,.74); --scrim-2:rgba(32,39,35,.55); --scrim-3:rgba(11,14,12,.90);
+  --grad-1:#5E9BD6; --grad-2:#9E7ECB; --grad-3:#C9BCE8;
+
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --sans:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;
+  --cond:"IBM Plex Sans Condensed","IBM Plex Sans",sans-serif;
+}
+@media (prefers-color-scheme:light){
+  :root:not([data-theme="dark"]){
+    --paper:#F7F8F6; --band:#ECF0EA; --raise:#FFFFFF;
+    --ink:#161A17; --ink-2:#59625B; --ink-3:#818B83;
+    --rule:#CBD2C8; --rule-2:#E0E5DD;
+    --accent:#3A76BD; --accent-soft:#E4EDF7;
+    --flag:#CC4B22; --flag-soft:#FAE8E2;
+    --good:#1F7A5C; --warn:#A87B10;
+    --s1:#3A76BD; --s2:#CC4B22; --s3:#1F9179; --s4:#A87B10; --s5:#8C5BB0;
+    --grid:#DDE3DA;
+    --arc-alpha:.30; --star-alpha:0; --grid-alpha:.60;
+    --scrim:rgba(247,248,246,.80); --scrim-2:rgba(214,222,211,.55); --scrim-3:rgba(247,248,246,.93);
+    --grad-1:#2E63A8; --grad-2:#7A52A8; --grad-3:#9A6FBF;
+  }
+}
+:root[data-theme="light"]{
+    --paper:#F7F8F6; --band:#ECF0EA; --raise:#FFFFFF;
+    --ink:#161A17; --ink-2:#59625B; --ink-3:#818B83;
+    --rule:#CBD2C8; --rule-2:#E0E5DD;
+    --accent:#3A76BD; --accent-soft:#E4EDF7;
+    --flag:#CC4B22; --flag-soft:#FAE8E2;
+    --good:#1F7A5C; --warn:#A87B10;
+    --s1:#3A76BD; --s2:#CC4B22; --s3:#1F9179; --s4:#A87B10; --s5:#8C5BB0;
+    --grid:#DDE3DA;
+    --arc-alpha:.30; --star-alpha:0; --grid-alpha:.60;
+    --scrim:rgba(247,248,246,.80); --scrim-2:rgba(214,222,211,.55); --scrim-3:rgba(247,248,246,.93);
+    --grad-1:#2E63A8; --grad-2:#7A52A8; --grad-3:#9A6FBF;
+}
 *{box-sizing:border-box}
 body{
   background:var(--paper); color:var(--ink);
@@ -55,15 +74,65 @@ body{
 .wrap{max-width:1360px;margin:0 auto;padding-inline:20px}
 @media(max-width:560px){.wrap{padding-inline:16px}}
 
+/* ------------------------------------------------------------- backdrop
+   Grid, starfield and horizon arc are one fixed layer behind everything.
+   The arc is pushed below the viewport so only its crown enters the frame,
+   clear of the column the tables are read in.                            */
+.backdrop{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.backdrop canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.bd-grid{
+  position:absolute;inset:0;opacity:var(--grid-alpha);
+  background-image:
+    linear-gradient(to right,var(--grid) 1px,transparent 1px),
+    linear-gradient(to bottom,var(--grid) 1px,transparent 1px);
+  background-size:clamp(72px,7vw,104px) clamp(72px,7vw,104px);
+  -webkit-mask-image:radial-gradient(135% 115% at 50% 4%,#000 6%,transparent 72%);
+  mask-image:radial-gradient(135% 115% at 50% 4%,#000 6%,transparent 72%);
+}
+.bd-vig{position:absolute;inset:0;opacity:.5;
+  background:radial-gradient(155% 125% at 50% 0%,transparent 42%,var(--paper) 97%)}
+.page{position:relative;z-index:1}
+
 /* ------------------------------------------------------------- masthead */
-.masthead{border-bottom:2px solid var(--ink);padding-block:18px 10px}
+.masthead{position:relative;border-bottom:1px solid var(--rule);padding-block:22px 14px}
+.tick{position:absolute;z-index:1;width:9px;height:9px;opacity:.55}
+.tick::before,.tick::after{content:"";position:absolute;background:var(--ink-3)}
+.tick::before{left:0;top:4px;width:9px;height:1px}
+.tick::after{top:0;left:4px;width:1px;height:9px}
+.tick.a{left:-10px;top:8px}.tick.b{right:-10px;top:8px}
+@media(max-width:1000px){.tick{display:none}}
+
 .mast-row{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:baseline;justify-content:space-between}
+.mast-id{display:flex;align-items:center;gap:13px;min-width:0}
+.reticle{
+  position:relative;flex:none;display:inline-flex;align-items:center;justify-content:center;
+  width:40px;height:23px;font:600 9.5px/1 var(--mono);letter-spacing:.13em;color:var(--ink-3);
+}
+.reticle i{position:absolute;width:6px;height:6px;border-color:var(--ink-3);border-style:solid;border-width:0}
+.reticle i:nth-child(1){left:0;top:0;border-left-width:1px;border-top-width:1px}
+.reticle i:nth-child(2){right:0;top:0;border-right-width:1px;border-top-width:1px}
+.reticle i:nth-child(3){left:0;bottom:0;border-left-width:1px;border-bottom-width:1px}
+.reticle i:nth-child(4){right:0;bottom:0;border-right-width:1px;border-bottom-width:1px}
 h1{
-  font:700 25px/1.1 var(--cond);margin:0;letter-spacing:-.01em;
-  text-wrap:balance;
+  font:600 clamp(19px,2.5vw,27px)/1.12 var(--sans);margin:0;
+  letter-spacing:-.028em;text-wrap:balance;color:var(--ink);
+}
+h1 em{
+  font-style:normal;
+  background:linear-gradient(96deg,var(--grad-1) 4%,var(--grad-2) 66%,var(--grad-3) 98%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
 }
 .mast-meta{font:500 11px/1.4 var(--mono);color:var(--ink-2);display:flex;gap:16px;flex-wrap:wrap}
 .mast-meta b{color:var(--ink);font-weight:600}
+.mast-tools{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.mbtn{
+  appearance:none;cursor:pointer;text-decoration:none;
+  background:var(--scrim);border:1px solid var(--rule);color:var(--ink-2);
+  font:600 10px/1 var(--cond);letter-spacing:.1em;text-transform:uppercase;
+  padding:7px 11px;transition:border-color .16s,color .16s,background .16s;
+}
+.mbtn:hover{color:var(--ink);border-color:var(--accent);background:var(--accent-soft)}
+.mbtn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 
 /* the framing constraint, always on screen, never dismissible */
 .framing{
@@ -78,8 +147,8 @@ h1{
 /* ----------------------------------------------------------------- nav */
 nav{
   position:sticky;top:env(safe-area-inset-top,0px);z-index:30;
-  background:var(--paper);border-bottom:1px solid var(--rule);
-  margin-top:14px;
+  background:var(--scrim-3);backdrop-filter:blur(7px);
+  border-bottom:1px solid var(--rule);
 }
 .tabs{display:flex;gap:0;overflow-x:auto;scrollbar-width:thin}
 .tab{
@@ -89,6 +158,14 @@ nav{
 }
 .tab:hover{color:var(--ink)}
 .tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+/* bracket ticks on the live tab - the same registration vernacular the
+   stage band and the provenance register already use. */
+.tab[aria-selected="true"]::before,.tab[aria-selected="true"]::after{
+  content:"";position:absolute;bottom:-1px;width:5px;height:5px;
+  border-color:var(--accent);border-style:solid;border-width:0}
+.tab[aria-selected="true"]::before{left:3px;border-left-width:1px;border-bottom-width:1px}
+.tab[aria-selected="true"]::after{right:3px;border-right-width:1px;border-bottom-width:1px}
+.tab{position:relative}
 .tab:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
 
 main{padding-block:22px 60px}
@@ -129,13 +206,13 @@ h3{font:600 12.5px/1.2 var(--cond);letter-spacing:.06em;text-transform:uppercase
 .tscroll{overflow-x:auto;border-block:1px solid var(--rule);margin-top:10px}
 table{border-collapse:collapse;width:100%;font-size:12.5px}
 thead th{
-  position:sticky;top:0;background:var(--paper);z-index:2;
+  position:sticky;top:0;background:var(--scrim-3);backdrop-filter:blur(7px);z-index:2;
   font:600 10px/1.2 var(--cond);letter-spacing:.08em;text-transform:uppercase;
   color:var(--ink-2);text-align:left;padding:8px 10px;white-space:nowrap;
   border-bottom:1px solid var(--ink);
 }
 thead th.r,td.r{text-align:right}
-tbody tr:nth-child(even){background:var(--band)}       /* greenbar */
+tbody tr:nth-child(even){background:var(--scrim-2)}       /* greenbar */
 tbody tr:hover{background:var(--accent-soft)}
 tbody td{padding:6px 10px;border-bottom:1px solid var(--rule-2);vertical-align:top}
 td.num,td.mono,th.mono{font:400 12px/1.4 var(--mono)}
@@ -160,7 +237,8 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .gridline{stroke:var(--grid);stroke-width:1}
 .tip{
   position:absolute;pointer-events:none;z-index:20;opacity:0;transition:opacity .08s;
-  background:var(--raise);border:1px solid var(--rule);border-left:3px solid var(--accent);
+  background:var(--scrim-3);backdrop-filter:blur(7px);
+  border:1px solid var(--rule);border-left:3px solid var(--accent);
   padding:7px 9px;font:500 11.5px/1.5 var(--mono);color:var(--ink);
   box-shadow:0 4px 14px rgba(0,0,0,.14);max-width:280px;
 }
@@ -189,7 +267,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 /* -------------------------------------------------------------- misc */
 .controls{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center;margin:14px 0 4px}
 select,input[type=search]{
-  font:400 12px var(--mono);padding:5px 7px;background:var(--raise);
+  font:400 12px var(--mono);padding:5px 7px;background:var(--scrim);
   color:var(--ink);border:1px solid var(--rule);
 }
 select:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:-1px}
@@ -201,22 +279,37 @@ label.ctl{font:600 10px var(--cond);letter-spacing:.08em;text-transform:uppercas
 .bar-row{display:grid;grid-template-columns:170px 1fr 66px;gap:10px;align-items:center;
          font-size:12px;padding:3px 0}
 .bar-row .lab{font:500 11.5px var(--mono);color:var(--ink-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.bar-row .track{background:var(--band);height:15px;position:relative}
+.bar-row .track{background:var(--scrim-2);height:15px;position:relative}
 .bar-row .fill{height:100%;border-radius:0 2px 2px 0}
 .bar-row .val{font:500 11.5px var(--mono);text-align:right}
 @media(max-width:560px){.bar-row{grid-template-columns:120px 1fr 56px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 
+<div class="backdrop" aria-hidden="true">
+  <canvas data-arc="page"></canvas>
+  <div class="bd-grid"></div>
+  <div class="bd-vig"></div>
+</div>
+
+<div class="page">
 <div class="wrap">
   <header class="masthead">
+    <i class="tick a" aria-hidden="true"></i><i class="tick b" aria-hidden="true"></i>
     <div class="mast-row">
-      <h1>Install Base Reactivation Console</h1>
-      <div class="mast-meta">
-        <span>as of <b id="m-asof">—</b></span>
-        <span>accounts <b id="m-acct">—</b></span>
-        <span>awards <b id="m-awards">—</b></span>
-        <span>built <b id="m-built">—</b></span>
+      <div class="mast-id">
+        <span class="reticle" aria-hidden="true"><i></i><i></i><i></i><i></i>IB</span>
+        <h1>Install Base <em>Reactivation</em> Console</h1>
+      </div>
+      <div class="mast-tools">
+        <div class="mast-meta">
+          <span>as of <b id="m-asof">—</b></span>
+          <span>accounts <b id="m-acct">—</b></span>
+          <span>awards <b id="m-awards">—</b></span>
+          <span>built <b id="m-built">—</b></span>
+        </div>
+        <a class="mbtn" href="landing.html">Cover</a>
+        <button class="mbtn" id="theme-btn" type="button">Light</button>
       </div>
     </div>
     <p class="framing">
@@ -236,6 +329,7 @@ label.ctl{font:600 10px var(--cond);letter-spacing:.08em;text-transform:uppercas
 
   <div class="srcs" id="sources"></div>
 </div>
+</div>
 <div class="tip" id="tip"></div>
 
 <script id="app-data" type="application/json">__APP_DATA__</script>
@@ -250,7 +344,8 @@ var M=D.meta||{}, K=D.kpis||{};
 /* ------------------------------------------------------------ helpers */
 var SER=["--s1","--s2","--s3","--s4","--s5"];
 function cssv(n){return getComputedStyle(document.documentElement).getPropertyValue(n).trim()||"#888";}
-function ser(i){return cssv(SER[i%SER.length]);}
+function ser(i){return "var("+SER[i%SER.length]+")";}   /* live-reactive */
+function serRaw(i){return cssv(SER[i%SER.length]);}     /* when a literal is required */
 function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){
   return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
 function num(v,d){ if(v==null||v!==v) return "—";
@@ -282,7 +377,16 @@ function hideTip(){TIP.style.opacity="0";}
 
 /* ---------------------------------------------------------- SVG charts */
 function svgEl(n,a){var e=document.createElementNS("http://www.w3.org/2000/svg",n);
-  for(var k in a) if(a[k]!=null) e.setAttribute(k,a[k]); return e;}
+  for(var k in a){ if(a[k]==null) continue;
+    /* A CSS variable is not legal in an SVG presentation attribute but is
+       legal in the style attribute. Routing it there is what lets a chart
+       re-colour when the theme changes: pages are built lazily and cached,
+       so a colour baked in at draw time would survive the switch and strand
+       the chart in the palette it was born with. */
+    if((k==="fill"||k==="stroke")&&String(a[k]).indexOf("var(")===0) e.style[k]=a[k];
+    else e.setAttribute(k,a[k]);
+  }
+  return e;}
 
 /* grouped or stacked vertical bars */
 function vbars(host,opts){
@@ -364,7 +468,7 @@ function lines(host,opts){
     pts.forEach(function(p){
       /* 2px surface ring so overlapping markers stay separable */
       var c=svgEl("circle",{cx:p[0],cy:p[1],r:4,fill:ser(si),
-        stroke:cssv("--paper"),"stroke-width":2});
+        stroke:"var(--paper)","stroke-width":2});
       c.addEventListener("mousemove",function(ev){
         showTip(ev,"<b>"+esc(xs[p[2]])+"</b>"+esc(s.name)+" &nbsp;"+
           (opts.fmt?opts.fmt(p[3]):num(p[3])));});
@@ -413,14 +517,14 @@ function scatter(host,opts){
     t2.textContent=pct(max*i/4,0); svg.appendChild(t2);
   }
   svg.appendChild(svgEl("line",{x1:X(0),y1:Y(0),x2:X(max),y2:Y(max),
-    stroke:cssv("--ink-3"),"stroke-width":1,"stroke-dasharray":"4 4"}));
+    stroke:"var(--ink-3)","stroke-width":1,"stroke-dasharray":"4 4"}));
   var d="";
   (opts.points||[]).forEach(function(p,i){
     d+=(d?"L":"M")+X(p.predicted).toFixed(1)+" "+Y(p.observed).toFixed(1);});
   if(d) svg.appendChild(svgEl("path",{d:d,fill:"none",stroke:ser(opts.si||0),"stroke-width":2}));
   (opts.points||[]).forEach(function(p){
     var c=svgEl("circle",{cx:X(p.predicted),cy:Y(p.observed),r:4.5,fill:ser(opts.si||0),
-      stroke:cssv("--paper"),"stroke-width":2});
+      stroke:"var(--paper)","stroke-width":2});
     c.addEventListener("mousemove",function(ev){
       showTip(ev,"<b>decile "+p.decile+"</b>predicted "+pct(p.predicted)+
         "<br>observed &nbsp;"+pct(p.observed)+"<br>n = "+num(p.n));});
@@ -570,7 +674,7 @@ page("overview","Overview",function(root){
       "Every account resolves to one recommended action or an explicit NO_ACTION. "+
       "A SYNTHETIC-provenance code never becomes the recommended action — it can "+
       "only appear alongside real ones."));
-    var provColor={REAL:cssv("--s1"),DERIVED:cssv("--s3"),SYNTHETIC:cssv("--s2")};
+    var provColor={REAL:"var(--s1)",DERIVED:"var(--s3)",SYNTHETIC:"var(--s2)"};
     var box2=chartBox();
     hbars(box2,pb.filter(function(r){return (pc[r.reason_code]||0)>0;})
       .sort(function(a,b){return (pc[b.reason_code]||0)-(pc[a.reason_code]||0);})
@@ -579,9 +683,9 @@ page("overview","Overview",function(root){
         tip:"<b>"+esc(r.reason_code)+"</b>"+esc(r.provenance)+"<br>"+esc(r.action)};}),{});
     root.appendChild(box2);
     var lg=document.createElement("div"); lg.className="legend";
-    lg.innerHTML='<span><i style="background:'+cssv("--s1")+'"></i>REAL</span>'+
-      '<span><i style="background:'+cssv("--s3")+'"></i>DERIVED</span>'+
-      '<span><i style="background:'+cssv("--s2")+'"></i>SYNTHETIC</span>';
+    lg.innerHTML='<span><i style="background:'+"var(--s1)"+'"></i>REAL</span>'+
+      '<span><i style="background:'+"var(--s3)"+'"></i>DERIVED</span>'+
+      '<span><i style="background:'+"var(--s2)"+'"></i>SYNTHETIC</span>';
     root.appendChild(lg);
     root.appendChild(p("note","Accounts with an explicit NO_ACTION: <b>"+
       num((D.plays||{}).accounts_no_action)+"</b>. Refresh-risk age threshold: <b>"+
@@ -1486,9 +1590,49 @@ function select(id){
   try{ localStorage.setItem("ibrc.tab",id); }catch(e){}
 }
 render();
-try{
-  var saved=localStorage.getItem("ibrc.tab");
-  if(saved&&PAGES.some(function(p){return p.id===saved;})) select(saved);
-}catch(e){}
+
+/* ------------------------------------------------------------- routing
+   The tab now lives in the URL so the cover page can link straight to a
+   surface. Hash wins over the remembered tab: an explicit link should beat
+   whatever this browser happened to look at last.                        */
+function known(id){ return !!id && PAGES.some(function(p){return p.id===id;}); }
+var want=(location.hash||"").replace(/^#/,"");
+if(!known(want)){ try{ want=localStorage.getItem("ibrc.tab")||""; }catch(e){ want=""; } }
+if(known(want)) select(want);
+window.addEventListener("hashchange",function(){
+  var id=(location.hash||"").replace(/^#/,"");
+  if(known(id)) select(id);
+});
+})();
+
+/* --------------------------------------------------------------- theme
+   Dark is the default. The choice is remembered per browser; with nothing
+   remembered the OS decides, which is why apply(null) removes the stamp
+   rather than writing one.                                              */
+(function(){
+  var KEY="ibrc.theme", btn=document.getElementById("theme-btn");
+  function system(){
+    return (window.matchMedia&&window.matchMedia("(prefers-color-scheme:light)").matches)?"light":"dark";
+  }
+  function current(){ return document.documentElement.getAttribute("data-theme")||system(); }
+  function apply(t){
+    if(t) document.documentElement.setAttribute("data-theme",t);
+    else document.documentElement.removeAttribute("data-theme");
+    var now=current();
+    if(btn){
+      btn.textContent=(now==="dark")?"Light":"Dark";
+      btn.setAttribute("aria-label","Switch to "+((now==="dark")?"light":"dark")+" theme");
+    }
+  }
+  var saved=null; try{ saved=localStorage.getItem(KEY); }catch(e){}
+  apply(saved==="light"||saved==="dark"?saved:null);
+  if(btn) btn.addEventListener("click",function(){
+    var next=(current()==="dark")?"light":"dark";
+    apply(next);
+    try{ localStorage.setItem(KEY,next); }catch(e){}
+    try{ window.dispatchEvent(new Event("themechange")); }catch(e){}
+  });
 })();
 </script>
+
+<script>__ARC_JS__</script>

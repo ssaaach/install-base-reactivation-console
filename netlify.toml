@@ -13,3 +13,10 @@
   for = "/index.html"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
+
+# The cover is the site root; the console keeps /index.html so deep links
+# from the cover (index.html#accounts) resolve without a redirect hop.
+[[redirects]]
+  from = "/"
+  to = "/landing.html"
+  status = 200
