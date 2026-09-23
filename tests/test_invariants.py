@@ -316,6 +316,138 @@ def test_subaward_hypothesis_result_is_stated_either_way():
                 "a below-baseline signal is not explained"
 
 
+# ------------------------------------------------------- offshore domain (v3)
+# The offshore domain observes the asset and never observes what was paid for
+# it; federal procurement observes the spend and infers the asset. These guard
+# the separation, and the three traps that silently produce a confident wrong
+# answer if they are ever quietly dropped.
+def test_the_two_domains_are_never_ranked_against_each_other():
+    """The one test that keeps the separation honest."""
+    off = pq("offshore_scores.parquet")
+    fed = pq("account_scores.parquet")
+    if off.empty or fed.empty:
+        return
+    # no shared key, and no offshore row carrying a federal account identifier
+    assert "account_id" not in off.columns, \
+        "an offshore row carries a federal account id - the domains are merging"
+    assert "structure_key" not in fed.columns, \
+        "a federal account row carries an offshore structure key"
+    off_keys = set(off["structure_key"].astype(str))
+    fed_keys = set(fed[fed.columns[0]].astype(str))
+    assert not (off_keys & fed_keys), \
+        "a key appears in both domains' score tables"
+    # and the ranks are per-domain, each starting at 1
+    assert int(off["rank"].min()) == 1, "offshore ranking is not self-contained"
+
+
+def test_abandon_flag_is_never_a_model_feature():
+    """Trap 2: it announces the label, so using it predicts the label from itself."""
+    rep = jload(R / "offshore_survival_report.json")
+    if not rep:
+        return
+    feats = [f.lower() for f in rep.get("features", [])]
+    for banned in ("abandon", "abandon_flag", "abandon_flag_cx"):
+        assert not any(banned in f for f in feats), \
+            f"{banned} is being used as a model feature"
+    assert "abandon_flag" in rep.get("excluded_unobservable", {}), \
+        "abandon_flag is not declared as excluded"
+    assert rep.get("abandon_flag_check"), \
+        "abandon_flag is excluded but never used as the validation check either"
+
+
+def test_left_truncation_is_actually_applied():
+    """Trap 6: pre-window structures enter at the age they reached, not at zero."""
+    rep = jload(R / "offshore_profile.json")
+    life = pq("offshore_lifetimes.parquet")
+    if not rep or life.empty:
+        return
+    lt = rep.get("left_truncation", {})
+    assert lt.get("applied") is True, "left truncation is not applied"
+    assert lt.get("left_truncated_rows", 0) > 0, \
+        "no row is left-truncated, which cannot be true for a 1940s-2020s base"
+    assert (life["entry_age_years"] >= 0).all(), "negative entry age"
+    assert (life["exit_age_years"] > life["entry_age_years"]).all(), \
+        "a structure exits at or before it enters"
+    # and it is carried into the fit, not just into the table
+    sv = jload(R / "offshore_survival_report.json")
+    if sv:
+        assert sv["left_truncation"]["carried_into_fit"] is True, \
+            "truncation is in the table but not in the model"
+        assert sv["left_truncation"]["train_rows_left_truncated"] > 0
+
+
+def test_storm_removals_are_handled_explicitly_not_silently():
+    """Trap 4: this data cannot separate storms, so it must say so, not imply it did."""
+    for name in ("offshore_profile.json", "offshore_survival_report.json"):
+        rep = jload(R / name)
+        if not rep:
+            continue
+        storms = rep.get("storms", {})
+        assert storms, f"{name} says nothing about storm losses"
+        assert storms.get("policy"), f"{name} has no storm policy"
+        assert storms.get("note"), f"{name} states no storm caveat"
+        if storms.get("separable") is False:
+            assert "cannot" in storms["note"].lower(), \
+                "storms are declared inseparable without saying so plainly"
+
+
+def test_offshore_never_claims_a_price_it_cannot_observe():
+    """The domain observes the asset, never what was paid for it."""
+    off = pq("offshore_scores.parquet")
+    if off.empty:
+        return
+    for c in off.columns:
+        assert not any(w in c.lower() for w in
+                       ("obligated", "award_amount", "price", "revenue", "margin")), \
+            f"offshore_scores carries {c}, but this domain observes no money at all"
+
+
+def test_offshore_model_only_used_if_it_beat_a_real_baseline():
+    """The baseline must not be a strawman: age alone is INVERTED in this domain."""
+    rep = jload(R / "offshore_survival_report.json")
+    if not rep:
+        return
+    disc = rep["discrimination"]
+    if disc.get("age_is_inverted"):
+        assert disc["baseline_direction"] == "youngest_first", \
+            "age is inverted but the baseline still ranks oldest first"
+        assert disc["auc_baseline"] > 0.5, \
+            "the baseline was left pointing the wrong way, so beating it means nothing"
+        assert disc.get("direction_evidence"), \
+            "the baseline's direction is asserted without the windows that establish it"
+    if not rep["decision"]["use_model"]:
+        assert disc["auc_model"] <= disc["auc_baseline"], \
+            "the model was dropped even though it won"
+        assert "age_baseline" in rep["decision"]["ranking_uses"], \
+            "the model lost but the ranking does not say it kept the baseline"
+
+
+def test_offshore_declares_its_install_date_measurement_error():
+    """69% of install dates are 01-JAN placeholders - the time scale itself is fuzzy."""
+    rep = jload(R / "offshore_profile.json")
+    if not rep:
+        return
+    q = rep.get("install_date_quality", {})
+    assert q.get("imputed_rate", 0) > 0, "imputed install dates are not measured"
+    assert q.get("by_decade"), "the imputation is not broken down by decade"
+    assert q.get("note"), "the measurement error is not stated"
+
+
+def test_complex_attributes_are_marked_as_shared_not_measured():
+    """Masters is per-complex, Structures is per-structure: the join is 1:many."""
+    rep = jload(R / "offshore_profile.json")
+    stru = pq("offshore_structures.parquet")
+    if not rep or stru.empty:
+        return
+    shared = rep.get("shared_covariates", {}).get("columns", [])
+    assert shared, "complex-level covariates are not declared as shared"
+    for c in shared:
+        assert c.endswith("_cx"), f"{c} is a shared covariate but is not marked _cx"
+    assert "complex_is_shared" in stru.columns, \
+        "nothing records which structures share a complex"
+    assert int(stru["complex_is_shared"].sum()) > 0
+
+
 # ------------------------------------------------------------------- runner
 def _run_standalone() -> int:
     tests = [(n, f) for n, f in sorted(globals().items())

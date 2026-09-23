@@ -53,6 +53,12 @@ describes the customers, revenue, retention or support attach of any company.
 
 The same statement appears on every page of the console.
 
+**There is a second domain.** The offshore install base of the US Gulf of
+Mexico, from BSEE, observes the asset directly and never observes what it
+cost — the mirror image of the above. The two are never ranked against each
+other, and a test enforces it. See
+[The second domain](#the-second-domain--the-offshore-install-base).
+
 ---
 
 ## Headline figures
@@ -82,7 +88,7 @@ The same statement appears on every page of the console.
 | Ranking uses | **survival_model** |
 | Backblaze drive-days behind the hazard curve | 27,761,188 |
 
-_Generated 2026-09-22 12:10 UTC by `pipeline/make_docs.py`. As-of date 2026-09-21._
+_Generated 2026-09-23 16:31 UTC by `pipeline/make_docs.py`. As-of date 2026-09-21._
 <!-- END HEADLINE_FIGURES -->
 
 ---
@@ -173,6 +179,24 @@ never become an account's recommended action.
 | `ranking` | `engagement cost` | **ASSUMPTION** | pipeline/assumptions.py (assumption register) | A-02, no public source |
 | `ranking` | `horizon` | **ASSUMPTION** | pipeline/assumptions.py (assumption register) | A-03 |
 | `ranking` | `expected_value` | **DERIVED + ASSUMPTION** | pipeline/assumptions.py (assumption register) | two of its four terms are assumptions; see the sensitivity analysis |
+| `offshore_structures` | `complex_id / structure_number` | **REAL** | BSEE open data (data.bsee.gov), US OCS Gulf of Mexico | Platform Structures; the pair is unique, complex_id alone is not |
+| `offshore_structures` | `install_date` | **REAL** | BSEE open data (data.bsee.gov), US OCS Gulf of Mexico | recorded, but 69.2% are exactly 01-JAN - a placeholder for a year, not a day. install_imputed marks them and the profile reports the rate by decade |
+| `offshore_structures` | `removal_date` | **REAL** | BSEE open data (data.bsee.gov), US OCS Gulf of Mexico | present on 81.4% of structures; absent means still standing, not missing |
+| `offshore_structures` | `structure_type_code / major_structure_flag` | **REAL** | BSEE open data (data.bsee.gov), US OCS Gulf of Mexico |  |
+| `offshore_structures` | `deck_count / slot_count / slot_drill_count` | **REAL** | BSEE open data (data.bsee.gov), US OCS Gulf of Mexico |  |
+| `offshore_structures` | `install_imputed` | **DERIVED** | offshore.py | install_date_raw starts with 01-JAN |
+| `offshore_structures` | `water_depth_cx / distance_to_shore_cx / lease_number_cx` | **REAL** | BSEE open data (data.bsee.gov), US OCS Gulf of Mexico | Platform Masters, which is keyed per COMPLEX. Joined one-to-many onto structure rows, so these are SHARED, not measured per structure - the _cx suffix and complex_is_shared both say so |
+| `offshore_structures` | `abandon_flag_cx` | **REAL** | BSEE open data (data.bsee.gov), US OCS Gulf of Mexico | LABEL LEAKAGE. Marks a structure already scheduled for removal. Never a feature; used only to check the model ranks flagged structures highly |
+| `offshore_structures` | `mms_company_num` | **REAL** | BSEE open data (data.bsee.gov), US OCS Gulf of Mexico | CURRENT operator only. Not used in Phase 1: attributing a 1985 structure's whole lifetime to today's holder is survivorship bias |
+| `offshore_structures` | `depth_stratum / deepwater` | **DERIVED** | water depth vs 400ft | deepwater and shallow water are two populations, never pooled silently |
+| `offshore_structures` | `complex_structure_count / complex_is_shared` | **DERIVED** | offshore.py | how many structures share the complex a row's covariates came from |
+| `offshore_structures` | `removal_method` | **REAL** | BSEE open data (data.bsee.gov), US OCS Gulf of Mexico | Structures Removed, DELIMITED edition. The published fixed-width offsets are two characters early from this field on and invent ~100 methods of the form '11EXPLOSIVES GENERIC'. Describes severance technique, not cause |
+| `offshore_lifetimes` | `entry_age_years` | **DERIVED** | observation window opens 1975-01-01 | LEFT TRUNCATION. Structures installed before the window enter the risk set at the age they had already reached, not at zero |
+| `offshore_lifetimes` | `exit_age_years / event` | **DERIVED** | install to removal, or to as-of | event=1 removed, event=0 right-censored at config.AS_OF |
+| `offshore_lifetimes` | `left_truncated` | **DERIVED** | entry_age_years > 0 |  |
+| `offshore_model` | `p_removal_365d` | **DERIVED** | offshore_survival.py (Cox PH on age, or the age baseline) | time scale is AGE, so age is the duration and cannot also be a covariate. Fitted on structure DESIGN only; every current-state field is excluded as an anachronism and listed in excluded_unobservable |
+| `offshore_model` | `rank_score / score_source` | **DERIVED** | offshore_survival.py | age alone is INVERTED in this domain - removed structures are younger than standing ones in every pre-cutoff window - so the baseline ranks youngest first. The Cox model did not beat it, so score_source records that the ranking kept the baseline |
+| `offshore_model` | `storm competing risk` | **REAL (unseparated)** | BSEE open data (data.bsee.gov), US OCS Gulf of Mexico | storm losses are INSIDE these events and cannot be identified from this data; removal method is severance technique and the removal date is the paperwork date, lagging destruction by years. Declared, never excluded |
 | `plays` | `reason_code / evidence_ids` | **DERIVED** | plays.py | each code declares its own provenance; a SYNTHETIC code is never a recommended action |
 <!-- END PROVENANCE_TABLE -->
 
@@ -248,6 +272,29 @@ accession numbers and retrieval dates.
 
 **These figures are never joined to the account data.** They describe one public
 company and say nothing about the federal offices analysed here.
+
+---
+
+### 4. BSEE — REAL, primary (offshore domain)
+
+Gulf of Mexico platform structures, complex masters and removal applications.
+This is the source for the **second domain**; it does not touch federal
+procurement.
+
+- Files: `platstrufixed.zip`, `platmastfixed.zip`, `platstruremdelimit.zip`
+  under `https://www.data.bsee.gov/Platform/Files/`
+- Record layouts: `https://www.data.bsee.gov/Main/HtmlPage.aspx?page=<layout>`
+- Licence: US Government work, public domain (17 U.S.C. §105)
+- No API key; refreshed by BSEE roughly daily
+- Row counts and per-file SHA-256: `data/raw/manifest.json`, under `bsee`
+
+**Read `fetch_bsee.py`'s header before changing a filename.** BSEE serves HTTP
+200 with an HTML error page for any name it does not recognise, so a wrong guess
+looks like a successful download. Every response is checked for the zip magic
+number. The published fixed-width layout for the removals file is also wrong by
+two characters from `Proposed Removal Method` onward — the delimited edition is
+what the pipeline reads. Both are explained in
+[The second domain](#the-second-domain--the-offshore-install-base).
 
 ---
 
@@ -647,6 +694,139 @@ Full register: [`ASSUMPTIONS.md`](ASSUMPTIONS.md).
 
 ---
 
+## The second domain — the offshore install base
+
+Everything above is federal procurement. There is a **second domain** in this
+repository, and it exists because it is the mirror image of the first.
+
+Federal procurement observes what was **paid** and infers the asset. BSEE's Gulf
+of Mexico platform data observes the **asset** — named, typed, with a date in and
+a date out — and never observes what anything cost.
+
+| Signal | Federal procurement | Offshore (BSEE) |
+|---|---|---|
+| Asset identity | inferred from PSC codes | named structure, typed and measured |
+| Install date | inferred from award date | **recorded** |
+| Retirement | **never observed** | **recorded** |
+| Who holds it | awarding office | operator, via company number |
+| What was paid | observed per award | **not published** |
+
+**The two are never merged.** Separate tables, separate model, separate ranking,
+separate console surface. An account score that mixed an observed purchase
+history with an inferred one would mean nothing in either world, so
+`test_the_two_domains_are_never_ranked_against_each_other` fails if a key ever
+appears in both score tables. That single test is what keeps the separation
+honest.
+
+### What the data actually says
+
+Profiled against real rows before any pipeline code was written, because several
+of these change the design:
+
+- **7,092 structures**, 6,940 complexes, 6,482 removal applications. A companion
+  spatial layer reports 7,317 platform features; the flat file does **not**
+  reconcile with it — 3.1% short.
+- **81.4% of records carry a removal date.** This file is mostly a history of
+  structures that have already gone. The live install base is the **1,321** that
+  do not, at a **median age of 43.7 years** — a late-life portfolio, which is the
+  whole commercial point of the domain.
+- **69.2% of install dates are exactly `01-JAN`** — a placeholder standing in for
+  a year, not a day. By decade: 1940s 100%, 1950s 99.4%, 1960s 99.0%, 1970s
+  97.5%, 1980s 98.6%, then 1990s 33.7%, 2000s 2.7%, 2010s 0.9%. For anything
+  older than about 1990 the **time scale itself** carries year-level measurement
+  error. Left truncation does not repair this, and the reports say so rather than
+  implying a precision that is not there.
+- **Masters is one row per COMPLEX; Structures is one row per STRUCTURE.** 595
+  complexes hold more than one, 21.2% of structures sit in such a complex, and
+  759 Masters complexes have no structure row at all. Water depth, lease and
+  operator are therefore **complex-level attributes of a structure-level event**,
+  joined one-to-many. They carry a `_cx` suffix and `complex_is_shared` marks the
+  rows, so nothing downstream can mistake a shared value for a measured one.
+
+### Two traps in getting the data at all
+
+Both are the offshore equivalent of the FY2021 PSC break: they produce a
+confident wrong answer rather than an error.
+
+**The download filenames are not guessable, and the wrong guess succeeds.** The
+structures file is `platstru**fixed**.zip`. The plausible spelling,
+`platstru**c**fixed.zip`, returns **HTTP 200 and a 28 kB HTML error page** — which
+a fetcher that checks only the status code writes to disk as data and reports as
+a success. `fetch_bsee.py` verifies the zip magic number on every response for
+exactly this reason, and refuses loudly rather than caching it.
+
+**The published fixed-width record layout for Structures Removed is wrong.** From
+`Proposed Removal Method` onward its start positions run two characters early,
+which silently produces about a hundred invented removal methods of the form
+`11EXPLOSIVES GENERIC` — the year's last two digits glued to the front of the
+real value. The delimited edition of the same file is clean, so that is what the
+pipeline reads. The Structures and Masters layouts were checked field by field
+against the rows themselves before anything was fitted on them.
+
+### The result: age is inverted, and the model lost
+
+The event inverts too. The federal model predicts a repurchase, an outcome you
+want to cause; this predicts **removal**, an outcome you want to anticipate. The
+commercial motion is decommissioning, life extension and integrity management,
+not reactivation.
+
+Because the time scale is **age**, age is the duration and cannot also be a
+covariate — which makes age alone the natural rules baseline, exactly as recency
+alone is the baseline in the federal domain. It does not behave as expected:
+
+| Signal | AUC |
+|---|---|
+| Cox PH on structure design | 0.569 |
+| Baseline — age, **youngest first** | **0.618 — KEPT** |
+| Age, oldest first (the intuitive rule) | 0.382 — *worse than chance* |
+
+Ranking the oldest structures first scores **below chance**. The first version of
+this comparison therefore had the model "beating" a baseline that was pointing
+the wrong way, which is worth nothing. The baseline is now age in the direction
+that actually predicts — and that direction is learned from five windows that
+close **before** the training cutoff, never from the test window, because
+choosing it on the test window would itself be leakage. Age is inverted in all
+five (0.382–0.495).
+
+Corrected, **the model loses, so the ranking keeps the baseline** and the console
+says so on the surface.
+
+**Why age points backwards.** The standing base is a *survivor* population.
+Structures that were removed came out at a median of about 19 years, a quarter of
+them inside 10; the structures still standing are a median of about 44 years old.
+Anything fragile or uneconomic has already gone, so what is left at forty years
+has demonstrated a durability that a ten-year-old structure has not yet had the
+chance to demonstrate. Age is not a usable ranking signal in either direction on
+this population, which is what the weak AUC is saying. `discrimination_is_weak`
+is set, and the surface states plainly that this orders a **worklist**, not a
+prediction of which structures come out next.
+
+### The six traps, and what was done about each
+
+| Trap | Handling |
+|---|---|
+| **1. Operator attribution** | The operator field is the *current* one; a 1985 structure may have had four owners, and attributing its whole lifetime to today's holder is survivorship bias aimed at the ranking. Phase 1 stays at structure level so it never needs it (`OFFSHORE_USE_OPERATOR = False`). |
+| **2. `Abandon Flag` leakage** | It marks a structure already scheduled for removal, so predicting removal from it predicts the label from an announcement of the label. **Never a feature.** Used only as a validation check — a model that cannot rank flagged structures highly is broken. It scores 0.54 against the flag, which is itself a comment on the model. |
+| **3. The regulatory clock** | Part of the hazard is idle-iron compliance, not commerce. Stated in the reports rather than implying the signal is cleaner than it is. |
+| **4. Storms** | **Not separable, and not faked.** Removal method describes how a structure was *severed* (EXPLOSIVES GENERIC 49.0%, NON-EXPLOSIVES 37.5%), not why it left service, and Submittal Type is only INITIAL or MODIFICATION. Timing does not rescue it either: removals peak in 2009 (304), 2011 (337) and 2012 (334), **not** in the storm years 2004 (202), 2005 (131) or 2008 (198), because the removal date is the regulatory paperwork date and lags destruction by years. Policy is `declare`: storm losses stay in, and every report says they are in and cannot be identified. |
+| **5. Two populations** | Deepwater and shallow water differ in lifetime and removal economics by orders of magnitude, and only 130 complexes sit past 400ft. Depth is carried as a covariate **and** every headline is reported by stratum. |
+| **6. Left truncation** | Removals appear from 1973, but 1973 and 1974 carry one and six of them against a standing base of roughly two thousand — record keeping starting up, not the Gulf holding still. The window opens at **1975**, and structures installed before it enter the risk set at **the age they had already reached**, carried into the fit through lifelines' `entry_col`. 2,049 rows are left-truncated. Treating them as born at the threshold would compress the early hazard and flatter every estimate downstream. |
+
+### What this domain will never tell you
+
+BSEE publishes no cost or revenue per structure. This domain therefore carries
+**no obligation, no expected value, no margin and no price** — and an invariant
+test fails if such a column ever appears in `offshore_scores`. Anything of that
+kind on this surface would have been invented.
+
+**Phase 2 is not built**, and one finding blocks its core: there is no
+platform-keyed production file. The downloadable production data is OGOR-A/B/C,
+keyed on well and lease, plus field-level rankings. Production can only reach a
+structure *through the lease*, which is many-to-many. That has to be solved
+before any value model, and it is the first thing Phase 2 must confront.
+
+---
+
 ## Known limits
 
 - **Coverage is a lower bound.** Support bought outside the scoped PSC codes,
@@ -674,6 +854,26 @@ Full register: [`ASSUMPTIONS.md`](ASSUMPTIONS.md).
   year-over-year comparisons across FY2021 mix a real trend with a definitional
   one. Dormancy is reported under four scopes for this reason.
 
+Offshore:
+
+- **Neither offshore signal discriminates well.** The better of the two is close
+  to a coin toss on the test window. The ranking orders a worklist; it does not
+  identify which structures will come out, and the surface says so.
+- **Age carries year-level measurement error** for most pre-1990 structures,
+  because 69.2% of install dates are `01-JAN` placeholders — and age is the time
+  scale, not merely a covariate.
+- **Storm losses are inside the events and cannot be identified.** Part of what
+  the model fits is weather, and part is the idle-iron compliance clock, not
+  commerce.
+- **Removal records lag.** 2024 shows 39 removals against 155 in 2023, and the
+  as-of year is part-complete, so the test window under-counts events and the
+  observed rates in it are a floor rather than a settled number.
+- **Complex-level covariates are shared across structures**, not measured per
+  structure. They are marked, but the shared-ness is a real limit on what the
+  covariates can carry.
+- **No production, no price, no value model.** Phase 2 is not built, and the
+  production join is blocked on a lease-level many-to-many path.
+
 ---
 
 ## Tests — the claims above, enforced
@@ -687,7 +887,7 @@ pytest tests/ -q                    # if you have pytest
 python pipeline/run_all.py --test   # pipeline, then the checks
 ```
 
-24 checks, covering:
+32 checks, covering:
 
 - **no synthetic field reaches the model or the ranking** — asserted against
   `survival.FEATURES` and the reported expected-value terms, not just claimed
@@ -707,6 +907,28 @@ python pipeline/run_all.py --test   # pipeline, then the checks
 - the app bundle carries the framing statement, contains no bare `NaN`, and the
   page stays under the 16MB limit
 
+and, for the offshore domain:
+
+- **the two domains are never ranked against each other** — no shared key between
+  the score tables, and each ranking starts at 1 in its own domain. This is the
+  test that keeps the separation honest
+- **`Abandon Flag` is never a model feature** — it announces the label; it must
+  appear in the excluded list and be used only as the validation check
+- **left truncation is actually applied** — non-zero truncated rows, no structure
+  exiting at or before it enters, and the truncation carried into the *fit*, not
+  just into the table
+- **storm removals are handled explicitly, not silently** — both reports must
+  carry a policy and say plainly that storms cannot be separated
+- **offshore never claims a price it cannot observe** — no obligation, value,
+  price or margin column may exist in `offshore_scores`
+- **the offshore baseline is not a strawman** — where age is inverted, the
+  baseline must point the way that predicts, must beat chance, and must show the
+  pre-cutoff windows that establish its direction; and if the model lost, the
+  ranking must say it kept the baseline
+- **the install-date measurement error is declared**, broken down by decade
+- **complex-level covariates are marked as shared**, never as measured per
+  structure
+
 ## Running it
 
 Requires Python 3.11+.
@@ -719,8 +941,10 @@ python pipeline/run_all.py
 
 # useful variants
 python pipeline/run_all.py --skip-fetch     # never touch the network
-python pipeline/run_all.py --from 4         # skip the fetch steps
-python pipeline/run_all.py --only 11 12     # just the model and the ranking
+python pipeline/run_all.py --from 5         # skip the fetch steps
+python pipeline/run_all.py --only 13 15     # just the federal model and the ranking
+python pipeline/run_all.py --only 8 14      # just the offshore domain
+python pipeline/fetch_bsee.py --force       # re-download the BSEE archives
 python pipeline/run_all.py --test          # pipeline, then the invariant checks
 python pipeline/fetch_usaspending.py --probe          # show the plan, download nothing
 python pipeline/fetch_usaspending.py --sample 7K20 2023  # one raw response, verbatim
@@ -837,33 +1061,42 @@ Keep that statement wherever this is published.
 ## Repository layout
 
 ```
-pipeline/
-  config.py               scope, PSC families and eras, thresholds, as-of date
-  fetch_usaspending.py    step 1  bulk download + disk cache + manifest
-  fetch_backblaze.py      source 2, empirical failure hazard by drive age
-  fetch_sec_benchmarks.py source 3, filing benchmarks (benchmark only)
-  build_awards.py         flatten the downloads, dedup, missingness report
-  entity_resolution.py    step 2  matching + the match report + its grading
-  install_base.py         step 3  accounts, coverage, renewals, cohorts, whitespace
-  provenance.py           step 4  the field-level provenance table
-  synthetic_layer.py      step 5  SYNTHETIC telemetry, cases, health
-  plays.py                step 6  reason codes and play assignment
-  survival.py             step 7  survival model, time-based validation, calibration
-  ranking.py              step 8  expected-value ranking + sensitivity
-  export_app_data.py      step 9  one JSON bundle for the console
+pipeline/                 18 steps; both domains, one orchestrator
+  config.py               scope, PSC families and eras, thresholds, as-of date,
+                          and the offshore block: BSEE layouts and every switch
+  fetch_usaspending.py    step 1   bulk download + disk cache + manifest
+  fetch_backblaze.py      step 2   empirical failure hazard by drive age
+  fetch_sec_benchmarks.py step 3   filing benchmarks (benchmark only)
+  fetch_bsee.py           step 4   OFFSHORE: BSEE archives, magic-number checked
+  build_awards.py         step 5   flatten the downloads, dedup, missingness
+  entity_resolution.py    step 6   matching + the match report + its grading
+  install_base.py         step 7   accounts, coverage, renewals, cohorts, whitespace
+  offshore.py             step 8   OFFSHORE: structure lifetimes, left truncation
+  subawards.py            step 9   prime->sub graph, vendor network
+  provenance.py           step 10  the field-level provenance table
+  synthetic_layer.py      step 11  SYNTHETIC telemetry, cases, health
+  plays.py                step 12  reason codes and play assignment
+  survival.py             step 13  FEDERAL: time-to-next-award model
+  offshore_survival.py    step 14  OFFSHORE: removal model vs the age baseline
+  ranking.py              step 15  expected-value ranking + sensitivity
+  export_app_data.py      step 16  one JSON bundle for the console
+  build_app.py            step 17  inline the bundle -> app/dist
+  make_docs.py            step 18  regenerates ASSUMPTIONS.md, PROVENANCE.md, this
   assumptions.py          the assumption register, single source of truth
-  make_docs.py            regenerates ASSUMPTIONS.md, docs/PROVENANCE.md, this file
   run_all.py              orchestrator
 tests/
-  test_invariants.py      24 checks on the claims this README makes
+  test_invariants.py      32 checks on the claims this README makes
 app/
   index.html              the console template (__APP_DATA__ placeholder)
+  landing.html            the cover template; its labels ride the hero arc
+  arc.js                  the atmosphere both pages sit on, inlined into each
   data/app_data.json      the bundle that gets inlined (gitignored; regenerable)
   dist/index.html         the built, self-contained page - this is what deploys
+  dist/landing.html       the cover, served at /
 vercel.json               static deploy config: serves app/dist, no build
 netlify.toml              the same for Netlify
 .vercelignore             keeps the pipeline out of the upload
-data/   raw/ interim/ processed/
+data/   raw/ raw/bsee/ interim/ processed/
 reports/                  match report, channel rule, survival, sensitivity, plots
 ```
 

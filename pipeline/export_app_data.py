@@ -90,6 +90,11 @@ def main() -> None:
     health = pq("health_synthetic.parquet")
     telemetry = pq("telemetry_synthetic.parquet")
 
+    off_scores = pq("offshore_scores.parquet")
+    off_stru = pq("offshore_structures.parquet")
+    off_prof = jload(R / "offshore_profile.json")
+    off_sv = jload(R / "offshore_survival_report.json")
+
     ib = jload(R / "install_base_report.json")
     mr = jload(R / "match_report.json")
     ing = jload(R / "ingest_report.json")
@@ -221,6 +226,7 @@ def main() -> None:
                 "Accounts here are federal awarding offices, not customers of any "
                 "company. Every commercial number is an assumption, listed in the "
                 "assumption register."),
+            "domains": list(C.DOMAINS),
             "account_grain": ib.get("account_grain", "awarding office within sub-agency"),
             "train_cutoff": str(C.TRAIN_CUTOFF),
             "horizon_days": C.HORIZON_DAYS,
@@ -245,6 +251,14 @@ def main() -> None:
                             "gross margin, subscription ARR growth, net dollar retention"),
                  "licence": "SEC EDGAR public records",
                  "retrieved": str(sec.get("retrieved_at", ""))[:10]},
+                {"name": "BSEE open data", "kind": "REAL",
+                 "url": "https://www.data.bsee.gov",
+                 "detail": (f"Gulf of Mexico platform structures, masters and removal "
+                            f"applications; {(off_prof.get('counts') or {}).get('structures', 0):,} "
+                            f"structures across "
+                            f"{(off_prof.get('counts') or {}).get('complexes', 0):,} complexes"),
+                 "licence": "US Government public domain (17 U.S.C. 105)",
+                 "retrieved": str((man.get("bsee_meta") or {}).get("generated_at", ""))[:10]},
             ],
             "manifest_totals": clean(man.get("totals", {})),
             "scope": clean(man.get("scope", {})),
@@ -358,6 +372,68 @@ def main() -> None:
                 .value_counts().sort_index()
                 .rename(lambda i: f"{i.left:g}-{i.right:g}").to_dict())
                 if len(sub_flows) else {}),
+        },
+        # ------------------------------------------------------------ offshore
+        # A SEPARATE DOMAIN, not a section of the federal one. It observes the
+        # asset and never the money, so it carries no obligation, no expected
+        # value and no account - and nothing here is ever ranked against a
+        # federal account. See the domain-separation invariant.
+        "offshore": {
+            "framing": off_prof.get("framing", ""),
+            "region": off_prof.get("region", ""),
+            "unit_of_analysis": off_prof.get("unit_of_analysis", "structure"),
+            "kpis": {
+                "structures_all_time": (off_prof.get("counts") or {}).get("structures"),
+                "complexes": (off_prof.get("counts") or {}).get("complexes"),
+                "standing": (off_prof.get("observability") or {}).get(
+                    "removal_date_absent_standing"),
+                "removed": (off_prof.get("observability") or {}).get(
+                    "removal_date_present"),
+                "event_rate": (off_prof.get("observability") or {}).get("event_rate"),
+                "standing_median_age_years": (off_prof.get("observability") or {}).get(
+                    "standing_median_age_years"),
+                "install_imputed_rate": (off_prof.get("install_date_quality") or {}).get(
+                    "imputed_rate"),
+            },
+            "observability": clean(off_prof.get("observability", {})),
+            "install_date_quality": clean(off_prof.get("install_date_quality", {})),
+            "left_truncation": clean(off_prof.get("left_truncation", {})),
+            "storms": clean(off_prof.get("storms", {})),
+            "survivorship": clean(off_sv.get("survivorship", {})),
+            "depth_strata": clean(off_prof.get("depth_strata", {})),
+            "shared_covariates": clean(off_prof.get("shared_covariates", {})),
+            "excluded": clean(off_prof.get("excluded", {})),
+            "model": {
+                "decision": clean(off_sv.get("decision", {})),
+                "discrimination": clean(off_sv.get("discrimination", {})),
+                "calibration": clean(off_sv.get("calibration", {})),
+                "train": clean(off_sv.get("train", {})),
+                "test": clean(off_sv.get("test", {})),
+                "features": off_sv.get("features", []),
+                "excluded_unobservable": clean(off_sv.get("excluded_unobservable", {})),
+                "abandon_flag_check": clean(off_sv.get("abandon_flag_check", {})),
+                "caveats": off_sv.get("caveats", []),
+                "coefficients": clean(off_sv.get("coefficients", {})),
+            },
+            # the standing install base, worst-first under whichever signal won
+            "structures": records(
+                off_scores.nsmallest(400, "rank"),
+                ["rank", "structure_key", "structure_name", "structure_type_code",
+                 "area_code", "block_number", "install_year", "install_imputed",
+                 "age_years_now", "water_depth_cx", "depth_stratum",
+                 "complex_structure_count", "complex_is_shared", "abandon_flag_cx",
+                 "p_removal_365d", "score_source"]),
+            "structures_shown": int(min(400, len(off_scores))),
+            "structures_total": int(len(off_scores)),
+            "by_type": clean(off_stru["structure_type_code"].value_counts().head(10).to_dict())
+                if len(off_stru) else {},
+            "installs_by_decade": clean(
+                (off_stru["install_date"].dropna().dt.year // 10 * 10)
+                .value_counts().sort_index().to_dict()) if len(off_stru) else {},
+            "standing_by_decade": clean(
+                (off_stru[off_stru["removal_date"].isna()]["install_date"]
+                 .dropna().dt.year // 10 * 10)
+                .value_counts().sort_index().to_dict()) if len(off_stru) else {},
         },
     }
 

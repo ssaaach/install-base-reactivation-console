@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-21T21:38:26.469879+00:00",
+  "generated_at": "2026-09-23T10:56:34.108401+00:00",
   "formula": "EV = P(purchase within horizon) x expected award value x margin - engagement cost",
   "terms": {
     "p_purchase": {

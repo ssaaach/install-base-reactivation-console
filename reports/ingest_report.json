@@ -374,6 +374,6 @@
   "distinct_sub_agencies": 175,
   "distinct_recipient_uei": 11264,
   "subaward_rows": 29460,
-  "generated_at": "2026-09-21T21:36:56.061229+00:00",
+  "generated_at": "2026-09-23T10:54:54.126099+00:00",
   "note": "Awards are counted once, in the fiscal year they were signed (date_type=date_signed). Overlap above is between the PSC pull and the NAICS pull, not an entity-resolution duplicate rate; for that see reports/match_report.json."
 }

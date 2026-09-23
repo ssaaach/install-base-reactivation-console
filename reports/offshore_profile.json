@@ -1,0 +1,150 @@
+{
+  "generated_at": "2026-09-23T10:56:46+00:00",
+  "as_of": "2026-09-21",
+  "domain": "offshore",
+  "region": "US Outer Continental Shelf, Gulf of Mexico",
+  "unit_of_analysis": "structure",
+  "counts": {
+    "structures": 7092,
+    "complexes": 6181,
+    "removal_applications": 6482,
+    "structures_in_multi_structure_complex": 1506,
+    "complexes_holding_more_than_one": 595
+  },
+  "observability": {
+    "removal_date_present": 5771,
+    "removal_date_absent_standing": 1321,
+    "event_rate": 0.8137,
+    "censoring_rate": 0.1863,
+    "standing_median_install_year": 1983,
+    "standing_median_age_years": 43.7,
+    "standing_by_type": {
+      "FIXED": 1000,
+      "CAIS": 261,
+      "SEMI": 17,
+      "SPAR": 15,
+      "TLP": 13,
+      "WP": 6,
+      "MTLP": 3,
+      "MOPU": 2
+    }
+  },
+  "install_date_quality": {
+    "imputed_mark": "01-JAN",
+    "imputed_rate": 0.692,
+    "policy": "keep",
+    "by_decade": {
+      "1940": 16,
+      "1950": 338,
+      "1960": 1181,
+      "1970": 1196,
+      "1980": 1744,
+      "1990": 1397,
+      "2000": 1097,
+      "2010": 113,
+      "2020": 10
+    },
+    "imputed_by_decade": {
+      "1940": 16,
+      "1950": 336,
+      "1960": 1169,
+      "1970": 1166,
+      "1980": 1719,
+      "1990": 471,
+      "2000": 30,
+      "2010": 1
+    },
+    "note": "01-JAN is a placeholder standing in for a year. For structures older than about 1990 the entry time is known to the year, not the day, which is measurement error in the entry time and is not repaired by left truncation."
+  },
+  "left_truncation": {
+    "obs_start": "1975-01-01",
+    "applied": true,
+    "left_truncated_rows": 2049,
+    "max_entry_age_years": 33.0,
+    "note": "Structures installed before obs_start enter the risk set at the age they had already reached. Those removed before it were never observable and are dropped."
+  },
+  "storms": {
+    "policy": "declare",
+    "separable": false,
+    "removal_methods": {
+      "EXPLOSIVES GENERIC": 3175,
+      "NON-EXPLOSIVES": 2433,
+      "D1": 465,
+      "SW-4": 266,
+      "EXPLOSIVES": 99,
+      "(blank)": 30,
+      "C1": 5,
+      "SW-5": 2,
+      "E1": 1,
+      "E2": 1
+    },
+    "removals_by_year": {
+      "2000": 143,
+      "2001": 113,
+      "2002": 124,
+      "2003": 192,
+      "2004": 202,
+      "2005": 131,
+      "2006": 118,
+      "2007": 198,
+      "2008": 198,
+      "2009": 304,
+      "2010": 265,
+      "2011": 337,
+      "2012": 334,
+      "2013": 254,
+      "2014": 227,
+      "2015": 165,
+      "2016": 255,
+      "2017": 127,
+      "2018": 170,
+      "2019": 105,
+      "2020": 42,
+      "2021": 83,
+      "2022": 118,
+      "2023": 177,
+      "2024": 49,
+      "2025": 103,
+      "2026": 23
+    },
+    "note": "Proposed Removal Method describes how a structure was severed, not why it left service, and Submittal Type is only INITIAL or MODIFICATION. Removals peak in 2009, 2011 and 2012 rather than in the storm years 2004, 2005 and 2008, because the removal date is the regulatory paperwork date and lags destruction by years. Storm losses are therefore INSIDE these figures and cannot be identified from this data. They are not excluded, and no result here should be read as if they were."
+  },
+  "depth_strata": {
+    "deepwater_ft": 400,
+    "counts": {
+      "shallow": 6961,
+      "deepwater": 131
+    },
+    "note": "Reported by stratum because lifetimes differ by orders of magnitude."
+  },
+  "shared_covariates": {
+    "columns": [
+      "water_depth_cx",
+      "distance_to_shore_cx",
+      "lease_number_cx",
+      "abandon_flag_cx",
+      "production_flag_cx",
+      "oil_prod_flag_cx",
+      "gas_prod_flag_cx",
+      "rig_count_cx",
+      "crane_count_cx",
+      "bed_count_cx",
+      "field_name_code_cx",
+      "maj_cmplx_flag_cx"
+    ],
+    "note": "Complex-level attributes joined one-to-many onto structure rows. Shared, not independently measured per structure."
+  },
+  "excluded": {
+    "no_install_date": 0,
+    "removal_before_install": 0,
+    "removal_after_as_of_censored": 0,
+    "removed_before_obs_start": 7,
+    "degenerate_interval": 6
+  },
+  "lifetime_rows": 7079,
+  "operator_used": false,
+  "leakage_fields_never_features": [
+    "abandon_flag"
+  ],
+  "framing": "This is the physical offshore install base of the US Gulf of Mexico as BSEE records it: named structures, typed, with a date in and a date out. It observes the asset and never observes what was paid for it, which is the mirror image of the federal procurement domain. The two are never ranked against each other."
+}

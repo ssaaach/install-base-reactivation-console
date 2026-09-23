@@ -1,0 +1,251 @@
+{
+  "generated_at": "2026-09-23T10:56:55+00:00",
+  "domain": "offshore",
+  "event": "structure removal",
+  "time_scale": "age since install (years)",
+  "unit_of_analysis": "structure",
+  "as_of": "2026-09-21",
+  "train_cutoff": "2024-09-30",
+  "horizon_days": 365,
+  "left_truncation": {
+    "obs_start": "1975-01-01",
+    "carried_into_fit": true,
+    "method": "lifelines entry_col; rows enter at the age already reached",
+    "train_rows_left_truncated": 2049
+  },
+  "train": {
+    "rows": 7077,
+    "events": 5656
+  },
+  "test": {
+    "rows": 1421,
+    "events": 74,
+    "base_rate": 0.0521,
+    "window": [
+      "2024-09-30",
+      "2025-09-30"
+    ]
+  },
+  "discrimination": {
+    "auc_model": 0.5688,
+    "auc_baseline": 0.6183,
+    "baseline_direction": "youngest_first",
+    "auc_age_ascending": 0.3817,
+    "age_is_inverted": true,
+    "direction_chosen_on": "windows closing before the train cutoff, never the test window",
+    "direction_evidence": [
+      {
+        "window_start": "2019-10-02",
+        "n": 1798,
+        "events": 33,
+        "auc_age_ascending": 0.4949,
+        "inverted": true
+      },
+      {
+        "window_start": "2020-10-01",
+        "n": 1767,
+        "events": 56,
+        "auc_age_ascending": 0.4319,
+        "inverted": true
+      },
+      {
+        "window_start": "2021-10-01",
+        "n": 1712,
+        "events": 76,
+        "auc_age_ascending": 0.3822,
+        "inverted": true
+      },
+      {
+        "window_start": "2022-10-01",
+        "n": 1637,
+        "events": 174,
+        "auc_age_ascending": 0.4166,
+        "inverted": true
+      },
+      {
+        "window_start": "2023-10-01",
+        "n": 1467,
+        "events": 47,
+        "auc_age_ascending": 0.4468,
+        "inverted": true
+      }
+    ],
+    "model_beats_baseline": false,
+    "discrimination_is_weak": true,
+    "note": "Age alone is INVERTED here: the structures removed in the next year are YOUNGER than those left standing, in every pre-cutoff window tested, so ranking oldest-first scores below chance. The baseline is therefore age in the direction that actually predicts. A likely mechanism, stated as a hypothesis and not a measurement: removal tracks the idle-iron compliance clock, which starts when production ceases, and structures still standing at forty years are the ones that proved economic to keep. Age is a poor proxy for either."
+  },
+  "calibration": {
+    "mean_predicted": 0.0411,
+    "observed_rate": 0.0521,
+    "abs_error": 0.011,
+    "within_5pp": true,
+    "by_decile": [
+      {
+        "decile": 1,
+        "n": 143,
+        "predicted": 0.0049,
+        "observed": 0.014
+      },
+      {
+        "decile": 2,
+        "n": 142,
+        "predicted": 0.0155,
+        "observed": 0.0423
+      },
+      {
+        "decile": 3,
+        "n": 142,
+        "predicted": 0.0222,
+        "observed": 0.0493
+      },
+      {
+        "decile": 4,
+        "n": 142,
+        "predicted": 0.028,
+        "observed": 0.0493
+      },
+      {
+        "decile": 5,
+        "n": 142,
+        "predicted": 0.0338,
+        "observed": 0.0493
+      },
+      {
+        "decile": 6,
+        "n": 142,
+        "predicted": 0.0398,
+        "observed": 0.0493
+      },
+      {
+        "decile": 7,
+        "n": 141,
+        "predicted": 0.0459,
+        "observed": 0.0709
+      },
+      {
+        "decile": 8,
+        "n": 143,
+        "predicted": 0.0554,
+        "observed": 0.0769
+      },
+      {
+        "decile": 9,
+        "n": 142,
+        "predicted": 0.0681,
+        "observed": 0.0704
+      },
+      {
+        "decile": 10,
+        "n": 142,
+        "predicted": 0.0974,
+        "observed": 0.0493
+      }
+    ]
+  },
+  "decision": {
+    "use_model": false,
+    "ranking_uses": "age_baseline:youngest_first",
+    "rule": "The model must beat the baseline on discrimination AND land within 5 percentage points on calibration. If it does not, the ranking keeps the baseline and this report says so.",
+    "discrimination_is_weak": true,
+    "weak_note": "Whichever wins, the better of the two is still close to a coin toss on this test window. This ranking orders a worklist; it does not identify which structures will come out, and should not be presented as if it did."
+  },
+  "survivorship": {
+    "median_lifetime_of_removed_years": 18.9,
+    "median_age_of_standing_years": 43.7,
+    "removed_within_10_years": 1436,
+    "removed_total": 5758,
+    "note": "The standing base is a SURVIVOR population, and that is what inverts age. Structures that were removed came out at a median of about 19 years and a quarter of them inside 10, while the structures still standing are a median of about 44 years old. Anything fragile or uneconomic has already gone, so what is left at forty years has demonstrated durability that a ten-year-old structure has not yet had the chance to demonstrate. Age is therefore not a usable ranking signal in either direction on this population, which is what the weak AUC is saying."
+  },
+  "features": [
+    "log_water_depth",
+    "log_distance_to_shore",
+    "deck_count",
+    "slot_count",
+    "is_caisson",
+    "is_fixed",
+    "is_major",
+    "complex_structure_count"
+  ],
+  "excluded_unobservable": {
+    "abandon_flag": "label leakage - marks a structure already scheduled for removal",
+    "mms_company_num": "current operator only; a structure may have had several (trap 1)",
+    "production_flag": "Masters carries today's operational state, not the state at risk time",
+    "oil_prod_flag": "same - current state",
+    "gas_prod_flag": "same - current state",
+    "rig_count": "same - current equipment",
+    "crane_count": "same - current equipment",
+    "bed_count": "same - current equipment",
+    "slot_drill_count": "cumulative to today, not known at the moment of prediction",
+    "satellite_completion_count": "current state",
+    "underwater_completion_count": "current state",
+    "removal_method": "recorded by the removal application - exists only once removed"
+  },
+  "operator_used": false,
+  "abandon_flag_check": {
+    "flagged_in_test": 34,
+    "mean_score_flagged": 0.0446,
+    "mean_score_unflagged": 0.041,
+    "auc_against_flag": 0.5401,
+    "note": "abandon_flag is never a feature - it announces the label. It is used here only to check that the model ranks structures already scheduled for removal above the rest."
+  },
+  "coefficients": {
+    "log_water_depth": {
+      "coef": -0.0601,
+      "exp(coef)": 0.9416,
+      "se(coef)": 0.0165,
+      "p": 0.0003
+    },
+    "log_distance_to_shore": {
+      "coef": 0.3765,
+      "exp(coef)": 1.4572,
+      "se(coef)": 0.0163,
+      "p": 0.0
+    },
+    "deck_count": {
+      "coef": 0.0175,
+      "exp(coef)": 1.0177,
+      "se(coef)": 0.0168,
+      "p": 0.299
+    },
+    "slot_count": {
+      "coef": -0.0535,
+      "exp(coef)": 0.9479,
+      "se(coef)": 0.0024,
+      "p": 0.0
+    },
+    "is_caisson": {
+      "coef": 0.1626,
+      "exp(coef)": 1.1766,
+      "se(coef)": 0.0288,
+      "p": 0.0
+    },
+    "is_fixed": {
+      "coef": -0.448,
+      "exp(coef)": 0.6389,
+      "se(coef)": 0.0303,
+      "p": 0.0
+    },
+    "is_major": {
+      "coef": 0.1206,
+      "exp(coef)": 1.1281,
+      "se(coef)": 0.0318,
+      "p": 0.0001
+    },
+    "complex_structure_count": {
+      "coef": -0.2234,
+      "exp(coef)": 0.7998,
+      "se(coef)": 0.0126,
+      "p": 0.0
+    }
+  },
+  "storms": {
+    "policy": "declare",
+    "note": "Storm losses are inside these events and cannot be separated from planned decommissioning in this data - the removal method field describes severance technique, not cause. Part of the hazard this model fits is therefore weather, and part of it is the idle-iron compliance clock, not commerce."
+  },
+  "caveats": [
+    "Install dates are 01-JAN placeholders for most pre-1990 structures, so age - the time scale itself - carries year-level measurement error.",
+    "Removal records lag: 2024 shows 39 removals against 155 in 2023 and the as-of year is part-complete, so the test window under-counts events and observed rates in it are a floor, not a settled number.",
+    "Deepwater and shallow-water structures are pooled in the fit with depth as a covariate; they are reported separately because their removal economics differ by orders of magnitude."
+  ],
+  "scored_live_structures": 1321
+}

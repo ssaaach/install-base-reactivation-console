@@ -49,12 +49,34 @@
     var hero=mode==="hero", starsOnly=mode==="stars";
     var W=0,H=0,DPR=1,stars=[];
 
+    /* One source of truth for the figure's geometry. draw() reads it every
+       frame and the cover's label carousel reads the hero's copy off the
+       window, so the labels ride the glint path instead of a second guess
+       at where the arc is. */
+    function geom(){
+      if(hero){ var R=Math.min(W*0.335,430); return {cx:W/2,cy:H*0.46,RX:R,RY:R*0.46}; }
+      var R2=W*0.60;
+      return {cx:W/2,cy:H*1.22,RX:R2,RY:Math.min(R2*0.28,H*0.36)};
+    }
+
+    function publish(){
+      if(!hero) return;
+      var g=geom();
+      /* The ring the glints travel, and the sweep they travel it through.
+         The sweep is ADDED to a0, exactly as the glint loop below does it -
+         subtracting walks the bottom half of the ellipse. */
+      window.__heroArc={cx:g.cx,cy:g.cy,rx:g.RX*0.905,ry:g.RY*0.955,
+                        a0:Math.PI+0.13,sweep:Math.PI-0.26,speed:0.085,w:W,h:H};
+      try{ window.dispatchEvent(new Event("heroarc")); }catch(e){}
+    }
+
     function resize(){
       var r=c.getBoundingClientRect();
       DPR=Math.min(window.devicePixelRatio||1,2);
       W=Math.max(1,r.width); H=Math.max(1,r.height);
       c.width=Math.round(W*DPR); c.height=Math.round(H*DPR);
       x.setTransform(DPR,0,0,DPR,0,0);
+      publish();
       stars=[];
       var n=Math.round(W*H/(hero?9000:11000));
       for(var i=0;i<n;i++) stars.push({
@@ -81,9 +103,7 @@
       /* The page arc is a horizon: wide, shallow, and pushed below the
          viewport so only its crown enters the frame, well clear of the
          column the tables are read in. */
-      var cx=W/2, cy, RX, RY;
-      if(hero){ cy=H*0.46;  RX=Math.min(W*0.335,430); RY=RX*0.46; }
-      else    { cy=H*1.22;  RX=W*0.60;                RY=Math.min(RX*0.28,H*0.36); }
+      var G=geom(), cx=G.cx, cy=G.cy, RX=G.RX, RY=G.RY;
 
       var N=hero?104:78;
       x.globalCompositeOperation="lighter";

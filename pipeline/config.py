@@ -195,3 +195,141 @@ COVERAGE_WINDOW_DAYS = 365   # maintenance award within +/- this of the hardware
 RENEWAL_LOOKAHEAD_DAYS = 365
 
 RANDOM_SEED = 20260921       # every synthetic draw is seeded from this
+
+# ==================================================================== offshore
+# SECOND DOMAIN: the physical offshore install base of the US Gulf of Mexico,
+# from BSEE open data. It is kept strictly separate from federal procurement -
+# separate tables, separate ranking, separate console surface - because the two
+# have different observability, and an account score mixing an observed purchase
+# history with an inferred one means nothing in either world. See README,
+# "Two domains".
+#
+#   federal   observes INPUT spend, and infers the asset
+#   offshore  observes the ASSET - named, typed, dated in and dated out - and
+#             never observes what was paid for it
+DOMAINS = ("federal", "offshore")
+
+BSEE_BASE = "https://www.data.bsee.gov"
+
+# The download names are NOT guessable, and a wrong guess is dangerous: a bad
+# filename returns HTTP 200 with a 28 kB HTML error page, which a fetcher that
+# checks only the status code will write to disk as data. platstrufixed.zip is
+# the real name; platstrucfixed.zip is the plausible one, and it "succeeds".
+# fetch_bsee.py verifies the zip magic number on every file for that reason.
+#
+# Record layouts live at BSEE_BASE + /Main/HtmlPage.aspx?page=<layout>.
+BSEE_FILES = {
+    "platstrufixed":      ("/Platform/Files/platstrufixed.zip",      "platformStructures"),
+    "platmastfixed":      ("/Platform/Files/platmastfixed.zip",      "platformMasters"),
+    "platstruremdelimit": ("/Platform/Files/platstruremdelimit.zip", "platformStrucRem"),
+}
+
+# Fixed-width layouts, 1-indexed start position and length, transcribed from the
+# published record layout pages. Structures and Masters were checked field by
+# field against the rows themselves - every date parses, every code vocabulary
+# comes out clean - before anything was fitted on them.
+#
+# Structures Removed is NOT parsed fixed-width and so is not listed here. Its
+# published start positions run two characters early from Proposed Removal
+# Method onward, which silently produces about a hundred invented methods of
+# the form "11EXPLOSIVES GENERIC": the year's last two digits glued to the front
+# of the real value. The delimited edition of the same file is clean, so
+# offshore.py reads that instead.
+BSEE_LAYOUT_STRU = {
+    "area_code": (1, 2), "block_number": (3, 6), "complex_id": (9, 8),
+    "deck_count": (17, 2), "ew_departure": (19, 1), "install_date": (20, 11),
+    "last_revision_date": (31, 11), "major_structure_flag": (42, 1),
+    "ns_departure": (43, 1), "removal_date": (44, 11), "slant_slot_count": (55, 3),
+    "slot_count": (58, 3), "slot_drill_count": (61, 3),
+    "satellite_completion_count": (64, 3), "structure_name": (67, 15),
+    "structure_number": (82, 3), "structure_type_code": (85, 5),
+    "surface_ew_distance": (90, 6), "surface_ns_distance": (96, 6),
+    "underwater_completion_count": (102, 3), "authority_type": (105, 16),
+    "authority_number": (121, 8), "authority_status": (129, 20),
+}
+BSEE_LAYOUT_MAST = {
+    "complex_id": (1, 8), "abandon_flag": (9, 1), "distance_to_shore": (13, 4),
+    "gas_prod_flag": (19, 1), "mms_company_num": (21, 5), "maj_cmplx_flag": (27, 1),
+    "lease_number": (28, 7), "last_rev_date": (35, 11), "water_prod_flag": (50, 1),
+    "water_depth": (51, 5), "subdistrict_code": (58, 2), "rig_count": (61, 2),
+    "production_flag": (65, 1), "oil_prod_flag": (68, 1), "field_name_code": (70, 8),
+    "district_code": (78, 3), "crane_count": (81, 2), "bed_count": (85, 3),
+    "area_code": (88, 2), "block_number": (90, 6),
+}
+# Column order of the delimited Structures Removed file, which carries no header.
+BSEE_COLS_REM = [
+    "bus_asc_name", "mms_company_num", "application_number", "received_date",
+    "final_action_date", "removal_date", "site_clearance_date", "submittal_type",
+    "lease_number", "area_code", "block_number", "structure_name",
+    "proposed_removal_date", "proposed_removal_method", "district_code",
+    "complex_id", "structure_number", "water_depth",
+]
+
+# ------------------------------------------------------------- offshore scope
+# THE UNIT OF ANALYSIS. Masters is keyed one row per COMPLEX - 6,940 rows, 6,940
+# distinct ids, zero duplicates. Structures is one row per STRUCTURE within a
+# complex: 6,181 complexes carrying 7,092 structures, 595 of those complexes
+# holding more than one, and 21.2% of all structures sitting in such a complex.
+# Operator, water depth and lease are therefore COMPLEX-level attributes of a
+# STRUCTURE-level event, and joining them on is one-to-many, not one-to-one.
+#
+# Installation and removal happen to a structure, so the structure is the unit.
+# Complex attributes ride along as covariates and are marked as shared, never
+# treated as though they were measured independently per structure.
+OFFSHORE_UNIT = "structure"
+
+# LEFT TRUNCATION (trap 6). Removals appear in the structures file from 1973,
+# but the first years are implausibly thin - one removal in 1973 and six in
+# 1974, against a standing base of roughly two thousand. That is record keeping
+# starting up, not the Gulf holding still; from 1975 the series is noisy but
+# flat. Structures installed before this date are LEFT-TRUNCATED: they enter the
+# risk set at the age they had already reached, not at age zero. Treating them
+# as born at the threshold compresses the early hazard and flatters every
+# survival estimate downstream.
+OFFSHORE_OBS_START = _dt.date(1975, 1, 1)
+
+# INSTALL DATES ARE PART-IMPUTED, which is a different problem from truncation
+# and is not fixed by it. 69.2% of install dates are exactly 01-JAN, at a rate
+# that collapses by decade: 1940s 100%, 1950s 99.4%, 1960s 99.0%, 1970s 97.5%,
+# 1980s 98.6%, then 1990s 33.7%, 2000s 2.7%, 2010s 0.9%. For most structures
+# older than about 1990 the entry time is known to the YEAR, not the day.
+#
+#   keep  use them, and declare the measurement error (default)
+#   drop  restrict to structures carrying a day-precision install date
+# "drop" is published as a sensitivity, never applied silently.
+OFFSHORE_IMPUTED_INSTALL = "keep"
+OFFSHORE_IMPUTED_INSTALL_MARK = "01-JAN"
+
+# STORMS ARE A COMPETING RISK THAT THIS DATA CANNOT SEPARATE (trap 4).
+# Proposed Removal Method says how a structure was severed - EXPLOSIVES GENERIC
+# 49.0%, NON-EXPLOSIVES 37.5%, D1 7.2%, SW-4 4.1% - not why it left service, and
+# Submittal Type is only INITIAL or MODIFICATION. The timing does not rescue it
+# either: removals peak in 2009 (304), 2011 (337) and 2012 (334), not in the
+# storm years 2004 (202), 2005 (131) or 2008 (198), because the removal date is
+# the regulatory paperwork date and lags the destruction by years.
+#
+# There is no honest exclusion available here, and inventing one would be worse
+# than the trap. The switch exists so the choice is explicit, and defaults to
+# "declare": storm losses stay in, and every report says that they are in and
+# that they cannot be identified. A later phase that ingests BSEE's destroyed
+# structure lists can add "exclude".
+OFFSHORE_STORM_POLICY = "declare"
+
+# TWO POPULATIONS (trap 5). Deepwater and shallow-water structures differ in
+# lifetime and in removal economics by orders of magnitude, and only 130
+# complexes sit beyond this line. Pooling them is the direct analogue of fitting
+# one model across both PSC coding eras, so depth is carried as a covariate and
+# every headline is also reported by stratum.
+OFFSHORE_DEEPWATER_FT = 400
+
+# ABANDON FLAG IS LABEL LEAKAGE (trap 2). It marks a structure already scheduled
+# for removal, so predicting removal from it predicts the label from an
+# announcement of the label. It is never a feature. It is used only as a
+# validation check: a model that cannot rank flagged structures highly is broken.
+OFFSHORE_LEAKAGE_FIELDS = ("abandon_flag",)
+
+# OPERATOR IS NOT USED IN PHASE 1 (trap 1). Mms Company Num is the CURRENT
+# operator; a structure installed in 1985 may have had four. Attributing a whole
+# lifetime to whoever holds it today is survivorship bias aimed straight at the
+# ranking. Phase 1 stays at structure level precisely so it never needs to.
+OFFSHORE_USE_OPERATOR = False

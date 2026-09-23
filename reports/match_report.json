@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-21T21:37:02.847990+00:00",
+  "generated_at": "2026-09-23T10:55:00.840680+00:00",
   "awards": 270924,
   "awards_with_unresolved_recipient": 19,
   "awards_with_unresolved_org": 0,
@@ -86,6 +86,17 @@
         ]
       },
       {
+        "normalised": "HP",
+        "entities": [
+          "E-06120",
+          "E-08549"
+        ],
+        "canonical_names": [
+          "HEWLETT PACKARD COMPANY (3067)",
+          "HP INC."
+        ]
+      },
+      {
         "normalised": "HEWLETT PACKARD",
         "entities": [
           "E-06120",
@@ -95,17 +106,6 @@
         "canonical_names": [
           "HEWLETT PACKARD COMPANY (3067)",
           "HEWLETT PACKARD ENTERPRISE COMPANY",
-          "HP INC."
-        ]
-      },
-      {
-        "normalised": "HP",
-        "entities": [
-          "E-06120",
-          "E-08549"
-        ],
-        "canonical_names": [
-          "HEWLETT PACKARD COMPANY (3067)",
           "HP INC."
         ]
       },
@@ -198,17 +198,6 @@
         ]
       },
       {
-        "normalised": "EXELIS",
-        "entities": [
-          "E-01049",
-          "E-06700"
-        ],
-        "canonical_names": [
-          "EXELIS INC.",
-          "L3HARRIS TECHNOLOGIES, INC."
-        ]
-      },
-      {
         "normalised": "HARRIS",
         "entities": [
           "E-01049",
@@ -224,6 +213,17 @@
           "HARRIS CORPORATION",
           "L3HARRIS TECHNOLOGIES, INC.",
           "L3HARRIS TECHNOLOGIES, INC.",
+          "L3HARRIS TECHNOLOGIES, INC."
+        ]
+      },
+      {
+        "normalised": "EXELIS",
+        "entities": [
+          "E-01049",
+          "E-06700"
+        ],
+        "canonical_names": [
+          "EXELIS INC.",
           "L3HARRIS TECHNOLOGIES, INC."
         ]
       },
@@ -400,17 +400,6 @@
         ]
       },
       {
-        "normalised": "MICROTECHNOLOGIES",
-        "entities": [
-          "E-00420",
-          "E-04672"
-        ],
-        "canonical_names": [
-          "MICROTECHNOLOGIES LLC",
-          "MICROTECHNOLOGIES INC"
-        ]
-      },
-      {
         "normalised": "MICROSOFT SITZ IN REDMOND",
         "entities": [
           "E-00420",
@@ -419,6 +408,17 @@
         "canonical_names": [
           "MICROTECHNOLOGIES LLC",
           "MICROSOFT CORPORATION SITZ IN REDMOND CORPORATION"
+        ]
+      },
+      {
+        "normalised": "MICROTECHNOLOGIES",
+        "entities": [
+          "E-00420",
+          "E-04672"
+        ],
+        "canonical_names": [
+          "MICROTECHNOLOGIES LLC",
+          "MICROTECHNOLOGIES INC"
         ]
       },
       {
@@ -562,17 +562,6 @@
         ]
       },
       {
-        "normalised": "AT AND T ENTERPRISES",
-        "entities": [
-          "E-06343",
-          "E-06496"
-        ],
-        "canonical_names": [
-          "AT&T CORP.",
-          "AT&T ENTERPRISES, LLC"
-        ]
-      },
-      {
         "normalised": "AT AND T",
         "entities": [
           "E-00233",
@@ -583,6 +572,17 @@
         "canonical_names": [
           "AT&T CORP.",
           "AT&T CORP.",
+          "AT&T CORP.",
+          "AT&T ENTERPRISES, LLC"
+        ]
+      },
+      {
+        "normalised": "AT AND T ENTERPRISES",
+        "entities": [
+          "E-06343",
+          "E-06496"
+        ],
+        "canonical_names": [
           "AT&T CORP.",
           "AT&T ENTERPRISES, LLC"
         ]
@@ -1200,7 +1200,7 @@
         ]
       },
       {
-        "normalised": "TRIMBLE",
+        "normalised": "TRIMBLE NAVIGATION",
         "entities": [
           "E-07402",
           "E-10405"
@@ -1211,7 +1211,7 @@
         ]
       },
       {
-        "normalised": "TRIMBLE NAVIGATION",
+        "normalised": "TRIMBLE",
         "entities": [
           "E-07402",
           "E-10405"
@@ -1600,37 +1600,6 @@
         ]
       },
       {
-        "normalised": "L3 TECHNOLOGIES",
-        "entities": [
-          "E-00384",
-          "E-01440",
-          "E-01881",
-          "E-02272",
-          "E-02349",
-          "E-03270",
-          "E-03653",
-          "E-03813",
-          "E-04424",
-          "E-07548",
-          "E-10025",
-          "E-10569"
-        ],
-        "canonical_names": [
-          "L3 TECHNOLOGIES, INC.",
-          "L3 TECHNOLOGIES, INC.",
-          "L-3 COMMUNICATIONS CORPORATION",
-          "L3 TECHNOLOGIES, INC.",
-          "L3 TECHNOLOGIES, INC.",
-          "L3 TECHNOLOGIES, INC.",
-          "L3 TECHNOLOGIES, INC.",
-          "L3 TECHNOLOGIES, INC.",
-          "L-3 COMMUNICATIONS CORPORATION",
-          "L3 TECHNOLOGIES, INC.",
-          "L3 TECHNOLOGIES, INC.",
-          "L3 TECHNOLOGIES, INC."
-        ]
-      },
-      {
         "normalised": "L 3 COMMUNICATIONS",
         "entities": [
           "E-01242",
@@ -1657,6 +1626,37 @@
           "L-3 COMMUNICATIONS CORPORATION",
           "L3 AVIATION PRODUCTS, INC.",
           "L-3 COMMUNICATIONS CORPORATION",
+          "L3 TECHNOLOGIES, INC.",
+          "L3 TECHNOLOGIES, INC."
+        ]
+      },
+      {
+        "normalised": "L3 TECHNOLOGIES",
+        "entities": [
+          "E-00384",
+          "E-01440",
+          "E-01881",
+          "E-02272",
+          "E-02349",
+          "E-03270",
+          "E-03653",
+          "E-03813",
+          "E-04424",
+          "E-07548",
+          "E-10025",
+          "E-10569"
+        ],
+        "canonical_names": [
+          "L3 TECHNOLOGIES, INC.",
+          "L3 TECHNOLOGIES, INC.",
+          "L-3 COMMUNICATIONS CORPORATION",
+          "L3 TECHNOLOGIES, INC.",
+          "L3 TECHNOLOGIES, INC.",
+          "L3 TECHNOLOGIES, INC.",
+          "L3 TECHNOLOGIES, INC.",
+          "L3 TECHNOLOGIES, INC.",
+          "L-3 COMMUNICATIONS CORPORATION",
+          "L3 TECHNOLOGIES, INC.",
           "L3 TECHNOLOGIES, INC.",
           "L3 TECHNOLOGIES, INC."
         ]
@@ -1851,7 +1851,7 @@
         ]
       },
       {
-        "normalised": "SYNNEX",
+        "normalised": "TD SYNNEX",
         "entities": [
           "E-01847",
           "E-05821"
@@ -1862,7 +1862,7 @@
         ]
       },
       {
-        "normalised": "TD SYNNEX",
+        "normalised": "SYNNEX",
         "entities": [
           "E-01847",
           "E-05821"

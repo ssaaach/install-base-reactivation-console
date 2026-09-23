@@ -4,8 +4,8 @@ Generated from `pipeline/provenance.py`. Every field in the final model carries 
 
 | Tag | Meaning | Fields |
 |---|---|---:|
-| **REAL** | sourced from a named public dataset, unmodified | 24 |
-| **DERIVED** | computed from REAL fields only | 31 |
+| **REAL** | sourced from a named public dataset, unmodified | 34 |
+| **DERIVED** | computed from REAL fields only | 39 |
 | **SYNTHETIC** | generated, because no public equivalent exists | 3 |
 | **ASSUMPTION** | a stated commercial input, not a measurement | 3 |
 
@@ -71,4 +71,22 @@ Generated from `pipeline/provenance.py`. Every field in the final model carries 
 | `ranking` | `engagement cost` | **ASSUMPTION** | pipeline/assumptions.py (assumption register) | A-02, no public source |
 | `ranking` | `horizon` | **ASSUMPTION** | pipeline/assumptions.py (assumption register) | A-03 |
 | `ranking` | `expected_value` | **DERIVED + ASSUMPTION** | pipeline/assumptions.py (assumption register) | two of its four terms are assumptions; see the sensitivity analysis |
+| `offshore_structures` | `complex_id / structure_number` | **REAL** | BSEE open data (data.bsee.gov), US OCS Gulf of Mexico | Platform Structures; the pair is unique, complex_id alone is not |
+| `offshore_structures` | `install_date` | **REAL** | BSEE open data (data.bsee.gov), US OCS Gulf of Mexico | recorded, but 69.2% are exactly 01-JAN - a placeholder for a year, not a day. install_imputed marks them and the profile reports the rate by decade |
+| `offshore_structures` | `removal_date` | **REAL** | BSEE open data (data.bsee.gov), US OCS Gulf of Mexico | present on 81.4% of structures; absent means still standing, not missing |
+| `offshore_structures` | `structure_type_code / major_structure_flag` | **REAL** | BSEE open data (data.bsee.gov), US OCS Gulf of Mexico |  |
+| `offshore_structures` | `deck_count / slot_count / slot_drill_count` | **REAL** | BSEE open data (data.bsee.gov), US OCS Gulf of Mexico |  |
+| `offshore_structures` | `install_imputed` | **DERIVED** | offshore.py | install_date_raw starts with 01-JAN |
+| `offshore_structures` | `water_depth_cx / distance_to_shore_cx / lease_number_cx` | **REAL** | BSEE open data (data.bsee.gov), US OCS Gulf of Mexico | Platform Masters, which is keyed per COMPLEX. Joined one-to-many onto structure rows, so these are SHARED, not measured per structure - the _cx suffix and complex_is_shared both say so |
+| `offshore_structures` | `abandon_flag_cx` | **REAL** | BSEE open data (data.bsee.gov), US OCS Gulf of Mexico | LABEL LEAKAGE. Marks a structure already scheduled for removal. Never a feature; used only to check the model ranks flagged structures highly |
+| `offshore_structures` | `mms_company_num` | **REAL** | BSEE open data (data.bsee.gov), US OCS Gulf of Mexico | CURRENT operator only. Not used in Phase 1: attributing a 1985 structure's whole lifetime to today's holder is survivorship bias |
+| `offshore_structures` | `depth_stratum / deepwater` | **DERIVED** | water depth vs 400ft | deepwater and shallow water are two populations, never pooled silently |
+| `offshore_structures` | `complex_structure_count / complex_is_shared` | **DERIVED** | offshore.py | how many structures share the complex a row's covariates came from |
+| `offshore_structures` | `removal_method` | **REAL** | BSEE open data (data.bsee.gov), US OCS Gulf of Mexico | Structures Removed, DELIMITED edition. The published fixed-width offsets are two characters early from this field on and invent ~100 methods of the form '11EXPLOSIVES GENERIC'. Describes severance technique, not cause |
+| `offshore_lifetimes` | `entry_age_years` | **DERIVED** | observation window opens 1975-01-01 | LEFT TRUNCATION. Structures installed before the window enter the risk set at the age they had already reached, not at zero |
+| `offshore_lifetimes` | `exit_age_years / event` | **DERIVED** | install to removal, or to as-of | event=1 removed, event=0 right-censored at config.AS_OF |
+| `offshore_lifetimes` | `left_truncated` | **DERIVED** | entry_age_years > 0 |  |
+| `offshore_model` | `p_removal_365d` | **DERIVED** | offshore_survival.py (Cox PH on age, or the age baseline) | time scale is AGE, so age is the duration and cannot also be a covariate. Fitted on structure DESIGN only; every current-state field is excluded as an anachronism and listed in excluded_unobservable |
+| `offshore_model` | `rank_score / score_source` | **DERIVED** | offshore_survival.py | age alone is INVERTED in this domain - removed structures are younger than standing ones in every pre-cutoff window - so the baseline ranks youngest first. The Cox model did not beat it, so score_source records that the ranking kept the baseline |
+| `offshore_model` | `storm competing risk` | **REAL (unseparated)** | BSEE open data (data.bsee.gov), US OCS Gulf of Mexico | storm losses are INSIDE these events and cannot be identified from this data; removal method is severance technique and the removal date is the paperwork date, lagging destruction by years. Declared, never excluded |
 | `plays` | `reason_code / evidence_ids` | **DERIVED** | plays.py | each code declares its own provenance; a SYNTHETIC code is never a recommended action |

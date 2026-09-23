@@ -6,8 +6,8 @@
     "ASSUMPTION": "a stated commercial input, not a measurement"
   },
   "counts": {
-    "REAL": 24,
-    "DERIVED": 31,
+    "REAL": 34,
+    "DERIVED": 39,
     "SYNTHETIC": 3,
     "ASSUMPTION": 3
   },
@@ -431,6 +431,132 @@
       "tag": "DERIVED + ASSUMPTION",
       "source": "pipeline/assumptions.py (assumption register)",
       "note": "two of its four terms are assumptions; see the sensitivity analysis"
+    },
+    {
+      "table": "offshore_structures",
+      "field": "complex_id / structure_number",
+      "tag": "REAL",
+      "source": "BSEE open data (data.bsee.gov), US OCS Gulf of Mexico",
+      "note": "Platform Structures; the pair is unique, complex_id alone is not"
+    },
+    {
+      "table": "offshore_structures",
+      "field": "install_date",
+      "tag": "REAL",
+      "source": "BSEE open data (data.bsee.gov), US OCS Gulf of Mexico",
+      "note": "recorded, but 69.2% are exactly 01-JAN - a placeholder for a year, not a day. install_imputed marks them and the profile reports the rate by decade"
+    },
+    {
+      "table": "offshore_structures",
+      "field": "removal_date",
+      "tag": "REAL",
+      "source": "BSEE open data (data.bsee.gov), US OCS Gulf of Mexico",
+      "note": "present on 81.4% of structures; absent means still standing, not missing"
+    },
+    {
+      "table": "offshore_structures",
+      "field": "structure_type_code / major_structure_flag",
+      "tag": "REAL",
+      "source": "BSEE open data (data.bsee.gov), US OCS Gulf of Mexico",
+      "note": ""
+    },
+    {
+      "table": "offshore_structures",
+      "field": "deck_count / slot_count / slot_drill_count",
+      "tag": "REAL",
+      "source": "BSEE open data (data.bsee.gov), US OCS Gulf of Mexico",
+      "note": ""
+    },
+    {
+      "table": "offshore_structures",
+      "field": "install_imputed",
+      "tag": "DERIVED",
+      "source": "offshore.py",
+      "note": "install_date_raw starts with 01-JAN"
+    },
+    {
+      "table": "offshore_structures",
+      "field": "water_depth_cx / distance_to_shore_cx / lease_number_cx",
+      "tag": "REAL",
+      "source": "BSEE open data (data.bsee.gov), US OCS Gulf of Mexico",
+      "note": "Platform Masters, which is keyed per COMPLEX. Joined one-to-many onto structure rows, so these are SHARED, not measured per structure - the _cx suffix and complex_is_shared both say so"
+    },
+    {
+      "table": "offshore_structures",
+      "field": "abandon_flag_cx",
+      "tag": "REAL",
+      "source": "BSEE open data (data.bsee.gov), US OCS Gulf of Mexico",
+      "note": "LABEL LEAKAGE. Marks a structure already scheduled for removal. Never a feature; used only to check the model ranks flagged structures highly"
+    },
+    {
+      "table": "offshore_structures",
+      "field": "mms_company_num",
+      "tag": "REAL",
+      "source": "BSEE open data (data.bsee.gov), US OCS Gulf of Mexico",
+      "note": "CURRENT operator only. Not used in Phase 1: attributing a 1985 structure's whole lifetime to today's holder is survivorship bias"
+    },
+    {
+      "table": "offshore_structures",
+      "field": "depth_stratum / deepwater",
+      "tag": "DERIVED",
+      "source": "water depth vs 400ft",
+      "note": "deepwater and shallow water are two populations, never pooled silently"
+    },
+    {
+      "table": "offshore_structures",
+      "field": "complex_structure_count / complex_is_shared",
+      "tag": "DERIVED",
+      "source": "offshore.py",
+      "note": "how many structures share the complex a row's covariates came from"
+    },
+    {
+      "table": "offshore_structures",
+      "field": "removal_method",
+      "tag": "REAL",
+      "source": "BSEE open data (data.bsee.gov), US OCS Gulf of Mexico",
+      "note": "Structures Removed, DELIMITED edition. The published fixed-width offsets are two characters early from this field on and invent ~100 methods of the form '11EXPLOSIVES GENERIC'. Describes severance technique, not cause"
+    },
+    {
+      "table": "offshore_lifetimes",
+      "field": "entry_age_years",
+      "tag": "DERIVED",
+      "source": "observation window opens 1975-01-01",
+      "note": "LEFT TRUNCATION. Structures installed before the window enter the risk set at the age they had already reached, not at zero"
+    },
+    {
+      "table": "offshore_lifetimes",
+      "field": "exit_age_years / event",
+      "tag": "DERIVED",
+      "source": "install to removal, or to as-of",
+      "note": "event=1 removed, event=0 right-censored at config.AS_OF"
+    },
+    {
+      "table": "offshore_lifetimes",
+      "field": "left_truncated",
+      "tag": "DERIVED",
+      "source": "entry_age_years > 0",
+      "note": ""
+    },
+    {
+      "table": "offshore_model",
+      "field": "p_removal_365d",
+      "tag": "DERIVED",
+      "source": "offshore_survival.py (Cox PH on age, or the age baseline)",
+      "note": "time scale is AGE, so age is the duration and cannot also be a covariate. Fitted on structure DESIGN only; every current-state field is excluded as an anachronism and listed in excluded_unobservable"
+    },
+    {
+      "table": "offshore_model",
+      "field": "rank_score / score_source",
+      "tag": "DERIVED",
+      "source": "offshore_survival.py",
+      "note": "age alone is INVERTED in this domain - removed structures are younger than standing ones in every pre-cutoff window - so the baseline ranks youngest first. The Cox model did not beat it, so score_source records that the ranking kept the baseline"
+    },
+    {
+      "table": "offshore_model",
+      "field": "storm competing risk",
+      "tag": "REAL (unseparated)",
+      "source": "BSEE open data (data.bsee.gov), US OCS Gulf of Mexico",
+      "note": "storm losses are INSIDE these events and cannot be identified from this data; removal method is severance technique and the removal date is the paperwork date, lagging destruction by years. Declared, never excluded"
     },
     {
       "table": "plays",

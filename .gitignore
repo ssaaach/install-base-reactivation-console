@@ -10,6 +10,10 @@ data/processed/*.parquet
 # exact pull is auditable (request body, row/column counts, SHA-256, retrieval
 # time per file) and `python pipeline/run_all.py` reproduces them.
 data/raw/*.zip
+# The BSEE archives and everything unpacked from them. Same treatment as the
+# USAspending zips: regenerable in seconds by fetch_bsee.py, and the manifest
+# below records each  file's row count and SHA-256 so the pull stays auditable.
+data/raw/bsee/
 data/raw/*.part
 
 # Committed on purpose, despite living under data/: these are small, and they are
@@ -39,3 +43,6 @@ context.md
 # Pre-theme backups of the files the restyle rewrote. Kept locally as a
 # rollback; git already has the originals, so they never need committing.
 *.bak
+
+# Working build prompt. Local only, same treatment as the original brief.
+OFFSHORE_PROMPT.md

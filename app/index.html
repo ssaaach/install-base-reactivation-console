@@ -126,6 +126,19 @@ h1 em{
 .mast-meta{font:500 11px/1.4 var(--mono);color:var(--ink-2);display:flex;gap:16px;flex-wrap:wrap}
 .mast-meta b{color:var(--ink);font-weight:600}
 .mast-tools{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+/* Two domains, one console. The switch is a segmented control rather than a
+   tab because the domains are not peers of the surfaces inside them: changing
+   domain changes which surfaces exist at all. */
+.dsw{display:inline-flex;border:1px solid var(--rule);background:var(--raise)}
+.dsw button{
+  cursor:pointer;background:transparent;border:0;color:var(--ink-3);
+  font:600 10px/1 var(--cond);letter-spacing:.1em;text-transform:uppercase;
+  padding:7px 12px;transition:background .15s,color .15s;
+}
+.dsw button+button{border-left:1px solid var(--rule)}
+.dsw button:hover{color:var(--ink)}
+.dsw button[aria-pressed="true"]{background:var(--accent);color:#08120B}
+.framing[hidden]{display:none}
 .mbtn{
   appearance:none;cursor:pointer;text-decoration:none;
   background:var(--scrim);border:1px solid var(--rule);color:var(--ink-2);
@@ -304,20 +317,31 @@ label.ctl{font:600 10px var(--cond);letter-spacing:.08em;text-transform:uppercas
       <div class="mast-tools">
         <div class="mast-meta">
           <span>as of <b id="m-asof">—</b></span>
-          <span>accounts <b id="m-acct">—</b></span>
-          <span>awards <b id="m-awards">—</b></span>
+          <span id="m-c1">accounts <b id="m-acct">—</b></span>
+          <span id="m-c2">awards <b id="m-awards">—</b></span>
           <span>built <b id="m-built">—</b></span>
+        </div>
+        <div class="dsw" id="domain-switch" role="group" aria-label="Domain">
+          <button type="button" data-d="federal" aria-pressed="true">Federal</button>
+          <button type="button" data-d="offshore" aria-pressed="false">Offshore</button>
         </div>
         <a class="mbtn" href="landing.html">Cover</a>
         <button class="mbtn" id="theme-btn" type="button">Light</button>
       </div>
     </div>
-    <p class="framing">
+    <p class="framing" data-domain="federal" id="framing-federal">
       <b>This is not any vendor's install base.</b> The data is US federal
       enterprise-storage procurement from USAspending.gov, used as a
       <b>proxy</b> for install-base dynamics. Accounts are federal awarding
       offices, not any company's customers. Every commercial figure is an
       assumption, listed in the register.
+    </p>
+    <p class="framing" data-domain="offshore" id="framing-offshore" hidden>
+      <b>This domain observes the asset, never the money.</b> BSEE records every
+      Gulf of Mexico platform by name, type, install date and removal date, so
+      retirement is measured here rather than inferred &mdash; but nothing public
+      says what any of it cost or earns. It is <b>never ranked against</b> the
+      federal accounts: different observability, separate tables, separate model.
     </p>
   </header>
 
@@ -605,7 +629,13 @@ function chartBox(){var d=document.createElement("div");d.className="chart";retu
 
 /* ------------------------------------------------------------- pages */
 var PAGES=[];
-function page(id,name,build){PAGES.push({id:id,name:name,build:build});}
+function page(id,name,build,domain){
+  PAGES.push({id:id,name:name,build:build,domain:domain||"federal"});
+}
+function domainOf(id){
+  for(var i=0;i<PAGES.length;i++) if(PAGES[i].id===id) return PAGES[i].domain;
+  return "federal";
+}
 
 /* ---- Overview */
 page("overview","Overview",function(root){
@@ -1446,6 +1476,113 @@ page("model","Model",function(root){
   }
 });
 
+/* ---- Offshore (second domain)
+   Everything on this surface comes from BSEE. There is no money on it at all,
+   because this domain never observes any - which is the whole reason it is a
+   separate domain rather than another federal tab. */
+page("offshore","Structures",function(root){
+  var O=(D.offshore||{}), K2=(O.kpis||{}), MOD=(O.model||{}),
+      DEC=(MOD.decision||{}), DIS=(MOD.discrimination||{});
+
+  root.appendChild(p("lede",
+    "The physical offshore install base of the US Gulf of Mexico: named "+
+    "structures, typed, with a date in and a date out. Retirement is "+
+    "<b>measured</b> here, not inferred - which is exactly what the federal "+
+    "domain cannot do."));
+
+  root.appendChild(stats([
+    {k:"Standing now",v:num(K2.standing),s:"still in place"},
+    {k:"Removed",v:num(K2.removed),s:pct(K2.event_rate)+" of all records",flag:true},
+    {k:"All-time structures",v:num(K2.structures_all_time),
+     s:num(K2.complexes)+" complexes"},
+    {k:"Median age standing",v:(K2.standing_median_age_years!=null?
+      K2.standing_median_age_years+" yrs":"—"),s:"a late-life portfolio"},
+    {k:"Install date imputed",v:pct(K2.install_imputed_rate),
+     s:"01-JAN placeholders",flag:true}
+  ]));
+
+  /* The finding that reframes the domain. */
+  root.appendChild(p("framing",
+    "<b>This file is mostly a history of structures that have already gone.</b> "+
+    pct(K2.event_rate)+" of the records carry a removal date; the live install "+
+    "base is the "+num(K2.standing)+" that do not. Those survivors are a median "+
+    "of "+(K2.standing_median_age_years||"—")+" years old."));
+
+  /* ---- what the model decided, stated before any ranking is shown */
+  root.appendChild(h2("Whether anything beat age alone"));
+  var beat=DIS.model_beats_baseline, weak=DEC.discrimination_is_weak;
+  root.appendChild(p("lede",
+    "<b>"+(beat?"The model won.":"The model lost, so the ranking keeps the baseline.")+
+    "</b> "+esc(DIS.note||"")));
+  root.appendChild(table(
+    [{h:"Signal",k:"a"},{h:"AUC",k:"b",r:true,f:function(r){return (r.b==null?"—":Number(r.b).toFixed(3));}},
+     {h:"Verdict",k:"c"}],
+    [{a:"Cox PH on structure design",b:DIS.auc_model,c:beat?"used":"not used"},
+     {a:"Baseline — age, "+String(DIS.baseline_direction||"").replace("_"," "),
+      b:DIS.auc_baseline,c:beat?"beaten":"KEPT"},
+     {a:"Age, oldest first (the intuitive rule)",b:DIS.auc_age_ascending,
+      c:(DIS.age_is_inverted?"worse than chance":"")}]));
+
+  if(weak){
+    root.appendChild(p("framing",
+      "<b>Both signals are close to a coin toss.</b> "+
+      esc((DEC.weak_note||""))));
+  }
+
+  /* why age points backwards - the survivorship explanation, with its numbers */
+  var SV=(O.survivorship||MOD.survivorship||{});
+  if(SV && SV.note){
+    root.appendChild(h3("Why age points backwards"));
+    root.appendChild(p("lede",esc(SV.note)));
+  }
+
+  /* ---- the three traps, stated on the surface rather than buried in a report */
+  root.appendChild(h2("What this domain cannot tell you"));
+  var st=(O.storms||{}), iq=(O.install_date_quality||{}), lt=(O.left_truncation||{});
+  root.appendChild(table(
+    [{h:"Limit",k:"a"},{h:"What was done",k:"b"}],
+    [{a:"Storm losses are not separable",b:st.note||""},
+     {a:"Install dates are part-imputed",b:iq.note||""},
+     {a:"Left truncation",b:lt.note||""},
+     {a:"No price, ever",
+      b:"BSEE publishes no cost or revenue per structure, so this domain carries "+
+        "no obligation, no expected value and no margin. Any of those appearing "+
+        "here would be invented."},
+     {a:"Operator not used",
+      b:"The operator field is the CURRENT one; a 1985 structure may have had "+
+        "four. Attributing a whole lifetime to today's holder is survivorship "+
+        "bias aimed at the ranking, so Phase 1 stays at structure level."}]));
+
+  /* ---- the standing base */
+  root.appendChild(h2("Standing structures"));
+  root.appendChild(p("lede",
+    "Ordered by "+esc(DEC.ranking_uses||"the ranking signal")+". "+
+    (weak?"Treat this as a worklist, not a prediction of which come out next. ":"")+
+    "Showing "+num(O.structures_shown)+" of "+num(O.structures_total)+"."));
+  var rows=(O.structures||[]);
+  root.appendChild(table(
+    [{h:"#",k:"rank",r:true},
+     {h:"Structure",k:"structure_name"},
+     {h:"Type",k:"structure_type_code"},
+     {h:"Area",f:function(r){return (r.area_code||"")+" "+(r.block_number||"");}},
+     {h:"Installed",f:function(r){
+        return (r.install_year||"—")+(r.install_imputed?" ≈":"");}},
+     {h:"Age",r:true,f:function(r){
+        return r.age_years_now==null?"—":Number(r.age_years_now).toFixed(0);}},
+     {h:"Depth",k:"depth_stratum"},
+     {h:"Water ft",k:"water_depth_cx",r:true,f:function(r){
+        return r.water_depth_cx==null?"—":num(r.water_depth_cx);}},
+     {h:"Shared cx",f:function(r){return r.complex_is_shared?"yes":"";}},
+     {h:"Scheduled",f:function(r){return r.abandon_flag_cx==="Y"?"flagged":"";}}],
+    rows));
+  root.appendChild(p("lede",
+    "<b>≈</b> marks an install date recorded as 01-JAN, a placeholder for a "+
+    "year rather than a day. <b>Shared cx</b> means the water depth and lease on "+
+    "that row are complex-level attributes shared with other structures, not "+
+    "measured for this one. <b>Scheduled</b> is BSEE's abandonment flag, which is "+
+    "never a model input - it announces the outcome."));
+},"offshore");
+
 /* ---- Provenance */
 page("provenance","Provenance",function(root){
   var P_=D.provenance||{}, counts=P_.counts||{}, fields=P_.fields||[];
@@ -1546,6 +1683,7 @@ function render(){
     var b=document.createElement("button");
     b.className="tab"; b.type="button"; b.textContent=pg.name;
     b.setAttribute("role","tab"); b.id="tab-"+pg.id;
+    b.setAttribute("data-domain",pg.domain);
     b.setAttribute("aria-selected",i===0?"true":"false");
     b.setAttribute("aria-controls","sec-"+pg.id);
     /* Click by way of the hash, so the URL always names the surface on
@@ -1585,6 +1723,7 @@ function build(pg){
     esc(String(e&&e.message||e))+'</p>')); }
 }
 function select(id){
+  setDomain(domainOf(id),true);
   PAGES.forEach(function(pg){
     var t=document.getElementById("tab-"+pg.id), s=document.getElementById("sec-"+pg.id);
     var on=pg.id===id;
@@ -1596,6 +1735,54 @@ function select(id){
   try{ localStorage.setItem("ibrc.tab",id); }catch(e){}
 }
 render();
+
+/* ------------------------------------------------------- domain switching
+   The two domains are not peers of the surfaces inside them - changing domain
+   changes which surfaces exist - so this hides the other domain's tabs rather
+   than rebuilding the strip, and swaps the framing statement with it. Every
+   tab id is unique across domains, so the hash alone still identifies both the
+   surface and the domain and deep links keep working. */
+var DOMAIN="federal";
+function setDomain(d,quiet){
+  if(!d) d="federal";
+  DOMAIN=d;
+  var sw=document.getElementById("domain-switch");
+  if(sw) [].slice.call(sw.querySelectorAll("button")).forEach(function(b){
+    b.setAttribute("aria-pressed",b.getAttribute("data-d")===d?"true":"false");
+  });
+  [].slice.call(document.querySelectorAll(".tabs .tab")).forEach(function(t){
+    t.style.display=(t.getAttribute("data-domain")===d)?"":"none";
+  });
+  [].slice.call(document.querySelectorAll(".framing[data-domain]")).forEach(function(f){
+    f.hidden=(f.getAttribute("data-domain")!==d);
+  });
+  /* the masthead counts describe whichever domain is on screen; leaving the
+     federal award counts up while reading offshore structures is just wrong */
+  var c1=document.getElementById("m-c1"), c2=document.getElementById("m-c2");
+  if(c1&&c2){
+    if(d==="offshore"){
+      var OK=((D.offshore||{}).kpis||{});
+      c1.innerHTML="standing <b>"+esc(num(OK.standing))+"</b>";
+      c2.innerHTML="removed <b>"+esc(num(OK.removed))+"</b>";
+    }else{
+      c1.innerHTML="accounts <b>"+esc(num(K.accounts))+"</b>";
+      c2.innerHTML="awards <b>"+esc(num(K.awards_in_scope))+"</b>";
+    }
+  }
+  try{ localStorage.setItem("ibrc.domain",d); }catch(e){}
+  if(quiet) return;
+  /* jumping domains lands on that domain's first surface */
+  for(var i=0;i<PAGES.length;i++) if(PAGES[i].domain===d){ location.hash=PAGES[i].id; return; }
+}
+(function(){
+  var sw=document.getElementById("domain-switch");
+  if(!sw) return;
+  sw.addEventListener("click",function(e){
+    var b=e.target.closest("button[data-d]"); if(!b) return;
+    var d=b.getAttribute("data-d");
+    if(d!==DOMAIN) setDomain(d);
+  });
+})();
 
 /* ------------------------------------------------------------- routing
    The tab now lives in the URL so the cover page can link straight to a

@@ -64,6 +64,13 @@ def landing_digest(bundle: dict) -> dict:
         "positive_ev": k.get("positive_ev_accounts"),
         "prime_rows": totals.get("prime_award_rows"),
         "fy_span": span,
+        # second domain - the cover names both, so both must come from the
+        # bundle. A figure typed into the template is a figure the pipeline
+        # cannot keep honest.
+        "offshore_standing": ((bundle.get("offshore", {}) or {}).get("kpis", {}) or {})
+            .get("standing"),
+        "offshore_structures": ((bundle.get("offshore", {}) or {}).get("kpis", {}) or {})
+            .get("structures_all_time"),
     }
 
 

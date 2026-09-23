@@ -547,5 +547,73 @@
     "prime_award_rows": 277818,
     "subaward_rows": 32039,
     "bytes": 51556139
+  },
+  "bsee": {
+    "platstrufixed": {
+      "kind": "bsee",
+      "url": "https://www.data.bsee.gov/Platform/Files/platstrufixed.zip",
+      "layout": "platformStructures",
+      "layout_url": "https://www.data.bsee.gov/Main/HtmlPage.aspx?page=platformStructures",
+      "bytes": 209290,
+      "sha256": "990f207a6187da6dca53f3388893ef36c542968bb3fc79c85a3dfa0473be4b47",
+      "members": [
+        {
+          "name": "platstru.DAT",
+          "bytes": 1063800,
+          "rows": 7092
+        }
+      ],
+      "rows": 7092,
+      "retrieved": "2026-09-23T10:40:46+00:00",
+      "licence": "US Government work, public domain (17 U.S.C. 105). Bureau of Safety and Environmental Enforcement open data."
+    },
+    "platmastfixed": {
+      "kind": "bsee",
+      "url": "https://www.data.bsee.gov/Platform/Files/platmastfixed.zip",
+      "layout": "platformMasters",
+      "layout_url": "https://www.data.bsee.gov/Main/HtmlPage.aspx?page=platformMasters",
+      "bytes": 142255,
+      "sha256": "ba0329f7b059aa79272c9badedcb988b2292e8174c9655f9d6aa824f27f955c6",
+      "members": [
+        {
+          "name": "platmast.DAT",
+          "bytes": 680120,
+          "rows": 6940
+        }
+      ],
+      "rows": 6940,
+      "retrieved": "2026-09-23T10:40:49+00:00",
+      "licence": "US Government work, public domain (17 U.S.C. 105). Bureau of Safety and Environmental Enforcement open data."
+    },
+    "platstruremdelimit": {
+      "kind": "bsee",
+      "url": "https://www.data.bsee.gov/Platform/Files/platstruremdelimit.zip",
+      "layout": "platformStrucRem",
+      "layout_url": "https://www.data.bsee.gov/Main/HtmlPage.aspx?page=platformStrucRem",
+      "bytes": 235851,
+      "sha256": "c20de6dad508927dac781b6509112ec7b6d215e425d3e88dfd894cb05b440021",
+      "members": [
+        {
+          "name": "platstruremdelimit.txt",
+          "bytes": 1483221,
+          "rows": 6482
+        }
+      ],
+      "rows": 6482,
+      "retrieved": "2026-09-23T10:40:53+00:00",
+      "licence": "US Government work, public domain (17 U.S.C. 105). Bureau of Safety and Environmental Enforcement open data."
+    }
+  },
+  "bsee_meta": {
+    "source": "Bureau of Safety and Environmental Enforcement (BSEE) open data",
+    "base": "https://www.data.bsee.gov",
+    "licence": "US Government work, public domain (17 U.S.C. 105). Bureau of Safety and Environmental Enforcement open data.",
+    "region": "US Outer Continental Shelf, Gulf of Mexico",
+    "generated_at": "2026-09-23T10:40:53+00:00",
+    "totals": {
+      "files": 3,
+      "rows": 20514,
+      "bytes": 587396
+    }
   }
 }

@@ -20,22 +20,29 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 PY = sys.executable
 
+# Two domains run through one pipeline. They share the fetch conventions, the
+# survival machinery and the console, and they share nothing else: separate
+# tables, separate models, separate ranking, separate surface. Step numbers
+# changed when the offshore steps were inserted in dependency order (4, 8, 14).
 STEPS = [
     (1, "fetch_usaspending", "USAspending bulk download -> data/raw", True),
     (2, "fetch_backblaze", "Backblaze hazard curve (optional, REAL)", True),
     (3, "fetch_sec_benchmarks", "SEC filing benchmarks (benchmark only)", True),
-    (4, "build_awards", "flatten downloads -> awards_raw.parquet", False),
-    (5, "entity_resolution", "entity resolution + match report", False),
-    (6, "install_base", "accounts, coverage, renewals, cohorts, whitespace", False),
-    (7, "subawards", "prime->sub graph, vendor network, channel corroboration", False),
-    (8, "provenance", "field-level provenance table", False),
-    (9, "synthetic_layer", "SYNTHETIC telemetry, cases, health", False),
-    (10, "plays", "reason codes and play assignment", False),
-    (11, "survival", "survival model, time-based validation, calibration", False),
-    (12, "ranking", "expected-value ranking + sensitivity", False),
-    (13, "export_app_data", "bundle app/data/app_data.json", False),
-    (14, "build_app", "inline the bundle -> app/dist/index.html", False),
-    (15, "make_docs", "regenerate ASSUMPTIONS.md, docs/PROVENANCE.md, README tables", False),
+    (4, "fetch_bsee", "BSEE offshore platform data -> data/raw/bsee", True),
+    (5, "build_awards", "flatten downloads -> awards_raw.parquet", False),
+    (6, "entity_resolution", "entity resolution + match report", False),
+    (7, "install_base", "accounts, coverage, renewals, cohorts, whitespace", False),
+    (8, "offshore", "OFFSHORE: structure lifetimes, left truncation, profile", False),
+    (9, "subawards", "prime->sub graph, vendor network, channel corroboration", False),
+    (10, "provenance", "field-level provenance table", False),
+    (11, "synthetic_layer", "SYNTHETIC telemetry, cases, health", False),
+    (12, "plays", "reason codes and play assignment", False),
+    (13, "survival", "FEDERAL: time-to-next-award survival model", False),
+    (14, "offshore_survival", "OFFSHORE: removal survival model vs age baseline", False),
+    (15, "ranking", "expected-value ranking + sensitivity", False),
+    (16, "export_app_data", "bundle app/data/app_data.json", False),
+    (17, "build_app", "inline the bundle -> app/dist/index.html", False),
+    (18, "make_docs", "regenerate ASSUMPTIONS.md, docs/PROVENANCE.md, README tables", False),
 ]
 
 
