@@ -82,7 +82,7 @@
          viewport so only its crown enters the frame, well clear of the
          column the tables are read in. */
       var cx=W/2, cy, RX, RY;
-      if(hero){ cy=H*0.585; RX=Math.min(W*0.335,430); RY=RX*0.46; }
+      if(hero){ cy=H*0.46;  RX=Math.min(W*0.335,430); RY=RX*0.46; }
       else    { cy=H*1.22;  RX=W*0.60;                RY=Math.min(RX*0.28,H*0.36); }
 
       var N=hero?104:78;
